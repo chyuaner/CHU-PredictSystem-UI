@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>薪資導向落點建議</title>
+<link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
@@ -185,12 +186,14 @@
         </div>
       </div>
 
+      <!-- 您所期望的薪資 -->
       <div id="input-expect-salary-area">
         <label><h2>您所期望的薪資</h2>
           <input type="number" id="input-expect-salary">
         </label>
       </div>
 
+      <!-- 查詢按鈕 -->
       <div id="input-action-area">
         <ul>
           <li><input type="submit" value="查詢"></li>
@@ -202,7 +205,55 @@
 
 </section>
 
+<!-- 下方白色內容顯示區 -->
 <section id="container" class="page-section">
+
+  <!-- 查詢結果區域 -->
+  <div id="result-area">
+
+    <section id="result-suggest-school-departments">
+      <h2>建議選填科系一畢業生平均薪資排序如下表</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>校系代碼</th>
+            <th>校名</th>
+            <th>科系名稱</th>
+            <th>畢業生平均薪資</th>
+            <th>去年最低錄取分數</th>
+            <th>你的指考成績</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>0000</th>
+            <td>中華大學</td>
+            <td>資訊工程學系</td>
+            <td>30000</td>
+            <td>48</td>
+            <td>50</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </div>
+
+  <!-- 關於我們 -->
+  <div id="about">
+  </div>
+
+  <!-- 頁尾 -->
+  <footer>
+    <div id="footer-left">
+      2015 中華大學 資訊工程學系 資料庫實驗室
+    </div>
+    <div id="footer-right">
+      本站原始碼在XXX
+    </div>
+  </footer>
+
 </section>
 
 </body>

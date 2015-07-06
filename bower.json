@@ -1,0 +1,19 @@
+{
+  "name": "chu-predict-system-ui",
+  "version": "1.0.0",
+  "authors": [
+    "Yuan Chiu <chyuaner@gmail.com>"
+  ],
+  "main": "dest/index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation": "~5.5.2"
+  }
+}

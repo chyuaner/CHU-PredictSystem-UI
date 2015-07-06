@@ -119,70 +119,70 @@
       <!-- 輸入學群 -->
       <div id="input-department-group-area">
         <h2>輸入學群</h2>
-        <a href="#">
+        <a id="input-department-group-more" >
           <p>工程學群, 資訊學群</p>
           <span class="more-button">&#x25B2;&#x25BC;</span>
         </a>
 
         <!-- 選擇學群 -->
-        <div id="input-department-group-choose-area">
+        <div id="input-department-group-choose-area" class="hidden">
           <ul>
             <li>
-              <label><input type="checkbox" name="input-department-group" value="工程學群">工程學群</label>
+              <label><input type="checkbox" name="input-department-group" value="工程學群"><span>工程學群</span></label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-department-group" value="數理化學群">數理化學群</label>
+              <label><input type="checkbox" name="input-department-group" value="數理化學群"><span>數理化學群</span></label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-department-group" value="資訊學群">資訊學群</label>
+              <label><input type="checkbox" name="input-department-group" value="資訊學群"><span>資訊學群</span></label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-department-group" value="地球與環境學群">地球與環境學群</label>
+              <label><input type="checkbox" name="input-department-group" value="地球與環境學群"><span>地球與環境學群</span></label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-department-group" value="醫藥衛生學群">醫藥衛生學群</label>
+              <label><input type="checkbox" name="input-department-group" value="醫藥衛生學群"><span>醫藥衛生學群</span></label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-department-group" value="管理學群">管理學群</label>
+              <label><input type="checkbox" name="input-department-group" value="管理學群"><span>管理學群</span></label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-department-group" value="建築與設計學群">建築與設計學群</label>
+              <label><input type="checkbox" name="input-department-group" value="建築與設計學群"><span>建築與設計學群</span></label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-department-group" value="遊憩與運動學群">遊憩與運動學群</label>
+              <label><input type="checkbox" name="input-department-group" value="遊憩與運動學群"><span>遊憩與運動學群</span></label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-department-group" value="財經學群">財經學群</label>
+              <label><input type="checkbox" name="input-department-group" value="財經學群"><span>財經學群</span></label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-department-group" value="生命科學群">生命科學群</label>
+              <label><input type="checkbox" name="input-department-group" value="生命科學群"><span>生命科學群</span></label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-department-group" value="社會與心理學群">社會與心理學群</label>
+              <label><input type="checkbox" name="input-department-group" value="社會與心理學群"><span>社會與心理學群</span></label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-department-group" value="大眾傳播學群">大眾傳播學群</label>
+              <label><input type="checkbox" name="input-department-group" value="大眾傳播學群"><span>大眾傳播學群</span></label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-department-group" value="外語學群">外語學群</label>
+              <label><input type="checkbox" name="input-department-group" value="外語學群"><span>外語學群</span></label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-department-group" value="生物資源學群">生物資源學群</label>
+              <label><input type="checkbox" name="input-department-group" value="生物資源學群"><span>生物資源學群</span></label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-department-group" value="法政學群">法政學群</label>
+              <label><input type="checkbox" name="input-department-group" value="法政學群"><span>法政學群</span></label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-department-group" value="藝術學群">藝術學群</label>
+              <label><input type="checkbox" name="input-department-group" value="藝術學群"><span>藝術學群</span></label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-department-group" value="文史哲學群">文史哲學群</label>
+              <label><input type="checkbox" name="input-department-group" value="文史哲學群"><span>文史哲學群</span></label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-department-group" value="教育學群">教育學群</label>
+              <label><input type="checkbox" name="input-department-group" value="教育學群"><span>教育學群</span></label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-department-group" value="不分系學群">不分系學群</label>
+              <label><input type="checkbox" name="input-department-group" value="不分系學群"><span>不分系學群</span></label>
             </li>
           </ul>
         </div>
@@ -258,5 +258,15 @@
 
 </section>
 
+<script>
+  window.onload = function() {
+    var btn_departmentGroupMore = document.getElementById('input-department-group-more');
+    btn_departmentGroupMore.onclick = function() {
+      var div_departmentGroupCheckboxArea = document.getElementById('input-department-group-choose-area');
+      var divClassed = div_departmentGroupCheckboxArea.classList;
+      divClassed.toggle("hidden");
+    }
+  }
+</script>
 </body>
 </html>

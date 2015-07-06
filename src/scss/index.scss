@@ -8,18 +8,17 @@
   box-shadow: 0 0.5rem 2rem gray;
   h1, h2, h3, p, label {color: white;}
 
-  header {
+  header, #input-area {
     margin: 0 auto;
     width: 90%;
   }
 
-  #input-area {
-    margin: 0 auto;
-    width: 90%;
+  h1 {
+    font-size: 2em;
   }
 
   h2 {
-    font-size: 1.4em;
+    font-size: 1.2em;
     small {
       font-size: 0.7em;
       color: white;
@@ -32,14 +31,17 @@
     border: 0;
     border-bottom: 1px solid white;
     color: white;
-    font-size: 1.2em;
+    font-size: 1.1em;
     text-align: center;
+    height: 2.1em;
+    -moz-appearance:textfield;
   }
 
   #input-ast-score ,#input-gsat-score {
     label {
       font-size: 1em;
     }
+    ul li { margin-bottom: -1em; }
   }
   #input-ast-score {
     ul {
@@ -72,12 +74,12 @@
       float: right;
     }
 
-    h2 {
-      margin-right: 1em;
-    }
+    h2 { margin-right: 1em; }
+    p { padding-left: 1.5em; }
+
 
     #input-department-group-choose-area{
-      display: none;
+      width: 100%;
       ul {
         @include block-grid(6);
       }
@@ -107,3 +109,39 @@
   }
 }
 
+#container {
+  padding-top: 2rem;
+  #result-area, #about, footer {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  #result-area {
+    h2 {
+      font-size: 1.5em;
+    }
+
+    table {
+      width: 100%;
+
+      th, td { text-align: center; }
+
+      tbody {
+        td:nth-child(2), td:nth-child(3) { text-align: left; }
+      }
+    }
+  }
+
+  footer {
+    border-top: 1px solid black;
+    margin-top: 2em;
+    padding-bottom: 4em;
+
+    #footer-left {
+      float: left;
+    }
+    #footer-right {
+      float: right;
+    }
+  }
+}

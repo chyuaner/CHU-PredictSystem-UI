@@ -1,1 +1,109 @@
 @import "foundation";
+
+
+/* 分數輸入區 */
+#header {
+  background: #8AB9B2;
+  overflow: auto;
+  box-shadow: 0 0.5rem 2rem gray;
+  h1, h2, h3, p, label {color: white;}
+
+  header {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  #input-area {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  h2 {
+    font-size: 1.4em;
+    small {
+      font-size: 0.7em;
+      color: white;
+    }
+  }
+
+  input[type="number"], select {
+    box-shadow: inset 0 0 0 0;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid white;
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+  }
+
+  #input-ast-score ,#input-gsat-score {
+    label {
+      font-size: 1em;
+    }
+  }
+  #input-ast-score {
+    ul {
+      @include block-grid(10);
+    }
+  }
+
+  #input-gsat-score {
+    ul {
+      @include block-grid(6);
+    }
+  }
+
+  #input-department-group-area {
+    display: flex;
+    flex-wrap: wrap;
+
+    a {
+      padding: 0.3rem;
+      color: white;
+      border-bottom: 1px solid white;
+      flex-grow: 1;
+      height: 2.2em;
+      margin-bottom: 1em;
+    }
+    p, .more-button {
+      display: inline-block;
+    }
+    .more-button {
+      float: right;
+    }
+
+    h2 {
+      margin-right: 1em;
+    }
+
+    #input-department-group-choose-area{
+      display: none;
+      ul {
+        @include block-grid(6);
+      }
+    }
+  }
+
+  #input-expect-salary-area {
+    clear: both;
+    h2 {
+      float: left;
+    }
+    input {
+      width: 8em;
+    }
+  }
+
+  #input-action-area {
+    float: right;
+    ul li {
+      list-style-type: none;
+      display: inline-block;
+    }
+    input[type="submit"] {
+      @extend .button;
+      @extend .success;
+    }
+  }
+}
+

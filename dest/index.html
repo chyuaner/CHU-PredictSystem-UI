@@ -18,56 +18,56 @@
 
       <!-- 輸入指考成績 -->
       <div id="input-ast-score">
-        <h2>輸入指考成績</h2>
+        <h2>輸入指考成績<small>（未考部分請留空白）</small></h2>
         <ul>
           <li>
             <label>國文
-              <input type="number" id="input-ast-chinese">
+              <input type="number" id="input-ast-chinese" class="input-score">
             </label>
           </li>
           <li>
             <label>英文
-              <input type="number" id="input-ast-english">
+              <input type="number" id="input-ast-english" class="input-score">
             </label>
           </li>
           <li>
             <label>數學甲
-              <input type="number" id="input-ast-math-a">
+              <input type="number" id="input-ast-math-a" class="input-score">
             </label>
           </li>
           <li>
             <label>數學乙
-              <input type="number" id="input-ast-math-b">
+              <input type="number" id="input-ast-math-b" class="input-score">
             </label>
           </li>
           <li>
             <label>歷史
-              <input type="number" id="input-ast-history">
+              <input type="number" id="input-ast-history" class="input-score">
             </label>
           </li>
           <li>
             <label>地理
-              <input type="number" id="input-ast-geography">
+              <input type="number" id="input-ast-geography" class="input-score">
             </label>
           </li>
           <li>
             <label>公社
-              <input type="number" id="input-ast-citizen-and-social">
+              <input type="number" id="input-ast-citizen-and-social" class="input-score">
             </label>
           </li>
           <li>
             <label>物理
-              <input type="number" id="input-ast-physics">
+              <input type="number" id="input-ast-physics" class="input-score">
             </label>
           </li>
           <li>
             <label>化學
-              <input type="number" id="input-ast-chemistry">
+              <input type="number" id="input-ast-chemistry" class="input-score">
             </label>
           </li>
           <li>
             <label>生物
-              <input type="number" id="input-ast-organism">
+              <input type="number" id="input-ast-organism" class="input-score">
             </label>
           </li>
         </ul>
@@ -79,32 +79,32 @@
         <ul>
           <li>
             <label>國文
-              <input type="number" id="input-gsat-chinese">
+              <input type="number" id="input-gsat-chinese" class="input-score">
             </label>
           </li>
           <li>
             <label>英文
-              <input type="number" id="input-gsat-english">
+              <input type="number" id="input-gsat-english" class="input-score">
             </label>
           </li>
           <li>
             <label>數學
-              <input type="number" id="input-gsat-math">
+              <input type="number" id="input-gsat-math" class="input-score">
             </label>
           </li>
           <li>
             <label>社會
-              <input type="number" id="input-gsat-social">
+              <input type="number" id="input-gsat-social" class="input-score">
             </label>
           </li>
           <li>
             <label>自然
-              <input type="number" id="input-gsat-nature">
+              <input type="number" id="input-gsat-nature" class="input-score">
             </label>
           </li>
           <li>
             <label>英聽
-              <select id="input-gast-englisg-listen">
+              <select id="input-gast-englisg-listen" class="input-score">
                 <option value=""></option>
                 <option value="A">A</option>
                 <option value="B">B</option>
@@ -117,70 +117,72 @@
       </div>
 
       <!-- 輸入學群 -->
-      <div id="input-learn-group">
+      <div id="input-department-group-area">
         <h2>輸入學群</h2>
-        <p>工程學群, 資訊學群</p>
-        <a href="#">&#x25B2; &#x25BC;</a>
+        <a href="#">
+          <p>工程學群, 資訊學群</p>
+          <span class="more-button">&#x25B2; &#x25BC;</span>
+        </a>
 
         <!-- 選擇學群 -->
-        <div id="input-learn-group-choose-area">
+        <div id="input-department-group-choose-area">
           <ul>
             <li>
-              <label><input type="checkbox" name="input-learn-group" value="工程學群">工程學群</label>
+              <label><input type="checkbox" name="input-department-group" value="工程學群">工程學群</label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-learn-group" value="數理化學群">數理化學群</label>
+              <label><input type="checkbox" name="input-department-group" value="數理化學群">數理化學群</label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-learn-group" value="資訊學群">資訊學群</label>
+              <label><input type="checkbox" name="input-department-group" value="資訊學群">資訊學群</label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-learn-group" value="地球與環境學群">地球與環境學群</label>
+              <label><input type="checkbox" name="input-department-group" value="地球與環境學群">地球與環境學群</label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-learn-group" value="醫藥衛生學群">醫藥衛生學群</label>
+              <label><input type="checkbox" name="input-department-group" value="醫藥衛生學群">醫藥衛生學群</label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-learn-group" value="管理學群">管理學群</label>
+              <label><input type="checkbox" name="input-department-group" value="管理學群">管理學群</label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-learn-group" value="建築與設計學群">建築與設計學群</label>
+              <label><input type="checkbox" name="input-department-group" value="建築與設計學群">建築與設計學群</label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-learn-group" value="遊憩與運動學群">遊憩與運動學群</label>
+              <label><input type="checkbox" name="input-department-group" value="遊憩與運動學群">遊憩與運動學群</label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-learn-group" value="財經學群">財經學群</label>
+              <label><input type="checkbox" name="input-department-group" value="財經學群">財經學群</label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-learn-group" value="生命科學群">生命科學群</label>
+              <label><input type="checkbox" name="input-department-group" value="生命科學群">生命科學群</label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-learn-group" value="社會與心理學群">社會與心理學群</label>
+              <label><input type="checkbox" name="input-department-group" value="社會與心理學群">社會與心理學群</label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-learn-group" value="大眾傳播學群">大眾傳播學群</label>
+              <label><input type="checkbox" name="input-department-group" value="大眾傳播學群">大眾傳播學群</label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-learn-group" value="外語學群">外語學群</label>
+              <label><input type="checkbox" name="input-department-group" value="外語學群">外語學群</label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-learn-group" value="生物資源學群">生物資源學群</label>
+              <label><input type="checkbox" name="input-department-group" value="生物資源學群">生物資源學群</label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-learn-group" value="法政學群">法政學群</label>
+              <label><input type="checkbox" name="input-department-group" value="法政學群">法政學群</label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-learn-group" value="藝術學群">藝術學群</label>
+              <label><input type="checkbox" name="input-department-group" value="藝術學群">藝術學群</label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-learn-group" value="文史哲學群">文史哲學群</label>
+              <label><input type="checkbox" name="input-department-group" value="文史哲學群">文史哲學群</label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-learn-group" value="教育學群">教育學群</label>
+              <label><input type="checkbox" name="input-department-group" value="教育學群">教育學群</label>
             </li>
             <li>
-              <label><input type="checkbox" name="input-learn-group" value="不分系學群">不分系學群</label>
+              <label><input type="checkbox" name="input-department-group" value="不分系學群">不分系學群</label>
             </li>
           </ul>
         </div>

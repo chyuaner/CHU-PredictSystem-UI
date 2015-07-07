@@ -189,6 +189,23 @@
     }
   }
 
+  #loading-area {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    transition: all 0.5s linear;
+    background: white;
+
+    img { width: 5rem; height: 5rem; }
+    p { margin-top: 1em; font-size: 2rem; }
+  }
+  #loading-area.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
   footer {
     border-top: 1px solid black;
     margin-top: 2em;

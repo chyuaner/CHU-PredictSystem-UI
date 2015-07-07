@@ -5,7 +5,7 @@
 #header {
   background: #8AB9B2;
   overflow: hidden;
-  box-shadow: 0 0.5rem 2rem gray;
+  box-shadow: 0 0.2rem 2rem gray;
   h1, h2, h3, p, label {color: white;}
 
   header, #input-area {
@@ -44,6 +44,11 @@
     text-align: center;
     height: 2.1em;
     -moz-appearance:textfield;
+  }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 
   #input-ast-score ,#input-gsat-score {
@@ -130,6 +135,7 @@
   /* 選取薪資 */
   #input-expect-salary-area {
     clear: both;
+    float: left;
     h2 {
       float: left;
     }
@@ -145,13 +151,23 @@
       display: inline-block;
     }
     input[type="submit"] {
-      @extend .button;
-      @extend .success;
+      border: 2px solid white;
+      border-radius: 10px;
+      box-shadow: 0 0 5px white;
+      background: none;
+      padding: 0.5em 2.5em;
+      font-size: 1em;
+      color: white;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background: rgba(124, 255, 129, 0.55);
     }
   }
 }
 
 #container {
+  clear: both;
   padding-top: 2rem;
   #result-area, #about, footer {
     margin: 0 auto;

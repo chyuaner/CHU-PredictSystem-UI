@@ -120,8 +120,8 @@
       <div id="input-department-group-area">
         <h2>輸入學群</h2>
         <a id="input-department-group-more" >
-          <p>工程學群, 資訊學群</p>
-          <span class="more-button">&#x25B2;&#x25BC;</span>
+          <p id="department-group-choose-list">工程學群, 資訊學群</p>
+          <span class="more-button">&#x25BC;</span>
         </a>
 
         <!-- 選擇學群 -->
@@ -258,15 +258,7 @@
 
 </section>
 
-<script>
-  window.onload = function() {
-    var btn_departmentGroupMore = document.getElementById('input-department-group-more');
-    btn_departmentGroupMore.onclick = function() {
-      var div_departmentGroupCheckboxArea = document.getElementById('input-department-group-choose-area');
-      var divClassed = div_departmentGroupCheckboxArea.classList;
-      divClassed.toggle("hidden");
-    }
-  }
-</script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="js/department-group-choose.js"></script>
 </body>
 </html>

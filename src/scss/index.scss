@@ -45,6 +45,11 @@
     height: 2.1em;
     -moz-appearance:textfield;
   }
+  option {
+    color: white;
+    background: #8AB9B2;
+  }
+
   input[type="number"]::-webkit-outer-spin-button,
   input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;

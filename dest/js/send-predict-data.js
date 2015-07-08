@@ -77,6 +77,28 @@ function getData() {
 
 function setData(inputData, resultData) {
 
+  var table_result = $("#table-result-suggest-school-departments");
+  var table_result_body = table_result.find("tbody");
+
+  // 有沒有資料
+  if(resultData.length > 0) {
+  }
+  else {
+    table_result_body.empty();
+    table_result_body.append('<tr><td colspan="6">沒有你要的資料喔～</td></tr>');
+
+  }
+}
+
+function queryResult() {
+  var inputData = getData();
+  var resultData = [];
+
+  // 顯示處理中畫面
+  var div_loading = document.getElementById('loading-area');
+  div_loading.classList.remove('hidden');
+  window.setTimeout(function() { div_loading.classList.add('hidden'); }, 3000);
+  setData(inputData, resultData);
 }
 
 //window.onload = function() {
@@ -85,6 +107,7 @@ function setData(inputData, resultData) {
   form_input.onsubmit = function(e) {
     e.preventDefault();
     alert(JSON.stringify(getData()));
+    queryResult();
     return 0;
   }
 

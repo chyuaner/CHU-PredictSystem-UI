@@ -1,4 +1,5 @@
 function getData() {
+  // 網頁介面對應
   var input_salary        = document.getElementById('input-expect-salary');
 
   var input_ast_chinese   = document.getElementById('input-ast-chinese');
@@ -21,6 +22,7 @@ function getData() {
 
   var input_departmentGroup = document.getElementsByName('input-department-group');
 
+  // 取得使用者填寫的表單資料
   var salary = parseFloat(input_salary.value);
   var ast_chinese = parseInt(input_ast_chinese.value);
   var ast_english = parseInt(input_ast_english.value);
@@ -47,6 +49,7 @@ function getData() {
     }
   }
 
+  // 製作JSON
   var data = {
     "salary": salary,
     "ast": {
@@ -77,6 +80,7 @@ function getData() {
 
 function setData(inputData, resultData) {
 
+  // 網頁介面對應
   var table_result = $("#table-result-suggest-school-departments");
   var table_result_body = table_result.find("tbody");
 
@@ -86,7 +90,6 @@ function setData(inputData, resultData) {
   else {
     table_result_body.empty();
     table_result_body.append('<tr><td colspan="6">沒有你要的資料喔～</td></tr>');
-
   }
 }
 

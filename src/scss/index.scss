@@ -62,28 +62,68 @@
     background: #8AB9B2;
   }
 
+  /* 隱藏+1-1按鈕 */
   input[type="number"]::-webkit-outer-spin-button,
   input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
 
+  /* 輸入學測指考分數 */
   #input-ast-score ,#input-gsat-score {
     label {
       font-size: 1em;
       text-align: center;
     }
     ul li { margin-bottom: -1em; }
+
+    @media #{$small-only} {
+      ul {
+        @include block-grid(2);
+      }
+    }
+//    @media #{$small-only} {
+//      ul {
+//        @include block-grid(1);
+//        width: 100%;
+//        label {
+//          display: table;
+//          width: 100%;
+//          span {
+//            display: table-cell;
+//            width: 4em;
+//          }
+//          input {
+//            display: table-cell;
+//            width: 100%;
+//            margin: 0;
+//          }
+//        }
+//      }
+//    }
   }
+
   #input-ast-score {
-    ul {
-      @include block-grid(10);
+    @media #{$medium-up} {
+      ul {
+        @include block-grid(5);
+      }
+    }
+    @media #{$large-up} {
+      ul {
+        @include block-grid(10);
+      }
     }
   }
 
   #input-gsat-score {
-    ul {
-      @include block-grid(6);
+    @media #{$small-only} {
+      margin-top: 2em;
+    }
+    @media #{$medium-up} {
+      ul {
+        @include block-grid(6);
+      }
     }
   }
 
@@ -109,8 +149,20 @@
     #input-department-group-choose-area {
       transition: all 0.7s ease;
       width: 100%;
-      ul {
-        @include block-grid(7);
+      @media #{$small-only} {
+        ul {
+          @include block-grid(2);
+        }
+      }
+      @media #{$medium-up} {
+        ul {
+          @include block-grid(5);
+        }
+      }
+      @media #{$large-up} {
+        ul {
+          @include block-grid(7);
+        }
       }
 
       ul li span {

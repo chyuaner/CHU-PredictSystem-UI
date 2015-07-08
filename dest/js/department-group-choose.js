@@ -1,4 +1,4 @@
-window.onload = function() {
+//window.onload = function() {
 
   // 啟用學群選取區塊顯示/隱藏
   var btn_departmentGroupMore = document.getElementById('input-department-group-more');
@@ -40,4 +40,4 @@ window.onload = function() {
     if(chooseListString == '') { chooseListString = '請選擇學群'; }
     p_departmentGroupChooselist.innerHTML = chooseListString;
   }
-}
+//}

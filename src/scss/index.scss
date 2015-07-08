@@ -230,15 +230,48 @@
       font-size: 1.5em;
     }
 
-    table {
-      width: 100%;
+    table { width: 100%; }
 
+    @media #{$small-only} {
+      table { border: 0; }
+      table, thead, tbody, th, td, tr { display: block; };
+      thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+      tr {
+        border: 1px solid #ccc;
+        margin-bottom: 1em;
+      }
+      th, td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 10em;
+        white-space: normal;
+        text-align:left;
+      }
+      th:before, td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 8em;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align:left;
+        font-weight: bold;
+      }
+      th:before, td:before { content: attr(data-title); }
+    }
+    @media #{$medium-up} {
       th, td { text-align: center; }
 
       tbody {
         td:nth-child(2), td:nth-child(3) { text-align: left; }
       }
     }
+
   }
 
   #loading-area {

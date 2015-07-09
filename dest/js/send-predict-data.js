@@ -93,7 +93,29 @@ function setData(inputData, resultData) {
   }
 }
 
+function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, yourScore) {
+  var table_result = $("#table-result-suggest-school-departments");
+  var table_result_body = table_result.find("tbody");
+
+  if(table_result_body.html() == '<tr><td colspan="6">沒有你要的資料喔～</td></tr>') {
+    table_result_body.empty();
+  }
+
+  table_result_body.append('<tr><th data-title="校系代碼">'+did+'</th><td data-title="校名"><a href="'+uurl+'">'+uname+'</a></td><td data-title="科系名稱"><a href="'+durl+'">'+dname+'</a></td><td data-title="畢業生平均薪資"><a href="'+salaryUrl+'">'+salary+'</a></td><td data-title="去年最低錄取分數">'+minScore+'</td><td data-title="您的加權分數">'+yourScore+'</td></tr>');
+}
+
+function cleanData() {
+  // 網頁介面對應
+  var table_result = $("#table-result-suggest-school-departments");
+  var table_result_body = table_result.find("tbody");
+
+  table_result_body.empty();
+  table_result_body.append('<tr><td colspan="6">沒有你要的資料喔～</td></tr>');
+}
+
 function queryResult() {
+  var url = "demo/analysis.json";
+
   var inputData = getData();
   var resultData = [];
 

@@ -86,6 +86,12 @@ function setData(inputData, resultData) {
 
   // 有沒有資料
   if(resultData.length > 0) {
+    table_result_body.empty();
+    for(var i=0; i<resultData.length; i++) {
+      addData(resultData[i].did, resultData[i].uname, resultData[i].uurl,
+              resultData[i].dname, resultData[i].durl, resultData[i].salary, resultData[i].salaryUrl,
+              resultData[i].minScore, resultData[i].yourScore);
+    }
   }
   else {
     table_result_body.empty();
@@ -97,7 +103,8 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
   var table_result = $("#table-result-suggest-school-departments");
   var table_result_body = table_result.find("tbody");
 
-  if(table_result_body.html() == '<tr><td colspan="6">沒有你要的資料喔～</td></tr>') {
+  if(table_result_body.html() == '<tr><td colspan="6">沒有你要的資料喔～</td></tr>'
+    || '<tr><td colspan="6">錯誤！沒有網路連線。</td></tr>') {
     table_result_body.empty();
   }
 
@@ -113,17 +120,45 @@ function cleanData() {
   table_result_body.append('<tr><td colspan="6">沒有你要的資料喔～</td></tr>');
 }
 
+function errorData() {
+  // 網頁介面對應
+  var table_result = $("#table-result-suggest-school-departments");
+  var table_result_body = table_result.find("tbody");
+
+  table_result_body.empty();
+  table_result_body.append('<tr><td colspan="6">錯誤！沒有網路連線。</td></tr>');
+}
+
 function queryResult() {
-  var url = "demo/analysis.json";
+  var toUrl = "demo/analysis-test.json";
 
   var inputData = getData();
   var resultData = [];
 
-  // 顯示處理中畫面
   var div_loading = document.getElementById('loading-area');
-  div_loading.classList.remove('hidden');
-  window.setTimeout(function() { div_loading.classList.add('hidden'); }, 3000);
-  setData(inputData, resultData);
+
+  $.ajax({
+    type: "GET",
+//    type: "POST",
+    url: toUrl,
+//    dataType: "json",
+//    data: inputData,
+    beforeSend: function() {
+      // 顯示處理中畫面
+      div_loading.classList.remove('hidden');
+    },
+    success: function(data){
+      // 隱藏處理中畫面
+      div_loading.classList.add('hidden');
+      setData(inputData, data.result);
+    },
+    error: function(){
+      // 隱藏處理中畫面
+      div_loading.classList.add('hidden');
+      errorData();
+    }
+
+  });
 }
 
 //window.onload = function() {

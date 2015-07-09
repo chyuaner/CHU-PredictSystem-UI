@@ -40,6 +40,28 @@
           "salary": 400000,
           "salaryUrl": "http://www.104.com.tw",
           "yourScore": 380
+      },
+      {
+          "did": "12",
+          "uname": "中華大學",
+          "uurl": "http://www.chu.edu.tw",
+          "dname": "資訊工程學系",
+          "durl": "http://www.csie.chu.edu.tw",
+          "minScore": 20,
+          "salary": 400000,
+          "salaryUrl": "http://www.104.com.tw",
+          "yourScore": 380
+      },
+      {
+          "did": "123",
+          "uname": "中華大學",
+          "uurl": "http://www.chu.edu.tw",
+          "dname": "資訊工程學系",
+          "durl": "http://www.csie.chu.edu.tw",
+          "minScore": 20,
+          "salary": 400000,
+          "salaryUrl": "http://www.104.com.tw",
+          "yourScore": 380
       }
   ],
   "msg": "Success~!!"

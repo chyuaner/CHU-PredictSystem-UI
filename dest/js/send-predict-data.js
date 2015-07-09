@@ -1,3 +1,5 @@
+var basePredictSystemUrl = "demo/analysis-test.json";
+
 function getData() {
   // 網頁介面對應
   var input_salary        = document.getElementById('input-expect-salary');
@@ -103,11 +105,6 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
   var table_result = $("#table-result-suggest-school-departments");
   var table_result_body = table_result.find("tbody");
 
-  if(table_result_body.html() == '<tr><td colspan="6">沒有你要的資料喔～</td></tr>'
-    || '<tr><td colspan="6">錯誤！沒有網路連線。</td></tr>') {
-    table_result_body.empty();
-  }
-
   table_result_body.append('<tr><th data-title="校系代碼">'+did+'</th><td data-title="校名"><a href="'+uurl+'">'+uname+'</a></td><td data-title="科系名稱"><a href="'+durl+'">'+dname+'</a></td><td data-title="畢業生平均薪資"><a href="'+salaryUrl+'">'+salary+'</a></td><td data-title="去年最低錄取分數">'+minScore+'</td><td data-title="您的加權分數">'+yourScore+'</td></tr>');
 }
 
@@ -130,8 +127,6 @@ function errorData() {
 }
 
 function queryResult() {
-  var toUrl = "demo/analysis-test.json";
-
   var inputData = getData();
   var resultData = [];
 
@@ -140,7 +135,7 @@ function queryResult() {
   $.ajax({
     type: "GET",
 //    type: "POST",
-    url: toUrl,
+    url: basePredictSystemUrl,
 //    dataType: "json",
 //    data: inputData,
     beforeSend: function() {

@@ -1,4 +1,4 @@
-var basePredictSystemUrl = "demo/analysis-test.json";
+var basePredictSystemUrl = "api/Prediction/analysis";
 
 function getData() {
   // 網頁介面對應
@@ -136,11 +136,14 @@ function queryResult() {
   var div_loading = document.getElementById('loading-area');
 
   $.ajax({
-    type: "GET",
-//    type: "POST",
+//    type: "GET",
+    type: "POST",
     url: basePredictSystemUrl,
-//    dataType: "json",
-//    data: inputData,
+    headers: {
+      "content-type": "application/json"
+    },
+    dataType: "json",
+    data: JSON.stringify(inputData),
     beforeSend: function() {
       // 顯示處理中畫面
       div_loading.classList.remove('hidden');
@@ -150,12 +153,11 @@ function queryResult() {
       div_loading.classList.add('hidden');
       setData(inputData, data.result);
     },
-    error: function(){
+    error: function(data){
       // 隱藏處理中畫面
       div_loading.classList.add('hidden');
       errorData();
     }
-
   });
 }
 

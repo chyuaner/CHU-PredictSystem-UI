@@ -12,6 +12,7 @@ module.exports = function(grunt) {
         },
         files: {
           'dest/css/index.css': 'src/scss/index.scss',
+          'dest/css/predict.css': 'src/scss/predict.scss'
         }
       }
     },

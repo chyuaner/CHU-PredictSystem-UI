@@ -15,12 +15,12 @@ function getData() {
   var input_ast_chemistry = document.getElementById('input-ast-chemistry');
   var input_ast_organism  = document.getElementById('input-ast-organism');
 
-  var input_gast_chinese  = document.getElementById('input-gsat-chinese');
-  var input_gast_english  = document.getElementById('input-gsat-english');
-  var input_gast_math     = document.getElementById('input-gsat-math');
-  var input_gast_social   = document.getElementById('input-gsat-social');
-  var input_gast_nature   = document.getElementById('input-gsat-nature');
-  var input_gast_engLis   = document.getElementById('input-gsat-english-listen');
+  var input_gsat_chinese  = document.getElementById('input-gsat-chinese');
+  var input_gsat_english  = document.getElementById('input-gsat-english');
+  var input_gsat_math     = document.getElementById('input-gsat-math');
+  var input_gsat_social   = document.getElementById('input-gsat-social');
+  var input_gsat_nature   = document.getElementById('input-gsat-nature');
+  var input_gsat_engLis   = document.getElementById('input-gsat-english-listen');
 
   var input_departmentGroup = document.getElementsByName('input-department-group');
 
@@ -37,12 +37,12 @@ function getData() {
   var ast_chemistry = parseInt(input_ast_chemistry.value);
   var ast_organism = parseInt(input_ast_organism.value);
 
-  var gast_chinese = parseInt(input_gast_chinese.value);
-  var gast_english = parseInt(input_gast_english.value);
-  var gast_math = parseInt(input_gast_math.value);
-  var gast_social = parseInt(input_gast_social.value);
-  var gast_nature = parseInt(input_gast_nature.value);
-  var gast_engLis = input_gast_engLis.value;
+  var gsat_chinese = parseInt(input_gsat_chinese.value);
+  var gsat_english = parseInt(input_gsat_english.value);
+  var gsat_math = parseInt(input_gsat_math.value);
+  var gsat_social = parseInt(input_gsat_social.value);
+  var gsat_nature = parseInt(input_gsat_nature.value);
+  var gsat_engLis = input_gsat_engLis.value;
 
   var departmentGroup = [];
   for(var i=0; i<input_departmentGroup.length; i++) {
@@ -53,28 +53,31 @@ function getData() {
 
   // 製作JSON
   var data = {
-    "salary": salary,
-    "ast": {
-      "chinese": ast_chinese,
-      "english": ast_english,
-      "mathA": ast_mathA,
-      "mathB": ast_mathB,
-      "history": ast_history,
-      "geography":ast_geography,
-      "citizen": ast_citizen,
-      "physics": ast_physics,
-      "chemistry": ast_chemistry,
-      "organism": ast_organism
+
+    "grades": {
+      "ast": {
+        "Chinese": ast_chinese,
+        "English": ast_english,
+        "Math_A": ast_mathA,
+        "Math_B": ast_mathB,
+        "History": ast_history,
+        "Geographic":ast_geography,
+        "Citizen_and_Society": ast_citizen,
+        "Physics": ast_physics,
+        "Chemistry": ast_chemistry,
+        "Biology": ast_organism
+      },
+      "gsat": {
+        "Chinese": gsat_chinese,
+        "English": gsat_english,
+        "Math": gsat_math,
+        "Society": gsat_social,
+        "Science": gsat_nature,
+        "EngListeningLevel": gsat_engLis
+      }
     },
-    "gast": {
-      "chinese": gast_chinese,
-      "english": gast_english,
-      "math": gast_math,
-      "social": gast_social,
-      "nature": gast_nature,
-      "englishListen": gast_engLis
-    },
-    "departmentGroup": departmentGroup
+    "groups": departmentGroup,
+    "expect_salary": salary
   };
 
   return data;

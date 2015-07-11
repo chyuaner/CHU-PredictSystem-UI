@@ -21,14 +21,16 @@
           "Science": 10,
           "Society": 3,
           "EngListeningLevel": "C"
-      }
+      },
     },
-  "groups": [
-      "工程學群",
-      "資訊學群"
-  ],
-  "expect_salary": 30000
+    "groups": [
+        "工程學群",
+        "資訊學群"
+    ],
+    "expect_salary": 30000
   },
+
+
   "result": [
       {
           "did": "2342",

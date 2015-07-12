@@ -3,7 +3,6 @@
 
 $mainColor: #a18ab9;
 
-/* 分數輸入區 */
 header {
   @include header($mainColor, white, white, #f5ff00);
 }
@@ -28,6 +27,52 @@ header {
   h2 {
     font-size: 1.45rem;
   }
+
+  div.select-group-item {
+    margin-bottom: 1.3rem;
+    h3 { font-size: 1.2rem; }
+    a {
+      color: white;
+    }
+    a:hover { color: #b4ddff; }
+    a.active { color: yellow; }
+
+    ul li a {
+      display: block;
+      width: 100%;
+    }
+    @media #{$small-only} {
+      h3 {
+        border-bottom: 1px solid white;
+        padding-bottom: 0.2em;
+      }
+      ul {
+        @include block-grid(2);
+      }
+    }
+    @media #{$medium-up} {
+      display: flex;
+      h3 {
+        float: left;
+        width: 7rem;
+      }
+
+      ul {
+        position: relative;
+        top: 0.4rem;
+        float: right;
+        width: 100%;
+        border-left: 1px solid white;
+        @include block-grid(4);
+        li { padding-bottom: 0; }
+      }
+    }
+    @media #{$large-up} {
+      ul {
+        @include block-grid(6);
+      }
+    }
+  }
 }
 
 #container {
@@ -51,37 +96,46 @@ header {
         padding-top: 1.5em;
 
         ul {
-          display: flex;
-          li:first-child:nth-last-child(1) {
-            width: 100%;
-            max-width: 70%;
-            margin: 0 auto;
-          }
+          @media #{$large-up} {
+            display: flex;
+            li:first-child:nth-last-child(1) {
+              width: 100%;
+              max-width: 70%;
+              margin: 0 auto;
+            }
 
-          /* two items */
-          li:first-child:nth-last-child(2),
-          li:first-child:nth-last-child(2) ~ li {
+            /* two items */
+            li:first-child:nth-last-child(2),
+            li:first-child:nth-last-child(2) ~ li {
               width: 50%;
-          }
+            }
 
-          /* three items */
-          li:first-child:nth-last-child(3),
-          li:first-child:nth-last-child(3) ~ li {
+            /* three items */
+            li:first-child:nth-last-child(3),
+            li:first-child:nth-last-child(3) ~ li {
               width: 33.3333%;
+            }
           }
 
           li {
             list-style-type: none;
+
+            figure {
+              margin-bottom: 2em;
+              figcaption { text-align: center; }
+            }
           }
         }
       }
     }
     .chart-content.hidden {
-      position: absolute;
-      height: 0;
-      //padding: 0 10px;
-      visibility: hidden;
-      opacity: 0;
+//      position: absolute;
+//      top: -1000em;
+//      left: -1000em;
+//      height: 0;
+//      //padding: 0 10px;
+//      visibility: hidden;
+//      opacity: 0;
     }
 
   }

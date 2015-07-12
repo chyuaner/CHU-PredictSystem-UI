@@ -31,7 +31,7 @@
       <h3>一般分類</h3>
       <ul>
         <li><a href="#1-chart" class="chart-link">學群</a></li>
-        <li><a href="#2-chart" class="chart-link active">學類</a></li>
+        <li><a href="#2-chart" class="chart-link">學類</a></li>
         <li><a href="#3-chart" class="chart-link">學校</a></li>
         <li><a href="#4-chart" class="chart-link">科系</a></li>
       </ul>
@@ -521,5 +521,16 @@
 </section>
 
 <script src="assets/js/jquery.min.js"></script>
+<script src="js/chart-display.js"></script>
+<script>
+  window.onload = function() {
+    var thisUrl = window.location.href;
+var requestId = thisUrl.split("#")[1];
+if(requestId !== undefined){
+  toDisplayChart(requestId);
+  window.scroll(0, window.scrollY-convertRem(3.5));
+}
+  };
+</script>
 </body>
 </html>

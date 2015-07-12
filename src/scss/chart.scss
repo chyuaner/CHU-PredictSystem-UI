@@ -103,7 +103,11 @@ header {
 
         ul {
           @media #{$large-up} {
+            width: 85%;
+          }
+          @media #{$xlarge-up} {
             display: flex;
+            width: 100%;
             li:first-child:nth-last-child(1) {
               width: 100%;
               max-width: 70%;

@@ -1,0 +1,101 @@
+@import "foundation";
+@import "framework";
+
+$mainColor: #a18ab9;
+
+/* 分數輸入區 */
+header {
+  @include header($mainColor, white, white, #f5ff00);
+}
+
+#header {
+  @media #{$small-up} {
+    padding-top: 6rem;
+  }
+  @media #{$large-up} {
+    padding-top: 3.5rem;
+  }
+  background: $mainColor;
+  overflow: hidden;
+  box-shadow: 0 0.2rem 2rem gray;
+  h1, h2, h3, p, label {color: white;}
+}
+
+#select-area {
+  margin: 0 auto;
+  width: 90%;
+
+  h2 {
+    font-size: 1.45rem;
+  }
+}
+
+#container {
+  clear: both;
+  padding-top: 2rem;
+  #result-area, #about, footer {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  #result-area {
+    h2 {
+      font-size: 2em;
+    }
+
+    .chart-content {
+      transition: all 0.7s linear;
+      opacity: 100;
+
+      div.chart-image-area {
+        padding-top: 1.5em;
+
+        ul {
+          display: flex;
+          li:first-child:nth-last-child(1) {
+            width: 100%;
+            max-width: 70%;
+            margin: 0 auto;
+          }
+
+          /* two items */
+          li:first-child:nth-last-child(2),
+          li:first-child:nth-last-child(2) ~ li {
+              width: 50%;
+          }
+
+          /* three items */
+          li:first-child:nth-last-child(3),
+          li:first-child:nth-last-child(3) ~ li {
+              width: 33.3333%;
+          }
+
+          li {
+            list-style-type: none;
+          }
+        }
+      }
+    }
+    .chart-content.hidden {
+      position: absolute;
+      height: 0;
+      //padding: 0 10px;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+  }
+
+  footer {
+    border-top: 1px solid black;
+    margin-top: 2em;
+    padding-bottom: 4em;
+
+    #footer-left {
+      float: left;
+    }
+    #footer-right {
+      float: right;
+    }
+  }
+}

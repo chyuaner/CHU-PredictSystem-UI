@@ -2,7 +2,7 @@
 @import "framework";
 
 body { height: auto; }
-/* 分數輸入區 */
+
 header {
   @include header(#ffffff, black, none, orange);
 }
@@ -14,6 +14,23 @@ header {
   @media #{$large-up} {
     margin-top: 3.5rem;
   }
+
+  .page-section {
+    .inner {
+      @include grid-row();
+    }
+  }
+
+  #predict-area {
+    background: #8AB9B2;
+    h1, h2, h3, p, li{color: white;}
+  }
+
+  #chart-area {
+    background: #a18ab9;
+    h1, h2, h3, p, li {color: white;}
+  }
+  margin-bottom: -2em;
 }
 
 footer {

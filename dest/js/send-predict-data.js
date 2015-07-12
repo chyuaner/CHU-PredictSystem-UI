@@ -108,7 +108,14 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
   var table_result = $("#table-result-suggest-school-departments");
   var table_result_body = table_result.find("tbody");
 
-  table_result_body.append('<tr><th data-title="校系代碼">'+did+'</th><td data-title="校名"><a href="'+uurl+'">'+uname+'</a></td><td data-title="科系名稱"><a href="'+durl+'">'+dname+'</a></td><td data-title="畢業生平均薪資"><a href="'+salaryUrl+'">'+salary+'</a></td><td data-title="去年最低錄取分數">'+minScore+'</td><td data-title="您的加權分數">'+yourScore+'</td></tr>');
+  if(yourScore < minScore) {
+    table_result_body.append('<tr class"warning">');
+  }
+  else {
+    table_result_body.append('<tr>');
+  }
+  table_result_body.append('<th data-title="校系代碼">'+did+'</th><td data-title="校名"><a href="'+uurl+'" target="_blank">'+uname+'</a></td><td data-title="科系名稱"><a href="'+durl+'" target="_blank">'+dname+'</a></td><td data-title="畢業生平均薪資"><a href="'+salaryUrl+'" target="_blank">'+salary+'</a></td><td data-title="去年最低錄取分數">'+minScore+'</td><td data-title="您的加權分數">'+yourScore+'</td>');
+  table_result_body.append('</tr>');
 }
 
 function cleanData() {
@@ -166,7 +173,6 @@ function queryResult() {
   var form_input = document.getElementById('input-form');
   form_input.onsubmit = function(e) {
     e.preventDefault();
-    alert(JSON.stringify(getData()));
     queryResult();
     return 0;
   }

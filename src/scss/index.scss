@@ -1,0 +1,112 @@
+@import "foundation";
+
+body { height: auto; }
+/* 分數輸入區 */
+header {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+
+  background: #8AB9B2;
+  box-shadow: 0 -0.3rem 2rem #8AB9B2;
+  h1, h2, h3, p, label {color: white;}
+
+  .inner {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  @media #{$small-up} {
+    height: 6rem;
+    h1 { font-size: 1.8rem; }
+
+    nav {
+      width: 100%;
+      ul {
+        margin-bottom: 0;
+        li a {
+          padding-top: 0rem;
+          padding-left: 0.2em;
+        }
+      }
+    }
+  }
+  @media #{$medium-up} {
+    ul {float: right;}
+  }
+  @media #{$large-up} {
+    height: 3.5rem;
+
+    h1 {
+      float: left;
+      font-size: 2rem;
+    }
+
+    nav {
+      width: 100%;
+      ul {
+        float: right;
+
+        li a {
+          height: 3.5rem;
+          padding-top: 1rem;
+          padding-left: 1em;
+
+        }
+      }
+    }
+  }
+
+  /* 網站標題 */
+  @keyframes site-tite-ani {
+      0%   {color: rgba(255, 255, 255, 0); left:100px;}
+      100% {color: white; left:0px;}
+  }
+  h1 {
+    position: relative;
+    animation-name: site-tite-ani;
+    animation-duration: 2s;
+  }
+
+  nav {
+    ul {
+      li {
+        display: inline-block;
+        a {
+          display: block;
+          font-size: 1.3rem;
+          color: white;
+        }
+        a.active {
+          color: #f5ff00;
+        }
+      }
+    }
+  }
+}
+
+#container {
+  @media #{$small-up} {
+    margin-top: 6rem;
+  }
+  @media #{$large-up} {
+    margin-top: 3.5rem;
+  }
+}
+
+footer {
+  border-top: 1px solid black;
+  margin-top: 2em;
+  padding-bottom: 4em;
+
+  #footer-left {
+    float: left;
+    margin-left: 5%;
+  }
+  #footer-right {
+    float: right;
+    margin-right: 5%;
+  }
+}

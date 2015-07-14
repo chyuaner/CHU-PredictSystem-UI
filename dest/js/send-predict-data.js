@@ -145,13 +145,13 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
   var tr = '<tr class="' + trClass + '">';
 
   var content = '<th data-title="校系代碼">'+formatNumberLength(did, 4)+'</th>';
-  content += '<td data-title="校名"><a href="'+uurl+'" target="_blank">'+uname+'</a></td>';
-  content += '<td data-title="科系名稱"><a href="'+durl+'" target="_blank">'+dname+'</a></td>';
+  content += '<td data-title="校名"><a href="'+uurl+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至學校首頁">'+uname+'</a></td>';
+  content += '<td data-title="科系名稱"><a href="'+durl+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至科系首頁">'+dname+'</a></td>';
   if(salaryUrl == null) {
     content += '<td data-title="畢業生平均薪資">'+salary+'</td>';
   }
   else {
-    content += '<td data-title="畢業生平均薪資"><a href="'+salaryUrl+'" target="_blank">'+salary+'</a></td>';
+    content += '<td data-title="畢業生平均薪資"><a href="'+salaryUrl+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至104升學就業地圖">'+salary+'</a></td>';
   }
   content += '<td data-title="去年最低錄取分數">'+minScore+'</td>';
   if(yourScore < minScore) {
@@ -164,6 +164,7 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
 
 
   table_result_body.append(tr+content+'</tr>');
+  $(document).foundation('tooltip', 'reflow');
 }
 
 function cleanData() {

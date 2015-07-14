@@ -42,11 +42,16 @@ function getData() {
   var ast_chemistry = parseInt(input_ast_chemistry.value);
   var ast_organism = parseInt(input_ast_organism.value);
 
-  var gsat_chinese = parseInt(input_gsat_chinese.value);
-  var gsat_english = parseInt(input_gsat_english.value);
-  var gsat_math = parseInt(input_gsat_math.value);
-  var gsat_social = parseInt(input_gsat_social.value);
-  var gsat_nature = parseInt(input_gsat_nature.value);
+  if(input_gsat_chinese.value == "") { var gsat_chinese = parseInt(0); }
+  else { var gsat_chinese = parseInt(input_gsat_chinese.value); }
+  if(input_gsat_english.value == "") { var gsat_english = parseInt(0); }
+  else { var gsat_english = parseInt(input_gsat_english.value); }
+  if(input_gsat_math.value == "") { var gsat_math = parseInt(0); }
+  else { var gsat_math = parseInt(input_gsat_math.value); }
+  if(input_gsat_social.value == "") { var gsat_social = parseInt(0); }
+  else { var gsat_social = parseInt(input_gsat_social.value); }
+  if(input_gsat_nature.value == "") { var gsat_nature = parseInt(0); }
+  else { var gsat_nature = parseInt(input_gsat_nature.value); }
   var gsat_engLis = input_gsat_engLis.value;
 
   var departmentGroup = [];

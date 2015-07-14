@@ -3,7 +3,7 @@
 
 /* 分數輸入區 */
 header {
-  @include header(#8AB9B2, white, white, #f5ff00);
+  @include header(#ffffff, black, none, orange);
 }
 
 #header {
@@ -12,12 +12,12 @@ header {
     padding-top: 6rem;
   }
   @media #{$large-up} {
-    padding-top: 3.5rem;
+    padding-top: 8rem;
   }
   background: #8AB9B2;
   overflow: hidden;
   box-shadow: 0 0.2rem 2rem gray;
-  h1, h2, h3, p, label {color: white;}
+  h2, h3, p, label {color: white;}
 
   #input-area {
     margin: 0 auto;

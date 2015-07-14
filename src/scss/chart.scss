@@ -4,7 +4,7 @@
 $mainColor: #a18ab9;
 
 header {
-  @include header($mainColor, white, white, #f5ff00);
+  @include header(#ffffff, black, none, orange);
 }
 
 #header {
@@ -12,12 +12,12 @@ header {
     padding-top: 6rem;
   }
   @media #{$large-up} {
-    padding-top: 3.5rem;
+    padding-top: 8rem;
   }
   background: $mainColor;
   overflow: hidden;
   box-shadow: 0 0.2rem 2rem gray;
-  h1, h2, h3, p, label {color: white;}
+  h2, h3, p, label {color: white;}
 }
 
 #select-area {
@@ -102,10 +102,10 @@ header {
         padding-top: 1.5em;
 
         ul {
+//          @media #{$large-up} {
+//            width: 85%;
+//          }
           @media #{$large-up} {
-            width: 85%;
-          }
-          @media #{$xlarge-up} {
             display: flex;
             width: 100%;
             li:first-child:nth-last-child(1) {

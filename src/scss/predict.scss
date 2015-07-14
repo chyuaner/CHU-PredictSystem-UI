@@ -137,8 +137,11 @@ header {
       height: 2.2em;
       margin-bottom: 1em;
     }
+    a:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
     p, .more-button {
-      display: inline-block; margin-top: 0.3em;;
+      display: inline-block; margin-top: 0.3em;
     }
     .more-button {
       float: right;
@@ -200,7 +203,16 @@ header {
       list-style-type: none;
       display: inline-block;
     }
-    input[type="submit"], a.research-methods-link {
+    a.research-methods-link {
+      position: relative;
+      top: 0.5rem;
+      text-decoration: underline;
+      color: white;
+    }
+    a.research-methods-link:hover {
+      color: #c1e3e3;
+    }
+    input[type="submit"] {
       margin-left: 1em;
       border: 2px solid white;
       border-radius: 10px;
@@ -213,9 +225,6 @@ header {
     }
     input[type="submit"]:hover {
       background: rgba(124, 255, 129, 0.55);
-    }
-    a.research-methods-link:hover {
-      background: rgba(255, 255, 255, 0.55);
     }
   }
 }
@@ -230,10 +239,15 @@ header {
 
   #result-area {
     h2 {
-      font-size: 1.5em;
+      font-size: 1.8em;
+      margin-right: 0.5em;
+      display: inline;
     }
 
-    table { width: 100%; }
+    table {
+      margin-top: 1em;
+      width: 100%;
+    }
 
     tr.warning {
       //background: #ffedf7;
@@ -331,6 +345,7 @@ header {
 #research-methods-modal {
   h2 { margin-bottom: 0.5em; }
   strong { color: red; }
+  ul { margin-bottom: 0; }
 
   @media #{$medium-up} {
     section:nth-child(2) {

@@ -44,9 +44,17 @@ header {
     h3 { font-size: 1.2rem; }
     a {
       color: white;
+      padding-left: 1em;
+      border-radius: 10px;
     }
-    a:hover { color: #b4ddff; }
-    a.active { color: yellow; }
+    a:hover {
+      background: rgba(255, 255, 255, 0.2);
+//      color: #b4ddff;
+    }
+    a.active {
+      color: yellow;
+      background: rgba(255, 255, 255, 0.2);
+    }
 
     ul li a {
       display: block;
@@ -103,6 +111,7 @@ header {
   #result-area {
     h2 {
       font-size: 2em;
+      display: inline;
     }
 
     .chart-content {
@@ -184,6 +193,7 @@ header {
 #research-methods-modal {
   h2 { margin-bottom: 0.5em; }
   strong { color: red; }
+  ul { margin-bottom: 0; }
 
   @media #{$medium-up} {
     section:nth-child(2) {

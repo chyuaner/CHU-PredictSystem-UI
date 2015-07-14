@@ -1,5 +1,14 @@
 var basePredictSystemUrl = "api/Prediction/analysis";
 
+// http://stackoverflow.com/questions/1127905/how-can-i-format-an-integer-to-a-specific-length-in-javascript
+function formatNumberLength(num, length) {
+    var r = "" + num;
+    while (r.length < length) {
+        r = "0" + r;
+    }
+    return r;
+}
+
 function getData() {
   // 網頁介面對應
   var input_salary        = document.getElementById('input-expect-salary');
@@ -135,7 +144,7 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
   }
   var tr = '<tr class="' + trClass + '">';
 
-  var content = '<th data-title="校系代碼">'+did+'</th>';
+  var content = '<th data-title="校系代碼">'+formatNumberLength(did, 4)+'</th>';
   content += '<td data-title="校名"><a href="'+uurl+'" target="_blank">'+uname+'</a></td>';
   content += '<td data-title="科系名稱"><a href="'+durl+'" target="_blank">'+dname+'</a></td>';
   if(salaryUrl == null) {

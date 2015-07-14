@@ -23,13 +23,18 @@ header {
 
       h2 {
         margin-bottom: 0.5em;
+        text-shadow: 5px 5px 5px gray;
       }
 
       strong {
-        color: #ffcfe0;
-        text-shadow: 2px 2px 5px gray;
+//        color: #ffcfe0;
+//        text-shadow: 2px 2px 5px gray;
       }
 
+      @media #{$small-up} {
+        margin: 0 auto;
+        width: 90%;
+      }
       @media #{$medium-up} {
         div.intro-content {
 
@@ -43,20 +48,26 @@ header {
       .primaryBtn {
         color: white;
         font-size: 1.3em;
-        padding: 0.5em;
+        padding: 0.8em;
+        background: #635df5;
+        box-shadow: 0 0 10px #ffffff;
+        border-radius: 15px;
 //        text-shadow: 2px 2px 10px black;
 //        border: 2px solid white;
 //        border-radius: 10px;
 //        background: #e8e4b1;
+      }
+      .primaryBtn:hover {
+        background: #7c77f5;
       }
       .primaryBtn:after {
         content: "►";
         margin-left: 1em;
         text-shadow: none;
 //        box-shadow: 2px 2px 5px black;
-        border: 2px solid white;
-        border-radius: 50px;
-        padding: 0.3em;
+//        border: 2px solid white;
+//        border-radius: 50px;
+//        padding: 0.3em;
         padding-left: 0.5em;
       }
     }

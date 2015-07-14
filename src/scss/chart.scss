@@ -11,7 +11,7 @@ header {
   @media #{$small-up} {
     padding-top: 6rem;
   }
-  @media #{$large-up} {
+  @media #{$medium-up} {
     padding-top: 8rem;
   }
   background: $mainColor;
@@ -102,6 +102,12 @@ header {
         padding-top: 1.5em;
 
         ul {
+          figure {
+            figcaption {
+              margin-bottom: 1em;
+              text-align: center;
+            }
+          }
 //          @media #{$large-up} {
 //            width: 85%;
 //          }
@@ -132,7 +138,6 @@ header {
 
             figure {
               margin-bottom: 2em;
-              figcaption { text-align: center; }
             }
           }
         }

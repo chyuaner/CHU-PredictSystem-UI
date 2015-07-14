@@ -25,7 +25,12 @@ function getData() {
   var input_departmentGroup = document.getElementsByName('input-department-group');
 
   // 取得使用者填寫的表單資料
-  var salary = parseFloat(input_salary.value);
+  if(input_salary.value == "") {
+    var salary = parseFloat(0);
+  }
+  else {
+    var salary = parseFloat(input_salary.value);
+  }
   var ast_chinese = parseInt(input_ast_chinese.value);
   var ast_english = parseInt(input_ast_english.value);
   var ast_mathA = parseInt(input_ast_mathA.value)
@@ -47,6 +52,12 @@ function getData() {
   var departmentGroup = [];
   for(var i=0; i<input_departmentGroup.length; i++) {
     if(input_departmentGroup[i].checked) {
+      departmentGroup.push(input_departmentGroup[i].value);
+    }
+  }
+  // 若沒選擇的話，就全選
+  if(departmentGroup.length == 0) {
+    for(var i=0; i<input_departmentGroup.length; i++) {
       departmentGroup.push(input_departmentGroup[i].value);
     }
   }
@@ -105,17 +116,40 @@ function setData(inputData, resultData) {
 }
 
 function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, yourScore) {
+  if(salary == 0) { salary = '樣本不足';}
+
   var table_result = $("#table-result-suggest-school-departments");
   var table_result_body = table_result.find("tbody");
 
+  var trClass = '';
   if(yourScore < minScore) {
-    table_result_body.append('<tr class"warning">');
+    trClass += ' warning';
+  }
+  if(uname == '中華大學') {
+    trClass += ' chu';
+  }
+  var tr = '<tr class="' + trClass + '">';
+
+  var content = '<th data-title="校系代碼">'+did+'</th>';
+  content += '<td data-title="校名"><a href="'+uurl+'" target="_blank">'+uname+'</a></td>';
+  content += '<td data-title="科系名稱"><a href="'+durl+'" target="_blank">'+dname+'</a></td>';
+  if(salaryUrl == null) {
+    content += '<td data-title="畢業生平均薪資">'+salary+'</td>';
   }
   else {
-    table_result_body.append('<tr>');
+    content += '<td data-title="畢業生平均薪資"><a href="'+salaryUrl+'" target="_blank">'+salary+'</a></td>';
   }
-  table_result_body.append('<th data-title="校系代碼">'+did+'</th><td data-title="校名"><a href="'+uurl+'" target="_blank">'+uname+'</a></td><td data-title="科系名稱"><a href="'+durl+'" target="_blank">'+dname+'</a></td><td data-title="畢業生平均薪資"><a href="'+salaryUrl+'" target="_blank">'+salary+'</a></td><td data-title="去年最低錄取分數">'+minScore+'</td><td data-title="您的加權分數">'+yourScore+'</td>');
-  table_result_body.append('</tr>');
+  content += '<td data-title="去年最低錄取分數">'+minScore+'</td>';
+  if(yourScore < minScore) {
+    content += '<td data-title="您的加權分數" class="warning">'+yourScore+'</td>';
+  }
+  else {
+    content += '<td data-title="您的加權分數">'+yourScore+'</td>';
+  }
+
+
+
+  table_result_body.append(tr+content+'</tr>');
 }
 
 function cleanData() {

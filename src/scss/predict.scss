@@ -11,7 +11,7 @@ header {
   @media #{$small-up} {
     padding-top: 6rem;
   }
-  @media #{$large-up} {
+  @media #{$medium-up} {
     padding-top: 8rem;
   }
   background: #8AB9B2;
@@ -232,7 +232,13 @@ header {
     table { width: 100%; }
 
     tr.warning {
-      background: #ffedf7;
+      //background: #ffedf7;
+    }
+    tr.chu {
+      background: #fff8e7;
+    }
+    td.warning {
+      color: red;
     }
     @media #{$small-only} {
       table { border: 0; }
@@ -274,6 +280,17 @@ header {
       }
     }
 
+    #blessings-area {
+      padding-top: 1em;
+      padding-bottom: 1em;
+      p {
+        text-align: center;
+        font-size: 2em;
+        color: orange;
+        font-weight: bold;
+        text-shadow: 0 0 20px yellow;
+      }
+    }
   }
 
   #loading-area {

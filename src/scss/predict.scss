@@ -248,12 +248,52 @@ header {
 
   #result-area {
     h2 {
-      font-size: 1.8em;
+      font-size: 2em;
       margin-right: 0.5em;
-      display: inline;
+    }
+
+    @media #{$medium-up} {
+      h2 {
+        float: left;
+        margin-top: 1em;
+      }
+      #function-info {
+        margin-left: 1em;
+        float: left;
+      }
+      a.research-methods-link {
+        float: left;
+        margin-left: 2em;
+        margin-top: 3.2em;
+      }
+    }
+
+    @keyframes bigger-ani {
+        0%   { font-size: 0; }
+        100% { font-size: 1.8em; }
+    }
+    #blessings-area {
+      padding-top: 1em;
+      padding-bottom: 1em;
+      @media #{$medium-only} {
+        clear: both;
+      }
+      p {
+        text-align: center;
+        font-size: 1.8em;
+        color: orange;
+        font-weight: bold;
+        text-shadow: 0 0 20px yellow;
+        animation-name: bigger-ani;
+        animation-duration: 2s;
+        @media #{$large-up} {
+          text-align: right;
+        }
+      }
     }
 
     table {
+      clear: both;
       margin-top: 1em;
       width: 100%;
     }
@@ -307,17 +347,6 @@ header {
       }
     }
 
-    #blessings-area {
-      padding-top: 1em;
-      padding-bottom: 1em;
-      p {
-        text-align: center;
-        font-size: 2em;
-        color: orange;
-        font-weight: bold;
-        text-shadow: 0 0 20px yellow;
-      }
-    }
   }
 
   #loading-area {

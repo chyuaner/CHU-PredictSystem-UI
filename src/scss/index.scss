@@ -1,34 +1,46 @@
 @import "foundation";
 @import "framework";
 
-body { height: auto; }
-
 header {
   @include header(#ffffff, black, none, orange);
 }
 
 #container {
-  @media #{$small-up} {
-    margin-top: 6rem;
-  }
-  @media #{$large-up} {
-    margin-top: 6rem;
-  }
+  padding-top: 6rem;
+  padding-bottom: 2rem;
+  height: 100%;
+  width: 100%;
+  display: table;
 
   .page-section {
+    display: table-row;
+
     .inner {
       @include grid-row();
+      display: table-cell;
+      vertical-align: middle;
       padding-top: 2rem;
       padding-bottom: 2rem;
 
       h2 {
-        margin-bottom: 0.5em;
         text-shadow: 5px 5px 5px gray;
+        margin: 0 auto;
+        width: 90%;
       }
 
       strong {
 //        color: #ffcfe0;
 //        text-shadow: 2px 2px 5px gray;
+      }
+
+      div.intro-content {
+        margin: 0 auto;
+        margin-top: 1em;
+        width: 90%;
+      }
+      div.go-to {
+        margin: 0 auto;
+        width: 90%;
       }
 
       @media #{$small-up} {
@@ -79,15 +91,20 @@ header {
   #predict-area {
     background: #8AB9B2;
     h1, h2, h3, p, li{color: white;}
+    min-height: 50%;
   }
 
   #chart-area {
     background: #a18ab9;
     h1, h2, h3, p, li {color: white;}
+    min-height: 50%;
   }
   margin-bottom: -2em;
 }
 
 footer {
   @include footer;
+  overflow: hidden;
+  background: white;
+//  margin-top: -3rem;
 }

@@ -34,6 +34,9 @@ header {
     color: white;
     text-decoration: underline;
   }
+  a.research-methods-link:hover {
+    color: #b4ddff;
+  }
 
   div.select-group-item {
     margin-top: 1em;
@@ -179,6 +182,8 @@ header {
 }
 
 #research-methods-modal {
+  h2 { margin-bottom: 0.5em; }
+  strong { color: red; }
 
   @media #{$medium-up} {
     section:nth-child(2) {

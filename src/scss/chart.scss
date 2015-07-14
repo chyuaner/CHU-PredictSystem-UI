@@ -26,9 +26,17 @@ header {
 
   h2 {
     font-size: 1.45rem;
+    display: inline;
+    margin-right: 1em;
+  }
+
+  a.research-methods-link {
+    color: white;
+    text-decoration: underline;
   }
 
   div.select-group-item {
+    margin-top: 1em;
     margin-bottom: 1.3rem;
     h3 { font-size: 1.2rem; }
     a {
@@ -153,6 +161,7 @@ header {
       opacity: 0;
     }
 
+
   }
 
   footer {
@@ -165,6 +174,25 @@ header {
     }
     #footer-right {
       float: right;
+    }
+  }
+}
+
+#research-methods-modal {
+
+  @media #{$medium-up} {
+    section:nth-child(2) {
+      ul {
+        float: left;
+        width: 48%;
+      }
+      img {
+        float: right;
+        width: 50%;
+      }
+    }
+    section:nth-child(3) {
+      clear: both;
     }
   }
 }

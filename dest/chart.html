@@ -26,6 +26,7 @@
 
   <div id="select-area">
     <h2>請選擇你要查看的資料</h2>
+    <a href="#" data-reveal-id="research-methods-modal" class="research-methods-link">研究方法</a>
 
     <div class="select-group-item">
       <h3>一般分類</h3>
@@ -507,6 +508,99 @@
 
   </div>
 
+  <!-- 研究方法 -->
+  <div id="research-methods-modal" class="reveal-modal" data-reveal>
+    <div>
+      <h2>研究方法</h2>
+        <div class="content">
+
+          <section>
+            <h3>一、資料來源</h3>
+
+            <ul>
+              <li>薪資資料: 104升學就業地圖-系友薪資行情 http://www.104.com.tw/jb/career/department/</li>
+              <li>指考分數: 大學考試入學分發委員會官網
+http://www.uac.edu.tw/103data/103_02.pdf</li>
+              <li>科系資料</li>
+              <ul>
+                <li>以103學年度指考校系分則中的校系為基礎</li>
+                <li>刪除104學年度停招的校系</li>
+                <li>刪除104系友薪資行情調查樣本不足的校系</li>
+                <li>共1068個校系</li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>二、平均薪資計算</h3>
+
+            <ul>
+              <li>將(薪資級距x該級距人數百分比)加總</li>
+              <li>舉例: 台灣大學資訊工程系平均薪資 =<br>
+                  $80000 x 26.2% +<br>
+                  $70000 x (42.5% - 26.2%) +<br>
+                  $60000 x (66% - 42.5%) +<br>
+                  $50000 x (75% - 66%) +<br>
+                  $40000 x (92.3% - 75%)+<br>
+                  $30000 x (100% - 92.3%)<br>
+                  =<strong>$60200</strong>
+              </li>
+            </ul>
+
+            <img src="images/chart/ex-avg-salary.png">
+          </section>
+
+          <section>
+            <h3>三、平均分數計算</h3>
+
+            <ul>
+              <li>最低錄取分數/採計科目加權總計</li>
+              <ul>
+                <li>舉例:台灣大學資訊工程系</li>
+                <ul>
+                  <li>採計及加權: 國x1, 英x1, 數甲x1, 物x1, 化x1</li>
+                  <li>103學年度最低錄取分數 = 412.2</li>
+                  <li>平均分數(還原單科分數) = 412.2/(1+1+1+1+1) = <strong>82.44</strong></li>
+                </ul>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>四、CP值計算</h3>
+
+            <ul>
+              <li>將平均薪資及平均分數正規化</li>
+              <ul>
+                <li>消除薪資和分數數值範圍以及分佈不一致的問題</li>
+                <li>C=平均薪資之百分比排名(百分位數)</li>
+                <li>P=平均分數之百分比排名(百分位數)</li>
+              </ul>
+              <li>CP = 薪資百分比排名(C) - 分數百分比排名(P)</li>
+              <li>舉例:台灣大學資訊工程系</li>
+              <ul>
+                <li>在1068個校系當中</li>
+                <li>平均薪資勝過1060個校系: C=1060/1068=99.25%</li>
+                <li>指考分數勝過1015個校系: P=1015/1068=95.04%</li>
+                <li>CP = 99.25 - 95.04 = 4.21</li>
+              </ul>
+            </ul>
+          </section>
+
+          <section>
+            <h3>五、校系CP值排名</h3>
+
+            <ul>
+              <li>第一優先: CP值由大到小排序</li>
+              <li>第二優先: 平均薪資由大到小排序</li>
+              <li>第三優先: 平均分數由小到大排序</li>
+            </ul>
+          </section>
+
+        </div>
+    </div>
+    <a class="close-reveal-modal">&#215;</a>
+  </div>
 
   <!-- 頁尾 -->
   <footer>
@@ -521,9 +615,12 @@
 </section>
 
 <script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/foundation.min.js"></script>
 <script src="js/chart-display.js"></script>
 <script>
   window.onload = function() {
+    $(document).foundation();
+
     var thisUrl = window.location.href;
     var requestId = thisUrl.split("#")[1];
     if(requestId !== undefined){

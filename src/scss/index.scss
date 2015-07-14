@@ -46,19 +46,22 @@ header {
       }
 
       .primaryBtn {
+        transition: all 0.3s ease;
         color: white;
         font-size: 1.3em;
         padding: 0.8em;
+        padding-left: 1.5em;
         background: #635df5;
         box-shadow: 0 0 10px #ffffff;
-        border-radius: 15px;
+        border-radius: 60px;
 //        text-shadow: 2px 2px 10px black;
 //        border: 2px solid white;
 //        border-radius: 10px;
 //        background: #e8e4b1;
       }
       .primaryBtn:hover {
-        background: #7c77f5;
+        background: #9e9aff;
+        box-shadow: 0 0 20px #ffffff;
       }
       .primaryBtn:after {
         content: "►";

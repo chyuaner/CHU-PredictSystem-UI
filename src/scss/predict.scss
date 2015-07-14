@@ -27,7 +27,7 @@ header {
   h2 {
     font-size: 1.2rem;
     small {
-      font-size: 0.7rem;
+      font-size: 0.9rem;
       color: white;
     }
   }
@@ -133,7 +133,11 @@ header {
   /* 選取學群 */
   #input-department-group-area {
     h2 { float:left; width: 4em; margin-right: 1em; }
-    p { margin-left: -9em; padding-left: 9.5em; width: 100%; }
+    p {
+      margin-left: -9em;
+      padding-left: 9.5em;
+      width: 100%;
+    }
     a {
       padding: 0.3rem;
       color: white;
@@ -226,6 +230,7 @@ header {
       font-size: 1em;
       color: white;
       cursor: pointer;
+      transition: all 0.3s ease;
     }
     input[type="submit"]:hover {
       background: rgba(124, 255, 129, 0.55);

@@ -56,6 +56,10 @@ header {
     height: 2.1em;
     -moz-appearance:textfield;
   }
+  select {
+    // 修正在Chrome不會置中的問題
+    -webkit-padding-start: 50%;
+  }
   option {
     color: white;
     background: #8AB9B2;

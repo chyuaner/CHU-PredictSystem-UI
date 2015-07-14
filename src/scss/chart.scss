@@ -103,7 +103,13 @@ header {
     width: 90%;
   }
 
+  @keyframes display-ani {
+    0% { opacity: 0; }
+    100% { opacity: 100; }
+  }
   #result-area {
+    animation-name: display-ani;
+    animation-duration: 3.5s;
     h2 {
       font-size: 2em;
       display: inline;

@@ -348,11 +348,19 @@
 
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/foundation.min.js"></script>
+<script src="assets/js/jquery.floatThead.min.js"></script>
+<script src="js/calc-rem-tools.js"></script>
 <script src="js/department-group-choose.js"></script>
 <script src="js/send-predict-data.js"></script>
 <script>
+
   window.onload = function() {
     $(document).foundation();
+    $('#result-area table').floatThead({
+      scrollingTop: convertRem(6),
+      zIndex: 5,
+      useAbsolutePositioning: true}
+    );
   }
 </script>
 </body>

@@ -14,7 +14,8 @@
     "tests"
   ],
   "dependencies": {
-    "foundation": "~5.5.2"
+    "foundation": "~5.5.2",
+    "floatThead": "~1.2.12"
   },
   "devDependencies": {
     "loading": "*"

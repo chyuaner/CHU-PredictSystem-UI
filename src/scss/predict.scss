@@ -8,12 +8,7 @@ header {
 
 #header {
 
-  @media #{$small-up} {
-    padding-top: 6rem;
-  }
-  @media #{$medium-up} {
-    padding-top: 8rem;
-  }
+  padding-top: 8rem;
   background: #8AB9B2;
   overflow: hidden;
   box-shadow: 0 0.2rem 2rem gray;

@@ -28,29 +28,6 @@ function toDisplayChart(chooseId) {
   }
 }
 
-// http://tzi.fr/js/snippet/convert-em-in-px
-function getRootElementFontSize( ) {
-    // Returns a number
-    return parseFloat(
-        // of the computed font-size, so in px
-        getComputedStyle(
-            // for the root <html> element
-            document.documentElement
-        )
-        .fontSize
-    );
-}
-function convertRem(value) {
-    return value * getRootElementFontSize();
-}
-
-// 進入網頁以後
-var thisUrl = window.location.href;
-var requestId = thisUrl.split("#")[1];
-if(requestId !== undefined){
-  toDisplayChart(requestId);
-  window.scroll(0, window.scrollY-convertRem(3.5));
-}
 
 // 當按鈕按下去的時候
 var link_chartItems = document.getElementsByClassName("chart-link");
@@ -58,6 +35,14 @@ for(var i=0; i<link_chartItems.length; i++) {
   link_chartItems[i].onclick = function() {
     var toId = this.href.split("#")[1];
     toDisplayChart(toId);
-    return false;
+
+    // 偵測視窗高度有沒有超過底下區域
+    if(window.innerHeight > $("#container").get(0).offsetTop) {
+      return false;
+    }
+    else {
+      window.scroll(0, $("#container").get(0).offsetTop-convertRem(6));
+      return false;
+    }
   }
 }

@@ -142,7 +142,7 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
   if(uname == '中華大學') {
     trClass += ' chu';
   }
-  var tr = '<tr class="' + trClass + '">';
+  var tr = '<tr data-item-id="'+did+'" class="' + trClass + '">';
 
   var content = '<th data-title="校系代碼">'+formatNumberLength(did, 4)+'</th>';
   content += '<td data-title="校名"><a href="'+uurl+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至學校首頁">'+uname+'</a></td>';
@@ -161,10 +161,9 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
     content += '<td data-title="您的加權分數">'+yourScore+'</td>';
   }
 
-
-
   table_result_body.append(tr+content+'</tr>');
-  $(document).foundation('tooltip', 'reflow');
+
+  $('#table-result-suggest-school-departments tr[data-item-id="'+did+'"]').foundation('tooltip', 'reflow');
 }
 
 function cleanData() {

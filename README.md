@@ -66,4 +66,5 @@ root ─┬─ bower_components (請不要變動此檔案)
 ### 有採用的資源如下
 * 前端Framework: [Foundation](http://foundation.zurb.com/)
 * [JQuery 2.1](https://jquery.com/)
+* [JQuery.floatThead](http://mkoryak.github.io/floatThead/)
 * [jxnblk/loading](https://github.com/jxnblk/loading)

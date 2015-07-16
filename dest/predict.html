@@ -29,8 +29,8 @@
 
       <!-- 您所期望的薪資 -->
       <div id="input-expect-salary-area">
-        <label><h2>畢業後的期望薪資&nbsp;&gt;&nbsp;</h2>
-          <input type="number" id="input-expect-salary" step="any" min="0">
+        <label><h2>畢業後的期望薪資&nbsp;</h2>
+          <input type="number" id="input-expect-salary" step="any" min="0"><span>元以上</span>
         </label>
       </div>
 
@@ -209,7 +209,7 @@
       <!-- 查詢按鈕 -->
       <div id="input-action-area">
         <ul>
-          <li><input type="submit" value="查詢"></li>
+          <li><input type="submit" value="開始分析"></li>
         </ul>
       </div>
 
@@ -233,6 +233,10 @@
   <div id="result-area">
     <section id="result-suggest-school-departments-area">
       <h2>落點分析結果 <small>(依薪資排序)</small></h2>
+      <a href="#" data-reveal-id="research-methods-modal" class="research-methods-link">分析方法</a>
+      <div id="blessings-area">
+        <p class="blessings">中華大學 祝您金榜題名</p>
+      </div>
       <div id="function-info">
         <ul>
           <li>按學校名稱會連結學校首頁</li>
@@ -240,11 +244,10 @@
           <li>按薪資會連結104升學就業地圖</li>
         </ul>
       </div>
-      <a href="#" data-reveal-id="research-methods-modal" class="research-methods-link">分析方法</a>
-
-      <div id="blessings-area">
-        <p class="blessings">中華大學 祝您金榜題名</p>
+      <div id="salary-source-area">
+        薪資資料來源: <a href="http://www.104.com.tw/jb/career/department/" target="_blank">104升學就業地圖 - 系友薪資行情</a>
       </div>
+
 
       <table id="table-result-suggest-school-departments">
         <thead>
@@ -254,14 +257,19 @@
             <th>科系名稱</th>
             <th>畢業生平均薪資</th>
             <th>去年最低錄取分數</th>
-            <th>您的加權分數</th>
+            <th>換算去年加權分數</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td colspan="6">請輸入查詢條件來進行查詢</td>
+            <td colspan="6">請輸入條件來進行落點分析</td>
           </tr>
         </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="6">分析結果僅供參考，請自行判斷是否採納本站建議，本站不負考生錄取與否之連帶責任。</td>
+          </tr>
+        </tfoot>
       </table>
 
     </section>
@@ -336,7 +344,7 @@
   <!-- 頁尾 -->
   <footer>
     <div id="footer-left">
-    2015 <a href="http://www.chu.edu.tw/" target="_blank">中華大學</a> <a href="http://www.csie.chu.edu.tw/" target="_blank">資訊工程學系</a>
+    2015 <a href="http://www.chu.edu.tw/" target="_blank">中華大學</a>
   </div>
     <div id="footer-right">
       本站原始碼: <a href="https://github.com/chu-dblab/Prediction-UI" target="_blank">Frontend</a>, <a href="https://github.com/chu-dblab/Prediction-API" target="_blank">Backend</a>

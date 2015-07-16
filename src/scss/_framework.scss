@@ -35,6 +35,12 @@
     }
   }
   @media #{$medium-up} {
+    h1 {
+      font-size: 1.6rem;
+      strong {
+        font-size: 1.8rem;
+      }
+    }
     ul {float: right;}
   }
   @media #{$large-up} {

@@ -125,7 +125,7 @@ function setData(inputData, resultData) {
   }
   else {
     table_result_body.empty();
-    table_result_body.append('<tr><td colspan="6">沒有你要的資料喔～</td></tr>');
+    table_result_body.append('<tr><td colspan="6">沒有符合您的校系，請修改條件後再次分析。</td></tr>');
   }
 }
 
@@ -155,10 +155,10 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
   }
   content += '<td data-title="去年最低錄取分數">'+minScore+'</td>';
   if(yourScore < minScore) {
-    content += '<td data-title="您的加權分數" class="warning">'+yourScore+'</td>';
+    content += '<td data-title="換算去年加權分數" class="warning"><span data-tooltip aria-haspopup="true" title="換算去年加權分數<br>低於去年最低錄取分數">'+yourScore+'</span></td>';
   }
   else {
-    content += '<td data-title="您的加權分數">'+yourScore+'</td>';
+    content += '<td data-title="換算去年加權分數">'+yourScore+'</td>';
   }
 
   table_result_body.append(tr+content+'</tr>');
@@ -172,7 +172,7 @@ function cleanData() {
   var table_result_body = table_result.find("tbody");
 
   table_result_body.empty();
-  table_result_body.append('<tr><td colspan="6">沒有你要的資料喔～</td></tr>');
+  table_result_body.append('<tr><td colspan="6">沒有符合您的校系，請修改條件後再次分析。</td></tr>');
 }
 
 function errorData() {
@@ -227,3 +227,4 @@ function queryResult() {
 
 
 //}
+

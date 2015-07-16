@@ -36,6 +36,15 @@ header {
     }
     input {
       width: 8em;
+      display: inline;
+      margin-left: 1em;
+    }
+    span {
+      display: inline;
+      font-size: 1.3rem;
+      margin-left: 1em;
+      position: relative;
+      top: 0.1em;
     }
   }
 
@@ -245,6 +254,12 @@ header {
     h2 {
       font-size: 2em;
       margin-right: 0.5em;
+      small {
+        font-size: 0.6em;
+      }
+    }
+    a.research-methods-link {
+      text-decoration: underline;
     }
 
     @media #{$medium-up} {
@@ -252,15 +267,30 @@ header {
         float: left;
         margin-top: 1em;
       }
-      #function-info {
-        margin-left: 1em;
-        float: left;
-      }
       a.research-methods-link {
         float: left;
-        margin-left: 2em;
-        margin-top: 3.2em;
+        font-size: 1.3rem;
+        margin-top: 2.1em;
       }
+      #blessings-area {
+        float: left;
+      }
+      #function-info {
+        float: right;
+        position: relative;
+        top: 3em;
+      }
+      #salary-source-area {
+        clear: both;
+      }
+    }
+    @media #{$large-up} {
+      #blessings-area {
+        position: relative;
+        top: 2em;
+        width: 35%;
+      }
+
     }
 
     @keyframes bigger-ani {
@@ -274,6 +304,7 @@ header {
         clear: both;
       }
       p {
+        width: 100%;
         text-align: center;
         font-size: 1.8em;
         color: orange;
@@ -301,6 +332,9 @@ header {
     }
     td.warning {
       color: red;
+    }
+    tfoot tr td{
+      text-align: center;
     }
     @media #{$small-only} {
       table { border: 0; }

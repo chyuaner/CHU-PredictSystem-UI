@@ -221,5 +221,9 @@ header {
     section:nth-child(3) {
       clear: both;
     }
+    section:nth-child(6) {
+      margin-top: 2em;
+      text-align: right;
+    }
   }
 }

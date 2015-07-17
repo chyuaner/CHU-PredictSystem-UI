@@ -184,36 +184,76 @@ function errorData() {
   table_result_body.append('<tr><td colspan="6">錯誤！沒有網路連線。</td></tr>');
 }
 
+function errorAlertMsg(text) {
+  var alertArea = $("#input-area .alerts-area");
+  alertArea.append('<div data-alert class="alert-box alert round">'+text+' <a href="#" class="close">&times;</a></div>');
+  $("#input-area .alerts-area").foundation();
+}
+
+function warningAlertMsg(text) {
+  var alertArea = $("#input-area .alerts-area");
+  alertArea.append('<div data-alert class="alert-box warning round">'+text+' <a href="#" class="close">&times;</a></div>');
+  $("#input-area .alerts-area").foundation();
+}
+
+function cleanAlert() {
+
+  var alertArea = $("#input-area .alerts-area");
+  alertArea.empty();
+}
+
 function queryResult() {
   var inputData = getData();
   var resultData = [];
 
   var div_loading = document.getElementById('loading-area');
 
-  $.ajax({
-//    type: "GET",
-    type: "POST",
-    url: basePredictSystemUrl,
-    headers: {
-      "content-type": "application/json"
-    },
-    dataType: "json",
-    data: JSON.stringify(inputData),
-    beforeSend: function() {
-      // 顯示處理中畫面
-      div_loading.classList.remove('hidden');
-    },
-    success: function(data){
-      // 隱藏處理中畫面
-      div_loading.classList.add('hidden');
-      setData(inputData, data.result);
-    },
-    error: function(data){
-      // 隱藏處理中畫面
-      div_loading.classList.add('hidden');
-      errorData();
-    }
-  });
+  var astData = inputData.grades.ast;
+
+  cleanAlert();
+
+  if(  isNaN(astData.Chinese)
+    && isNaN(astData.English)
+    && isNaN(astData.Math_A)
+    && isNaN(astData.Math_B)
+    && isNaN(astData.History)
+    && isNaN(astData.Geographic)
+    && isNaN(astData.Citizen_and_Society)
+    && isNaN(astData.Physics)
+    && isNaN(astData.Chemistry)
+    && isNaN(astData.Biology)
+    ) {
+    warningAlertMsg("你還沒填寫指考成績喔～");
+  }
+  // 沒有問題，開始向後端要資料
+  else {
+    $.ajax({
+  //    type: "GET",
+      type: "POST",
+      url: basePredictSystemUrl,
+      headers: {
+        "content-type": "application/json"
+      },
+      dataType: "json",
+      data: JSON.stringify(inputData),
+      beforeSend: function() {
+        // 顯示處理中畫面
+        div_loading.classList.remove('hidden');
+      },
+      success: function(data){
+        // 隱藏處理中畫面
+        div_loading.classList.add('hidden');
+        setData(inputData, data.result);
+      },
+      error: function(data){
+        // 隱藏處理中畫面
+        div_loading.classList.add('hidden');
+        errorData();
+        errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
+      }
+    });
+  }
+
 }
 
 //window.onload = function() {

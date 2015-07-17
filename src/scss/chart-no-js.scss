@@ -1,0 +1,10 @@
+#select-area {
+  display: none;
+}
+
+#container #result-area .chart-content.hidden {
+    height: inherit;
+    position: static;
+    visibility: visible;
+    opacity: 100;
+}

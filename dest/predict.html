@@ -10,6 +10,18 @@
 
 <body>
 
+<div id="too-old-ie">
+  <div class="inner">
+    <h1>Uh~Oh~ 您的IE瀏覽器已經過時囉～</h1>
+    <p class="warning">本網站不再支援Internet Explorer 9以下版本，請立即更換瀏覽器！</p>
+    我們建議您改用以下瀏覽器:
+    <ul>
+      <li><a href="https://moztw.org/firefox/" target="_blank">Mozilla Firefox</a></li>
+      <li><a href="https://www.google.com/chrome/browser/index.html" target="_blank">Google Chrome</a></li>
+    </ul>
+  </div>
+</div>
+
 <section id="header" class="page-section">
   <header>
     <div class="inner">
@@ -28,6 +40,11 @@
     <form id="input-form">
 
       <!-- 您所期望的薪資 -->
+      <noscript>
+        <div id="no-js-error" data-alert class="alert-box alert radius">
+          <strong>本網頁必須啟用JavaScript才能正常運作喔～</strong>
+        </div>
+      </noscript>
       <div id="input-expect-salary-area">
         <label><h2>畢業後的期望薪資&nbsp;</h2>
           <input type="number" id="input-expect-salary" step="any" min="0"><span>元以上</span>

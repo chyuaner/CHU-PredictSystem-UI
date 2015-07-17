@@ -1,3 +1,30 @@
+#too-old-ie {
+  display: none;
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+   display: none;
+  }
+
+  display: inherit\9;
+  padding-top: 8rem;
+  padding-bottom: -8rem;
+  margin-bottom: -7rem;
+
+  div.inner {
+    margin: 0 auto;
+    width: 90%;
+    p.warning { color: red; }
+    padding-bottom: 4em;
+    padding-bottom: 120px \9;
+  }
+  _border: 5px dashed red;
+  border: 5px dashed red \9;
+  *border: 5px dashed red;
+
+  border: none\9\0;
+  background: #ffffc4;
+  overflow: hidden;
+}
+
 @mixin header($bgColor, $mainColor, $navColor, $navActiveColor){
   position: fixed;
   overflow: hidden;
@@ -17,9 +44,9 @@
   @media #{$small-up} {
     height: 6rem;
     h1 {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       strong {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
       }
     }
 

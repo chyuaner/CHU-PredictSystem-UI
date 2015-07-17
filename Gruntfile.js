@@ -14,6 +14,7 @@ module.exports = function(grunt) {
           'dest/css/index.css': 'src/scss/index.scss',
           'dest/css/predict.css': 'src/scss/predict.scss',
           'dest/css/chart.css': 'src/scss/chart.scss',
+          'dest/css/chart-no-js.css': 'src/scss/chart-no-js.scss'
         }
       }
     },

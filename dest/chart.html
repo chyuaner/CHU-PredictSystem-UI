@@ -6,9 +6,24 @@
   <title>2015 升大學職涯型落點分析</title>
   <link rel="stylesheet" href="css/chart.css">
   <script src="assets/js/modernizr.js"></script>
+  <noscript>
+    <link rel="stylesheet" href="css/chart-no-js.css">
+  </noscript>
 </head>
 
 <body>
+
+<div id="too-old-ie">
+  <div class="inner">
+    <h1>Uh~Oh~ 您的IE瀏覽器已經過時囉～</h1>
+    <p class="warning">本網站不再支援Internet Explorer 9以下版本，請立即更換瀏覽器！</p>
+    我們建議您改用以下瀏覽器:
+    <ul>
+      <li><a href="https://moztw.org/firefox/" target="_blank">Mozilla Firefox</a></li>
+      <li><a href="https://www.google.com/chrome/browser/index.html" target="_blank">Google Chrome</a></li>
+    </ul>
+  </div>
+</div>
 
 <section id="header" class="page-section">
   <header>
@@ -31,10 +46,10 @@
     <div class="select-group-item">
       <h3>一般分類</h3>
       <ul>
-        <li><a href="#1-chart" class="chart-link active">學群</a></li>
-        <li><a href="#2-chart" class="chart-link">學類</a></li>
-        <li><a href="#3-chart" class="chart-link">學校</a></li>
+        <li><a href="#3-chart" class="chart-link active">學校</a></li>
         <li><a href="#4-chart" class="chart-link">科系</a></li>
+        <li><a href="#1-chart" class="chart-link">學群</a></li>
+        <li><a href="#2-chart" class="chart-link">學類</a></li>
       </ul>
     </div>
     <div class="select-group-item">
@@ -71,34 +86,7 @@
   <!-- 查詢結果區域 -->
   <div id="result-area">
 
-    <div id="1-chart" class="chart-content">
-      <h2>學群CP值分析</h2>
-      <div class="chart-image-area">
-        <ul>
-          <li>
-            <figure>
-              <img src="images/chart/image-1.png">
-            </figure>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div id="2-chart" class="chart-content hidden">
-      <h2>學類CP值分析</h2>
-      <div class="chart-image-area">
-        <ul>
-          <li>
-            <figure>
-              <figcaption>最高前十名</figcaption>
-              <img src="images/chart/image-2-1.png">
-            </figure>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div id="3-chart" class="chart-content hidden">
+    <div id="3-chart" class="chart-content">
       <h2>學校CP值分析</h2>
       <div class="chart-image-area">
         <ul>
@@ -120,6 +108,33 @@
             <figure>
               <figcaption>最高前十名</figcaption>
               <img src="images/chart/image-4-1.png">
+            </figure>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="1-chart" class="chart-content hidden">
+      <h2>學群CP值分析</h2>
+      <div class="chart-image-area">
+        <ul>
+          <li>
+            <figure>
+              <img src="images/chart/image-1.png">
+            </figure>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="2-chart" class="chart-content hidden">
+      <h2>學類CP值分析</h2>
+      <div class="chart-image-area">
+        <ul>
+          <li>
+            <figure>
+              <figcaption>最高前十名</figcaption>
+              <img src="images/chart/image-2-1.png">
             </figure>
           </li>
         </ul>

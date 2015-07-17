@@ -115,7 +115,9 @@ header {
 
 footer {
   @include footer;
+  margin: 0 auto;
+  width: 90%;
   overflow: hidden;
   background: white;
-//  margin-top: -3rem;
+  padding-bottom: 0;
 }

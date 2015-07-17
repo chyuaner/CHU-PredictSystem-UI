@@ -198,12 +198,7 @@ header {
     margin-top: 2em;
     padding-bottom: 4em;
 
-    #footer-left {
-      float: left;
-    }
-    #footer-right {
-      float: right;
-    }
+    @include footer;
   }
 }
 

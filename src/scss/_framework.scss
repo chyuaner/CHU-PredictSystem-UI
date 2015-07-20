@@ -162,7 +162,7 @@
   }
 }
 
-#contact-me-modal {
+#contact-me-modal, #dev-people-modal {
   @media #{$medium-up} {
     width: 50%;
   }

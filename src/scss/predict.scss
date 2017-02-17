@@ -9,7 +9,7 @@ header {
 #header {
 
   padding-top: 8rem;
-  background: #8AB9B2;
+  background: #69968f;
   overflow: hidden;
   box-shadow: 0 0.2rem 2rem gray;
   h2, h3, p, label {color: white;}
@@ -23,6 +23,14 @@ header {
     font-size: 1.2rem;
     small {
       font-size: 0.9rem;
+      color: white;
+    }
+  }
+
+  h3 {
+    font-size: 1.0rem;
+    small {
+      font-size: 0.7rem;
       color: white;
     }
   }
@@ -135,8 +143,8 @@ header {
   }
 
   /* 選取學群 */
-  #input-department-group-area {
-    h2 { float:left; width: 4em; margin-right: 1em; }
+  #input-department-group-area ,#input-state-group-area{
+    h2, h3 { float:left; width: 4em; margin-right: 1em; }
     p {
       margin-left: -9em;
       padding-left: 9.5em;
@@ -160,7 +168,7 @@ header {
     }
 
     /* 選取學群的checkbox區域 */
-    #input-department-group-choose-area {
+    #input-department-group-choose-area ,#input-state-group-choose-area {
       transition: all 0.7s ease;
       width: 100%;
       @media #{$small-only} {
@@ -199,13 +207,70 @@ header {
       }
     }
 
-    #input-department-group-choose-area.hidden {
+    #input-department-group-choose-area.hidden, #input-state-group-choose-area.hidden {
       position: absolute;
       top: -1000em;
       left: -1000em;
       height: 0;
       padding: 0 10px;
       opacity: 0;
+    }
+  }
+
+  #input-school-area {
+    /* @include grid-row; */
+
+    @media #{$small-only} {
+      #input-university-group-area{
+        @include grid-column(12);
+      }
+      #input-state-group-area {
+        @include grid-column(12);
+      }
+    }
+    @media #{$medium-up} {
+      #input-university-group-area{
+        @include grid-column(3);
+      }
+      #input-state-group-area {
+        @include grid-column(9);
+      }
+    }
+    @media #{$large-up} {
+      #input-university-group-area{
+        @include grid-column(2);
+      }
+      #input-state-group-area {
+        @include grid-column(10);
+      }
+    }
+  }
+
+  #input-university-group-area{
+    ul li {
+      list-style: none;
+    }
+    label {
+      font-size: 1.0em;
+    }
+    ul li input[type="checkbox"]+span::before {
+      font-size: 1.5em;
+      margin-right: 0.5em;
+    }
+    ul li input[type="checkbox"]+span::before {
+      content: '\2610';
+      width: 1em;
+    }
+    ul li input[type="checkbox"]:checked+span::before {
+      content: '\2611';
+      width: 1em;
+    }
+    ul li input[type="checkbox"] {
+      display: none;
+    }
+    ul li input[type="checkbox"]:checked+span {
+      /* background: #567771;
+      box-shadow: 0 0 10px white; */
     }
   }
 

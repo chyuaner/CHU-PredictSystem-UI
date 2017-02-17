@@ -31,7 +31,7 @@
 <section id="header" class="page-section">
   <header>
     <div class="inner">
-      <h1><a href="index.html" data-tooltip aria-haspopup="true" title="回首頁">2017 升大學職涯型 <strong>學測落點分析</strong></a></h1>
+      <h1><a href="index.html" data-tooltip aria-haspopup="true" title="回首頁">升大學職涯型 <strong>落點分析</strong></a></h1>
 
       <nav>
         <ul>
@@ -62,66 +62,9 @@
         </label>
       </div>
 
-      <!-- 輸入指考成績 -->
-      <div id="input-ast-score">
-        <h2>輸入指考成績<small>（未考部分請留空白）</small></h2>
-        <ul>
-          <li>
-            <label><span>國文</span>
-              <input type="number" id="input-ast-chinese" class="input-score" min="0" max="100" step="0.01">
-            </label>
-          </li>
-          <li>
-            <label><span>英文</span>
-              <input type="number" id="input-ast-english" class="input-score" min="0" max="100" step="0.01">
-            </label>
-          </li>
-          <li>
-            <label><span>數學甲</span>
-              <input type="number" id="input-ast-math-a" class="input-score" min="0" max="100" step="0.01">
-            </label>
-          </li>
-          <li>
-            <label><span>數學乙</span>
-              <input type="number" id="input-ast-math-b" class="input-score" min="0" max="100" step="0.01">
-            </label>
-          </li>
-          <li>
-            <label><span>歷史</span>
-              <input type="number" id="input-ast-history" class="input-score" min="0" max="100" step="0.01">
-            </label>
-          </li>
-          <li>
-            <label><span>地理</span>
-              <input type="number" id="input-ast-geography" class="input-score" min="0" max="100" step="0.01">
-            </label>
-          </li>
-          <li>
-            <label><span>公社</span>
-              <input type="number" id="input-ast-citizen-and-social" class="input-score" min="0" max="100" step="0.01">
-            </label>
-          </li>
-          <li>
-            <label><span>物理</span>
-              <input type="number" id="input-ast-physics" class="input-score" min="0" max="100" step="0.01">
-            </label>
-          </li>
-          <li>
-            <label><span>化學</span>
-              <input type="number" id="input-ast-chemistry" class="input-score" min="0" max="100" step="0.01">
-            </label>
-          </li>
-          <li>
-            <label><span>生物</span>
-              <input type="number" id="input-ast-organism" class="input-score" min="0" max="100" step="0.01">
-            </label>
-          </li>
-        </ul>
-      </div>
-
       <!-- 輸入學測成績 -->
       <div id="input-gsat-score">
-        <h2>輸入學測成績<small>（用來篩選有設學測門檻的校系, 可不輸入）</small></h2>
+        <h2>輸入學測成績</h2>
         <ul>
           <li>
             <label><span>國文</span>
@@ -164,7 +107,7 @@
 
       <!-- 輸入學群 -->
       <div id="input-department-group-area">
-        <h2>輸入學群</h2>
+        <h2>選擇學群</h2>
         <a id="input-department-group-more" >
           <p id="department-group-choose-list">工程學群, 資訊學群</p>
           <span class="more-button">&#x25BC;</span>
@@ -233,6 +176,54 @@
           </ul>
         </div>
       </div>
+
+      <!-- 輸入校系 -->
+      <div id="input-school-area">
+        <!-- <h2>選擇校系</h2> -->
+        <div id="input-university-group-area">
+          <h2>公/私立</h2>
+          <ul>
+            <li>
+              <label><input type="checkbox" name="input-university-group" value="公立大學"><span>公立大學</span></label>
+            </li>
+            <li>
+              <label><input type="checkbox" name="input-university-group" value="私立大學"><span>私立大學</span></label>
+            </li>
+          </ul>
+        </div>
+
+        <div id="input-state-group-area">
+          <h2>地區</h2>
+          <a id="input-state-group-more" >
+            <p id="state-group-choose-list">臺北市, 桃園市</p>
+            <span class="more-button">&#x25BC;</span>
+          </a>
+
+          <div id="input-state-group-choose-area" class="hidden">
+            <ul>
+              <li><label><input type="checkbox" name="input-state-group" value="基隆市"><span>基隆市</span></label></li>
+              <li><label><input type="checkbox" name="input-state-group" value="臺北市"><span>臺北市</span></label></li>
+              <li><label><input type="checkbox" name="input-state-group" value="新北市"><span>新北市</span></label></li>
+              <li><label><input type="checkbox" name="input-state-group" value="桃園市"><span>桃園市</span></label></li>
+              <li><label><input type="checkbox" name="input-state-group" value="新竹市"><span>新竹市</span></label></li>
+              <li><label><input type="checkbox" name="input-state-group" value="苗栗縣"><span>苗栗縣</span></label></li>
+              <li><label><input type="checkbox" name="input-state-group" value="臺中市"><span>臺中市</span></label></li>
+              <li><label><input type="checkbox" name="input-state-group" value="彰化縣"><span>彰化縣</span></label></li>
+              <li><label><input type="checkbox" name="input-state-group" value="南投縣"><span>南投縣</span></label></li>
+              <li><label><input type="checkbox" name="input-state-group" value="嘉義縣"><span>嘉義縣</span></label></li>
+              <li><label><input type="checkbox" name="input-state-group" value="嘉義市"><span>嘉義市</span></label></li>
+              <li><label><input type="checkbox" name="input-state-group" value="臺南市"><span>臺南市</span></label></li>
+              <li><label><input type="checkbox" name="input-state-group" value="高雄市"><span>高雄市</span></label></li>
+              <li><label><input type="checkbox" name="input-state-group" value="屏東市"><span>屏東市</span></label></li>
+              <li><label><input type="checkbox" name="input-state-group" value="宜蘭縣"><span>宜蘭縣</span></label></li>
+              <li><label><input type="checkbox" name="input-state-group" value="花蓮縣"><span>花蓮縣</span></label></li>
+              <li><label><input type="checkbox" name="input-state-group" value="臺東縣"><span>臺東縣</span></label></li>
+              <li><label><input type="checkbox" name="input-state-group" value="金門縣"><span>金門縣</span></label></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
 
       <!-- 查詢按鈕 -->
       <div id="input-action-area">

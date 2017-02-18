@@ -57,6 +57,11 @@ header {
     /* @include grid-column(6); */
     /* float: left; */
   }
+
+  .score-grade {
+    color: #ffde00;
+  }
+
   #total-gsat-score {
     h2 {
       display: inline;
@@ -69,11 +74,17 @@ header {
       padding-left: 1em;
       padding-right: 1em;
     }
+    .score-grade {
+      margin-left: 0;
+      font-size: 0.8em;
+      border: 0;
+      color: #ffde00;
+    }
     /* @include grid-column(6); */
     @media #{$medium-up} {
       text-align: right;
-      margin-top: -2.5em;
-      margin-bottom: 2em;
+      margin-top: -3em;
+      margin-bottom: 2.5em;
     }
   }
 
@@ -111,6 +122,10 @@ header {
     label {
       font-size: 1em;
       text-align: center;
+    }
+    .score-grade {
+      margin-left: 0.7em;
+      font-size: 0.8em;
     }
     ul li { margin-bottom: -1em; }
 

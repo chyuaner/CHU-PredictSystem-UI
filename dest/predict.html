@@ -62,6 +62,11 @@
         </label>
       </div>
 
+      <div id="total-gsat-score">
+        <h2>總級分</h2>
+        <span>50</span>
+      </div>
+
       <!-- 輸入學測成績 -->
       <div id="input-gsat-score">
         <h2>輸入學測成績</h2>
@@ -180,17 +185,6 @@
       <!-- 輸入校系 -->
       <div id="input-school-area">
         <!-- <h2>選擇校系</h2> -->
-        <div id="input-university-group-area">
-          <h2>公/私立</h2>
-          <ul>
-            <li>
-              <label><input type="checkbox" name="input-university-group" value="公立大學"><span>公立大學</span></label>
-            </li>
-            <li>
-              <label><input type="checkbox" name="input-university-group" value="私立大學"><span>私立大學</span></label>
-            </li>
-          </ul>
-        </div>
 
         <div id="input-state-group-area">
           <h2>地區</h2>
@@ -222,8 +216,20 @@
             </ul>
           </div>
         </div>
+
       </div>
 
+      <div id="input-university-group-area">
+        <h2>公/私立</h2>
+        <ul>
+          <li>
+            <label><input type="checkbox" name="input-university-group" value="公立"><span>公立</span></label>
+          </li>
+          <li>
+            <label><input type="checkbox" name="input-university-group" value="私立"><span>私立</span></label>
+          </li>
+        </ul>
+      </div>
 
       <!-- 查詢按鈕 -->
       <div id="input-action-area">
@@ -274,8 +280,8 @@
             <th>校名</th>
             <th>科系名稱</th>
             <th>畢業生平均薪資</th>
-            <th>去年最低錄取分數</th>
-            <th>換算去年加權分數</th>
+            <th>去年錄取最低標準</th>
+            <th>今年篩選倍率</th>
           </tr>
         </thead>
         <tbody>

@@ -54,9 +54,31 @@ header {
       position: relative;
       top: 0.1em;
     }
+    /* @include grid-column(6); */
+    /* float: left; */
+  }
+  #total-gsat-score {
+    h2 {
+      display: inline;
+      margin-right: 1.2em;
+    }
+    span {
+      font-size: 1.5em;
+      color: white;
+      border: 2px white solid;
+      padding-left: 1em;
+      padding-right: 1em;
+    }
+    /* @include grid-column(6); */
+    @media #{$medium-up} {
+      text-align: right;
+      margin-top: -2.5em;
+      margin-bottom: 2em;
+    }
   }
 
-  /* 所有數字輸入框*/
+
+  /* 所有數字輸入框 */
   input[type="number"], select {
     box-shadow: inset 0 0 0 0;
     background: none;
@@ -224,31 +246,32 @@ header {
       #input-university-group-area{
         @include grid-column(12);
       }
-      #input-state-group-area {
-        @include grid-column(12);
-      }
     }
     @media #{$medium-up} {
       #input-university-group-area{
         @include grid-column(3);
-      }
-      #input-state-group-area {
-        @include grid-column(9);
       }
     }
     @media #{$large-up} {
       #input-university-group-area{
         @include grid-column(2);
       }
-      #input-state-group-area {
-        @include grid-column(10);
-      }
     }
   }
 
   #input-university-group-area{
+
+    h2 {
+      float: left;
+      margin-right: 2em;
+    }
     ul li {
       list-style: none;
+      display: inline;
+      label {
+        display: inline;
+        margin-right: 2em;
+      }
     }
     label {
       font-size: 1.0em;
@@ -276,6 +299,9 @@ header {
 
   #input-action-area {
     float: right;
+    @media #{$medium-up} {
+      margin-top: -3em;
+    }
     ul li {
       list-style-type: none;
       display: inline-block;

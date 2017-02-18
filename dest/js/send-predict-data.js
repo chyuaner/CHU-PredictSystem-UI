@@ -153,12 +153,12 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
   else {
     content += '<td data-title="畢業生平均薪資"><a href="'+salaryUrl+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至104升學就業地圖">'+salary+'</a></td>';
   }
-  content += '<td data-title="去年最低錄取分數">'+minScore+'</td>';
+  content += '<td data-title="去年錄取最低標準">'+minScore+'</td>';
   if(yourScore < minScore) {
-    content += '<td data-title="換算去年加權分數" class="warning"><span data-tooltip aria-haspopup="true" title="換算去年加權分數<br>低於去年最低錄取分數">'+yourScore+'</span></td>';
+    content += '<td data-title="今年篩選倍率" class="warning"><span data-tooltip aria-haspopup="true" title="換算去年加權分數<br>低於去年最低錄取分數">'+yourScore+'</span></td>';
   }
   else {
-    content += '<td data-title="換算去年加權分數">'+yourScore+'</td>';
+    content += '<td data-title="今年篩選倍率">'+yourScore+'</td>';
   }
 
   table_result_body.append(tr+content+'</tr>');
@@ -267,4 +267,3 @@ function queryResult() {
 
 
 //}
-

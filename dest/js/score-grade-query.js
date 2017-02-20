@@ -1,3 +1,5 @@
+var basePredictSystemScoreGradeUrl = "api/GSAT/aquireAllSubjectStandar";
+
 function getScoreGradeData() {
   var input_gsat_chinese  = document.getElementById('input-gsat-chinese');
   var input_gsat_english  = document.getElementById('input-gsat-english');
@@ -5,6 +7,18 @@ function getScoreGradeData() {
   var input_gsat_social   = document.getElementById('input-gsat-social');
   var input_gsat_nature   = document.getElementById('input-gsat-nature');
   var input_gsat_engLis   = document.getElementById('input-gsat-english-listen');
+
+  if(input_gsat_chinese.value == "") { var gsat_chinese = null; }
+  else { var gsat_chinese = parseInt(input_gsat_chinese.value); }
+  if(input_gsat_english.value == "") { var gsat_english = null; }
+  else { var gsat_english = parseInt(input_gsat_english.value); }
+  if(input_gsat_math.value == "") { var gsat_math = null; }
+  else { var gsat_math = parseInt(input_gsat_math.value); }
+  if(input_gsat_social.value == "") { var gsat_social = null; }
+  else { var gsat_social = parseInt(input_gsat_social.value); }
+  if(input_gsat_nature.value == "") { var gsat_nature = null; }
+  else { var gsat_nature = parseInt(input_gsat_nature.value); }
+  var gsat_engLis = input_gsat_engLis.value;
 
   // 製作JSON
   var data = {
@@ -31,9 +45,35 @@ function setScoreGradeData(inputData, resultData) {
   var gsat_math_grade     = document.getElementById('gsat-math-grade');
   var gsat_social_grade   = document.getElementById('gsat-social-grade');
   var gsat_nature_grade   = document.getElementById('gsat-nature-grade');
+  // var gsat_engLis_grade   = document.getElementById('gsat-english-listen-grade');
+
+  gsat_total_grade.innerHTML   = resultData.TotalScore;
+  gsat_chinese_grade.innerHTML = resultData.Chinese;
+  gsat_english_grade.innerHTML = resultData.English;
+  gsat_math_grade.innerHTML    = resultData.Math;
+  gsat_social_grade.innerHTML  = resultData.Society;
+  gsat_nature_grade.innerHTML  = resultData.Science;
+  // gsat_engLis_grade.innerHTML  = resultData.
+}
+
+function setScoreGradeWaitData() {
+  var string_wait = '請稍候';
+
+  var gsat_total_grade  = document.getElementById('gsat-total-grade');
+  var gsat_chinese_grade  = document.getElementById('gsat-chinese-grade');
+  var gsat_english_grade  = document.getElementById('gsat-english-grade');
+  var gsat_math_grade     = document.getElementById('gsat-math-grade');
+  var gsat_social_grade   = document.getElementById('gsat-social-grade');
+  var gsat_nature_grade   = document.getElementById('gsat-nature-grade');
   var gsat_engLis_grade   = document.getElementById('gsat-english-listen-grade');
 
-
+  gsat_total_grade.innerHTML   = string_wait;
+  gsat_chinese_grade.innerHTML = string_wait;
+  gsat_english_grade.innerHTML = string_wait;
+  gsat_math_grade.innerHTML    = string_wait;
+  gsat_social_grade.innerHTML  = string_wait;
+  gsat_nature_grade.innerHTML  = string_wait;
+  gsat_engLis_grade.innerHTML  = string_wait;
 }
 
 function cleanScoreGradeData() {
@@ -84,6 +124,26 @@ function updateGsatTotalScore() {
 function queryScoreGrade() {
 
   updateGsatTotalScore();
+
+  var inputData = getScoreGradeData();
+  $.ajax({
+    type: "POST",
+    url: basePredictSystemScoreGradeUrl,
+    headers: {
+      "content-type": "application/json"
+    },
+    dataType: "json",
+    data: JSON.stringify(inputData),
+    beforeSend: function() {
+      setScoreGradeWaitData();
+    },
+    success: function(data){
+      setScoreGradeData(inputData, data.step);
+    },
+    error: function(data){
+      cleanScoreGradeData();
+    }
+  });
   // alert("test");
 }
 
@@ -94,9 +154,9 @@ var input_gsat_social   = document.getElementById('input-gsat-social');
 var input_gsat_nature   = document.getElementById('input-gsat-nature');
 var input_gsat_engLis   = document.getElementById('input-gsat-english-listen');
 
-input_gsat_chinese.onchange = function(){ queryScoreGrade() };
-input_gsat_english.onchange = function(){ queryScoreGrade() };
-input_gsat_math.onchange = function(){ queryScoreGrade() };
-input_gsat_social.onchange = function(){ queryScoreGrade() };
-input_gsat_nature.onchange = function(){ queryScoreGrade() };
-input_gsat_engLis.onchange = function(){ queryScoreGrade() };
+input_gsat_chinese.onchange = function(){ queryScoreGrade(); };
+input_gsat_english.onchange = function(){ queryScoreGrade(); };
+input_gsat_math.onchange = function(){ queryScoreGrade(); };
+input_gsat_social.onchange = function(){ queryScoreGrade(); };
+input_gsat_nature.onchange = function(){ queryScoreGrade(); };
+input_gsat_engLis.onchange = function(){ queryScoreGrade(); };

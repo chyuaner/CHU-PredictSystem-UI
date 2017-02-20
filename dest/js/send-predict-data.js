@@ -1,4 +1,4 @@
-var basePredictSystemUrl = "api/Prediction/analysis";
+var basePredictSystemUrl = "api/GSAT/analysis";
 
 // http://stackoverflow.com/questions/1127905/how-can-i-format-an-integer-to-a-specific-length-in-javascript
 function formatNumberLength(num, length) {
@@ -32,6 +32,8 @@ function getData() {
   var input_gsat_engLis   = document.getElementById('input-gsat-english-listen');
 
   var input_departmentGroup = document.getElementsByName('input-department-group');
+  var input_stateGroup = document.getElementsByName('input-state-group');
+  var input_universityGroup = document.getElementsByName('input-university-group');
 
   // 取得使用者填寫的表單資料
   if(input_salary.value == "") {
@@ -76,6 +78,32 @@ function getData() {
     }
   }
 
+  var stateGroup = [];
+  for(var i=0; i<input_stateGroup.length; i++) {
+    if(input_stateGroup[i].checked) {
+      stateGroup.push(input_stateGroup[i].value);
+    }
+  }
+  // 若沒選擇的話，就全選
+  if(stateGroup.length == 0) {
+    for(var i=0; i<input_stateGroup.length; i++) {
+      stateGroup.push(input_stateGroup[i].value);
+    }
+  }
+
+  var universityGroup = [];
+  for(var i=0; i<input_universityGroup.length; i++) {
+    if(input_universityGroup[i].checked) {
+      universityGroup.push(input_universityGroup[i].value);
+    }
+  }
+  // 若沒選擇的話，就全選
+  if(universityGroup.length == 0) {
+    for(var i=0; i<input_universityGroup.length; i++) {
+      universityGroup.push(input_universityGroup[i].value);
+    }
+  }
+
   // 製作JSON
   /*"ast": {
     "Chinese": ast_chinese,
@@ -103,6 +131,8 @@ function getData() {
       }
     },
     "groups": departmentGroup,
+    "location": stateGroup,
+    "property": universityGroup,
     "expect_salary": salary
   };
 
@@ -119,27 +149,29 @@ function setData(inputData, resultData) {
   if(resultData.length > 0) {
     table_result_body.empty();
     for(var i=0; i<resultData.length; i++) {
+      // did, uname, uurl, dname, durl, salary, salaryUrl, lastCriterion, rateOfThisYear, change, examURL, riskIndex
       addData(resultData[i].did, resultData[i].uname, resultData[i].uurl,
               resultData[i].dname, resultData[i].durl, resultData[i].salary, resultData[i].salaryUrl,
-              resultData[i].minScore, resultData[i].yourScore);
+              resultData[i].lastCriterion, resultData[i].rateOfThisYear, resultData[i].change,
+              resultData[i].examURL, resultData[i].riskIndex);
     }
   }
   else {
     table_result_body.empty();
-    table_result_body.append('<tr><td colspan="6">沒有符合您的校系，請修改條件後再次分析。</td></tr>');
+    table_result_body.append('<tr><td colspan="7">沒有符合您的校系，請修改條件後再次分析。</td></tr>');
   }
 }
 
-function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, yourScore) {
+function addData(did, uname, uurl, dname, durl, salary, salaryUrl, lastCriterion, rateOfThisYear, change, examURL, riskIndex) {
   if(salary == 0) { salary = '樣本不足';}
 
   var table_result = $("#table-result-suggest-school-departments");
   var table_result_body = table_result.find("tbody");
 
   var trClass = '';
-  if(yourScore < minScore) {
-    trClass += ' warning';
-  }
+  // if(yourScore < minScore) {
+  //   trClass += ' warning';
+  // }
   if(uname == '中華大學') {
     trClass += ' chu';
   }
@@ -148,18 +180,28 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
   var content = '<th data-title="校系代碼">'+formatNumberLength(did, 4)+'</th>';
   content += '<td data-title="校名"><a href="'+uurl+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至學校首頁">'+uname+'</a></td>';
   content += '<td data-title="科系名稱"><a href="'+durl+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至科系首頁">'+dname+'</a></td>';
-  if(salaryUrl == null) {
+  if(salaryUrl === null) {
     content += '<td data-title="畢業生平均薪資">'+salary+'</td>';
   }
   else {
     content += '<td data-title="畢業生平均薪資"><a href="'+salaryUrl+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至104升學就業地圖">'+salary+'</a></td>';
   }
-  content += '<td data-title="去年錄取最低標準">'+minScore+'</td>';
-  if(yourScore < minScore) {
-    content += '<td data-title="今年篩選倍率" class="warning"><span data-tooltip aria-haspopup="true" title="換算去年加權分數<br>低於去年最低錄取分數">'+yourScore+'</span></td>';
+  content += '<td data-title="去年錄取最低標準">'+lastCriterion+'&nbsp;</td>';
+
+  var rateOfThisYear_tooltip;
+  if(change !== '') {
+    rateOfThisYear_tooltip = '改變部分:<br>'+change +'<br><br>按此可查看簡章頁面';
   }
   else {
-    content += '<td data-title="今年篩選倍率">'+yourScore+'</td>';
+    rateOfThisYear_tooltip = '按此可查看簡章頁面';
+  }
+  content += '<td data-title="今年篩選倍率"><a href="'+examURL+'" target="_blank"><span data-tooltip aria-haspopup="true" title="'+rateOfThisYear_tooltip+'">'+rateOfThisYear+'</span></a></td>';
+
+  if(riskIndex == true) {
+    content += '<td data-title="危險指數" class="warning">'+'高'+'</td>';
+  }
+  else {
+    content += '<td data-title="危險指數">'+'低'+'</td>';
   }
 
   table_result_body.append(tr+content+'</tr>');
@@ -209,22 +251,17 @@ function queryResult() {
 
   var div_loading = document.getElementById('loading-area');
 
-  var astData = inputData.grades.ast;
+  var gsatData = inputData.grades.gsat;
 
   cleanAlert();
 
-  if(  isNaN(astData.Chinese)
-    && isNaN(astData.English)
-    && isNaN(astData.Math_A)
-    && isNaN(astData.Math_B)
-    && isNaN(astData.History)
-    && isNaN(astData.Geographic)
-    && isNaN(astData.Citizen_and_Society)
-    && isNaN(astData.Physics)
-    && isNaN(astData.Chemistry)
-    && isNaN(astData.Biology)
+  if(  isNaN(gsatData.Chinese)
+    && isNaN(gsatData.English)
+    && isNaN(gsatData.Math)
+    && isNaN(astData.Science)
+    && isNaN(astData.Society)
     ) {
-    warningAlertMsg("你還沒填寫指考成績喔～");
+    warningAlertMsg("你還沒填寫學測成績喔～");
   }
   // 沒有問題，開始向後端要資料
   else {

@@ -171,10 +171,11 @@ var input_gsat_social   = document.getElementById('input-gsat-social');
 var input_gsat_nature   = document.getElementById('input-gsat-nature');
 var input_gsat_engLis   = document.getElementById('input-gsat-english-listen');
 
-updateGsatTotalScore();
 input_gsat_chinese.onchange = function(){ queryScoreGrade(); };
 input_gsat_english.onchange = function(){ queryScoreGrade(); };
 input_gsat_math.onchange = function(){ queryScoreGrade(); };
 input_gsat_social.onchange = function(){ queryScoreGrade(); };
 input_gsat_nature.onchange = function(){ queryScoreGrade(); };
 input_gsat_engLis.onchange = function(){ queryScoreGrade(); };
+
+queryScoreGrade();

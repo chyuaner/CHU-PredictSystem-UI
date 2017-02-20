@@ -1,4 +1,5 @@
 var basePredictSystemUrl = "api/GSAT/analysis";
+var querying = false;
 
 // http://stackoverflow.com/questions/1127905/how-can-i-format-an-integer-to-a-specific-length-in-javascript
 function formatNumberLength(num, length) {
@@ -188,14 +189,16 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, lastCriterion
   }
   content += '<td data-title="去年錄取最低標準">'+lastCriterion+'&nbsp;</td>';
 
-  var rateOfThisYear_tooltip;
+  var rateOfThisYear_tooltip, rateOfThisYear_info_icon;
   if(change !== '') {
     rateOfThisYear_tooltip = '改變部分:<br>'+change +'<br><br>按此可查看簡章頁面';
+    rateOfThisYear_info_icon = '<i class="fi-info"></i>';
   }
   else {
     rateOfThisYear_tooltip = '按此可查看簡章頁面';
+    rateOfThisYear_info_icon = '';
   }
-  content += '<td data-title="今年篩選倍率"><a href="'+examURL+'" target="_blank"><span data-tooltip aria-haspopup="true" title="'+rateOfThisYear_tooltip+'">'+rateOfThisYear+'</span></a></td>';
+  content += '<td data-title="今年篩選倍率"><a href="'+examURL+'" target="_blank"><span data-tooltip aria-haspopup="true" title="'+rateOfThisYear_tooltip+'">'+rateOfThisYear+rateOfThisYear_info_icon+'</span></a></td>';
 
   if(riskIndex == true) {
     content += '<td data-title="危險指數" class="warning">'+'高'+'</td>';
@@ -265,31 +268,40 @@ function queryResult() {
   }
   // 沒有問題，開始向後端要資料
   else {
-    $.ajax({
-  //    type: "GET",
-      type: "POST",
-      url: basePredictSystemUrl,
-      headers: {
-        "content-type": "application/json"
-      },
-      dataType: "json",
-      data: JSON.stringify(inputData),
-      beforeSend: function() {
-        // 顯示處理中畫面
-        div_loading.classList.remove('hidden');
-      },
-      success: function(data){
-        // 隱藏處理中畫面
-        div_loading.classList.add('hidden');
-        setData(inputData, data.result);
-      },
-      error: function(data){
-        // 隱藏處理中畫面
-        div_loading.classList.add('hidden');
-        errorData();
-        errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
-      }
-    });
+    if(!querying) {
+
+      $.ajax({
+        //    type: "GET",
+        type: "POST",
+        url: basePredictSystemUrl,
+        headers: {
+          "content-type": "application/json"
+        },
+        dataType: "json",
+        data: JSON.stringify(inputData),
+        beforeSend: function() {
+          // 顯示處理中畫面
+          div_loading.classList.remove('hidden');
+          $('input[type=submit]').prop( "disabled", true );
+          querying = true;
+        },
+        success: function(data){
+          // 隱藏處理中畫面
+          div_loading.classList.add('hidden');
+          setData(inputData, data.result);
+          $('input[type=submit]').prop( "disabled", false );
+          querying = false;
+        },
+        error: function(data){
+          // 隱藏處理中畫面
+          div_loading.classList.add('hidden');
+          errorData();
+          errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
+          $('input[type=submit]').prop( "disabled", false );
+          querying = false;
+        }
+      });
+    }
   }
 
 }

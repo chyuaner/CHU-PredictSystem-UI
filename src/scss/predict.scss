@@ -345,6 +345,14 @@ header {
     input[type="submit"]:hover {
       background: rgba(124, 255, 129, 0.55);
     }
+
+    input[type="submit"]:disabled {
+      background: rgba(60, 60, 60, 0.7);
+      cursor: not-allowed;
+      box-shadow: none;
+      color: black;
+      border: 2px solid gray;
+    }
   }
 }
 

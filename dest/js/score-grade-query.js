@@ -1,4 +1,5 @@
 var basePredictSystemScoreGradeUrl = "api/GSAT/aquireAllSubjectStandar";
+var max_input_score = 15;
 
 function getScoreGradeData() {
   var input_gsat_chinese  = document.getElementById('input-gsat-chinese');
@@ -8,17 +9,22 @@ function getScoreGradeData() {
   var input_gsat_nature   = document.getElementById('input-gsat-nature');
   var input_gsat_engLis   = document.getElementById('input-gsat-english-listen');
 
-  if(input_gsat_chinese.value == "") { var gsat_chinese = null; }
+  // TODO: 後端架構無法改的權宜之計作法: 把不合法的值通通變成-1給後端（後端只能接受-1資料）
+  if(input_gsat_chinese.value == "" || input_gsat_chinese.value > max_input_score || input_gsat_chinese.value < 0)
+    { var gsat_chinese = -1; }
   else { var gsat_chinese = parseInt(input_gsat_chinese.value); }
-  if(input_gsat_english.value == "") { var gsat_english = null; }
+  if(input_gsat_english.value == "" || input_gsat_english.value > max_input_score || input_gsat_english.value < 0)
+    { var gsat_english = -1; }
   else { var gsat_english = parseInt(input_gsat_english.value); }
-  if(input_gsat_math.value == "") { var gsat_math = null; }
+  if(input_gsat_math.value == "" || input_gsat_math.value > max_input_score || input_gsat_math.value < 0)
+    { var gsat_math = -1; }
   else { var gsat_math = parseInt(input_gsat_math.value); }
-  if(input_gsat_social.value == "") { var gsat_social = null; }
+  if(input_gsat_social.value == "" || input_gsat_social.value > max_input_score || input_gsat_social.value < 0)
+    { var gsat_social = -1; }
   else { var gsat_social = parseInt(input_gsat_social.value); }
-  if(input_gsat_nature.value == "") { var gsat_nature = null; }
+  if(input_gsat_nature.value == "" || input_gsat_nature.value > max_input_score || input_gsat_nature.value < 0)
+    { var gsat_nature = -1; }
   else { var gsat_nature = parseInt(input_gsat_nature.value); }
-  var gsat_engLis = input_gsat_engLis.value;
 
   // 製作JSON
   var data = {
@@ -29,8 +35,7 @@ function getScoreGradeData() {
         "English": gsat_english,
         "Math": gsat_math,
         "Society": gsat_social,
-        "Science": gsat_nature,
-        "EngListeningLevel": gsat_engLis
+        "Science": gsat_nature
       }
     }
   };
@@ -39,21 +44,28 @@ function getScoreGradeData() {
 }
 
 function setScoreGradeData(inputData, resultData) {
+  var string_err = "";
   var gsat_total_grade  = document.getElementById('gsat-total-grade');
   var gsat_chinese_grade  = document.getElementById('gsat-chinese-grade');
   var gsat_english_grade  = document.getElementById('gsat-english-grade');
   var gsat_math_grade     = document.getElementById('gsat-math-grade');
   var gsat_social_grade   = document.getElementById('gsat-social-grade');
   var gsat_nature_grade   = document.getElementById('gsat-nature-grade');
-  // var gsat_engLis_grade   = document.getElementById('gsat-english-listen-grade');
 
+  var gsatScoreData = inputData.grades.gsat;
   gsat_total_grade.innerHTML   = resultData.TotalScore;
-  gsat_chinese_grade.innerHTML = resultData.Chinese;
-  gsat_english_grade.innerHTML = resultData.English;
-  gsat_math_grade.innerHTML    = resultData.Math;
-  gsat_social_grade.innerHTML  = resultData.Society;
-  gsat_nature_grade.innerHTML  = resultData.Science;
-  // gsat_engLis_grade.innerHTML  = resultData.
+
+  if(gsatScoreData.Chinese == -1) { gsat_chinese_grade.innerHTML = string_err; }
+  else { gsat_chinese_grade.innerHTML = resultData.Chinese; }
+  if(gsatScoreData.English == -1) { gsat_english_grade.innerHTML = string_err; }
+  else { gsat_english_grade.innerHTML = resultData.English; }
+  if(gsatScoreData.Math == -1) { gsat_math_grade.innerHTML = string_err; }
+  else { gsat_math_grade.innerHTML    = resultData.Math; }
+  if(gsatScoreData.Society == -1) { gsat_social_grade.innerHTML = string_err; }
+  else { gsat_social_grade.innerHTML  = resultData.Society; }
+  if(gsatScoreData.Science == -1) { gsat_nature_grade.innerHTML = string_err; }
+  else { gsat_nature_grade.innerHTML  = resultData.Science; }
+
 }
 
 function setScoreGradeWaitData() {
@@ -65,7 +77,6 @@ function setScoreGradeWaitData() {
   var gsat_math_grade     = document.getElementById('gsat-math-grade');
   var gsat_social_grade   = document.getElementById('gsat-social-grade');
   var gsat_nature_grade   = document.getElementById('gsat-nature-grade');
-  var gsat_engLis_grade   = document.getElementById('gsat-english-listen-grade');
 
   gsat_total_grade.innerHTML   = string_wait;
   gsat_chinese_grade.innerHTML = string_wait;
@@ -73,7 +84,6 @@ function setScoreGradeWaitData() {
   gsat_math_grade.innerHTML    = string_wait;
   gsat_social_grade.innerHTML  = string_wait;
   gsat_nature_grade.innerHTML  = string_wait;
-  gsat_engLis_grade.innerHTML  = string_wait;
 }
 
 function cleanScoreGradeData() {
@@ -84,7 +94,6 @@ function cleanScoreGradeData() {
   var gsat_math_grade     = document.getElementById('gsat-math-grade');
   var gsat_social_grade   = document.getElementById('gsat-social-grade');
   var gsat_nature_grade   = document.getElementById('gsat-nature-grade');
-  var gsat_engLis_grade   = document.getElementById('gsat-english-listen-grade');
 
   gsat_total_grade.innerHTML = '';
   gsat_chinese_grade.innerHTML = '';
@@ -92,7 +101,6 @@ function cleanScoreGradeData() {
   gsat_math_grade.innerHTML = '';
   gsat_social_grade.innerHTML = '';
   gsat_nature_grade.innerHTML = '';
-  gsat_engLis_grade.innerHTML = '';
 
 }
 
@@ -103,7 +111,6 @@ function updateGsatTotalScore() {
   var input_gsat_math     = document.getElementById('input-gsat-math');
   var input_gsat_social   = document.getElementById('input-gsat-social');
   var input_gsat_nature   = document.getElementById('input-gsat-nature');
-  var input_gsat_engLis   = document.getElementById('input-gsat-english-listen');
 
   if(input_gsat_chinese.value == "") { var gsat_chinese = parseInt(0); }
   else { var gsat_chinese = parseInt(input_gsat_chinese.value); }
@@ -115,10 +122,20 @@ function updateGsatTotalScore() {
   else { var gsat_social = parseInt(input_gsat_social.value); }
   if(input_gsat_nature.value == "") { var gsat_nature = parseInt(0); }
   else { var gsat_nature = parseInt(input_gsat_nature.value); }
-  var gsat_engLis = input_gsat_engLis.value;
 
   var totalScore = gsat_chinese + gsat_english + gsat_math + gsat_social + gsat_nature;
-  gsat_total.innerHTML = totalScore;
+
+  if(gsat_chinese>max_input_score ||
+     gsat_english>max_input_score ||
+     gsat_math>max_input_score ||
+     gsat_social>max_input_score ||
+     gsat_nature>max_input_score
+   ) {
+    gsat_total.innerHTML = "??";
+  }
+  else {
+    gsat_total.innerHTML = totalScore;
+  }
 }
 
 function queryScoreGrade() {
@@ -135,7 +152,7 @@ function queryScoreGrade() {
     dataType: "json",
     data: JSON.stringify(inputData),
     beforeSend: function() {
-      setScoreGradeWaitData();
+      // setScoreGradeWaitData();
     },
     success: function(data){
       setScoreGradeData(inputData, data.step);
@@ -154,6 +171,7 @@ var input_gsat_social   = document.getElementById('input-gsat-social');
 var input_gsat_nature   = document.getElementById('input-gsat-nature');
 var input_gsat_engLis   = document.getElementById('input-gsat-english-listen');
 
+updateGsatTotalScore();
 input_gsat_chinese.onchange = function(){ queryScoreGrade(); };
 input_gsat_english.onchange = function(){ queryScoreGrade(); };
 input_gsat_math.onchange = function(){ queryScoreGrade(); };

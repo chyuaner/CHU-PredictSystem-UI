@@ -178,7 +178,7 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, lastCriterion
   }
   var tr = '<tr data-item-id="'+did+'" class="' + trClass + '">';
 
-  var content = '<th data-title="校系代碼">'+formatNumberLength(did, 4)+'</th>';
+  var content = '<th data-title="校系代碼">'+'<a href="'+examURL+'" target="_blank" data-tooltip aria-haspopup="true" title="按此可查看簡章頁面">'+formatNumberLength(did, 4)+'</a>'+'</th>';
   content += '<td data-title="校名"><a href="'+uurl+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至學校首頁">'+uname+'</a></td>';
   content += '<td data-title="科系名稱"><a href="'+durl+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至科系首頁">'+dname+'</a></td>';
   if(salaryUrl === null) {
@@ -187,24 +187,25 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, lastCriterion
   else {
     content += '<td data-title="畢業生平均薪資"><a href="'+salaryUrl+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至104升學就業地圖">'+salary+'</a></td>';
   }
-  content += '<td data-title="去年錄取最低標準">'+lastCriterion+'&nbsp;</td>';
 
-  var rateOfThisYear_tooltip, rateOfThisYear_info_icon;
+  var rateOfThisYear_tooltip, rateOfThisYear_info_icon, rateOfThisYear_change_class;
   if(change !== '') {
-    rateOfThisYear_tooltip = '改變部分:<br>'+change +'<br><br>按此可查看簡章頁面';
-    rateOfThisYear_info_icon = '<i class="fi-info"></i>';
+    rateOfThisYear_tooltip = ' data-tooltip aria-haspopup="true" title="改變部分:<br>'+change +'"';
+    // rateOfThisYear_info_icon = '<i class="fi-info"></i>';
+    rateOfThisYear_change_class = ' change';
   }
   else {
-    rateOfThisYear_tooltip = '按此可查看簡章頁面';
-    rateOfThisYear_info_icon = '';
+    rateOfThisYear_tooltip = '';
+    // rateOfThisYear_info_icon = '';
+    rateOfThisYear_change_class = '';
   }
-  content += '<td data-title="今年篩選倍率"><a href="'+examURL+'" target="_blank"><span data-tooltip aria-haspopup="true" title="'+rateOfThisYear_tooltip+'">'+rateOfThisYear+rateOfThisYear_info_icon+'</span></a></td>';
+  content += '<td data-title="今年篩選倍率" class="'+rateOfThisYear_change_class+'"><span'+rateOfThisYear_tooltip+'>'+rateOfThisYear+'</span></td>';
 
   if(riskIndex == true) {
-    content += '<td data-title="危險指數" class="warning">'+'高'+'</td>';
+    content += '<td data-title="去年錄取最低標準" class="warning">'+'<span data-tooltip aria-haspopup="true" title="換算去年加權分數<br>低於去年最低錄取分數">'+lastCriterion+'</span>'+'&nbsp;</td>';
   }
   else {
-    content += '<td data-title="危險指數">'+'低'+'</td>';
+    content += '<td data-title="去年錄取最低標準">'+lastCriterion+'&nbsp;</td>';
   }
 
   table_result_body.append(tr+content+'</tr>');

@@ -1,3 +1,7 @@
+/* 套用Google的黑體 */
+@import url(//fonts.googleapis.com/earlyaccess/cwtexhei.css);
+body, h1, h2, h3 { font-family: 'cwTeXHei', serif;  }
+
 #too-old-ie {
   display: none;
   @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {

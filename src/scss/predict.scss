@@ -279,17 +279,18 @@ header {
     h2 {
       float: left;
       margin-right: 2em;
+      margin-top: 0.5em;
     }
     ul li {
       list-style: none;
       display: inline;
       label {
         display: inline;
-        margin-right: 2em;
+        margin-right: 1.8em;
       }
     }
     label {
-      font-size: 1.0em;
+      font-size: 1.2em;
     }
     ul li input[type="checkbox"]+span::before {
       font-size: 1.5em;
@@ -447,7 +448,11 @@ header {
     td.warning {
       color: red;
     }
-    tfoot tr td{
+    tfoot tr td {
+      text-align: center;
+    }
+    td.big-row {
+      padding-left: 0em;
       text-align: center;
     }
 

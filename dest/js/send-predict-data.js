@@ -218,7 +218,7 @@ function cleanData() {
   var table_result_body = table_result.find("tbody");
 
   table_result_body.empty();
-  table_result_body.append('<tr><td colspan="6">沒有符合您的校系，請修改條件後再次分析。</td></tr>');
+  table_result_body.append('<tr><td class="big-row" colspan="˙">沒有符合您的校系，請修改條件後再次分析。</td></tr>');
 }
 
 function errorData() {

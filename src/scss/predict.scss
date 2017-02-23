@@ -386,17 +386,40 @@ header {
       text-decoration: underline;
     }
 
-    h3 {
-      margin-top: 1.5em;
+    h2, h3 {
+      margin-top: 1em;
+    }
+
+    @keyframes chu-welfare-ani {
+        0%   {color: rgba(0, 0, 0, 0); left:100px;}
+        25%   {color: rgba(0, 0, 0, 0); left:100px;}
+        100% {color: orange; left:0px;}
+    }
+    #chu-welfare {
+      color: orange;
+      font-weight: bold;
+      position: relative;
+      animation-name: chu-welfare-ani;
+      animation-duration: 3s;
+    }
+    #chu-welfare.hidden{
+      display: none;
     }
 
     @media #{$medium-up} {
-      h2 {
+      h2, h3 {
         float: left;
-        margin-top: 1em;
+      }
+      a.research-methods-link, #chu-welfare {
+        float: left;
+        margin-top: 2.1em;
+        margin-bottom: 0;
+      }
+      #chu-welfare {
+        margin-top: 2.5em;
+        margin-left: 1em;
       }
       a.research-methods-link {
-        float: left;
         font-size: 1.3rem;
         margin-top: 2.1em;
       }
@@ -492,7 +515,8 @@ header {
     /* 螢幕較小的版型 */
     @media #{$small-only} {
       table { border: 0; }
-      table, thead, tbody, th, td, tr { display: block; };
+      table, thead, tbody, th, td, tr { display: block; }
+      tfoot { display: inherit; }
       thead tr {
         position: absolute;
         top: -9999px;

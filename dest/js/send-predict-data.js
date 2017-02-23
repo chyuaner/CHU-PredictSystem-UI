@@ -361,6 +361,7 @@ function queryResult() {
         success: function(data){
           // 隱藏處理中畫面
           div_loading.classList.add('hidden');
+          updateChuWelfare();
           setData(inputData, data.result, data.resultCHU);
           $('input[type=submit]').prop( "disabled", false );
           querying = false;

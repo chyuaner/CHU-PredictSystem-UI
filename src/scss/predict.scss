@@ -577,8 +577,40 @@ header {
 }
 
 @media print {
-  header, #header, #result-area h2+a {
+  header, #result-area h2+a {
     display: none;
+  }
+
+  #header {
+    padding-top: 0;
+
+    #input-area {
+      border-bottom: 2px black solid;
+
+      #input-expect-salary-area {
+        p {display: none;}
+        * { margin-bottom: 0;}
+      }
+      #input-ast-score ul li, #input-gsat-score ul li {
+        display: inline-block;
+        label {
+          width: 3em;
+        }
+      }
+      #input-gsat-score ul {
+        margin-top: -2em;
+        li:last-child label {
+          position: relative;
+          top: 2em;
+        }
+      }
+      .more-button {
+        display: none;
+      }
+      #input-department-group-choose-area, #input-state-group-choose-area, #input-action-area {
+        display: none;
+      }
+    }
   }
   table, footer {
     a[href]:after {

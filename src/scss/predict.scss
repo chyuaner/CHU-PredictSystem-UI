@@ -54,6 +54,15 @@ header {
       position: relative;
       top: 0.1em;
     }
+    p {
+      @media #{$medium-up} {
+        display: inline;
+      }
+      small {
+        color: white;
+      }
+    }
+
     /* @include grid-column(6); */
     /* float: left; */
   }

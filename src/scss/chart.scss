@@ -227,3 +227,26 @@ header {
     }
   }
 }
+
+
+@media print {
+  header, #header, #result-area h2+a {
+    display: none;
+  }
+  footer {
+    a[href]:after {
+      content: none !important;
+    }
+  }
+
+  #container #result-area .chart-content.hidden {
+      position: inherit;
+      height: inherit;
+      visibility: inherit;
+      opacity: inherit;
+  }
+
+  .chart-content:nth-child(2n):not(:last-child) {
+    page-break-after: always;
+  }
+}

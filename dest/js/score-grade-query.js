@@ -104,8 +104,7 @@ function cleanScoreGradeData() {
 
 }
 
-function updateGsatTotalScore() {
-  var gsat_total  = document.getElementById('gsat-total');
+function getGsatTotalScore() {
   var input_gsat_chinese  = document.getElementById('input-gsat-chinese');
   var input_gsat_english  = document.getElementById('input-gsat-english');
   var input_gsat_math     = document.getElementById('input-gsat-math');
@@ -123,14 +122,29 @@ function updateGsatTotalScore() {
   if(input_gsat_nature.value == "") { var gsat_nature = parseInt(0); }
   else { var gsat_nature = parseInt(input_gsat_nature.value); }
 
-  var totalScore = gsat_chinese + gsat_english + gsat_math + gsat_social + gsat_nature;
-
+  var totalScore;
   if(gsat_chinese>max_input_score ||
      gsat_english>max_input_score ||
      gsat_math>max_input_score ||
      gsat_social>max_input_score ||
      gsat_nature>max_input_score
    ) {
+    totalScore = null;
+  }
+  else {
+    totalScore = gsat_chinese + gsat_english + gsat_math + gsat_social + gsat_nature;
+  }
+
+
+  return totalScore;
+}
+
+
+function updateGsatTotalScore() {
+  var gsat_total  = document.getElementById('gsat-total');
+
+  var totalScore = getGsatTotalScore();
+  if(totalScore == null) {
     gsat_total.innerHTML = "??";
   }
   else {

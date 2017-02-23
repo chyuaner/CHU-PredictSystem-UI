@@ -140,7 +140,7 @@ function getData() {
   return data;
 }
 
-function setData(inputData, resultData) {
+function setData(inputData, resultData, resultCHUData) {
 
   // 網頁介面對應
   var table_result = $("#table-result-suggest-school-departments");
@@ -153,7 +153,6 @@ function setData(inputData, resultData) {
   // 有沒有資料
   if(resultData.length > 0) {
     table_result_body.empty();
-    table_chu_result_body.empty();
     for(var i=0; i<resultData.length; i++) {
       // did, uname, uurl, dname, durl, salary, salaryUrl, lastCriterion, rateOfThisYear, change, examURL, riskIndex
       addData(resultData[i].did, resultData[i].uname, resultData[i].uurl,
@@ -161,18 +160,25 @@ function setData(inputData, resultData) {
               resultData[i].lastCriterion, resultData[i].rateOfThisYear, resultData[i].change,
               resultData[i].examURL, resultData[i].riskIndex);
 
-      // 若是中華大學
-      if(resultData[i].uname == "中華大學") {
-        addChuData(resultData[i].did, resultData[i].uname, resultData[i].uurl,
-                resultData[i].dname, resultData[i].durl, resultData[i].salary, resultData[i].salaryUrl,
-                resultData[i].lastCriterion, resultData[i].rateOfThisYear, resultData[i].change,
-                resultData[i].examURL, resultData[i].riskIndex);
-      }
     }
   }
   else {
     table_result_body.empty();
     table_result_body.append('<tr><td colspan="7">沒有符合您的校系，請修改條件後再次分析。</td></tr>');
+  }
+
+  if(resultCHUData.length > 0) {
+    table_chu_result_body.empty();
+    for(var i=0; i<resultCHUData.length; i++) {
+      addChuData(resultCHUData[i].did, resultCHUData[i].uname, resultCHUData[i].uurl,
+              resultCHUData[i].dname, resultCHUData[i].durl, resultCHUData[i].salary, resultCHUData[i].salaryUrl,
+              resultCHUData[i].lastCriterion, resultCHUData[i].rateOfThisYear, resultCHUData[i].change,
+              resultCHUData[i].examURL, resultCHUData[i].riskIndex);
+    }
+  }
+  else {
+    table_chu_result_body.empty();
+    table_chu_result_body.append('<tr><td colspan="7">沒有符合您的校系。</td></tr>');
   }
 }
 
@@ -355,7 +361,7 @@ function queryResult() {
         success: function(data){
           // 隱藏處理中畫面
           div_loading.classList.add('hidden');
-          setData(inputData, data.result);
+          setData(inputData, data.result, data.resultCHU);
           $('input[type=submit]').prop( "disabled", false );
           querying = false;
         },

@@ -622,14 +622,14 @@ header {
       #input-ast-score ul li, #input-gsat-score ul li {
         display: inline-block;
         label {
-          width: 3em;
+          width: 6em;
         }
       }
       #input-gsat-score ul {
-        margin-top: -1em;
+        margin-top: -0.5em;
         li:last-child label {
           position: relative;
-          top: 2em;
+          top: 0.5em;
         }
       }
       .more-button {

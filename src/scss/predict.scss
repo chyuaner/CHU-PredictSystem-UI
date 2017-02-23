@@ -603,3 +603,20 @@ header {
     }
   }
 }
+
+@media print {
+  header, #header, #result-area h2+a {
+    display: none;
+  }
+  table, footer {
+    a[href]:after {
+      content: none !important;
+    }
+  }
+  table {
+    table-layout: auto;
+  }
+  div.floatThead-floatContainer {
+    display: none;
+  }
+}

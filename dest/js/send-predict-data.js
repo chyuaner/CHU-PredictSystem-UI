@@ -356,6 +356,7 @@ function queryResult() {
           // 顯示處理中畫面
           div_loading.classList.remove('hidden');
           $('input[type=submit]').prop( "disabled", true );
+          $('input[type=submit]').val('落點分析中...');
           querying = true;
         },
         success: function(data){
@@ -364,6 +365,7 @@ function queryResult() {
           updateChuWelfare();
           setData(inputData, data.result, data.resultCHU);
           $('input[type=submit]').prop( "disabled", false );
+          $('input[type=submit]').val('開始分析');
           querying = false;
         },
         error: function(data){
@@ -372,6 +374,7 @@ function queryResult() {
           errorData();
           errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
           $('input[type=submit]').prop( "disabled", false );
+          $('input[type=submit]').val('開始分析');
           querying = false;
         }
       });

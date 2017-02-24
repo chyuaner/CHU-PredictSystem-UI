@@ -166,7 +166,8 @@ function updateChuWelfare() {
 
   var totalScore = getGsatTotalScore();
 
-  var chu_welfare_p  = document.getElementById('chu-welfare').getElementsByTagName('a')[0];;
+  var chu_welfare_p  = document.getElementById('chu-welfare');
+  var chu_welfare_a  = document.getElementById('chu-welfare').getElementsByTagName('a')[0];
 
   var show_string;
   chu_welfare_p.classList.add('hidden');
@@ -184,7 +185,7 @@ function updateChuWelfare() {
     else { show_string = chu_welfare_data["other"]; }
 
     chu_welfare_p.classList.remove('hidden');
-    chu_welfare_p.innerHTML = show_string;
+    chu_welfare_a.innerHTML = show_string;
   }
 }
 

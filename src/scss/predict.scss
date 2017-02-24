@@ -405,16 +405,22 @@ header {
       position: relative;
       animation-name: chu-welfare-ani;
       animation-duration: 3s;
-    }
-    #chu-welfare a:hover {
-      text-decoration: underline;
-    }
-    #chu-welfare.hidden{
-      display: none;
+      &:hover {
+        color: #ff9e14;
+        text-decoration: underline;
+      }
+      &.hidden {
+        display: none;
+      }
     }
     #chu-welfare-salary a {
       font-size: 1.2rem;
       color: #D88511;
+
+      &:hover {
+        color: #ff9e14;
+        text-decoration: underline;
+      }
     }
 
     @media #{$medium-up} {
@@ -585,13 +591,16 @@ header {
     padding-bottom: 3rem;
     transition: all 0.5s linear;
     background: white;
+    z-index: 10;
+    height: 100%;
+
+    &.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
 
     img { width: 5rem; height: 5rem; }
     p { margin-top: 1em; font-size: 2rem; }
-  }
-  #loading-area.hidden {
-    opacity: 0;
-    visibility: hidden;
   }
 
   footer {

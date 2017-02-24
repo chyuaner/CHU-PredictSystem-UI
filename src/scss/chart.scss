@@ -9,6 +9,9 @@ header {
 
 #header {
   padding-top: 8rem;
+  @media #{$small-only} {
+    padding-top: 0;
+  }
   background: $mainColor;
   overflow: hidden;
   box-shadow: 0 0.2rem 2rem gray;

@@ -9,6 +9,9 @@ header {
 #header {
 
   padding-top: 8rem;
+  @media #{$small-only} {
+    padding-top: 0;
+  }
   background: #69968f;
   overflow: hidden;
   box-shadow: 0 0.2rem 2rem gray;
@@ -394,32 +397,49 @@ header {
     @keyframes chu-welfare-ani {
         0%   {color: rgba(0, 0, 0, 0); left:100px;}
         25%   {color: rgba(0, 0, 0, 0); left:100px;}
-        100% {color: orange; left:0px;}
+        100% {color: #D88511; left:0px;}
     }
-    #chu-welfare {
-      color: orange;
+    #chu-welfare a {
+      color: #D88511;
       font-weight: bold;
       position: relative;
       animation-name: chu-welfare-ani;
       animation-duration: 3s;
     }
+    #chu-welfare a:hover {
+      text-decoration: underline;
+    }
     #chu-welfare.hidden{
       display: none;
+    }
+    #chu-welfare-salary a {
+      font-size: 1.2rem;
+      color: #D88511;
     }
 
     @media #{$medium-up} {
       h2, h3 {
         float: left;
       }
-      a.research-methods-link, #chu-welfare {
+      a.research-methods-link {
         float: left;
         margin-top: 2.1em;
+      }
+      a.research-methods-link, #chu-welfare {
         margin-bottom: 0;
       }
+      #chu-welfare+p {
+        margin-top: 1em;
+      }
+
       #chu-welfare {
         margin-top: 2.5em;
-        margin-left: 1em;
+        a {
+
+          margin-left: 1em;
+        }
       }
+
       a.research-methods-link {
         font-size: 1.3rem;
         margin-top: 2.1em;

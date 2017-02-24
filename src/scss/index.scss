@@ -7,6 +7,10 @@ header {
 
 #container {
   padding-top: 6rem;
+  @media #{$small-only} {
+    padding-top: 0;
+    height: auto;
+  }
   padding-bottom: 2rem;
   height: 100%;
   width: 100%;

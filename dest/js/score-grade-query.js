@@ -159,7 +159,7 @@ var chu_welfare_data = {
   "61-63": "您在61至63級分，第一志願就讀可領獎學金最高新臺幣24萬元！",
   "58-60": "您在58至60級分，第一志願就讀可領獎學金最高新臺幣16萬元！",
   "55-57": "您在55至57級分，第一志願就讀可領獎學金最高新臺幣12萬元！",
-  "55-57": "您在50至54級分，第一志願就讀可領獎學金最高新臺幣10萬元！",
+  "50-54": "您在50至54級分，第一志願就讀可領獎學金最高新臺幣10萬元！",
   "other": "以第一志願就讀可領獎學金最高新臺幣8萬8千元！"
 };
 function updateChuWelfare() {
@@ -182,6 +182,7 @@ function updateChuWelfare() {
     else if ( totalScore>=61 && totalScore <=63 ) { show_string = chu_welfare_data["61-63"]; }
     else if ( totalScore>=58 && totalScore <=60 ) { show_string = chu_welfare_data["58-60"]; }
     else if ( totalScore>=55 && totalScore <=57 ) { show_string = chu_welfare_data["55-57"]; }
+    else if ( totalScore>=50 && totalScore <=54 ) { show_string = chu_welfare_data["50-54"]; }
     else { show_string = chu_welfare_data["other"]; }
 
     chu_welfare_p.classList.remove('hidden');

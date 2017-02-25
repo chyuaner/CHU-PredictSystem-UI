@@ -197,19 +197,19 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, lastCriterion
   }
   var tr = '<tr data-item-id="'+did+'" class="' + trClass + '">';
 
-  var content = '<th data-title="校系代碼">'+'<a href="'+examURL+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至簡章頁面">'+formatNumberLength(did, 4)+'</a>'+'</th>';
-  content += '<td data-title="校名"><a href="'+uurl+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至學校首頁">'+uname+'</a></td>';
-  content += '<td data-title="科系名稱"><a href="'+durl+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至科系首頁">'+dname+'</a></td>';
+  var content = '<th data-title="校系代碼">'+'<a href="'+examURL+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至簡章頁面">'+formatNumberLength(did, 4)+'</a>'+'</th>';
+  content += '<td data-title="校名"><a href="'+uurl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至學校首頁">'+uname+'</a></td>';
+  content += '<td data-title="科系名稱"><a href="'+durl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至科系首頁">'+dname+'</a></td>';
   if(salaryUrl === null) {
     content += '<td data-title="畢業校友平均薪資">'+salary+'</td>';
   }
   else {
-    content += '<td data-title="畢業校友平均薪資"><a href="'+salaryUrl+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至104升學就業地圖">'+salary+'</a></td>';
+    content += '<td data-title="畢業校友平均薪資"><a href="'+salaryUrl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至104升學就業地圖">'+salary+'</a></td>';
   }
 
   var rateOfThisYear_tooltip, rateOfThisYear_info_icon, rateOfThisYear_change_class;
   if(change !== '') {
-    rateOfThisYear_tooltip = ' data-tooltip aria-haspopup="true" title="'+change +'"';
+    rateOfThisYear_tooltip = ' data-tooltip aria-haspopup="true" data-tooltip-title="'+change +'"';
     // rateOfThisYear_info_icon = '<i class="fi-info"></i>';
     rateOfThisYear_change_class = ' change';
   }
@@ -221,7 +221,7 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, lastCriterion
   content += '<td data-title="今年篩選倍率" class="'+rateOfThisYear_change_class+'"><span'+rateOfThisYear_tooltip+'>'+rateOfThisYear+'</span></td>';
 
   if(riskIndex == true) {
-    content += '<td data-title="去年通過倍率篩選最低級分" class="warning">'+'<span data-tooltip aria-haspopup="true" title="換算去年級分低於<br>去年通過倍率篩選最低級分">'+lastCriterion+'</span>'+'&nbsp;</td>';
+    content += '<td data-title="去年通過倍率篩選最低級分" class="warning">'+'<span data-tooltip aria-haspopup="true" data-tooltip-title="換算去年級分低於\n去年通過倍率篩選最低級分">'+lastCriterion+'</span>'+'&nbsp;</td>';
   }
   else {
     content += '<td data-title="去年通過倍率篩選最低級分">'+lastCriterion+'&nbsp;</td>';
@@ -229,7 +229,7 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, lastCriterion
 
   table_result_body.append(tr+content+'</tr>');
 
-  $('#table-result-suggest-school-departments tr[data-item-id="'+did+'"]').foundation('tooltip', 'reflow');
+  // $('#table-result-suggest-school-departments tr[data-item-id="'+did+'"]').foundation('tooltip', 'reflow');
 }
 
 function addChuData(did, uname, uurl, dname, durl, salary, salaryUrl, lastCriterion, rateOfThisYear, change, examURL, riskIndex) {
@@ -242,19 +242,19 @@ function addChuData(did, uname, uurl, dname, durl, salary, salaryUrl, lastCriter
   var trClass = '';
   var tr = '<tr data-item-id="'+did+'" class="' + trClass + '">';
 
-  var content = '<th data-title="校系代碼">'+'<a href="'+examURL+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至簡章頁面">'+formatNumberLength(did, 4)+'</a>'+'</th>';
-  content += '<td data-title="校名"><a href="'+uurl+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至學校首頁">'+uname+'</a></td>';
-  content += '<td data-title="科系名稱"><a href="'+durl+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至科系首頁">'+dname+'</a></td>';
+  var content = '<th data-title="校系代碼">'+'<a href="'+examURL+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至簡章頁面">'+formatNumberLength(did, 4)+'</a>'+'</th>';
+  content += '<td data-title="校名"><a href="'+uurl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至學校首頁">'+uname+'</a></td>';
+  content += '<td data-title="科系名稱"><a href="'+durl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至科系首頁">'+dname+'</a></td>';
   if(salaryUrl === null) {
     content += '<td data-title="畢業校友平均薪資">'+salary+'</td>';
   }
   else {
-    content += '<td data-title="畢業校友平均薪資"><a href="'+salaryUrl+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至104升學就業地圖">'+salary+'</a></td>';
+    content += '<td data-title="畢業校友平均薪資"><a href="'+salaryUrl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至104升學就業地圖">'+salary+'</a></td>';
   }
 
   var rateOfThisYear_tooltip, rateOfThisYear_info_icon, rateOfThisYear_change_class;
   if(change !== '') {
-    rateOfThisYear_tooltip = ' data-tooltip aria-haspopup="true" title="'+change +'"';
+    rateOfThisYear_tooltip = ' data-tooltip aria-haspopup="true" data-tooltip-title="'+change +'"';
     // rateOfThisYear_info_icon = '<i class="fi-info"></i>';
     rateOfThisYear_change_class = ' change';
   }
@@ -266,7 +266,7 @@ function addChuData(did, uname, uurl, dname, durl, salary, salaryUrl, lastCriter
   content += '<td data-title="今年篩選倍率" class="'+rateOfThisYear_change_class+'"><span'+rateOfThisYear_tooltip+'>'+rateOfThisYear+'</span></td>';
 
   if(riskIndex == true) {
-    content += '<td data-title="去年通過倍率篩選最低級分" class="warning">'+'<span data-tooltip aria-haspopup="true" title="換算去年級分低於<br>去年通過倍率篩選最低級分">'+lastCriterion+'</span>'+'&nbsp;</td>';
+    content += '<td data-title="去年通過倍率篩選最低級分" class="warning">'+'<span data-tooltip aria-haspopup="true" data-tooltip-title="換算去年級分低於\n去年通過倍率篩選最低級分">'+lastCriterion+'</span>'+'&nbsp;</td>';
   }
   else {
     content += '<td data-title="去年通過倍率篩選最低級分">'+lastCriterion+'&nbsp;</td>';
@@ -274,7 +274,7 @@ function addChuData(did, uname, uurl, dname, durl, salary, salaryUrl, lastCriter
 
   table_result_body.append(tr+content+'</tr>');
 
-  $('#table-chu-result-suggest-school-departments tr[data-item-id="'+did+'"]').foundation('tooltip', 'reflow');
+  // $('#table-chu-result-suggest-school-departments tr[data-item-id="'+did+'"]').foundation('tooltip', 'reflow');
 }
 
 function cleanData() {

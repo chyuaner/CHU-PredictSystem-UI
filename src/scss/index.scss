@@ -83,8 +83,16 @@ header {
           padding-bottom: 2em;
         }
       }
-
+      .hot-icon {
+        position: relative;
+        top: -1em;
+        left: -1em;
+        z-index: 1;
+        margin-right: -5.5em;
+      }
       .primaryBtn {
+        margin-left: 1.2em;
+        width: 18em;
         @media #{$medium-up} {
           position: relative;
 //          text-align: right;

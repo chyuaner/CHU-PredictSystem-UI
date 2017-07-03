@@ -1,4 +1,5 @@
 var basePredictSystemUrl = "api/Prediction/analysis";
+var querying = false;
 
 // http://stackoverflow.com/questions/1127905/how-can-i-format-an-integer-to-a-specific-length-in-javascript
 function formatNumberLength(num, length) {
@@ -32,6 +33,8 @@ function getData() {
   var input_gsat_engLis   = document.getElementById('input-gsat-english-listen');
 
   var input_departmentGroup = document.getElementsByName('input-department-group');
+  var input_stateGroup = document.getElementsByName('input-state-group');
+  var input_universityGroup = document.getElementsByName('input-university-group');
 
   // 取得使用者填寫的表單資料
   if(input_salary.value == "") {
@@ -76,6 +79,32 @@ function getData() {
     }
   }
 
+  var stateGroup = [];
+  for(var i=0; i<input_stateGroup.length; i++) {
+    if(input_stateGroup[i].checked) {
+      stateGroup.push(input_stateGroup[i].value);
+    }
+  }
+  // 若沒選擇的話，就全選
+  if(stateGroup.length == 0) {
+    for(var i=0; i<input_stateGroup.length; i++) {
+      stateGroup.push(input_stateGroup[i].value);
+    }
+  }
+
+  var universityGroup = [];
+  for(var i=0; i<input_universityGroup.length; i++) {
+    if(input_universityGroup[i].checked) {
+      universityGroup.push(input_universityGroup[i].value);
+    }
+  }
+  // 若沒選擇的話，就全選
+  if(universityGroup.length == 0) {
+    for(var i=0; i<input_universityGroup.length; i++) {
+      universityGroup.push(input_universityGroup[i].value);
+    }
+  }
+
   // 製作JSON
   var data = {
 
@@ -108,11 +137,14 @@ function getData() {
   return data;
 }
 
-function setData(inputData, resultData) {
+function setData(inputData, resultData, resultCHUData) {
 
   // 網頁介面對應
   var table_result = $("#table-result-suggest-school-departments");
   var table_result_body = table_result.find("tbody");
+  // 網頁介面對應
+  var table_chu_result = $("#table-chu-result-suggest-school-departments");
+  var table_chu_result_body = table_chu_result.find("tbody");
 
   // 有沒有資料
   if(resultData.length > 0) {
@@ -126,6 +158,19 @@ function setData(inputData, resultData) {
   else {
     table_result_body.empty();
     table_result_body.append('<tr><td colspan="6">沒有符合您的校系，請修改條件後再次分析。</td></tr>');
+  }
+
+  if(resultCHUData.length > 0) {
+    table_chu_result_body.empty();
+    for(var i=0; i<resultCHUData.length; i++) {
+      addChuData(resultCHUData[i].did, resultCHUData[i].uname, resultCHUData[i].uurl,
+              resultCHUData[i].dname, resultCHUData[i].durl, resultCHUData[i].salary, resultCHUData[i].salaryUrl,
+              resultCHUData[i].minScore, resultCHUData[i].yourScore);
+    }
+  }
+  else {
+    table_chu_result_body.empty();
+    table_chu_result_body.append('<tr><td colspan="7">沒有符合您的校系。</td></tr>');
   }
 }
 
@@ -144,18 +189,18 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
   }
   var tr = '<tr data-item-id="'+did+'" class="' + trClass + '">';
 
-  var content = '<th data-title="校系代碼">'+formatNumberLength(did, 4)+'</th>';
-  content += '<td data-title="校名"><a href="'+uurl+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至學校首頁">'+uname+'</a></td>';
-  content += '<td data-title="科系名稱"><a href="'+durl+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至科系首頁">'+dname+'</a></td>';
-  if(salaryUrl == null) {
+  var content = '<th data-title="校系代碼">'+formatNumberLength(did, 5)+'</th>';
+  content += '<td data-title="校名"><a href="'+uurl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至學校首頁">'+uname+'</a></td>';
+  content += '<td data-title="科系名稱"><a href="'+durl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至科系首頁">'+dname+'</a></td>';
+  if(salaryUrl === null) {
     content += '<td data-title="畢業生平均薪資">'+salary+'</td>';
   }
   else {
-    content += '<td data-title="畢業生平均薪資"><a href="'+salaryUrl+'" target="_blank" data-tooltip aria-haspopup="true" title="連結至104升學就業地圖">'+salary+'</a></td>';
+    content += '<td data-title="畢業生平均薪資"><a href="'+salaryUrl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至104升學就業地圖">'+salary+'</a></td>';
   }
   content += '<td data-title="去年最低錄取分數">'+minScore+'</td>';
   if(yourScore < minScore) {
-    content += '<td data-title="換算去年加權分數" class="warning"><span data-tooltip aria-haspopup="true" title="換算去年加權分數<br>低於去年最低錄取分數">'+yourScore+'</span></td>';
+    content += '<td data-title="換算去年加權分數" class="warning"><span data-tooltip aria-haspopup="true" data-tooltip-title="換算去年加權分數<br>低於去年最低錄取分數">'+yourScore+'</span></td>';
   }
   else {
     content += '<td data-title="換算去年加權分數">'+yourScore+'</td>';
@@ -166,13 +211,56 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
   $('#table-result-suggest-school-departments tr[data-item-id="'+did+'"]').foundation('tooltip', 'reflow');
 }
 
+function addChuData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, yourScore) {
+  if(salary == 0) { salary = '樣本不足';}
+
+  var table_result = $("#table-chu-result-suggest-school-departments");
+  var table_result_body = table_result.find("tbody");
+
+  var trClass = '';
+  if(yourScore < minScore) {
+    trClass += ' warning';
+  }
+
+  var tr = '<tr data-item-id="'+did+'" class="' + trClass + '">';
+
+  var content = '<th data-title="校系代碼">'+formatNumberLength(did, 5)+'</th>';
+  content += '<td data-title="校名"><a href="'+uurl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至學校首頁">'+uname+'</a></td>';
+  content += '<td data-title="科系名稱"><a href="'+durl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至科系首頁">'+dname+'</a></td>';
+  if(salaryUrl === null) {
+    content += '<td data-title="畢業生平均薪資">'+salary+'</td>';
+  }
+  else {
+    content += '<td data-title="畢業生平均薪資"><a href="'+salaryUrl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至104升學就業地圖">'+salary+'</a></td>';
+  }
+  content += '<td data-title="去年最低錄取分數">'+minScore+'</td>';
+  if(yourScore < minScore) {
+    content += '<td data-title="換算去年加權分數" class="warning"><span data-tooltip aria-haspopup="true" data-tooltip-title="換算去年加權分數<br>低於去年最低錄取分數">'+yourScore+'</span></td>';
+  }
+  else {
+    content += '<td data-title="換算去年加權分數">'+yourScore+'</td>';
+  }
+
+  table_result_body.append(tr+content+'</tr>');
+
+  $('#table-chu-result-suggest-school-departments tr[data-item-id="'+did+'"]').foundation('tooltip', 'reflow');
+}
+
 function cleanData() {
   // 網頁介面對應
   var table_result = $("#table-result-suggest-school-departments");
   var table_result_body = table_result.find("tbody");
 
   table_result_body.empty();
-  table_result_body.append('<tr><td colspan="6">沒有符合您的校系，請修改條件後再次分析。</td></tr>');
+  table_result_body.append('<tr><td class="big-row" colspan="˙">沒有符合您的校系，請修改條件後再次分析。</td></tr>');
+}
+
+function cleanChuData() {
+  var table_result = $("#table-chu-result-suggest-school-departments");
+  var table_result_body = table_result.find("tbody");
+
+  table_result_body.empty();
+  table_result_body.append('<tr><td class="big-row" colspan="˙">沒有符合您的校系，請修改條件後再次分析。</td></tr>');
 }
 
 function errorData() {
@@ -184,36 +272,89 @@ function errorData() {
   table_result_body.append('<tr><td colspan="6">錯誤！沒有網路連線。</td></tr>');
 }
 
+function errorAlertMsg(text) {
+  var alertArea = $("#input-area .alerts-area");
+  alertArea.append('<div data-alert class="alert-box alert round">'+text+' <a href="#" class="close">&times;</a></div>');
+  $("#input-area .alerts-area").foundation();
+}
+
+function warningAlertMsg(text) {
+  var alertArea = $("#input-area .alerts-area");
+  alertArea.append('<div data-alert class="alert-box warning round">'+text+' <a href="#" class="close">&times;</a></div>');
+  $("#input-area .alerts-area").foundation();
+}
+
+function cleanAlert() {
+
+  var alertArea = $("#input-area .alerts-area");
+  alertArea.empty();
+}
+
 function queryResult() {
   var inputData = getData();
   var resultData = [];
 
   var div_loading = document.getElementById('loading-area');
 
-  $.ajax({
-//    type: "GET",
-    type: "POST",
-    url: basePredictSystemUrl,
-    headers: {
-      "content-type": "application/json"
-    },
-    dataType: "json",
-    data: JSON.stringify(inputData),
-    beforeSend: function() {
-      // 顯示處理中畫面
-      div_loading.classList.remove('hidden');
-    },
-    success: function(data){
-      // 隱藏處理中畫面
-      div_loading.classList.add('hidden');
-      setData(inputData, data.result);
-    },
-    error: function(data){
-      // 隱藏處理中畫面
-      div_loading.classList.add('hidden');
-      errorData();
+  var astData = inputData.grades.ast;
+
+  cleanAlert();
+
+  if(  isNaN(astData.Chinese)
+    && isNaN(astData.English)
+    && isNaN(astData.Math_A)
+    && isNaN(astData.Math_B)
+    && isNaN(astData.History)
+    && isNaN(astData.Geographic)
+    && isNaN(astData.Citizen_and_Society)
+    && isNaN(astData.Physics)
+    && isNaN(astData.Chemistry)
+    && isNaN(astData.Biology)
+    ) {
+    warningAlertMsg("你還沒填寫指考成績喔～");
+  }
+  // 沒有問題，開始向後端要資料
+  else {
+    if(!querying) {
+
+
+      $.ajax({
+    //    type: "GET",
+        type: "POST",
+        url: basePredictSystemUrl,
+        headers: {
+          "content-type": "application/json"
+        },
+        dataType: "json",
+        data: JSON.stringify(inputData),
+        beforeSend: function() {
+          // 顯示處理中畫面
+          div_loading.classList.remove('hidden');
+          $('input[type=submit]').prop( "disabled", true );
+          $('input[type=submit]').val('落點分析中...');
+          querying = true;
+        },
+        success: function(data){
+          // 隱藏處理中畫面
+          div_loading.classList.add('hidden');
+          setData(inputData, data.result, data.resultCHU);
+          $('input[type=submit]').prop( "disabled", false );
+          $('input[type=submit]').val('開始分析');
+          querying = false;
+        },
+        error: function(data){
+          // 隱藏處理中畫面
+          div_loading.classList.add('hidden');
+          errorData();
+          errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
+          $('input[type=submit]').prop( "disabled", false );
+          $('input[type=submit]').val('開始分析');
+          querying = false;
+        }
+      });
     }
-  });
+  }
+
 }
 
 //window.onload = function() {
@@ -227,4 +368,3 @@ function queryResult() {
 
 
 //}
-

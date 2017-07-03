@@ -9,6 +9,9 @@ header {
 
 #header {
   padding-top: 8rem;
+  @media #{$small-only} {
+    padding-top: 0;
+  }
   background: $mainColor;
   overflow: hidden;
   box-shadow: 0 0.2rem 2rem gray;
@@ -198,12 +201,7 @@ header {
     margin-top: 2em;
     padding-bottom: 4em;
 
-    #footer-left {
-      float: left;
-    }
-    #footer-right {
-      float: right;
-    }
+    @include footer;
   }
 }
 
@@ -226,5 +224,32 @@ header {
     section:nth-child(3) {
       clear: both;
     }
+    section:nth-child(6) {
+      margin-top: 2em;
+      text-align: right;
+    }
+  }
+}
+
+
+@media print {
+  header, #header, #result-area h2+a {
+    display: none;
+  }
+  footer {
+    a[href]:after {
+      content: none !important;
+    }
+  }
+
+  #container #result-area .chart-content.hidden {
+      position: inherit;
+      height: inherit;
+      visibility: inherit;
+      opacity: inherit;
+  }
+
+  .chart-content:nth-child(2n):not(:last-child) {
+    page-break-after: always;
   }
 }

@@ -1,5 +1,9 @@
-var basePredictSystemUrl = "api/Prediction/analysis";
+var basePredictSystemUrl = "api/AST/analysis";
 var querying = false;
+
+$(document).ready(function() {
+  alert("2017的指考落點分析預定在7/18上線，目前提供2016版供試用");
+});
 
 // http://stackoverflow.com/questions/1127905/how-can-i-format-an-integer-to-a-specific-length-in-javascript
 function formatNumberLength(num, length) {

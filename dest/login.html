@@ -51,13 +51,22 @@
 
     <section id="intro-header">
       <div class="container">
+        <!-- 通知放置處 -->
+        <div class="alerts-area">
+          <noscript>
+            <div id="no-js-error" data-alert class="alert-box alert radius">
+              <strong>本網頁必須啟用JavaScript才能正常運作喔～</strong>
+              <a href="#" class="close">&times;</a>
+            </div>
+          </noscript>
+        </div>
         <!--橫列2-->
         <div class="row">
           <div class="wrap-headline">
             <h1 class="text-center">開始你的落點分析</h1>
             <!-- <h2 class="text-center">宣傳標語</h2> -->
             <hr>
-            <ul class="list-inline list-unstyled text-center">
+            <ul id="first" class="list-inline list-unstyled text-center">
               <li>
                 <a id="sign-btn" class="btn btn-default btn-lg" href="#" role="button">登入</a>
               </li>
@@ -80,8 +89,8 @@
                     <input type="password" class="form-control" id="signin-password" placeholder="密碼">
                 </div>
               </div> -->
-              <button type="submit" class="btn btn-success">登入</button>
-              <button class="btn btn-primary"><a href="login.html">返回</a></button>
+              <button id="singbtn" type="submit" class="btn btn-success">登入</button>
+              <button id="return" class="btn btn-primary">返回</button>
             </form>
             <!--註冊表單-->
             <form id="register" class="form-horizontal text-center hidden-element" role="form">
@@ -133,8 +142,8 @@
                   </select>
                 </div>
               </div>
-              <button type="submit" class="btn btn-success">送出</button>
-              <button class="btn btn-primary"><a href="login.html">返回</a></button>
+              <button id="send-btn" type="submit" class="btn btn-success">送出</button>
+              <button id="return-btn" class="btn btn-primary">返回</button>
             </form>
           </div>
         </div>
@@ -176,7 +185,9 @@
       </div>
     </footer>
 
-    <script src="js/jquery-1.11.3.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/foundation.min.js"></script>
+    <script src="assets/js/jquery.floatThead.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/login.js"></script>
   </body>

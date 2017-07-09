@@ -19,6 +19,13 @@ nav .navbar-nav li{
   }
 }
 
+@media(max-width: 768px ){
+  a#headline {
+    padding: 15px 15px 15px 15px;
+    font-size: 36px;
+  }
+}
+
 
 section div form {
   margin: 0 auto;

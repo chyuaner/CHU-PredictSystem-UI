@@ -682,21 +682,25 @@ function addSchoolOption(value, text){
 
 //按鈕事件
 $('#sign-btn').click(function(e) {
+    e.preventDefault();
     $(e.currentTarget).closest('ul').hide();
     $('form#signin').fadeIn('fast');
 });
 
 $('#register-btn').click(function(e){
+    e.preventDefault();
     $(e.currentTarget).closest('ul').hide();
     $('form#register').fadeIn('fast');
 });
 
-$('#return').click(function(e) {
+$('#returnbtn').click(function(e){
+    e.preventDefault();
     $(e.currentTarget).closest('form').hide();
     $('ul#first').fadeIn('fast');
 });
 
 $('#return-btn').click(function(e){
+    e.preventDefault();
     $(e.currentTarget).closest('form').hide();
     $('ul#first').fadeIn('fast');
 });

@@ -674,6 +674,10 @@ function addSchoolOption(value, text){
       addSchoolOption('學力鑑定考試及格','學力鑑定考試及格');
       addSchoolOption('漏列學校或其他','漏列學校或其他');
     }
+    else {
+      $('#select-school').empty();
+      addSchoolOption('','請選擇');
+    }
 
 
 });

@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="升大學該念什麼系？畢業後薪資又有多少？職涯型指考落點分析幫考生篩選最具錢景的校系。看薪資填志願，許你一個高薪的未來！2017落點分析/落點預測最佳選擇！">
   <meta property="og:site_name" content="2017 升大學職涯型落點分析" />
-  <meta property="og:title" content="落點分析 - 105/2017 升大學職涯型指考落點分析" />
+  <meta property="og:title" content="落點分析 - 105/2017 升大學職涯型學測落點分析" />
   <meta property="og:image" content="http://predict.chu.edu.tw/2017/images/screenshot.png"/>
   <meta property="og:description" content="升大學該念什麼系？畢業後薪資又有多少？大學職涯分析服務 PK 給您看！" />
   <meta property="og:url" content="http://predict.chu.edu.tw/" />
-  <title>落點分析 - 2017 升大學職涯型指考落點分析/預測</title>
-  <link rel="stylesheet" href="css/predict.css">
-  <script src="assets/js/modernizr.js"></script>
+  <title>落點分析 - 2017 升大學職涯型學測落點分析/預測</title>
+  <link rel="stylesheet" href="../css/predict.css">
+  <script src="../assets/js/modernizr.js"></script>
 </head>
 
 <body>
@@ -31,12 +31,12 @@
 <section id="header" class="page-section">
   <header>
     <div class="inner">
-      <h1><a href="index.html" data-tooltip aria-haspopup="true" title="回首頁">2017 升大學職涯型 <strong>指考落點分析</strong></a></h1>
+      <h1><a href="../index.html" data-tooltip aria-haspopup="true" title="回首頁">2017 升大學職涯型 <strong>學測落點分析</strong></a></h1>
 
       <nav>
         <ul>
           <li><a href="#" class="active">落點分析</a></li>
-          <li><a href="chart.html">校系CP值分析</a></li>
+          <li><a href="../chart.html">校系CP值分析</a></li>
         </ul>
       </nav>
     </div>
@@ -59,7 +59,7 @@
       <div id="input-expect-salary-area">
         <label><h2>畢業後的期望薪資&nbsp;</h2>
           <input type="number" id="input-expect-salary" step="any" min="0"><span>元以上</span>
-          <p><small>（留空則會列出所有校系）</small></p>
+          <p><small>（未輸入則會列出所有校系）</small></p>
         </label>
       </div>
 
@@ -68,90 +68,33 @@
         <span id="gsat-total">0</span><span id="gsat-total-grade" class="score-grade"></span>
       </div>
 
-      <!-- 輸入指考成績 -->
-      <div id="input-ast-score">
-        <h2>輸入指考成績<small>（未考部分請留空白）</small></h2>
-        <ul>
-          <li>
-            <label><span>國文</span>
-              <input type="number" id="input-ast-chinese" class="input-score" min="0" max="100" step="0.01">
-            </label>
-          </li>
-          <li>
-            <label><span>英文</span>
-              <input type="number" id="input-ast-english" class="input-score" min="0" max="100" step="0.01">
-            </label>
-          </li>
-          <li>
-            <label><span>數學甲</span>
-              <input type="number" id="input-ast-math-a" class="input-score" min="0" max="100" step="0.01">
-            </label>
-          </li>
-          <li>
-            <label><span>數學乙</span>
-              <input type="number" id="input-ast-math-b" class="input-score" min="0" max="100" step="0.01">
-            </label>
-          </li>
-          <li>
-            <label><span>歷史</span>
-              <input type="number" id="input-ast-history" class="input-score" min="0" max="100" step="0.01">
-            </label>
-          </li>
-          <li>
-            <label><span>地理</span>
-              <input type="number" id="input-ast-geography" class="input-score" min="0" max="100" step="0.01">
-            </label>
-          </li>
-          <li>
-            <label><span>公社</span>
-              <input type="number" id="input-ast-citizen-and-social" class="input-score" min="0" max="100" step="0.01">
-            </label>
-          </li>
-          <li>
-            <label><span>物理</span>
-              <input type="number" id="input-ast-physics" class="input-score" min="0" max="100" step="0.01">
-            </label>
-          </li>
-          <li>
-            <label><span>化學</span>
-              <input type="number" id="input-ast-chemistry" class="input-score" min="0" max="100" step="0.01">
-            </label>
-          </li>
-          <li>
-            <label><span>生物</span>
-              <input type="number" id="input-ast-organism" class="input-score" min="0" max="100" step="0.01">
-            </label>
-          </li>
-        </ul>
-      </div>
-
       <!-- 輸入學測成績 -->
       <div id="input-gsat-score">
         <h2>輸入學測成績</h2>
         <ul>
           <li>
             <label><span>國文</span><span id="gsat-chinese-grade" class="score-grade"></span>
-              <input type="number" id="input-gsat-chinese" class="input-score" min="0" max="15">
+              <input type="number" id="input-gsat-chinese" class="input-score" min="0" max="15" required="true">
             </label>
           </li>
           <li>
             <label><span>英文</span><span id="gsat-english-grade" class="score-grade"></span>
-              <input type="number" id="input-gsat-english" class="input-score" min="0" max="15">
+              <input type="number" id="input-gsat-english" class="input-score" min="0" max="15" required="true">
             </label>
           </li>
           <li>
             <label><span>數學</span><span id="gsat-math-grade" class="score-grade"></span>
-              <input type="number" id="input-gsat-math" class="input-score" min="0" max="15">
+              <input type="number" id="input-gsat-math" class="input-score" min="0" max="15" required="true">
             </label>
           </li>
           <li>
             <label><span>社會</span><span id="gsat-social-grade" class="score-grade"></span>
-              <input type="number" id="input-gsat-social" class="input-score" min="0" max="15">
+              <input type="number" id="input-gsat-social" class="input-score" min="0" max="15" required="true">
             </label>
           </li>
           <li>
             <label><span>自然</span><span id="gsat-nature-grade" class="score-grade"></span>
-              <input type="number" id="input-gsat-nature" class="input-score" min="0" max="15">
+              <input type="number" id="input-gsat-nature" class="input-score" min="0" max="15" required="true">
             </label>
           </li>
           <li>
@@ -271,6 +214,7 @@
               <li><label><input type="checkbox" name="input-state-group" value="花蓮縣"><span>花蓮縣</span></label></li>
               <li><label><input type="checkbox" name="input-state-group" value="臺東縣"><span>臺東縣</span></label></li>
               <li><label><input type="checkbox" name="input-state-group" value="金門縣"><span>金門縣</span></label></li>
+              <li><label><input type="checkbox" name="input-state-group" value="連江縣"><span>連江縣</span></label></li>
             </ul>
           </div>
         </div>
@@ -281,10 +225,10 @@
         <h2>公/私立</h2>
         <ul>
           <li>
-            <label><input id="public" type="checkbox" name="input-university-group" value="公立" checked="true"><span>公立</span></label>
+            <label><input type="checkbox" name="input-university-group" value="公立" checked="true"><span>公立</span></label>
           </li>
           <li>
-            <label><input id="private" type="checkbox" name="input-university-group" value="私立" checked="true"><span>私立</span></label>
+            <label><input type="checkbox" name="input-university-group" value="私立" checked="true"><span>私立</span></label>
           </li>
         </ul>
       </div>
@@ -307,7 +251,7 @@
   <!-- 載入中區域 -->
   <div id="loading-area" class="hidden">
     <div class="inner">
-      <img src="images/loading-spokes-black.svg" alt="Loading icon" />
+      <img src="../images/loading-spokes-black.svg" alt="Loading icon" />
       <p>正在取得資料中，請稍候...</p>
     </div>
   </div>
@@ -334,15 +278,16 @@
       </div>
 
       <h3>中華大學落點排序</h3>
-  <!--<p id="chu-welfare" class=""><a href="http://saoffice.adm.chu.edu.tw/files/13-1086-46196.php" target="_blank">您在74至75級分，可領入學獎助學金最高新臺幣150萬元！</a></p>-->      <table id="table-chu-result-suggest-school-departments">
+      <p id="chu-welfare" class=""><a href="http://saoffice.adm.chu.edu.tw/files/13-1086-46196.php" target="_blank">您在74至75級分，可領入學獎助學金最高新臺幣150萬元！</a></p>
+      <table id="table-chu-result-suggest-school-departments">
         <thead>
           <tr>
             <th>校系代碼</th>
             <th>校名</th>
             <th>科系名稱</th>
-            <th>畢業生平均薪資</th>
-            <th>去年最低錄取分數</th>
-            <th>換算去年加權分數</th>
+            <th>畢業校友平均薪資</th>
+            <th>今年篩選倍率</th>
+            <th>去年通過倍率篩選最低級分</th>
           </tr>
         </thead>
         <tbody>
@@ -365,9 +310,9 @@
             <th>校系代碼</th>
             <th>校名</th>
             <th>科系名稱</th>
-            <th>畢業生平均薪資</th>
-            <th>去年最低錄取分數</th>
-            <th>換算去年加權分數</th>
+            <th>畢業校友平均薪資</th>
+            <th>今年篩選倍率</th>
+            <th>去年通過倍率篩選最低級分</th>
           </tr>
         </thead>
         <tbody>
@@ -425,7 +370,7 @@
               </li>
             </ul>
 
-            <img src="images/ex-avg-salary.jpg">
+            <img src="../images/ex-avg-salary.jpg">
           </section>
 
           <section>
@@ -512,13 +457,13 @@
 
 </section>
 
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/foundation.min.js"></script>
-<script src="assets/js/jquery.floatThead.min.js"></script>
-<script src="js/calc-rem-tools.js"></script>
-<script src="js/department-group-choose.js"></script>
-<script src="js/score-grade-query.js"></script>
-<script src="js/send-predict-data.js"></script>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/foundation.min.js"></script>
+<script src="../assets/js/jquery.floatThead.min.js"></script>
+<script src="../js/calc-rem-tools.js"></script>
+<script src="../js/department-group-choose.js"></script>
+<script src="../js/score-grade-query.js"></script>
+<script src="../js/send-gsat-predict-data.js"></script>
 <script>
 
   window.onload = function() {

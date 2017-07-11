@@ -2,16 +2,16 @@ var baseRegisterSystemSingUpUrl = "api/Account/SingUp";
 var baseRegisterSystemLoginUrl = "api/Account/Login";
 
 function getLoginData() {
-  var login_email      = document.getElementById('singin-email');
+  var login_email      = document.getElementById('signin-email').value;
   return login_email;
 }
 
 function getRegisterData() {
   //取得資料
-  var input_email      = document.getElementById('register-email');
-  var select_location  = document.getElementById('select-location');
-  var select_school    = document.getElementById('select-school');
-  var select_identity  = document.getElementById('select-identity');
+  var input_email      = document.getElementById('register-email').value;
+  var select_location  = document.getElementById('select-location').value;
+  var select_school    = document.getElementById('select-school').value;
+  var select_identity  = document.getElementById('select-identity').value;
 
   // 製作JSON
   var register_data = {
@@ -742,7 +742,7 @@ $('#sendbtn').click(function (e){
 
 });
 
-$('#singbtn').click(function(e) {
+$('#signbtn').click(function(e) {
   e.preventDefault();
   var inputLoginData = getLoginData();
 
@@ -751,7 +751,7 @@ $('#singbtn').click(function(e) {
       type: "POST",
       url:baseRegisterSystemLoginUrl,
       header: {
-        "content-type": "x-www-form-urlencoded"
+        "content-type": "application/x-www-form-urlencoded"
       },
       dataType: "text",
       data: "email="+inputLoginData,

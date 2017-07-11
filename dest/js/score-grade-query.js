@@ -150,45 +150,45 @@ function updateGsatTotalScore() {
     gsat_total.innerHTML = totalScore;
   }
 }
-var chu_welfare_data = {
-  "74-75": "您在74至75級分，第一志願就讀可領獎學金最高新臺幣150萬元！",
-  "72-73": "您在72至73級分，第一志願就讀可領獎學金最高新臺幣115萬元！",
-  "70-71": "您在70至71級分，第一志願就讀可領獎學金最高新臺幣80萬元！",
-  "67-69": "您在67至69級分，第一志願就讀可領獎學金最高新臺幣60萬元！",
-  "64-66": "您在64至66級分，第一志願就讀可領獎學金最高新臺幣32萬元！",
-  "61-63": "您在61至63級分，第一志願就讀可領獎學金最高新臺幣24萬元！",
-  "58-60": "您在58至60級分，第一志願就讀可領獎學金最高新臺幣16萬元！",
-  "55-57": "您在55至57級分，第一志願就讀可領獎學金最高新臺幣12萬元！",
-  "50-54": "您在50至54級分，第一志願就讀可領獎學金最高新臺幣10萬元！",
-  "other": "以第一志願就讀可領獎學金最高新臺幣8萬8千元！"
-};
-function updateChuWelfare() {
-
-  var totalScore = getGsatTotalScore();
-
-  var chu_welfare_p  = document.getElementById('chu-welfare');
-  var chu_welfare_a  = document.getElementById('chu-welfare').getElementsByTagName('a')[0];
-
-  var show_string;
-  chu_welfare_p.classList.add('hidden');
-  void chu_welfare_p.offsetWidth;
-
-  if( true ) {
-    if      ( totalScore>=74 && totalScore <=75 ) { show_string = chu_welfare_data["74-75"]; }
-    else if ( totalScore>=72 && totalScore <=73 ) { show_string = chu_welfare_data["72-73"]; }
-    else if ( totalScore>=70 && totalScore <=71 ) { show_string = chu_welfare_data["70-71"]; }
-    else if ( totalScore>=67 && totalScore <=69 ) { show_string = chu_welfare_data["67-69"]; }
-    else if ( totalScore>=64 && totalScore <=66 ) { show_string = chu_welfare_data["64-66"]; }
-    else if ( totalScore>=61 && totalScore <=63 ) { show_string = chu_welfare_data["61-63"]; }
-    else if ( totalScore>=58 && totalScore <=60 ) { show_string = chu_welfare_data["58-60"]; }
-    else if ( totalScore>=55 && totalScore <=57 ) { show_string = chu_welfare_data["55-57"]; }
-    else if ( totalScore>=50 && totalScore <=54 ) { show_string = chu_welfare_data["50-54"]; }
-    else { show_string = chu_welfare_data["other"]; }
-
-    chu_welfare_p.classList.remove('hidden');
-    chu_welfare_a.innerHTML = show_string;
-  }
-}
+// var chu_welfare_data = {
+//   "74-75": "您在74至75級分，第一志願就讀可領獎學金最高新臺幣150萬元！",
+//   "72-73": "您在72至73級分，第一志願就讀可領獎學金最高新臺幣115萬元！",
+//   "70-71": "您在70至71級分，第一志願就讀可領獎學金最高新臺幣80萬元！",
+//   "67-69": "您在67至69級分，第一志願就讀可領獎學金最高新臺幣60萬元！",
+//   "64-66": "您在64至66級分，第一志願就讀可領獎學金最高新臺幣32萬元！",
+//   "61-63": "您在61至63級分，第一志願就讀可領獎學金最高新臺幣24萬元！",
+//   "58-60": "您在58至60級分，第一志願就讀可領獎學金最高新臺幣16萬元！",
+//   "55-57": "您在55至57級分，第一志願就讀可領獎學金最高新臺幣12萬元！",
+//   "50-54": "您在50至54級分，第一志願就讀可領獎學金最高新臺幣10萬元！",
+//   "other": "以第一志願就讀可領獎學金最高新臺幣8萬8千元！"
+// };
+// function updateChuWelfare() {
+//
+//   var totalScore = getGsatTotalScore();
+//
+//   var chu_welfare_p  = document.getElementById('chu-welfare');
+//   var chu_welfare_a  = document.getElementById('chu-welfare').getElementsByTagName('a')[0];
+//
+//   var show_string;
+//   chu_welfare_p.classList.add('hidden');
+//   void chu_welfare_p.offsetWidth;
+//
+//   if( true ) {
+//     if      ( totalScore>=74 && totalScore <=75 ) { show_string = chu_welfare_data["74-75"]; }
+//     else if ( totalScore>=72 && totalScore <=73 ) { show_string = chu_welfare_data["72-73"]; }
+//     else if ( totalScore>=70 && totalScore <=71 ) { show_string = chu_welfare_data["70-71"]; }
+//     else if ( totalScore>=67 && totalScore <=69 ) { show_string = chu_welfare_data["67-69"]; }
+//     else if ( totalScore>=64 && totalScore <=66 ) { show_string = chu_welfare_data["64-66"]; }
+//     else if ( totalScore>=61 && totalScore <=63 ) { show_string = chu_welfare_data["61-63"]; }
+//     else if ( totalScore>=58 && totalScore <=60 ) { show_string = chu_welfare_data["58-60"]; }
+//     else if ( totalScore>=55 && totalScore <=57 ) { show_string = chu_welfare_data["55-57"]; }
+//     else if ( totalScore>=50 && totalScore <=54 ) { show_string = chu_welfare_data["50-54"]; }
+//     else { show_string = chu_welfare_data["other"]; }
+//
+//     chu_welfare_p.classList.remove('hidden');
+//     chu_welfare_a.innerHTML = show_string;
+//   }
+// }
 
 function queryScoreGrade() {
   updateGsatTotalScore();

@@ -1,4 +1,6 @@
 var basePredictSystemUrl = "api/AST/analysis";
+var basePredictHistorySystemUrl = "api/Store/History";
+
 var querying = false;
 
 $(document).ready(function() {
@@ -41,12 +43,12 @@ function getData() {
   var input_universityGroup = document.getElementsByName('input-university-group');
 
   // 取得使用者填寫的表單資料
-  if(input_salary.value == "") {
-    var salary = parseFloat(0);
-  }
-  else {
-    var salary = parseFloat(input_salary.value);
-  }
+   if(input_salary.value == "") {
+     var salary = parseFloat(0);
+   }
+   else {
+     var salary = parseFloat(input_salary.value);
+   }
   var ast_chinese = parseInt(input_ast_chinese.value);
   var ast_english = parseInt(input_ast_english.value);
   var ast_mathA = parseInt(input_ast_mathA.value)
@@ -72,16 +74,16 @@ function getData() {
 
   var departmentGroup = [];
   for(var i=0; i<input_departmentGroup.length; i++) {
-    if(input_departmentGroup[i].checked) {
-      departmentGroup.push(input_departmentGroup[i].value);
-    }
-  }
+     if(input_departmentGroup[i].checked) {
+       departmentGroup.push(input_departmentGroup[i].value);
+     }
+   }
   // 若沒選擇的話，就全選
-  if(departmentGroup.length == 0) {
-    for(var i=0; i<input_departmentGroup.length; i++) {
-      departmentGroup.push(input_departmentGroup[i].value);
-    }
-  }
+   if(departmentGroup.length == 0) {
+     for(var i=0; i<input_departmentGroup.length; i++) {
+       departmentGroup.push(input_departmentGroup[i].value);
+     }
+   }
 
   var stateGroup = [];
   for(var i=0; i<input_stateGroup.length; i++) {
@@ -132,10 +134,12 @@ function getData() {
         "Society": gsat_social,
         "Science": gsat_nature,
         "EngListeningLevel": gsat_engLis
-      }
-    },
-    "groups": departmentGroup,
-    "expect_salary": salary
+      },
+      "groups": departmentGroup,
+      "location": stateGroup,
+      "property": universityGroup,
+      "expect_salary": salary
+    }
   };
 
   return data;
@@ -296,6 +300,7 @@ function cleanAlert() {
 
 function queryResult() {
   var inputData = getData();
+  var inputHistoryData = getHistoryData();
   var resultData = [];
 
   var div_loading = document.getElementById('loading-area');
@@ -320,7 +325,6 @@ function queryResult() {
   // 沒有問題，開始向後端要資料
   else {
     if(!querying) {
-
 
       $.ajax({
     //    type: "GET",

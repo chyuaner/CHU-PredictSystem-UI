@@ -726,8 +726,11 @@ $('#sendbtn').click(function (e){
     },
     success: function(data){
       // 隱藏處理中畫面
-      $('input[type=submit]').prop( "disabled", false );
-      errorAlertMsg("<strong>登入成功！</strong>");
+      if(data.status == 200)
+      {
+        $('input[type=submit]').prop( "disabled", false );
+        errorAlertMsg("<strong>註冊成功！</strong> "+data.Message);
+      }
     },
     error: function(data){
       // 隱藏處理中畫面

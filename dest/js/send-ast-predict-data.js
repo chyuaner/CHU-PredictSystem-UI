@@ -3,9 +3,9 @@ var basePredictHistorySystemUrl = "api/Store/History";
 
 var querying = false;
 
-$(document).ready(function() {
-  alert("2017的指考落點分析預定在7/18上線，目前提供2016版供試用");
-});
+// $(document).ready(function() {
+//   alert("2017的指考落點分析預定在7/18上線，目前提供2016版供試用");
+// });
 
 // http://stackoverflow.com/questions/1127905/how-can-i-format-an-integer-to-a-specific-length-in-javascript
 function formatNumberLength(num, length) {
@@ -335,6 +335,72 @@ function queryResult() {
         },
         dataType: "json",
         data: JSON.stringify(inputData),
+        beforeSend: function() {
+          // 顯示處理中畫面
+          div_loading.classList.remove('hidden');
+          $('input[type=submit]').prop( "disabled", true );
+          $('input[type=submit]').val('落點分析中...');
+          querying = true;
+        },
+        success: function(data){
+          // 隱藏處理中畫面
+          div_loading.classList.add('hidden');
+          setData(inputData, data.result, data.resultCHU);
+          $('input[type=submit]').prop( "disabled", false );
+          $('input[type=submit]').val('開始分析');
+          querying = false;
+        },
+        error: function(data){
+          // 隱藏處理中畫面
+          div_loading.classList.add('hidden');
+          errorData();
+          errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
+          $('input[type=submit]').prop( "disabled", false );
+          $('input[type=submit]').val('開始分析');
+          querying = false;
+        }
+      });
+    }
+  }
+
+}
+
+function StoreHistory() {
+  var inputHistoryData = getData();
+  var resultData = [];
+
+  var div_loading = document.getElementById('loading-area');
+
+  var astData = inputData.grades.ast;
+
+  cleanAlert();
+
+  if(  isNaN(astData.Chinese)
+    && isNaN(astData.English)
+    && isNaN(astData.Math_A)
+    && isNaN(astData.Math_B)
+    && isNaN(astData.History)
+    && isNaN(astData.Geographic)
+    && isNaN(astData.Citizen_and_Society)
+    && isNaN(astData.Physics)
+    && isNaN(astData.Chemistry)
+    && isNaN(astData.Biology)
+    ) {
+    warningAlertMsg("你還沒填寫指考成績喔～");
+  }
+  // 沒有問題，開始向後端要資料
+  else {
+    if(!querying) {
+
+      $.ajax({
+    //    type: "GET",
+        type: "POST",
+        url: basePredictHistorySystemUrl,
+        headers: {
+          "content-type": "application/json"
+        },
+        dataType: "json",
+        data: JSON.stringify(inputHistoryData),
         beforeSend: function() {
           // 顯示處理中畫面
           div_loading.classList.remove('hidden');

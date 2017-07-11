@@ -1,5 +1,5 @@
-// var baseRegisterSystemSingUpUrl = "api/Account/SingUp";
-// var baseRegisterSystemLoginUrl = "api/Account/Login";
+var baseRegisterSystemSingUpUrl = "api/Account/SingUp";
+var baseRegisterSystemLoginUrl = "api/Account/Login";
 
 function getLoginData() {
   var login_email      = document.getElementById('singin-email');
@@ -708,61 +708,61 @@ $('#return-btn').click(function(e){
     $('ul#first').fadeIn('fast');
 });
 
-// $('#sendbtn').click(function (e){
-//   var inputRegisterData = getRegisterData();
-//
-//   $.ajax({
-//     // type: "GET",
-//     type: "POST",
-//     url:baseRegisterSystemSingUpUrl,
-//     header: {
-//       "content-type": "application/json"
-//     },
-//     dataType: "json",
-//     data: JSON.stringify(inputRegisterData),
-//     beforeSend: function() {
-//       // 顯示處理中畫面
-//       $('input[type=submit]').prop( "disabled", true );
-//     },
-//     success: function(data){
-//       // 隱藏處理中畫面
-//       $('input[type=submit]').prop( "disabled", false );
-//       errorAlertMsg("<strong>登入成功！</strong>");
-//     },
-//     error: function(data){
-//       // 隱藏處理中畫面
-//       errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
-//       $('input[type=submit]').prop( "disabled", false );
-//     }
-//   });
-//
-// });
-//
-// $('#singbtn').click(function(e) {
-//   var inputLoginData = getLoginData();
-//
-//     $.ajax({
-//       // type: "GET",
-//       type: "POST",
-//       url:baseRegisterSystemLoginUrl,
-//       header: {
-//         "content-type": "text/plain"
-//       },
-//       dataType: "text",
-//       data: "email="+inputLoginData,
-//       beforeSend: function() {
-//         // 顯示處理中畫面
-//         $('input[type=submit]').prop( "disabled", true );
-//       },
-//       success: function(data){
-//         // 隱藏處理中畫面
-//         $('input[type=submit]').prop( "disabled", false );
-//         errorAlertMsg("<strong>註冊完成！</strong> 請到註冊的Email收信");
-//       },
-//       error: function(data){
-//         // 隱藏處理中畫面
-//         errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
-//         $('input[type=submit]').prop( "disabled", false );
-//       }
-//     });
-//   });
+$('#sendbtn').click(function (e){
+  var inputRegisterData = getRegisterData();
+
+  $.ajax({
+    // type: "GET",
+    type: "POST",
+    url:baseRegisterSystemSingUpUrl,
+    header: {
+      "content-type": "application/json"
+    },
+    dataType: "json",
+    data: JSON.stringify(inputRegisterData),
+    beforeSend: function() {
+      // 顯示處理中畫面
+      $('input[type=submit]').prop( "disabled", true );
+    },
+    success: function(data){
+      // 隱藏處理中畫面
+      $('input[type=submit]').prop( "disabled", false );
+      errorAlertMsg("<strong>登入成功！</strong>");
+    },
+    error: function(data){
+      // 隱藏處理中畫面
+      errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
+      $('input[type=submit]').prop( "disabled", false );
+    }
+  });
+
+});
+
+$('#singbtn').click(function(e) {
+  var inputLoginData = getLoginData();
+
+    $.ajax({
+      // type: "GET",
+      type: "POST",
+      url:baseRegisterSystemLoginUrl,
+      header: {
+        "content-type": "x-www-form-urlencoded"
+      },
+      dataType: "text",
+      data: "email="+inputLoginData,
+      beforeSend: function() {
+        // 顯示處理中畫面
+        $('input[type=submit]').prop( "disabled", true );
+      },
+      success: function(data){
+        // 隱藏處理中畫面
+        $('input[type=submit]').prop( "disabled", false );
+        errorAlertMsg("<strong>註冊完成！</strong> 請到註冊的Email收信");
+      },
+      error: function(data){
+        // 隱藏處理中畫面
+        errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
+        $('input[type=submit]').prop( "disabled", false );
+      }
+    });
+  });

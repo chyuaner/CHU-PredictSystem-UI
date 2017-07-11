@@ -754,7 +754,7 @@ $('#signbtn').click(function(e) {
         "content-type": "application/x-www-form-urlencoded"
       },
       dataType: "text",
-      data: "email="+inputLoginData,
+      data: "="+inputLoginData,
       beforeSend: function() {
         // 顯示處理中畫面
         $('input[type=submit]').prop( "disabled", true );

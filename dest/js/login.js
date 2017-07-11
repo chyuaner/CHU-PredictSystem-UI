@@ -709,6 +709,7 @@ $('#return-btn').click(function(e){
 });
 
 $('#sendbtn').click(function (e){
+  e.preventDefault();
   var inputRegisterData = getRegisterData();
 
   $.ajax({
@@ -742,6 +743,7 @@ $('#sendbtn').click(function (e){
 });
 
 $('#singbtn').click(function(e) {
+  e.preventDefault();
   var inputLoginData = getLoginData();
 
     $.ajax({

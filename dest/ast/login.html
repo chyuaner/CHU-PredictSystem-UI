@@ -137,9 +137,9 @@
           <ul class="list-unstyled">
             <li><a href="http://www.csie.chu.edu.tw/bin/home.php" target="_blank">中華大學資訊工程系</a></li>
             <li><a href="#">資料探勘實驗室</a></li>
-            <li><a href="#">開發團隊</a></li>
+            <li><a href="#" data-toggle="model" data-target="#teamModel">開發團隊</a></li>
             <li><a href="https://docs.google.com/forms/d/1SKVGoXXb_NdidF-C3ZNaqmFbWZdS_IXcfXITOZepAUQ/viewform?c=0&w=1" target="_blank">問題/意見回報</a></li>
-            <li><a href="#">聯絡我們</a></li>
+            <li><a href="#" data-toggle="model" data-target="#contactModel">聯絡我們</a></li>
           </ul>
         </div>
         <div id="contact" class="col-sm-3">
@@ -157,6 +157,41 @@
         </div>
       </div>
     </footer>
+
+    <div class="model fade" id="teamModal" tabindex="-1" role="dialog" aria-labelledby="teamModelLabel" aria-hidden="true">
+      <div class="model-dialog">
+        <div class="model-content">
+          <h2>開發團隊</h2>
+          <div class="model-body">
+            <ul>
+              <li>指導教授：曾秋蓉</li>
+              <li>前端程式：邱迺元</li>
+              <li>後端程式：林廣學</li>
+              <li>資料收集：張修輔</li>
+              <li>資料分析：邱孅平</li>
+              <li>資料探勘：陳品甄</li>
+              <li>資料整理：溫宏洋</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 聯絡我們 Dialog -->
+    <div class="model fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModelLabel" aria-hidden="true">
+      <div class="model-dialog">
+        <div class="model-content">
+          <h2>聯絡我們</h2>
+          <div class="model-body">
+            <ul>
+              <li>聯絡人: 中華大學資訊工程系曾秋蓉教授</li>
+              <li>Email: <a href="mailto:judycrt@chu.edu.tw">judycrt@chu.edu.tw</a></li>
+              <li>TEL: <a href="tel:0989090565">0989090565</a> / <a href="tel:035186383">03-5186383</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="../assets/js/foundation.min.js"></script>
     <script src="../assets/js/jquery.floatThead.min.js"></script>

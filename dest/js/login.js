@@ -1,4 +1,4 @@
-var baseRegisterSystemSingUpUrl = "api/Account/SingUp";
+var baseRegisterSystemSingUpUrl = "api/Account/SignUp";
 var baseRegisterSystemLoginUrl = "api/Account/Login";
 
 function getLoginData() {
@@ -767,7 +767,7 @@ $('#send-btn').click(function (e){
     // type: "GET",
     type: "POST",
     url:baseRegisterSystemSingUpUrl,
-    header: {
+    headers: {
       "content-type": "application/json"
     },
     dataType: "json",
@@ -801,7 +801,7 @@ $('#signbtn').click(function(e) {
       // type: "GET",
       type: "POST",
       url:baseRegisterSystemLoginUrl,
-      header: {
+      headers: {
         "content-type": "application/x-www-form-urlencoded"
       },
       dataType: "text",

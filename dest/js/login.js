@@ -827,7 +827,8 @@ $('#signbtn').click(function(e) {
         // 隱藏處理中畫面
           $('input[type=submit]').prop( "disabled", false );
           successAlertMsg("<strong>登入成功！</strong>");
-          window.location = "http://localhost/2017/ast/predict.html"
+          window.location = "http://140.126.11.158/2017/ast/predict.html"
+          // window.location = "http://predict.chu.edu.tw/2017/ast/predict.html"
       },
       error: function(data){
         // 隱藏處理中畫面

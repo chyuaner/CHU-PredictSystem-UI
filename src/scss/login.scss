@@ -25,6 +25,10 @@ nav .navbar-nav li{
     font-size: 28px;
     color: #000000;
   }
+
+  section#intro-header hr {
+    width: 90%;
+  }
 }
 
 @media(min-width: 375px) and (max-width: 425px) {
@@ -32,6 +36,14 @@ nav .navbar-nav li{
     padding: 15px 15px 15px 15px;
     font-size: 34px;
     color: #000000;
+  }
+  section#intro-header hr {
+    width: 80%;
+  }
+}
+@media(min-width: 425px) {
+  section#intro-header hr {
+    width: 70%;
   }
 }
 
@@ -48,6 +60,15 @@ nav .navbar-nav li{
     padding: 15px 15px 15px 50px;
     font-size: 44px;
     color: #000000;
+  }
+  section#intro-header hr {
+    width: 40%;
+  }
+}
+
+@media(min-width: 1024px) {
+  section#intro-header hr {
+    width: 30%;
   }
 }
 
@@ -80,10 +101,6 @@ section#intro-header h2 {
 
 section#intro-header h2 {
   font-size: 1.5rem;
-}
-
-section#intro-header hr {
-  width: 25%;
 }
 
 section#intro-header .btn-default {

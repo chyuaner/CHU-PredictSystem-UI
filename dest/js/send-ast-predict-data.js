@@ -478,7 +478,7 @@ function StoreHistory(inputdata) {
 
   var form_input = document.getElementById('input-form');
   form_input.onsubmit = function(e) {
-    var studentGrade = inputData();
+    var studentGrade = getData();
     e.preventDefault();
     StoreHistory(studentGrade);
     queryResult(studentGrade);

@@ -16,6 +16,40 @@ function formatNumberLength(num, length) {
     return r;
 }
 
+function getGsatTotalScore() {
+  var input_gsat_chinese  = document.getElementById('input-gsat-chinese');
+  var input_gsat_english  = document.getElementById('input-gsat-english');
+  var input_gsat_math     = document.getElementById('input-gsat-math');
+  var input_gsat_social   = document.getElementById('input-gsat-social');
+  var input_gsat_nature   = document.getElementById('input-gsat-nature');
+
+  if(input_gsat_chinese.value == "") { var gsat_chinese = parseInt(0); }
+  else { var gsat_chinese = parseInt(input_gsat_chinese.value); }
+  if(input_gsat_english.value == "") { var gsat_english = parseInt(0); }
+  else { var gsat_english = parseInt(input_gsat_english.value); }
+  if(input_gsat_math.value == "") { var gsat_math = parseInt(0); }
+  else { var gsat_math = parseInt(input_gsat_math.value); }
+  if(input_gsat_social.value == "") { var gsat_social = parseInt(0); }
+  else { var gsat_social = parseInt(input_gsat_social.value); }
+  if(input_gsat_nature.value == "") { var gsat_nature = parseInt(0); }
+  else { var gsat_nature = parseInt(input_gsat_nature.value); }
+
+  var totalScore;
+  if(gsat_chinese>max_input_score ||
+     gsat_english>max_input_score ||
+     gsat_math>max_input_score ||
+     gsat_social>max_input_score ||
+     gsat_nature>max_input_score
+   ) {
+    totalScore = null;
+  }
+  else {
+    totalScore = gsat_chinese + gsat_english + gsat_math + gsat_social + gsat_nature;
+  }
+
+  return totalScore;
+}
+
 function getData() {
   // 網頁介面對應
   var input_salary        = document.getElementById('input-expect-salary');

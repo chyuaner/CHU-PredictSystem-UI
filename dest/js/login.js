@@ -28,13 +28,13 @@ function getRegisterData() {
 function successAlertMsg(text) {
   var alertArea = $(".alerts-area");
   alertArea.empty();
-  alertArea.append('<div data-alert class="alert alert-success">'+text+' <a href="#" class="close">&times;</a></div>');
+  alertArea.append('<div data-alert class="alert alert-success alert-dismissible">'+text+' <a href="#" class="close" data-dismiss="alert">&times;</a></div>');
 }
 
 function errorAlertMsg(text) {
   var alertArea = $(".alerts-area");
   alertArea.empty();
-  alertArea.append('<div data-alert class="alert alert-danger">'+text+' <a href="#" class="close">&times;</a></div>');
+  alertArea.append('<div data-alert class="alert alert-danger alert-dismissible">'+text+' <a href="#" class="close" data-dismiss="alert">&times;</a></div>');
 }
 
 //增加縣市option標籤
@@ -768,6 +768,9 @@ $('#send-btn').click(function (e){
   e.preventDefault();
   var inputRegisterData = getRegisterData();
 
+  if(isNaN(inputRegisterData.email)&& isNaN(inputRegisterData.location)&& isNaN(inputRegisterData.schoolName)&& isNaN(inputRegisterData.identity)){}
+  // 沒有問題，開始向後端要資料
+  else {
     $.ajax({
       // type: "GET",
       type: "POST",
@@ -795,12 +798,16 @@ $('#send-btn').click(function (e){
         $('input[type=submit]').prop( "disabled", false );
       }
     });
+  }
 });
 
 $('#signbtn').click(function(e) {
   e.preventDefault();
   var inputLoginData = getLoginData();
 
+  if(isNaN(inputLoginData.login_email)){}
+  // 沒有問題，開始向後端要資料
+  else {
     $.ajax({
       // type: "GET",
       type: "POST",
@@ -828,4 +835,5 @@ $('#signbtn').click(function(e) {
         $('input[type=submit]').prop( "disabled", false );
       }
     });
+  }
 });

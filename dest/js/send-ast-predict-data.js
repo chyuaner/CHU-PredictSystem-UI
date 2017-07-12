@@ -247,7 +247,7 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
   }
   var tr = '<tr data-item-id="'+did+'" class="' + trClass + '">';
 
-  var content = '<th data-title="校系代碼">'+formatNumberLength(did, 5)+'</th>';
+  var content = '<th data-title="校系代碼">'+did+'</th>';
   content += '<td data-title="校名"><a href="'+uurl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至學校首頁">'+uname+'</a></td>';
   content += '<td data-title="科系名稱"><a href="'+durl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至科系首頁">'+dname+'</a></td>';
   if(salaryUrl === null) {

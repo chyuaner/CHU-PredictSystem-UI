@@ -28,13 +28,13 @@ function getRegisterData() {
 function successAlertMsg(text) {
   var alertArea = $(".alerts-area");
   alertArea.empty();
-  alertArea.append('<div data-alert class="alert alert-success">'+text+' <a href="#" class="close">&times;</a></div>');
+  alertArea.append('<div class="alert alert-success alert-dismissible">'+text+' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
 }
 
 function errorAlertMsg(text) {
   var alertArea = $(".alerts-area");
   alertArea.empty();
-  alertArea.append('<div data-alert class="alert alert-danger">'+text+' <a href="#" class="close">&times;</a></div>');
+  alertArea.append('<div data-alert class="alert alert-danger alert-dismissible">'+text+' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
 }
 
 //增加縣市option標籤
@@ -786,7 +786,7 @@ $('#send-btn').click(function (e){
         if(data.status == 200)
         {
           $('input[type=submit]').prop( "disabled", false );
-          successAlertMsg("<strong>註冊成功！</strong> "+data.Message);
+          successAlertMsg("<strong>註冊成功！</strong> "+data.Messege);
         }
       },
       error: function(data){
@@ -819,7 +819,7 @@ $('#signbtn').click(function(e) {
         if(data.status == 200)
         {
           $('input[type=submit]').prop( "disabled", false );
-          successAlertMsg("<strong>登入成功！</strong> "+data.Message);
+          successAlertMsg("<strong>登入成功！</strong> "+data.Messege);
         }
       },
       error: function(data){

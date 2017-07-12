@@ -781,12 +781,12 @@ $('#send-btn').click(function (e){
       if(data.status == 200)
       {
         $('input[type=submit]').prop( "disabled", false );
-        errorAlertMsg("<strong>註冊成功！</strong> "+data.Message);
+        alertMsg("<strong>註冊成功！</strong> "+data.Message);
       }
     },
     error: function(data){
       // 隱藏處理中畫面
-      errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
+      alertMsg("<strong>錯誤！</strong> 沒有網路連線");
       $('input[type=submit]').prop( "disabled", false );
     }
   });
@@ -815,12 +815,12 @@ $('#signbtn').click(function(e) {
         if(data.status == 200)
         {
           $('input[type=submit]').prop( "disabled", false );
-          errorAlertMsg("<strong>註冊完成！</strong> 請到註冊的Email收信 "+data.Message);
+          alertMsg("<strong>登入成功！</strong> "+data.Message);
         }
       },
       error: function(data){
         // 隱藏處理中畫面
-        errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
+        alertMsg("<strong>錯誤！</strong> 沒有網路連線");
         $('input[type=submit]').prop( "disabled", false );
       }
     });

@@ -1,6 +1,6 @@
 var basePredictSystemUrl = "api/Ast/analysis";
 var basePredictHistorySystemUrl = "api/Store/History";
-
+var max_input_score = 15;
 var querying = false;
 
 // $(document).ready(function() {
@@ -48,6 +48,18 @@ function getGsatTotalScore() {
   }
 
   return totalScore;
+}
+
+function updateGsatTotalScore() {
+  var gsat_total  = document.getElementById('gsat-total');
+
+  var totalScore = getGsatTotalScore();
+  if(totalScore == null) {
+    gsat_total.innerHTML = "??";
+  }
+  else {
+    gsat_total.innerHTML = totalScore;
+  }
 }
 
 function getData() {

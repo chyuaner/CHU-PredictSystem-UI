@@ -301,7 +301,7 @@ function addChuData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, 
 
   table_result_body.append(tr+content+'</tr>');
 
-  $('#table-chu-result-suggest-school-departments tr[data-item-id="'+did+'"]').foundation('tooltip', 'reflow');
+  // $('#table-chu-result-suggest-school-departments tr[data-item-id="'+did+'"]').foundation('tooltip', 'reflow');
 }
 
 function cleanData() {

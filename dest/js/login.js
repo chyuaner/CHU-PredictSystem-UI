@@ -16,7 +16,7 @@ function getRegisterData() {
   // 製作JSON
   var register_data = {
 
-      "email": login_email,
+      "email": input_email,
       "location": select_location,
       "schoolName": select_school,
       "identity": select_identity

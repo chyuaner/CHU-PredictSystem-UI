@@ -302,14 +302,12 @@ function cleanAlert() {
   alertArea.empty();
 }
 
-function queryResult() {
-  var inputData = getData();
-  var inputHistoryData = getHistoryData();
+function queryResult(data) {
   var resultData = [];
 
   var div_loading = document.getElementById('loading-area');
 
-  var astData = inputData.grades.ast;
+  var astData = data.grades.ast;
 
   cleanAlert();
 
@@ -338,7 +336,7 @@ function queryResult() {
           "content-type": "application/json"
         },
         dataType: "json",
-        data: JSON.stringify(inputData),
+        data: JSON.stringify(data),
         beforeSend: function() {
           // 顯示處理中畫面
           div_loading.classList.remove('hidden');
@@ -349,7 +347,7 @@ function queryResult() {
         success: function(data){
           // 隱藏處理中畫面
           div_loading.classList.add('hidden');
-          setData(inputData, data.result, data.resultCHU);
+          setData(data, data.result, data.resultCHU);
           $('input[type=submit]').prop( "disabled", false );
           $('input[type=submit]').val('開始分析');
           querying = false;
@@ -375,7 +373,7 @@ function StoreHistory() {
 
   var div_loading = document.getElementById('loading-area');
 
-  var astData = inputData.grades.ast;
+  var astData = inputHistoryData.grades.ast;
 
   cleanAlert();
 
@@ -414,10 +412,7 @@ function StoreHistory() {
         },
         success: function(data){
           // 隱藏處理中畫面
-          div_loading.classList.add('hidden');
-          setData(inputData, data.result, data.resultCHU);
-          $('input[type=submit]').prop( "disabled", false );
-          $('input[type=submit]').val('開始分析');
+          queryResult(inputHistoryData);
           querying = false;
         },
         error: function(data){
@@ -440,7 +435,7 @@ function StoreHistory() {
   var form_input = document.getElementById('input-form');
   form_input.onsubmit = function(e) {
     e.preventDefault();
-    queryResult();
+    StoreHistory();
     return 0;
   }
 

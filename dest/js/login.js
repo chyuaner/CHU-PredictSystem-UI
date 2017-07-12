@@ -28,13 +28,13 @@ function getRegisterData() {
 function successAlertMsg(text) {
   var alertArea = $(".alerts-area");
   alertArea.empty();
-  alertArea.append('<div data-alert class="alert alert-success alert-dismissible">'+text+' <a href="#" class="close" data-dismiss="alert">&times;</a></div>');
+  alertArea.append('<div class="alert alert-success alert-dismissible">'+text+' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
 }
 
 function errorAlertMsg(text) {
   var alertArea = $(".alerts-area");
   alertArea.empty();
-  alertArea.append('<div data-alert class="alert alert-danger alert-dismissible">'+text+' <a href="#" class="close" data-dismiss="alert">&times;</a></div>');
+  alertArea.append('<div data-alert class="alert alert-danger alert-dismissible">'+text+' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
 }
 
 //增加縣市option標籤
@@ -765,12 +765,13 @@ $('#return-btn').click(function(e){
 });
 
 $('#send-btn').click(function (e){
-  e.preventDefault();
   var inputRegisterData = getRegisterData();
 
-  if(isNaN(inputRegisterData.email)&& isNaN(inputRegisterData.location)&& isNaN(inputRegisterData.schoolName)&& isNaN(inputRegisterData.identity)){}
+  if((inputRegisterData.email.val() == null) || (inputRegisterData.location.val() == null) || (inputRegisterData.schoolName.val() == null) || (inputRegisterData.identity.val() == null)){}
   // 沒有問題，開始向後端要資料
   else {
+    e.preventDefault();
+
     $.ajax({
       // type: "GET",
       type: "POST",
@@ -789,7 +790,7 @@ $('#send-btn').click(function (e){
         if(data.status == 200)
         {
           $('input[type=submit]').prop( "disabled", false );
-          successAlertMsg("<strong>註冊成功！</strong> "+data.Message);
+          successAlertMsg("<strong>註冊成功！</strong> "+data.Messege);
         }
       },
       error: function(data){
@@ -802,12 +803,12 @@ $('#send-btn').click(function (e){
 });
 
 $('#signbtn').click(function(e) {
-  e.preventDefault();
   var inputLoginData = getLoginData();
 
-  if(isNaN(inputLoginData.login_email)){}
+  if(inputLoginData.login_email == null){}
   // 沒有問題，開始向後端要資料
   else {
+    e.preventDefault();
     $.ajax({
       // type: "GET",
       type: "POST",
@@ -826,7 +827,7 @@ $('#signbtn').click(function(e) {
         if(data.status == 200)
         {
           $('input[type=submit]').prop( "disabled", false );
-          successAlertMsg("<strong>登入成功！</strong> "+data.Message);
+          successAlertMsg("<strong>登入成功！</strong> "+data.Messege);
         }
       },
       error: function(data){

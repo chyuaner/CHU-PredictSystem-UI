@@ -367,13 +367,12 @@ function queryResult(data) {
 
 }
 
-function StoreHistory() {
-  var inputHistoryData = getData();
+function StoreHistory(inputdata) {
   var resultData = [];
 
   var div_loading = document.getElementById('loading-area');
 
-  var astData = inputHistoryData.grades.ast;
+  var astData = inputdata.grades.ast;
 
   cleanAlert();
 
@@ -402,7 +401,7 @@ function StoreHistory() {
           "content-type": "application/json"
         },
         dataType: "json",
-        data: JSON.stringify(inputHistoryData),
+        data: JSON.stringify(inputdata),
         beforeSend: function() {
           // 顯示處理中畫面
           div_loading.classList.remove('hidden');
@@ -412,7 +411,6 @@ function StoreHistory() {
         },
         success: function(data){
           // 隱藏處理中畫面
-          queryResult(inputHistoryData);
           querying = false;
         },
         error: function(data){
@@ -434,8 +432,10 @@ function StoreHistory() {
 
   var form_input = document.getElementById('input-form');
   form_input.onsubmit = function(e) {
+    var studentGrade = inputData();
     e.preventDefault();
-    StoreHistory();
+    StoreHistory(studentGrade);
+    queryResult(studentGrade);
     return 0;
   }
 

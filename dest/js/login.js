@@ -767,7 +767,7 @@ $('#return-btn').click(function(e){
 $('#send-btn').click(function (e){
   var inputRegisterData = getRegisterData();
 
-  if((inputRegisterData.email == null) || (inputRegisterData.location == null) || (inputRegisterData.schoolName == null) || (inputRegisterData.identity == null)){}
+  if((inputRegisterData.email === '') || (inputRegisterData.location === '') || (inputRegisterData.schoolName === '') || (inputRegisterData.identity === '')){}
   // 沒有問題，開始向後端要資料
   else {
     e.preventDefault();
@@ -805,10 +805,11 @@ $('#send-btn').click(function (e){
 $('#signbtn').click(function(e) {
   var inputLoginData = getLoginData();
 
-  if(inputLoginData.login_email == null){}
+  if(inputLoginData.login_email === ''){}
   // 沒有問題，開始向後端要資料
   else {
     e.preventDefault();
+
     $.ajax({
       // type: "GET",
       type: "POST",

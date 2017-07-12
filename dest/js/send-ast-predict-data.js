@@ -1,4 +1,4 @@
-var basePredictSystemUrl = "api/AST/analysis";
+var basePredictSystemUrl = "api/Ast/analysis";
 var basePredictHistorySystemUrl = "api/Store/History";
 
 var querying = false;
@@ -37,6 +37,7 @@ function getData() {
   var input_gsat_social   = document.getElementById('input-gsat-social');
   var input_gsat_nature   = document.getElementById('input-gsat-nature');
   var input_gsat_engLis   = document.getElementById('input-gsat-english-listen');
+  var input_gsat_socre = getGsatTotalScore();
 
   var input_departmentGroup = document.getElementsByName('input-department-group');
   var input_stateGroup = document.getElementsByName('input-state-group');
@@ -71,6 +72,8 @@ function getData() {
   if(input_gsat_nature.value == "") { var gsat_nature = parseInt(0); }
   else { var gsat_nature = parseInt(input_gsat_nature.value); }
   var gsat_engLis = input_gsat_engLis.value;
+  if(input_gsat_socre.value == "") { var gsat_score = parseInt(0); }
+  else { var gsat_score = parseInt(input_gsat_socre.value); }
 
   var departmentGroup = [];
   for(var i=0; i<input_departmentGroup.length; i++) {
@@ -133,13 +136,14 @@ function getData() {
         "Math": gsat_math,
         "Society": gsat_social,
         "Science": gsat_nature,
-        "EngListeningLevel": gsat_engLis
-      },
-      "groups": departmentGroup,
-      "location": stateGroup,
-      "property": universityGroup,
-      "expect_salary": salary
-    }
+        "EngListeningLevel": gsat_engLis,
+        "TotalScore": gsat_score
+      }
+    },
+    "groups": departmentGroup,
+    "location": stateGroup,
+    "property": universityGroup,
+    "expect_salary": salary
   };
 
   return data;

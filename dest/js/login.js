@@ -32,9 +32,25 @@ function errorAlertMsg(text) {
   $("#input-area .alerts-area").foundation();
 }
 
+//增加縣市option標籤
+function addLocationOption(value, text){
+  $('#select-location').append($('<option>', {
+    value: value,
+    text: text
+  }));
+}
+
 //增加學校option標籤
 function addSchoolOption(value, text){
   $('#select-school').append($('<option>', {
+    value: value,
+    text: text
+  }));
+}
+
+//增加身份option標籤
+function addIdentityOption(value, text){
+  $('#select-identity').append($('<option>', {
     value: value,
     text: text
   }));
@@ -682,17 +698,52 @@ function addSchoolOption(value, text){
 
 });
 
+function resetRegisterForm() {
+  $('#register-email').val('');
+  $('#select-location').empty();
+  $('#select-school').empty();
+  $('#select-identity').empty();
+  addLocationOption('','請選擇');
+  addLocationOption('基隆市','基隆市');
+  addLocationOption('臺北市','臺北市');
+  addLocationOption('新北市','新北市');
+  addLocationOption('宜蘭縣','宜蘭縣');
+  addLocationOption('桃園市','桃園市');
+  addLocationOption('新竹縣市','新竹縣市');
+  addLocationOption('苗栗縣','苗栗縣');
+  addLocationOption('臺中市','臺中市');
+  addLocationOption('南投縣','南投縣');
+  addLocationOption('彰化縣','彰化縣');
+  addLocationOption('嘉義縣市','嘉義縣市');
+  addLocationOption('雲林縣','雲林縣');
+  addLocationOption('臺南市','臺南市');
+  addLocationOption('高雄市','高雄市');
+  addLocationOption('屏東縣','屏東縣');
+  addLocationOption('花蓮縣','花蓮縣');
+  addLocationOption('臺東縣','臺東縣');
+  addLocationOption('澎湖縣','澎湖縣');
+  addLocationOption('連江縣','連江縣');
+  addLocationOption('金門縣','金門縣');
+  addLocationOption('其他','其他');
+  addSchoolOption('','請選擇');
+  addIdentityOption('','請選擇');
+  addIdentityOption('考生','考生');
+  addIdentityOption('家長','家長');
+  addIdentityOption('其他','其他');
+}
 
 //按鈕事件
 $('#sign-btn').click(function(e) {
     e.preventDefault();
     $(e.currentTarget).closest('ul').hide();
+    $('#signin-email').val('');
     $('form#signin').fadeIn('fast');
 });
 
 $('#register-btn').click(function(e){
     e.preventDefault();
     $(e.currentTarget).closest('ul').hide();
+    resetRegisterForm();
     $('form#register').fadeIn('fast');
 });
 

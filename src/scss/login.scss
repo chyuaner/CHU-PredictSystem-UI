@@ -19,7 +19,23 @@ nav .navbar-nav li{
   }
 }
 
-@media(max-width: 768px ){
+@media(max-width: 375px){
+  a#headline {
+    padding: 15px 15px 15px 15px;
+    font-size: 28px;
+    color: #000000;
+  }
+}
+
+@media(min-width: 375px) and (max-width: 425px) {
+  a#headline {
+    padding: 15px 15px 15px 15px;
+    font-size: 34px;
+    color: #000000;
+  }
+}
+
+@media(min-width: 425px) and (max-width: 768px) {
   a#headline {
     padding: 15px 15px 15px 15px;
     font-size: 36px;

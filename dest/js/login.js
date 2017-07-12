@@ -805,7 +805,7 @@ $('#send-btn').click(function (e){
 $('#signbtn').click(function(e) {
   var inputLoginData = getLoginData();
 
-  if(inputLoginData.login_email === ''){}
+  if(inputLoginData === ''){}
   // 沒有問題，開始向後端要資料
   else {
     e.preventDefault();
@@ -825,11 +825,9 @@ $('#signbtn').click(function(e) {
       },
       success: function(data){
         // 隱藏處理中畫面
-        if(data.status == 200)
-        {
           $('input[type=submit]').prop( "disabled", false );
           successAlertMsg("<strong>登入成功！</strong> "+data.Messege);
-        }
+          window.location = "http://localhost/2017/ast/predict.html"
       },
       error: function(data){
         // 隱藏處理中畫面

@@ -759,7 +759,7 @@ $('#return-btn').click(function(e){
     $('ul#first').fadeIn('fast');
 });
 
-$('#sendbtn').click(function (e){
+$('#send-btn').click(function (e){
   e.preventDefault();
   var inputRegisterData = getRegisterData();
 

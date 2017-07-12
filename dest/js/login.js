@@ -25,11 +25,16 @@ function getRegisterData() {
 
   return register_data;
 }
+function successAlertMsg(text) {
+  var alertArea = $(".alerts-area");
+  alertArea.empty();
+  alertArea.append('<div data-alert class="alert alert-success">'+text+' <a href="#" class="close">&times;</a></div>');
+}
 
 function errorAlertMsg(text) {
-  var alertArea = $("#alerts-area");
-  alertArea.append('<div data-alert class="alert-box alert round">'+text+' <a href="#" class="close">&times;</a></div>');
-  $("#input-area .alerts-area").foundation();
+  var alertArea = $(".alerts-area");
+  alertArea.empty();
+  alertArea.append('<div data-alert class="alert alert-danger">'+text+' <a href="#" class="close">&times;</a></div>');
 }
 
 //增加縣市option標籤
@@ -763,34 +768,33 @@ $('#send-btn').click(function (e){
   e.preventDefault();
   var inputRegisterData = getRegisterData();
 
-  $.ajax({
-    // type: "GET",
-    type: "POST",
-    url:baseRegisterSystemSingUpUrl,
-    headers: {
-      "content-type": "application/json"
-    },
-    dataType: "json",
-    data: JSON.stringify(inputRegisterData),
-    beforeSend: function() {
-      // 顯示處理中畫面
-      $('input[type=submit]').prop( "disabled", true );
-    },
-    success: function(data){
-      // 隱藏處理中畫面
-      if(data.status == 200)
-      {
+    $.ajax({
+      // type: "GET",
+      type: "POST",
+      url:baseRegisterSystemSingUpUrl,
+      headers: {
+        "content-type": "application/json"
+      },
+      dataType: "json",
+      data: JSON.stringify(inputRegisterData),
+      beforeSend: function() {
+        // 顯示處理中畫面
+        $('input[type=submit]').prop( "disabled", true );
+      },
+      success: function(data){
+        // 隱藏處理中畫面
+        if(data.status == 200)
+        {
+          $('input[type=submit]').prop( "disabled", false );
+          successAlertMsg("<strong>註冊成功！</strong> "+data.Message);
+        }
+      },
+      error: function(data){
+        // 隱藏處理中畫面
+        errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
         $('input[type=submit]').prop( "disabled", false );
-        alertMsg("<strong>註冊成功！</strong> "+data.Message);
       }
-    },
-    error: function(data){
-      // 隱藏處理中畫面
-      alertMsg("<strong>錯誤！</strong> 沒有網路連線");
-      $('input[type=submit]').prop( "disabled", false );
-    }
-  });
-
+    });
 });
 
 $('#signbtn').click(function(e) {
@@ -815,13 +819,13 @@ $('#signbtn').click(function(e) {
         if(data.status == 200)
         {
           $('input[type=submit]').prop( "disabled", false );
-          alertMsg("<strong>登入成功！</strong> "+data.Message);
+          successAlertMsg("<strong>登入成功！</strong> "+data.Message);
         }
       },
       error: function(data){
         // 隱藏處理中畫面
-        alertMsg("<strong>錯誤！</strong> 沒有網路連線");
+        errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
         $('input[type=submit]').prop( "disabled", false );
       }
     });
-  });
+});

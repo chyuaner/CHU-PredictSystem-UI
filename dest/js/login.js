@@ -834,8 +834,15 @@ $('#signbtn').click(function(e) {
       },
       error: function(data){
         // 隱藏處理中畫面
-        errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
-        $('input[type=submit]').prop( "disabled", false );
+        if(data.status == 404)
+        {
+          errorAlertMsg("<strong>錯誤！</strong> "+data.Messege);
+          $('input[type=submit]').prop( "disabled", false );
+        }
+        else {
+          errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
+          $('input[type=submit]').prop( "disabled", false );
+        }
       }
     });
   }

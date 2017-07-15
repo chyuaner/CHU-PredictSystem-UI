@@ -790,7 +790,7 @@ $('#send-btn').click(function (e){
         if(data.status == 200)
         {
           $('input[type=submit]').prop( "disabled", false );
-          successAlertMsg("<strong>註冊成功！</strong> "+data.Messege);
+          successAlertMsg("<strong>註冊成功！</strong> "+data.messege);
         }
       },
       error: function(data){
@@ -836,7 +836,7 @@ $('#signbtn').click(function(e) {
         // 隱藏處理中畫面
         if(data.status == 404)
         {
-          errorAlertMsg("<strong>錯誤！</strong> "+data.Messege);
+          errorAlertMsg("<strong>錯誤！</strong> "+data.messege);
           $('input[type=submit]').prop( "disabled", false );
         }
         else {

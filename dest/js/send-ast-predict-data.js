@@ -210,7 +210,7 @@ function setData(inputData, resultData, resultCHUData) {
     for(var i=0; i<resultData.length; i++) {
       addData(resultData[i].did, resultData[i].uname, resultData[i].uurl,
               resultData[i].dname, resultData[i].durl, resultData[i].salary, resultData[i].salaryUrl,
-              resultData[i].minScore, resultData[i].yourScore, resultData[i].examUrl);
+              resultData[i].minScore, resultData[i].yourScore, resultData[i].examURL);
     }
   }
   else {
@@ -223,7 +223,7 @@ function setData(inputData, resultData, resultCHUData) {
     for(var i=0; i<resultCHUData.length; i++) {
       addChuData(resultCHUData[i].did, resultCHUData[i].uname, resultCHUData[i].uurl,
               resultCHUData[i].dname, resultCHUData[i].durl, resultCHUData[i].salary, resultCHUData[i].salaryUrl,
-              resultCHUData[i].minScore, resultCHUData[i].yourScore, resultCHUData[i].examUrl);
+              resultCHUData[i].minScore, resultCHUData[i].yourScore, resultCHUData[i].examURL);
     }
   }
   else {
@@ -232,7 +232,7 @@ function setData(inputData, resultData, resultCHUData) {
   }
 }
 
-function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, yourScore, examUrl) {
+function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, yourScore, examURL) {
   if(salary == 0) { salary = '樣本不足';}
 
   var table_result = $("#table-result-suggest-school-departments");
@@ -248,11 +248,11 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
   var tr = '<tr data-item-id="'+did+'" class="' + trClass + '">';
 
   var content = '';
-  if(examUrl === null) {
+  if(examURL === null) {
     content += '<th data-title="校系代碼">'+did+'</th>';
   }
   else {
-    content += '<th data-title="校系代碼"><a href="'+examUrl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至學校首頁">'+did+'</a><</th>';
+    content += '<th data-title="校系代碼"><a href="'+examURL+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至指考校系分則網頁">'+did+'</a></th>';
   }
   content += '<td data-title="校名"><a href="'+uurl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至學校首頁">'+uname+'</a></td>';
   content += '<td data-title="科系名稱"><a href="'+durl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至科系首頁">'+dname+'</a></td>';
@@ -275,7 +275,7 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
   // $('#table-result-suggest-school-departments tr[data-item-id="'+did+'"]').foundation('tooltip', 'reflow');
 }
 
-function addChuData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, yourScore, examUrl) {
+function addChuData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, yourScore, examURL) {
   if(salary == 0) { salary = '樣本不足';}
 
   var table_result = $("#table-chu-result-suggest-school-departments");
@@ -289,11 +289,11 @@ function addChuData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, 
   var tr = '<tr data-item-id="'+did+'" class="' + trClass + '">';
 
   var content = '';
-  if(examUrl === null) {
+  if(examURL === null) {
     content += '<th data-title="校系代碼">'+did+'</th>';
   }
   else {
-    content += '<th data-title="校系代碼"><a href="'+examUrl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至學校首頁">'+did+'</a><</th>';
+    content += '<th data-title="校系代碼"><a href="'+examURL+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至指考校系分則網頁">'+did+'</a></th>';
   }
   // var content = '<th data-title="校系代碼">'+did+'</th>';
   content += '<td data-title="校名"><a href="'+uurl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至學校首頁">'+uname+'</a></td>';
@@ -353,7 +353,7 @@ function errorAlertMsg(text) {
 function warningAlertMsg(text) {
   var alertArea = $("#input-area .alerts-area");
   alertArea.append('<div data-alert class="alert-box warning round">'+text+' <a href="#" class="close">&times;</a></div>');
-  $("#input-area .alerts-area").foundation();
+ $("#input-area .alerts-area").foundation();
 }
 
 function cleanAlert() {
@@ -402,6 +402,7 @@ function queryResult(data) {
           div_loading.classList.remove('hidden');
           $('input[type=submit]').prop( "disabled", true );
           $('input[type=submit]').val('落點分析中...');
+		  StoreHistory(data);
           querying = true;
         },
         success: function(data){
@@ -466,11 +467,14 @@ function StoreHistory(inputdata) {
           // 顯示處理中畫面
           div_loading.classList.remove('hidden');
           $('input[type=submit]').prop( "disabled", true );
-          $('input[type=submit]').val('落點分析中...');
+          $('input[type=submit]').val('資料處存中...');
           querying = true;
         },
         success: function(data){
           // 隱藏處理中畫面
+		  div_loading.classList.add('hidden');
+          $('input[type=submit]').prop( "disabled", false );
+          $('input[type=submit]').val('開始分析');
           querying = false;
         },
         error: function(data){
@@ -506,8 +510,7 @@ function StoreHistory(inputdata) {
   form_input.onsubmit = function(e) {
     var studentGrade = getData();
     e.preventDefault();
-    StoreHistory(studentGrade);
-    queryResult(studentGrade);
+	queryResult(studentGrade);
     return 0;
   }
 

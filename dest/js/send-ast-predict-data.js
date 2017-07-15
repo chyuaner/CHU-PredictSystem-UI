@@ -488,8 +488,20 @@ function StoreHistory(inputdata) {
 
 }
 
+  var input_gsat_chinese  = document.getElementById('input-gsat-chinese');
+  var input_gsat_english  = document.getElementById('input-gsat-english');
+  var input_gsat_math     = document.getElementById('input-gsat-math');
+  var input_gsat_social   = document.getElementById('input-gsat-social');
+  var input_gsat_nature   = document.getElementById('input-gsat-nature');
+  var input_gsat_engLis   = document.getElementById('input-gsat-english-listen');
+
+  input_gsat_chinese.onchange = function(){ updateGsatTotalScore(); };
+  input_gsat_english.onchange = function(){ updateGsatTotalScore(); };
+  input_gsat_math.onchange    = function(){ updateGsatTotalScore(); };
+  input_gsat_social.onchange  = function(){ updateGsatTotalScore(); };
+  input_gsat_nature.onchange  = function(){ updateGsatTotalScore(); };
+  input_gsat_engLis.onchange  = function(){ updateGsatTotalScore(); };
 //window.onload = function() {
-  updateGsatTotalScore();
   var form_input = document.getElementById('input-form');
   form_input.onsubmit = function(e) {
     var studentGrade = getData();

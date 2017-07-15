@@ -210,7 +210,7 @@ function setData(inputData, resultData, resultCHUData) {
     for(var i=0; i<resultData.length; i++) {
       addData(resultData[i].did, resultData[i].uname, resultData[i].uurl,
               resultData[i].dname, resultData[i].durl, resultData[i].salary, resultData[i].salaryUrl,
-              resultData[i].minScore, resultData[i].yourScore);
+              resultData[i].minScore, resultData[i].yourScore, resultData[i].examUrl);
     }
   }
   else {
@@ -223,7 +223,7 @@ function setData(inputData, resultData, resultCHUData) {
     for(var i=0; i<resultCHUData.length; i++) {
       addChuData(resultCHUData[i].did, resultCHUData[i].uname, resultCHUData[i].uurl,
               resultCHUData[i].dname, resultCHUData[i].durl, resultCHUData[i].salary, resultCHUData[i].salaryUrl,
-              resultCHUData[i].minScore, resultCHUData[i].yourScore);
+              resultCHUData[i].minScore, resultCHUData[i].yourScore, resultCHUData[i].examUrl);
     }
   }
   else {
@@ -232,7 +232,7 @@ function setData(inputData, resultData, resultCHUData) {
   }
 }
 
-function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, yourScore) {
+function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, yourScore, examUrl) {
   if(salary == 0) { salary = '樣本不足';}
 
   var table_result = $("#table-result-suggest-school-departments");
@@ -247,7 +247,13 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
   }
   var tr = '<tr data-item-id="'+did+'" class="' + trClass + '">';
 
-  var content = '<th data-title="校系代碼">'+did+'</th>';
+  var content = '';
+  if(examUrl === null) {
+    content += '<th data-title="校系代碼">'+did+'</th>';
+  }
+  else {
+    content += '<th data-title="校系代碼"><a href="'+examUrl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至學校首頁">'+did+'</a><</th>';
+  }
   content += '<td data-title="校名"><a href="'+uurl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至學校首頁">'+uname+'</a></td>';
   content += '<td data-title="科系名稱"><a href="'+durl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至科系首頁">'+dname+'</a></td>';
   if(salaryUrl === null) {
@@ -269,7 +275,7 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
   // $('#table-result-suggest-school-departments tr[data-item-id="'+did+'"]').foundation('tooltip', 'reflow');
 }
 
-function addChuData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, yourScore) {
+function addChuData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, yourScore, examUrl) {
   if(salary == 0) { salary = '樣本不足';}
 
   var table_result = $("#table-chu-result-suggest-school-departments");
@@ -282,7 +288,14 @@ function addChuData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, 
 
   var tr = '<tr data-item-id="'+did+'" class="' + trClass + '">';
 
-  var content = '<th data-title="校系代碼">'+did+'</th>';
+  var content = '';
+  if(examUrl === null) {
+    content += '<th data-title="校系代碼">'+did+'</th>';
+  }
+  else {
+    content += '<th data-title="校系代碼"><a href="'+examUrl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至學校首頁">'+did+'</a><</th>';
+  }
+  // var content = '<th data-title="校系代碼">'+did+'</th>';
   content += '<td data-title="校名"><a href="'+uurl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至學校首頁">'+uname+'</a></td>';
   content += '<td data-title="科系名稱"><a href="'+durl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至科系首頁">'+dname+'</a></td>';
   if(salaryUrl === null) {
@@ -291,6 +304,7 @@ function addChuData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, 
   else {
     content += '<td data-title="畢業生平均薪資"><a href="'+salaryUrl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至104升學就業地圖">'+salary+'</a></td>';
   }
+
   content += '<td data-title="去年最低錄取分數">'+minScore+'</td>';
   if(yourScore < minScore) {
     content += '<td data-title="換算去年加權分數" class="warning"><span data-tooltip aria-haspopup="true" data-tooltip-title="換算去年加權分數<br>低於去年最低錄取分數">'+yourScore+'</span></td>';

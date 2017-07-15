@@ -825,10 +825,12 @@ $('#signbtn').click(function(e) {
       },
       success: function(data){
         // 隱藏處理中畫面
+        if(data.status == 200)
+        {
           $('input[type=submit]').prop( "disabled", false );
           successAlertMsg("<strong>登入成功！</strong>");
           window.location = "http://140.126.11.158/2017/ast/predict.html"
-          // window.location = "http://predict.chu.edu.tw/2017/ast/predict.html"
+        }
       },
       error: function(data){
         // 隱藏處理中畫面

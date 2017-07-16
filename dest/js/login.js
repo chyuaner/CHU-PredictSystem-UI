@@ -738,7 +738,7 @@ function resetRegisterForm() {
 }
 
 //按鈕事件
-$('#sign-btn').click(function(e) {
+$('#enter-btn').click(function(e) {
     e.preventDefault();
     $(e.currentTarget).closest('ul').hide();
     $('#signin-email').val('');
@@ -752,16 +752,16 @@ $('#register-btn').click(function(e){
     $('form#register').fadeIn('fast');
 });
 
-$('#returnbtn').click(function(e){
+$('#registerbtn').click(function(e){
     e.preventDefault();
     $(e.currentTarget).closest('form').hide();
-    $('ul#first').fadeIn('fast');
+    $('form#register').fadeIn('fast');
 });
 
 $('#return-btn').click(function(e){
     e.preventDefault();
     $(e.currentTarget).closest('form').hide();
-    $('ul#first').fadeIn('fast');
+    $('form#signin').fadeIn('fast');
 });
 
 $('#send-btn').click(function (e){
@@ -790,7 +790,7 @@ $('#send-btn').click(function (e){
         if(data.status == 200)
         {
           $('input[type=submit]').prop( "disabled", false );
-          successAlertMsg("<strong>註冊成功！</strong> "+data.messege);
+          successAlertMsg("<strong>註冊成功！</strong> "+data.message);
         }
       },
       error: function(data){
@@ -833,7 +833,7 @@ $('#signbtn').click(function(e) {
         // 隱藏處理中畫面
         if(data.status == 404)
         {
-          errorAlertMsg("<strong>錯誤！</strong> "+data.messege);
+          errorAlertMsg("<strong>錯誤！</strong> "+data.message);
           $('input[type=submit]').prop( "disabled", false );
         }
         else {

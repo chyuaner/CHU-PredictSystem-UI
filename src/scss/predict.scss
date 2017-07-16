@@ -391,7 +391,7 @@ header {
     }
 
     h2, h3 {
-      margin-top: 1em;
+      margin-top: 0.5em;
     }
 
     @keyframes chu-welfare-ani {
@@ -445,6 +445,13 @@ header {
         a {
 
           margin-left: 1em;
+        }
+      }
+
+      @media #{$large-up} {
+        div.chuimg{
+          padding-left: 18em;
+          padding-top: 1em;
         }
       }
 

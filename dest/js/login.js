@@ -738,29 +738,31 @@ function resetRegisterForm() {
 }
 
 //按鈕事件
-$('#enter-btn').click(function(e) {
-    e.preventDefault();
-    $(e.currentTarget).closest('ul').hide();
-    $('#signin-email').val('');
-    $('form#signin').fadeIn('fast');
-});
+// $('#enter-btn').click(function(e) {
+//     e.preventDefault();
+//     $(e.currentTarget).closest('ul').hide();
+//     $('#signin-email').val('');
+//     $('form#signin').fadeIn('fast');
+// });
 
-$('#register-btn').click(function(e){
-    e.preventDefault();
-    $(e.currentTarget).closest('ul').hide();
-    resetRegisterForm();
-    $('form#register').fadeIn('fast');
-});
+// $('#register-btn').click(function(e){
+//     e.preventDefault();
+//     $(e.currentTarget).closest('ul').hide();
+//     resetRegisterForm();
+//     $('form#register').fadeIn('fast');
+// });
 
 $('#registerbtn').click(function(e){
     e.preventDefault();
     $(e.currentTarget).closest('form').hide();
+    resetRegisterForm();
     $('form#register').fadeIn('fast');
 });
 
 $('#return-btn').click(function(e){
     e.preventDefault();
     $(e.currentTarget).closest('form').hide();
+    $('#signin-email').val('');
     $('form#signin').fadeIn('fast');
 });
 

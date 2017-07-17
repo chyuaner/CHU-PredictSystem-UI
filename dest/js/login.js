@@ -788,14 +788,10 @@ $('#send-btn').click(function (e){
       },
       success: function(data){
         // 隱藏處理中畫面
-        if(data.status == 200)
-        {
-          $('input[type=submit]').prop( "disabled", false );
-          $('#myRegisterModal').modal('hide');
-          successAlertMsg("<strong>註冊成功！</strong> "+data.message);
-          $('myMessageModal').modal('show');
-
-        }
+        $('input[type=submit]').prop( "disabled", false );
+        $('#myRegisterModal').modal('hide');
+        successAlertMsg("<strong>註冊成功！</strong> "+data.message);
+        $('myMessageModal').modal('show');
       },
       error: function(data){
         // 隱藏處理中畫面
@@ -848,13 +844,13 @@ $('#signbtn').click(function(e) {
         var jsonObj = JSON.parse(data.responseText);
         if(data.status == 404)
         {
-          errorAlertMsg("<strong>錯誤！</strong> "+jsonObj);
+          errorAlertMsg("<strong>錯誤！</strong> "+jsonObj.message);
           $('input[type=submit]').prop( "disabled", false );
           $('#myMessageModal').modal('show');
         }
         else if(data.status == 401)
         {
-          errorAlertMsg("<strong>錯誤！</strong> "+jsonObj);
+          errorAlertMsg("<strong>錯誤！</strong> "+jsonObj.message);
           $('input[type=submit]').prop( "disabled", false );
           $('#myMessageModal').modal('show');
         }

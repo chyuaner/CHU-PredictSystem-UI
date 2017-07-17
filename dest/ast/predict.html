@@ -471,7 +471,7 @@
           </ul>
         </li>
       </ul>
-  </div>
+    </div>
     <div id="footer-right">
       <ul>
         <li>本網站建議使用<a href="https://www.google.com/chrome/browser/index.html" target="_blank">Google Chrome</a> 或 <a href="https://moztw.org/firefox/" target="_blank">Mozilla Firefox</a>瀏覽器</li>
@@ -518,12 +518,23 @@
       <a class="close-reveal-modal">&#215;</a>
     </div>
   </div>
+<!-- 未登入Dialog -->
+  <div id="not-login-modal" class="reveal-modal" data-reveal>
+    <div>
+      <h2>您尚未登入</h2>
+      <div class="content">
+        <p>請登入後再使用本系統</p>
+        <a class="button" href="/2017/ast/login.html">關閉</a>
+      </div>
+    </div>
+  </div>
 
 </section>
 
 <script src="../assets/js/jquery.min.js"></script>
 <script src="../assets/js/foundation.min.js"></script>
 <script src="../assets/js/jquery.floatThead.min.js"></script>
+<script src="../assets/js/js.cookie.js"></script>
 <script src="../js/calc-rem-tools.js"></script>
 <script src="../js/department-group-choose.js"></script>
 <script src="../js/send-ast-predict-data.js"></script>

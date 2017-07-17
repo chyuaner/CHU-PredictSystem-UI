@@ -27,7 +27,7 @@ module.exports = function(grunt) {
             expand: true,
             flatten: true,
             cwd: 'bower_components/',
-            src: ['jquery/dist/jquery.min.js', 'foundation/js/foundation.min.js', 'foundation/js/vendor/modernizr.js', 'floatThead/dist/jquery.floatThead.min.js'],
+            src: ['jquery/dist/jquery.min.js', 'foundation/js/foundation.min.js', 'foundation/js/vendor/modernizr.js', 'floatThead/dist/jquery.floatThead.min.js','js-cookie/src/js.cookie.js'],
             dest: 'dest/assets/js/'
           }
         ]

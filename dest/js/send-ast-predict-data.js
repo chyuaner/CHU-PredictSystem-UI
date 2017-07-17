@@ -1,4 +1,4 @@
-var basePredictSystemUrl = "api/Ast/analysis";
+ var basePredictSystemUrl = "api/Ast/analysis";
 var basePredictHistorySystemUrl = "api/Store/History";
 var max_input_score = 15;
 var querying = false;
@@ -408,6 +408,26 @@ function cleanAlert() {
   alertArea.empty();
 }
 
+function atLeast3(data)
+{
+  var bool = false;
+  var count = 0;
+
+  for(var i=0;i < data.length;i++)
+  {
+    if(count < 3)
+    {
+      if(data[i] > 0)
+      {
+        count++;
+      }
+    }
+    else {
+      bool = true;
+    }
+  }
+}
+
 function queryResult(data) {
   var resultData = [];
 
@@ -430,8 +450,14 @@ function queryResult(data) {
     ) {
     warningAlertMsg("你還沒填寫指考成績喔～");
   }
+  else if(!atLeast3(astData))
+  {
+    warningAlertMsg("請填入至少三科以上的指考成績喔～");
+  }
   // 沒有問題，開始向後端要資料
-  else {
+  else
+  {
+
     if(!querying) {
 
       $.ajax({

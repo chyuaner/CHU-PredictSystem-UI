@@ -25,10 +25,6 @@ nav .navbar-nav li{
     font-size: 28px;
     color: #000000;
   }
-
-  section#intro-header hr {
-    width: 90%;
-  }
 }
 
 @media(min-width: 375px) and (max-width: 425px) {
@@ -36,26 +32,6 @@ nav .navbar-nav li{
     padding: 15px 15px 15px 15px;
     font-size: 34px;
     color: #000000;
-  }
-  section#intro-header hr {
-    width: 80%;
-  }
-}
-@media(min-width: 425px) {
-  section#intro-header hr {
-    width: 70%;
-  }
-}
-
-@media(min-width: 425px) and (max-width: 600px) {
-  section#intro-header hr {
-    width: 60%;
-  }
-}
-
-@media(min-width: 600px) and (max-width: 768px) {
-  section#intro-header hr {
-    width: 50%;
   }
 }
 
@@ -73,21 +49,25 @@ nav .navbar-nav li{
     font-size: 44px;
     color: #000000;
   }
-  section#intro-header hr {
-    width: 40%;
-  }
 }
 
-@media(min-width: 1024px) {
-  section#intro-header hr {
-    width: 30%;
-  }
+.form-group{
+  margin-left: 1.5em;
 }
 
-section div form {
+form#signin {
+  margin-top: 1em;
+  padding-right: 2em;
+}
+div.modal-body {
   margin: 0 auto;
-  width: 40%;
+  width: 60%;
 }
+
+/* section div form {
+  margin: 0 auto;
+  width: 50%;
+} */
 /*橫列2*/
 
 hr {
@@ -96,7 +76,7 @@ hr {
 }
 
 section#intro-header {
-  background-image: url(../images/background.jpg);
+  background-image: url(../images/login.png);
   background-size: cover;
 }
 

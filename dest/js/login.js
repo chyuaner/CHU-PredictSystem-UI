@@ -26,15 +26,15 @@ function getRegisterData() {
   return register_data;
 }
 function successAlertMsg(text) {
-  var alertArea = $(".alerts-area");
+  var alertArea = $("#myMessageModalLabel");
   alertArea.empty();
-  alertArea.append('<div class="alert alert-success alert-dismissible">'+text+' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+  alertArea.append(text);
 }
 
 function errorAlertMsg(text) {
-  var alertArea = $(".alerts-area");
+  var alertArea = $("#myMessageModalLabel");
   alertArea.empty();
-  alertArea.append('<div data-alert class="alert alert-danger alert-dismissible">'+text+' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+  alertArea.append(text);
 }
 
 //增加縣市option標籤
@@ -754,7 +754,6 @@ function resetRegisterForm() {
 
 $('#registerbtn').click(function(e){
     e.preventDefault();
-    $(e.currentTarget).closest('form').hide();
     resetRegisterForm();
     $('form#register').fadeIn('fast');
 });
@@ -792,13 +791,17 @@ $('#send-btn').click(function (e){
         if(data.status == 200)
         {
           $('input[type=submit]').prop( "disabled", false );
+          $('#myRegisterModal').modal('hide');
           successAlertMsg("<strong>註冊成功！</strong> "+data.message);
+          $('myMessageModal').modal('show');
+
         }
       },
       error: function(data){
         // 隱藏處理中畫面
         errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
         $('input[type=submit]').prop( "disabled", false );
+        $('#myMessageModal').modal('show');
       }
     });
   }
@@ -829,6 +832,7 @@ $('#signbtn').click(function(e) {
         // 隱藏處理中畫面
           $('input[type=submit]').prop( "disabled", false );
           successAlertMsg("<strong>登入成功！</strong>");
+          $('myMessageModal').modal('show');
           window.location = "http://140.126.11.158/2017/ast/predict.html";
       },
       error: function(data){
@@ -838,10 +842,18 @@ $('#signbtn').click(function(e) {
         {
           errorAlertMsg("<strong>錯誤！</strong> "+jsonObj);
           $('input[type=submit]').prop( "disabled", false );
+          $('#myMessageModal').modal('show');
+        }
+        else if(data.status == 401)
+        {
+          errorAlertMsg("<strong>錯誤！</strong> "+jsonObj);
+          $('input[type=submit]').prop( "disabled", false );
+          $('#myMessageModal').modal('show');
         }
         else {
           errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
           $('input[type=submit]').prop( "disabled", false );
+          $('#myMessageModal').modal('show');
         }
       }
     });

@@ -28,6 +28,32 @@
         <div class="navbar-header">
           <a id="headline" class="navbar-brand" href="login.html">升大學職涯型<strong>落點分析</strong></a>
         </div>
+        <div class="row">
+          <div class="wrap-headline">
+            <!-- <h1 class="text-center">開始你的落點分析</h1>
+            <hr> -->
+            <!-- <ul id="first" class="list-inline list-unstyled text-center">
+              <li>
+                <a id="enter-btn" class="btn btn-default btn-lg" role="button">進入</a>
+              </li>
+              <li>
+                <a id="register-btn" class="btn btn-primary btn-lg" role="button">註冊</a>
+              </li>
+            </ul> -->
+
+            <!--登入表單-->
+            <form id="signin" class="form-inline text-right" role="form">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon">信箱</div>
+                    <input type="email" class="form-control" id="signin-email" placeholder="請輸入電子郵件" required>
+                </div>
+              </div>
+              <button id="signbtn" type="submit" class="btn btn-success">登入</button>
+              <button id="registerbtn" class="btn btn-primary" data-toggle="modal" data-target="#myRegisterModal">註冊</button>
+            </form>
+          </div>
+        </div>
     </nav>
 
     <section id="intro-header">
@@ -41,88 +67,28 @@
             </div>
           </noscript>
         </div>
-        <!--橫列2-->
-        <div class="row">
-          <div class="wrap-headline">
-            <h1 class="text-center">開始你的落點分析</h1>
-            <hr>
-            <!-- <ul id="first" class="list-inline list-unstyled text-center">
-              <li>
-                <a id="enter-btn" class="btn btn-default btn-lg" role="button">進入</a>
-              </li>
-              <li>
-                <a id="register-btn" class="btn btn-primary btn-lg" role="button">註冊</a>
-              </li>
-            </ul> -->
-
-            <!--登入表單-->
-            <form id="signin" class="form-horizontal text-center" role="form">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-addon">信箱</div>
-                    <input type="email" class="form-control" id="signin-email" placeholder="請輸入電子郵件" required>
-                </div>
-              </div>
-              <button id="signbtn" type="submit" class="btn btn-success">登入</button>
-              <button id="registerbtn" class="btn btn-primary">註冊</button>
-            </form>
-            <!--註冊表單-->
-            <form id="register" class="form-horizontal text-center hidden-element" role="form">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-addon">信箱</div>
-                    <input type="email" class="form-control" id="register-email" placeholder="請輸入電子郵件" required>
-                </div>
-                <div class="input-group">
-                  <div class="input-group-addon">縣市</div>
-                  <select id="select-location" class="form-control" required>
-                    <option value="">請選擇</option>
-                    <option value="基隆市">基隆市</option>
-                    <option value="臺北市">臺北市</option>
-                    <option value="新北市">新北市</option>
-                    <option value="宜蘭縣">宜蘭縣</option>
-                    <option value="桃園市">桃園市</option>
-                    <option value="新竹縣市">新竹縣市</option>
-                    <option value="苗栗縣">苗栗縣</option>
-                    <option value="臺中市">臺中市</option>
-                    <option value="南投縣">南投縣</option>
-                    <option value="彰化縣">彰化縣</option>
-                    <option value="嘉義縣市">嘉義縣市</option>
-                    <option value="雲林縣">雲林縣</option>
-                    <option value="臺南市">臺南市</option>
-                    <option value="高雄市">高雄市</option>
-                    <option value="屏東縣">屏東縣</option>
-                    <option value="花蓮縣">花蓮縣</option>
-                    <option value="臺東縣">臺東縣</option>
-                    <option value="澎湖縣">澎湖縣</option>
-                    <option value="連江縣">連江縣</option>
-                    <option value="金門縣">金門縣</option>
-                    <option value="其他">其他</option>
-                  </select>
-                </div>
-                <div class="input-group">
-                  <div class="input-group-addon">學校</div>
-                  <select id="select-school" class="form-control" required>
-                    <option value="">請選擇</option>
-                  </select>
-                </div>
-                <div class="input-group">
-                  <div class="input-group-addon">身份</div>
-                  <select id="select-identity" class="form-control" required>
-                    <option value="">請選擇</option>
-                    <option value="考生">考生</option>
-                    <option value="家長">家長</option>
-                    <option value="其他">其他</option>
-                  </select>
-                </div>
-              </div>
-              <button id="send-btn" type="submit" class="btn btn-success">送出</button>
-              <button id="return-btn" class="btn btn-primary">返回</button>
-            </form>
-          </div>
+      </div>
+      <!--橫列2-->
+      <div class="row">
+        <div class="wrap-headline">
+          <!-- <h1 class="text-center">開始你的落點分析</h1>
+          <hr> -->
+          <!-- <ul id="first" class="list-inline list-unstyled text-center">
+            <li>
+              <a id="enter-btn" class="btn btn-default btn-lg" role="button">進入</a>
+            </li>
+            <li>
+              <a id="register-btn" class="btn btn-primary btn-lg" role="button">註冊</a>
+            </li>
+          </ul> -->
         </div>
       </div>
     </section>
+
+    <section id="about">
+      <!--橫列2-->
+
+     </section>
 
     <footer>
       <div class="container">
@@ -202,6 +168,93 @@
               <li>Email: <a href="mailto:judycrt@chu.edu.tw">judycrt@chu.edu.tw</a></li>
               <li>TEL: <a href="tel:0989090565">0989090565</a> / <a href="tel:035186383">03-5186383</a></li>
             </ul>
+    			</div>
+    		</div><!-- /.modal-content -->
+    	</div><!-- /.modal -->
+    </div>
+
+    <!--Register Modal -->
+    <div class="modal fade" id="myRegisterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    	<div class="modal-dialog">
+    		<div class="modal-content">
+    			<div class="modal-header">
+    				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+    					&times;
+    				</button>
+    				<h4 class="modal-title" id="myRegisterModalLabel">
+    					註冊
+    				</h4>
+    			</div>
+    			<div class="modal-body">
+            <!--註冊表單-->
+            <form id="register" class="form-horizontal text-center hidden-element" role="form">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon">信箱</div>
+                    <input type="email" class="form-control" id="register-email" placeholder="請輸入電子郵件" required>
+                </div>
+                <div class="input-group">
+                  <div class="input-group-addon">縣市</div>
+                  <select id="select-location" class="form-control" required>
+                    <option value="">請選擇</option>
+                    <option value="基隆市">基隆市</option>
+                    <option value="臺北市">臺北市</option>
+                    <option value="新北市">新北市</option>
+                    <option value="宜蘭縣">宜蘭縣</option>
+                    <option value="桃園市">桃園市</option>
+                    <option value="新竹縣市">新竹縣市</option>
+                    <option value="苗栗縣">苗栗縣</option>
+                    <option value="臺中市">臺中市</option>
+                    <option value="南投縣">南投縣</option>
+                    <option value="彰化縣">彰化縣</option>
+                    <option value="嘉義縣市">嘉義縣市</option>
+                    <option value="雲林縣">雲林縣</option>
+                    <option value="臺南市">臺南市</option>
+                    <option value="高雄市">高雄市</option>
+                    <option value="屏東縣">屏東縣</option>
+                    <option value="花蓮縣">花蓮縣</option>
+                    <option value="臺東縣">臺東縣</option>
+                    <option value="澎湖縣">澎湖縣</option>
+                    <option value="連江縣">連江縣</option>
+                    <option value="金門縣">金門縣</option>
+                    <option value="其他">其他</option>
+                  </select>
+                </div>
+                <div class="input-group">
+                  <div class="input-group-addon">學校</div>
+                  <select id="select-school" class="form-control" required>
+                    <option value="">請選擇</option>
+                  </select>
+                </div>
+                <div class="input-group">
+                  <div class="input-group-addon">身份</div>
+                  <select id="select-identity" class="form-control" required>
+                    <option value="">請選擇</option>
+                    <option value="考生">考生</option>
+                    <option value="家長">家長</option>
+                    <option value="其他">其他</option>
+                  </select>
+                </div>
+              </div>
+              <button id="send-btn" type="submit" class="btn btn-success">送出</button>
+              <!-- <button id="return-btn" class="btn btn-primary">返回</button> -->
+            </form>
+    			</div>
+    		</div><!-- /.modal-content -->
+    	</div><!-- /.modal -->
+    </div>
+
+    <!--Message Modal -->
+    <div class="modal fade" id="myMessageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    	<div class="modal-dialog">
+    		<div class="modal-content">
+    			<div class="modal-header">
+    				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+    					&times;
+    				</button>
+    				<h4 class="modal-title" id="myMessageModalLabel">
+
+    				</h4>
     			</div>
     		</div><!-- /.modal-content -->
     	</div><!-- /.modal -->

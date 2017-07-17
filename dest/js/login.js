@@ -26,15 +26,15 @@ function getRegisterData() {
   return register_data;
 }
 function successAlertMsg(text) {
-  var alertArea = $("#myMessageModalLabel");
+  var alertArea = $("#Message");
   alertArea.empty();
-  alertArea.append(text);
+  alertArea.append('<div class="modal-header modal-header-success"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myMessageModalLabel">'+text+'</h4></div>');
 }
 
 function errorAlertMsg(text) {
-  var alertArea = $("#myMessageModalLabel");
+  var alertArea = $("#Message");
   alertArea.empty();
-  alertArea.append(text);
+  alertArea.append('<div class="modal-header modal-header-danger"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myMessageModalLabel">'+text+'</h4></div>');
 }
 
 //增加縣市option標籤
@@ -799,9 +799,17 @@ $('#send-btn').click(function (e){
       },
       error: function(data){
         // 隱藏處理中畫面
-        errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
-        $('input[type=submit]').prop( "disabled", false );
-        $('#myMessageModal').modal('show');
+        if(data.status == 406)
+        {
+          errorAlertMsg("<strong>錯誤！</strong> "+data.message);
+          $('input[type=submit]').prop( "disabled", false );
+          $('#myMessageModal').modal('show');
+        }
+        else {
+          errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
+          $('input[type=submit]').prop( "disabled", false );
+          $('#myMessageModal').modal('show');
+        }
       }
     });
   }

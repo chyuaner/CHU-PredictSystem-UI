@@ -833,9 +833,10 @@ $('#signbtn').click(function(e) {
       },
       error: function(data){
         // 隱藏處理中畫面
+        var jsonObj = JSON.parse(data.responseText);
         if(data.status == 404)
         {
-          errorAlertMsg("<strong>錯誤！</strong> "+data.message);
+          errorAlertMsg("<strong>錯誤！</strong> "+jsonObj);
           $('input[type=submit]').prop( "disabled", false );
         }
         else {

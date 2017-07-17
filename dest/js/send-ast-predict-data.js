@@ -21,12 +21,19 @@ var chu_welfare_data = {
 // });
 
 // http://stackoverflow.com/questions/1127905/how-can-i-format-an-integer-to-a-specific-length-in-javascript
-function formatNumberLength(num, length) {
-    var r = "" + num;
-    while (r.length < length) {
-        r = "0" + r;
-    }
-    return r;
+
+// function formatNumberLength(num, length) {
+//     var r = "" + num;
+//     while (r.length < length) {
+//         r = "0" + r;
+//     }
+//     return r;
+// }
+
+function hasCookie()
+{
+  if(Cookies.get('sesstion') !== null) return false;
+  else return true;
 }
 
 function getGsatTotalScore() {
@@ -494,7 +501,6 @@ function StoreHistory(inputdata) {
     if(!querying) {
 
       $.ajax({
-    //    type: "GET",
         type: "POST",
         url: basePredictHistorySystemUrl,
         headers: {
@@ -511,7 +517,7 @@ function StoreHistory(inputdata) {
         },
         success: function(data){
           // 隱藏處理中畫面
-		  div_loading.classList.add('hidden');
+		    div_loading.classList.add('hidden');
           $('input[type=submit]').prop( "disabled", false );
           $('input[type=submit]').val('開始分析');
           querying = false;
@@ -528,10 +534,11 @@ function StoreHistory(inputdata) {
       });
     }
   }
-
 }
 
-  var input_gsat_chinese  = document.getElementById('input-gsat-chinese');
+
+if(hasCookie()){
+   var input_gsat_chinese  = document.getElementById('input-gsat-chinese');
   var input_gsat_english  = document.getElementById('input-gsat-english');
   var input_gsat_math     = document.getElementById('input-gsat-math');
   var input_gsat_social   = document.getElementById('input-gsat-social');
@@ -551,3 +558,7 @@ function StoreHistory(inputdata) {
 	queryResult(studentGrade);
     return 0;
   }
+}
+else{
+  $('#not-login-modal').foundation('reveal', 'open');
+}

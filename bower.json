@@ -16,7 +16,8 @@
   "dependencies": {
     "jquery": "2.1",
     "foundation": "~5.5.2",
-    "floatThead": "~1.2.12"
+    "floatThead": "~1.2.12",
+    "js-cookie": "^2.1.4"
   },
   "devDependencies": {
     "loading": "*"

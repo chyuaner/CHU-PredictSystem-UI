@@ -1,5 +1,6 @@
 var baseRegisterSystemSingUpUrl = "api/Account/SignUp";
 var baseRegisterSystemLoginUrl = "api/Account/Login";
+var baseResendEmailUrl = "api/Account/resendEmail";
 
 function getLoginData() {
   var login_email      = document.getElementById('signin-email').value;
@@ -35,6 +36,12 @@ function errorAlertMsg(text) {
   var alertArea = $("#Message");
   alertArea.empty();
   alertArea.append('<div class="modal-header modal-header-danger"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myMessageModalLabel">'+text+'</h4></div>');
+}
+
+function resendAlertMsg(text) {
+  var alertArea = $("#Message");
+  alertArea.empty();
+  alertArea.append('<div class="modal-header modal-header-danger"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myMessageModalLabel">'+text+'</h4></div><div class="modal-footer"><button id="resend-btn" type="submit" class="btn btn-success">重新發送驗證信</button></div>');
 }
 
 //增加縣市option標籤
@@ -790,9 +797,9 @@ $('#send-btn').click(function (e){
       },
       success: function(data){
         // 隱藏處理中畫面
+        successAlertMsg("<strong>註冊成功！</strong> "+data.message);
         $('input[type=submit]').prop( "disabled", false );
         // $('#myRegisterModal').modal('hide');
-        successAlertMsg("<strong>註冊成功！</strong> "+data.message);
         $('myMessageModal').modal('show');
       },
       error: function(data){
@@ -836,8 +843,8 @@ $('#signbtn').click(function(e) {
       },
       success: function(data){
         // 隱藏處理中畫面
-          $('input[type=submit]').prop( "disabled", false );
           successAlertMsg("<strong>登入成功！</strong>");
+          $('input[type=submit]').prop( "disabled", false );
           $('myMessageModal').modal('show');
           window.location = "http://140.126.11.158/2017/ast/predict.html";
       },
@@ -852,7 +859,7 @@ $('#signbtn').click(function(e) {
         }
         else if(data.status == 401)
         {
-          errorAlertMsg("<strong>錯誤！</strong> "+jsonObj.message);
+          resendAlertMsg("<strong>錯誤！</strong> "+jsonObj.message);
           $('input[type=submit]').prop( "disabled", false );
           $('#myMessageModal').modal('show');
         }
@@ -864,4 +871,43 @@ $('#signbtn').click(function(e) {
       }
     });
   }
+});
+
+$('#resend-btn').click(function(e){
+  e.preventDefault();
+  var mail = $('#signin-email').val();
+  $.ajax({
+    // type: "GET",
+    type: "POST",
+    url:baseResendEmailUrl,
+    headers: {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    dataType: "text",
+    data: "="+email,
+    beforeSend: function() {
+      // 顯示處理中畫面
+      $('input[type=submit]').prop( "disabled", true );
+    },
+    success: function(data){
+      var jsonObj = JSON.parse(data.responseText);
+      successAlertMsg("<strong>登入成功！</strong> "+jsonObj.message);
+      $('input[type=submit]').prop( "disabled", false );
+      $('myMessageModal').modal('show');
+    },
+    error: function(data){
+      var jsonObj = JSON.parse(data.responseText);
+      if(data.status == 406)
+      {
+        errorAlertMsg("<strong>錯誤！</strong> "+jsonObj.message);
+        $('input[type=submit]').prop( "disabled", false );
+        $('#myMessageModal').modal('show');
+      }
+      else {
+        errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
+        $('input[type=submit]').prop( "disabled", false );
+        $('#myMessageModal').modal('show');
+      }
+    }
+  });
 });

@@ -448,13 +448,6 @@ header {
         }
       }
 
-      @media #{$large-up} {
-        div.chuimg{
-          padding-left: 12em;
-          padding-top: 1em;
-        }
-      }
-
       a.research-methods-link {
         font-size: 1.3rem;
         margin-top: 1.3em;
@@ -476,6 +469,10 @@ header {
         position: relative;
         top: 2em;
         width: 35%;
+      }
+      div.chuimg{
+        padding-left: 12em;
+        padding-top: 1em;
       }
     }
 

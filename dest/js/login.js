@@ -38,13 +38,8 @@ function errorAlertMsg(text) {
   alertArea.append('<div class="modal-header modal-header-danger"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myMessageModalLabel">'+text+'</h4></div>');
 }
 
-function resendSuccessAlertMsg(text) {
-  var alertArea = $("#myResendSuccessModalLable");
-  alertArea.append(text);
-}
-
-function resendErrorAlertMsg(text) {
-  var alertArea = $("#myResendErrorModalLable");
+function resendAlertMsg(text) {
+  var alertArea = $("#myResendModalLable");
   alertArea.append(text);
 }
 
@@ -863,9 +858,9 @@ $('#signbtn').click(function(e) {
         }
         else if(data.status == 401)
         {
-          resendErrorAlertMsg("<strong>錯誤！</strong> "+jsonObj.message);
+          resendAlertMsg("<strong>錯誤！</strong> "+jsonObj.message);
           $('input[type=submit]').prop( "disabled", false );
-          $('#myResendErrorModal').modal('show');
+          $('#myResendModal').modal('show');
         }
         else {
           errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
@@ -877,7 +872,7 @@ $('#signbtn').click(function(e) {
   }
 });
 
-$("button[name$='resend-btn']").click(function(e){
+$('#resend-btn').click(function(e){
   e.preventDefault();
   var mail = $('#signin-email').val();
   $.ajax({
@@ -895,7 +890,7 @@ $("button[name$='resend-btn']").click(function(e){
     },
     success: function(data){
       var jsonObj = JSON.parse(data.responseText);
-      resendSuccessAlertMsg(jsonObj.message);
+      successAlertMsg(jsonObj.message);
       $('input[type=submit]').prop( "disabled", false );
       $('#myResendSuccessModal').modal('show');
     },
@@ -903,12 +898,12 @@ $("button[name$='resend-btn']").click(function(e){
       var jsonObj = JSON.parse(data.responseText);
       if(data.status == 406)
       {
-        resendErrorAlertMsg("<strong>錯誤！</strong> "+jsonObj.message);
+        errorAlertMsg("<strong>錯誤！</strong> "+jsonObj.message);
         $('input[type=submit]').prop( "disabled", false );
         $('#myResendErrorModal').modal('show');
       }
       else {
-        resendErrorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
+        errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
         $('input[type=submit]').prop( "disabled", false );
         $('#myResendErrorModal').modal('show');
       }

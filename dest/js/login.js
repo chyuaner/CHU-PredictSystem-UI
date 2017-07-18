@@ -1,6 +1,7 @@
 var baseRegisterSystemSingUpUrl = "api/Account/SignUp";
 var baseRegisterSystemLoginUrl = "api/Account/Login";
 var baseResendEmailUrl = "api/Account/ResendEmail";
+var ChuPredictUrl = "http://predcit.chu.edu.tw/2017/ast/predcit.html";
 
 function getLoginData() {
   var login_email      = document.getElementById('signin-email').value;
@@ -846,7 +847,8 @@ $('#signbtn').click(function(e) {
           successAlertMsg("<strong>"+data.message+"</strong>");
           $('input[type=submit]').prop( "disabled", false );
           $('#myMessageModal').modal('show');
-          window.location = "http://140.126.11.158/2017/ast/predict.html";
+          // window.location = "http://140.126.11.158/2017/ast/predict.html";
+          window.location = ChuPredictUrl;
       },
       error: function(data){
         // 隱藏處理中畫面

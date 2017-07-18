@@ -789,7 +789,7 @@ $('#send-btn').click(function (e){
       success: function(data){
         // 隱藏處理中畫面
         $('input[type=submit]').prop( "disabled", false );
-        $('#myRegisterModal').modal('hide');
+        // $('#myRegisterModal').modal('hide');
         successAlertMsg("<strong>註冊成功！</strong> "+data.message);
         $('myMessageModal').modal('show');
       },

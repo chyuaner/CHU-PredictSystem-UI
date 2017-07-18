@@ -15,7 +15,7 @@ body {
 }
 
 .modal-header-danger {
-	color:#fff;
+	  color:#fff;
     padding:9px 15px;
     border-bottom:1px solid #eee;
     background-color: #d9534f;
@@ -100,8 +100,8 @@ hr {
   margin-bottom: 10px;
 }
 
-input#signin-email.form-control {
-  padding-right: 10em;
+input#signin-email .form-control {
+  padding-left: 10em;
 }
 
 section#intro-header {

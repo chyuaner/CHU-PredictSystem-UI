@@ -873,40 +873,45 @@ $('#signbtn').click(function(e) {
 });
 
 $('#resend-btn').click(function(e){
-  e.preventDefault();
+
   var mail = $('#signin-email').val();
-  $.ajax({
-    // type: "GET",
-    type: "POST",
-    url:baseResendEmailUrl,
-    headers: {
-      "content-type": "application/x-www-form-urlencoded"
-    },
-    dataType: "text",
-    data: "="+email,
-    beforeSend: function() {
-      // 顯示處理中畫面
-      $('input[type=submit]').prop( "disabled", true );
-    },
-    success: function(data){
-      var jsonObj = JSON.parse(data.responseText);
-      successAlertMsg(jsonObj.message);
-      $('input[type=submit]').prop( "disabled", false );
-      $('#myResendSuccessModal').modal('show');
-    },
-    error: function(data){
-      var jsonObj = JSON.parse(data.responseText);
-      if(data.status == 406)
-      {
-        errorAlertMsg("<strong>錯誤！</strong> "+jsonObj.message);
+
+  if(mail === ''){}
+  else {
+    e.preventDefault();
+    $.ajax({
+      // type: "GET",
+      type: "POST",
+      url:baseResendEmailUrl,
+      headers: {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      dataType: "text",
+      data: "="+email,
+      beforeSend: function() {
+        // 顯示處理中畫面
+        $('input[type=submit]').prop( "disabled", true );
+      },
+      success: function(data){
+        var jsonObj = JSON.parse(data.responseText);
+        successAlertMsg(jsonObj.message);
         $('input[type=submit]').prop( "disabled", false );
-        $('#myResendErrorModal').modal('show');
+        $('#myResendSuccessModal').modal('show');
+      },
+      error: function(data){
+        var jsonObj = JSON.parse(data.responseText);
+        if(data.status == 406)
+        {
+          errorAlertMsg("<strong>錯誤！</strong> "+jsonObj.message);
+          $('input[type=submit]').prop( "disabled", false );
+          $('#myResendErrorModal').modal('show');
+        }
+        else {
+          errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
+          $('input[type=submit]').prop( "disabled", false );
+          $('#myResendErrorModal').modal('show');
+        }
       }
-      else {
-        errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
-        $('input[type=submit]').prop( "disabled", false );
-        $('#myResendErrorModal').modal('show');
-      }
-    }
-  });
+    });
+  }
 });

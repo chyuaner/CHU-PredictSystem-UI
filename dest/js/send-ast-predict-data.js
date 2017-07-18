@@ -1,4 +1,4 @@
- var basePredictSystemUrl = "api/Ast/analysis";
+var basePredictSystemUrl = "api/Ast/analysis";
 var basePredictHistorySystemUrl = "api/Store/History";
 var max_input_score = 15;
 var querying = false;
@@ -413,11 +413,11 @@ function atLeast3(data)
   var bool = false;
   var count = 0;
 
-  for(var i=0;i < data.length;i++)
+  for(var key in data)
   {
     if(count < 3)
     {
-      if(data[i] > 0)
+      if(data[key] > 0)
       {
         count++;
       }
@@ -426,6 +426,7 @@ function atLeast3(data)
       bool = true;
     }
   }
+  return bool;
 }
 
 function queryResult(data) {
@@ -563,7 +564,7 @@ function StoreHistory(inputdata) {
 }
 
 
-if(hasCookie()){
+if(!hasCookie()){
    var input_gsat_chinese  = document.getElementById('input-gsat-chinese');
   var input_gsat_english  = document.getElementById('input-gsat-english');
   var input_gsat_math     = document.getElementById('input-gsat-math');

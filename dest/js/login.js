@@ -897,7 +897,7 @@ $('#resend-btn').click(function(e){
       success: function(data){
         successAlertMsg(data.message);
         $('input[type=submit]').prop( "disabled", false );
-        $('#myMessageModalLabel').modal('show');
+        $('#myMessageModal').modal('show');
       },
       error: function(data){
         var jsonObj = JSON.parse(data.responseText);
@@ -905,12 +905,12 @@ $('#resend-btn').click(function(e){
         {
           errorAlertMsg("<strong>錯誤！</strong> "+jsonObj.message);
           $('input[type=submit]').prop( "disabled", false );
-          $('#myMessageModalLabel').modal('show');
+          $('#myMessageModal').modal('show');
         }
         else {
           errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
           $('input[type=submit]').prop( "disabled", false );
-          $('#myMessageModalLabel').modal('show');
+          $('#myMessageModal').modal('show');
         }
       }
     });

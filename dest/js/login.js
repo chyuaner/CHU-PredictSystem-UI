@@ -1,6 +1,6 @@
 var baseRegisterSystemSingUpUrl = "api/Account/SignUp";
 var baseRegisterSystemLoginUrl = "api/Account/Login";
-var baseResendEmailUrl = "api/Account/resendEmail";
+var baseResendEmailUrl = "api/Account/ResendEmail";
 
 function getLoginData() {
   var login_email      = document.getElementById('signin-email').value;
@@ -41,7 +41,7 @@ function errorAlertMsg(text) {
 function resendAlertMsg(text) {
   var alertArea = $("#myResendModalLabel");
   alertArea.empty();
-  alertArea.append('<div class="modal-header modal-header-success"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title">'+text+'</h4></div>');
+  alertArea.append(text);
 }
 
 //增加縣市option標籤
@@ -859,7 +859,7 @@ $('#signbtn').click(function(e) {
         }
         else if(data.status == 401)
         {
-          resendAlertMsg("<strong>錯誤！</strong> "+jsonObj.message);
+          resendAlertMsg(jsonObj.message);
           $('input[type=submit]').prop( "disabled", false );
           $('#myResendModal').modal('show');
         }

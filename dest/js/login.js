@@ -802,7 +802,7 @@ $('#send-btn').click(function (e){
         {
           $('input[type=submit]').prop( "disabled", false );
           $('#myRegisterModal').modal('hide');
-          successAlertMsg("<strong>註冊失敗！</strong> "+data.message);
+          errorAlertMsg("<strong>註冊失敗！</strong> "+data.message);
           $('#myMessageModal').modal('show');
         }
         else{

@@ -475,6 +475,19 @@ header {
         padding-top: 1em;
       }
     }
+    @media #{$xlarge-up} {
+      div.chuimg{
+        padding-left: 25em;
+        padding-top: 1em;
+      }
+    }
+
+    @media #{$xxlarge-up} {
+      div.chuimg{
+        padding-left: 45em;
+        padding-top: 1em;
+      }
+    }
 
     @keyframes bigger-ani {
         0%   { font-size: 0; }

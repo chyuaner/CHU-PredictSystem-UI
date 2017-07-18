@@ -564,7 +564,7 @@ function StoreHistory(inputdata) {
 
 
 if(!hasCookie()){
-   var input_gsat_chinese  = document.getElementById('input-gsat-chinese');
+  var input_gsat_chinese  = document.getElementById('input-gsat-chinese');
   var input_gsat_english  = document.getElementById('input-gsat-english');
   var input_gsat_math     = document.getElementById('input-gsat-math');
   var input_gsat_social   = document.getElementById('input-gsat-social');

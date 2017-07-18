@@ -863,9 +863,9 @@ $('#signbtn').click(function(e) {
         }
         else if(data.status == 401)
         {
-          errorAlertMsg("<strong>錯誤！</strong> "+jsonObj.message);
+          resendErrorAlertMsg("<strong>錯誤！</strong> "+jsonObj.message);
           $('input[type=submit]').prop( "disabled", false );
-          $('#myMessageModal').modal('show');
+          $('#myResendErrorModal').modal('show');
         }
         else {
           errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");

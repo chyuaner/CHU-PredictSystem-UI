@@ -39,8 +39,9 @@ function errorAlertMsg(text) {
 }
 
 function resendAlertMsg(text) {
-  var alertArea = $("#myResendModalLable");
-  alertArea.append(text);
+  var alertArea = $("#myResendModalLabel");
+  alertArea.empty();
+  alertArea.append('<div class="modal-header modal-header-success"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title">'+text+'</h4></div>');
 }
 
 //增加縣市option標籤
@@ -874,7 +875,7 @@ $('#signbtn').click(function(e) {
 
 $('#resend-btn').click(function(e){
 
-  var mail = $('#signin-email').val();
+  var mail = getLoginData();
 
   if(mail === ''){}
   else {
@@ -887,7 +888,7 @@ $('#resend-btn').click(function(e){
         "content-type": "application/x-www-form-urlencoded"
       },
       dataType: "text",
-      data: "="+email,
+      data: "="+mail,
       beforeSend: function() {
         // 顯示處理中畫面
         $('input[type=submit]').prop( "disabled", true );

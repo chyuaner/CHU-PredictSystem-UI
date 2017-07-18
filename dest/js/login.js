@@ -754,7 +754,9 @@ function resetRegisterForm() {
 
 $('#registerbtn').click(function(e){
     e.preventDefault();
+    var email = $('#signin-email').val();
     resetRegisterForm();
+    $('#register-email').val(email);
     $('form#register').fadeIn('fast');
 });
 

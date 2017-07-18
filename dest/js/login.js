@@ -41,7 +41,7 @@ function errorAlertMsg(text) {
 function resendAlertMsg(text) {
   var alertArea = $("#Message");
   alertArea.empty();
-  alertArea.append('<div class="modal-header modal-header-danger"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myMessageModalLabel">'+text+'</h4></div><div class="modal-footer"><button id="resend-btn" type="submit" class="btn btn-success">重新發送驗證信</button></div>');
+  alertArea.append('<div class="modal-header modal-header-danger"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myMessageModalLabel">'+text+'</h4></div><div class="modal-footer"><button id="resend-btn" class="btn btn-success">重新發送驗證信</button></div>');
 }
 
 //增加縣市option標籤

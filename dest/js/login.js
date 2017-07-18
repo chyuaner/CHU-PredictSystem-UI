@@ -835,7 +835,7 @@ $('#signbtn').click(function(e) {
       headers: {
         "content-type": "application/x-www-form-urlencoded"
       },
-      dataType: "text",
+      dataType: "json",
       data: "="+inputLoginData,
       beforeSend: function() {
         // 顯示處理中畫面
@@ -843,7 +843,7 @@ $('#signbtn').click(function(e) {
       },
       success: function(data){
         // 隱藏處理中畫面
-          successAlertMsg("<strong>登入成功！</strong>");
+          successAlertMsg("<strong>"+data.message+"</strong>");
           $('input[type=submit]').prop( "disabled", false );
           $('#myMessageModal').modal('show');
           window.location = "http://140.126.11.158/2017/ast/predict.html";
@@ -887,15 +887,15 @@ $('#resend-btn').click(function(e){
       headers: {
         "content-type": "application/x-www-form-urlencoded"
       },
-      dataType: "text",
+      dataType: "json",
       data: "="+mail,
       beforeSend: function() {
         // 顯示處理中畫面
         $('input[type=submit]').prop( "disabled", true );
+        $('#myResendModal').modal('hide');
       },
       success: function(data){
-        var jsonObj = JSON.parse(data.responseText);
-        successAlertMsg(jsonObj.message);
+        successAlertMsg(data.message);
         $('input[type=submit]').prop( "disabled", false );
         $('#myMessageModalLabel').modal('show');
       },

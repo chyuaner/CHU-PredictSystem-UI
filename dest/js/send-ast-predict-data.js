@@ -310,7 +310,7 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
   }
   content += '<td data-title="去年最低錄取分數">'+minScore+'</td>';
   if(yourScore < minScore) {
-    content += '<td data-title="換算去年加權分數" class="warning"><span data-tooltip aria-haspopup="true" data-tooltip-title="換算去年加權分數<br>低於去年最低錄取分數">'+yourScore+'</span></td>';
+    content += '<td data-title="換算去年加權分數" class="warning"><span data-tooltip aria-haspopup="true" data-tooltip-title="換算去年加權分數\n低於去年最低錄取分數">'+yourScore+'</span></td>';
   }
   else {
     content += '<td data-title="換算去年加權分數">'+yourScore+'</td>';
@@ -353,7 +353,7 @@ function addChuData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, 
 
   content += '<td data-title="去年最低錄取分數">'+minScore+'</td>';
   if(yourScore < minScore) {
-    content += '<td data-title="換算去年加權分數" class="warning"><span data-tooltip aria-haspopup="true" data-tooltip-title="換算去年加權分數<br>低於去年最低錄取分數">'+yourScore+'</span></td>';
+    content += '<td data-title="換算去年加權分數" class="warning"><span data-tooltip aria-haspopup="true" data-tooltip-title="換算去年加權分數\n低於去年最低錄取分數">'+yourScore+'</span></td>';
   }
   else {
     content += '<td data-title="換算去年加權分數">'+yourScore+'</td>';
@@ -538,7 +538,7 @@ function StoreHistory(inputdata) {
           // 顯示處理中畫面
           div_loading.classList.remove('hidden');
           $('input[type=submit]').prop( "disabled", true );
-          $('input[type=submit]').val('資料處存中...');
+          $('input[type=submit]').val('資料查詢中...');
           querying = true;
         },
         success: function(data){

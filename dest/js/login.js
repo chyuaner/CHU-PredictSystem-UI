@@ -1,7 +1,7 @@
 var baseRegisterSystemSingUpUrl = "api/Account/SignUp";
 var baseRegisterSystemLoginUrl = "api/Account/Login";
 var baseResendEmailUrl = "api/Account/ResendEmail";
-var ChuPredictUrl = "http://predcit.chu.edu.tw/2017/ast/predcit.html";
+var ChuPredictUrl = "http://predict.chu.edu.tw/2017/ast/predict.html";
 
 function getLoginData() {
   var login_email      = document.getElementById('signin-email').value;
@@ -798,10 +798,19 @@ $('#send-btn').click(function (e){
       },
       success: function(data){
         // 隱藏處理中畫面
-        $('input[type=submit]').prop( "disabled", false );
-        $('#myRegisterModal').modal('hide');
-        successAlertMsg("<strong>註冊成功！</strong> "+data.message);
-        $('#myMessageModal').modal('show');
+        if(data.status == 201)
+        {
+          $('input[type=submit]').prop( "disabled", false );
+          $('#myRegisterModal').modal('hide');
+          successAlertMsg(data.message);
+          $('#myMessageModal').modal('show');
+        }
+        else{
+          $('input[type=submit]').prop( "disabled", false );
+          $('#myRegisterModal').modal('hide');
+          successAlertMsg("<strong>註冊成功！</strong> "+data.message);
+          $('#myMessageModal').modal('show');
+        }
       },
       error: function(data){
         // 隱藏處理中畫面

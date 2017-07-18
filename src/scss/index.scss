@@ -1,12 +1,12 @@
 @import "foundation";
 @import "framework";
 
-header {
+/* header {
   @include header(#ffffff, black, none, orange);
-}
+} */
 
 #container {
-  padding-top: 6rem;
+  /* padding-top: 6rem; */
   @media #{$small-only} {
     padding-top: 0;
     height: auto;

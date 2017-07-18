@@ -475,7 +475,7 @@ function queryResult(data) {
           div_loading.classList.remove('hidden');
           $('input[type=submit]').prop( "disabled", true );
           $('input[type=submit]').val('落點分析中...');
-		  StoreHistory(data);
+	        StoreHistory(data);
           querying = true;
         },
         success: function(data){
@@ -505,7 +505,6 @@ function StoreHistory(inputdata) {
   var resultData = [];
 
   var div_loading = document.getElementById('loading-area');
-
   var astData = inputdata.grades.ast;
 
   cleanAlert();

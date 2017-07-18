@@ -797,10 +797,10 @@ $('#send-btn').click(function (e){
       },
       success: function(data){
         // 隱藏處理中畫面
-        successAlertMsg("<strong>註冊成功！</strong> "+data.message);
         $('input[type=submit]').prop( "disabled", false );
-        // $('#myRegisterModal').modal('hide');
-        $('myMessageModal').modal('show');
+        $('#myRegisterModal').modal('hide');
+        successAlertMsg("<strong>註冊成功！</strong> "+data.message);
+        $('#myMessageModal').modal('show');
       },
       error: function(data){
         // 隱藏處理中畫面
@@ -845,7 +845,7 @@ $('#signbtn').click(function(e) {
         // 隱藏處理中畫面
           successAlertMsg("<strong>登入成功！</strong>");
           $('input[type=submit]').prop( "disabled", false );
-          $('myMessageModal').modal('show');
+          $('#myMessageModal').modal('show');
           window.location = "http://140.126.11.158/2017/ast/predict.html";
       },
       error: function(data){
@@ -893,7 +893,7 @@ $('#resend-btn').click(function(e){
       var jsonObj = JSON.parse(data.responseText);
       successAlertMsg("<strong>登入成功！</strong> "+jsonObj.message);
       $('input[type=submit]').prop( "disabled", false );
-      $('myMessageModal').modal('show');
+      $('#myMessageModal').modal('show');
     },
     error: function(data){
       var jsonObj = JSON.parse(data.responseText);

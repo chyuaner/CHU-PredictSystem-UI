@@ -897,7 +897,7 @@ $("button[name$='resend-btn']").click(function(e){
       var jsonObj = JSON.parse(data.responseText);
       resendSuccessAlertMsg(jsonObj.message);
       $('input[type=submit]').prop( "disabled", false );
-      $('#myMessageModal').modal('show');
+      $('#myResendSuccessModal').modal('show');
     },
     error: function(data){
       var jsonObj = JSON.parse(data.responseText);
@@ -905,12 +905,12 @@ $("button[name$='resend-btn']").click(function(e){
       {
         resendErrorAlertMsg("<strong>錯誤！</strong> "+jsonObj.message);
         $('input[type=submit]').prop( "disabled", false );
-        $('#myMessageModal').modal('show');
+        $('#myResendErrorModal').modal('show');
       }
       else {
         resendErrorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
         $('input[type=submit]').prop( "disabled", false );
-        $('#myMessageModal').modal('show');
+        $('#myResendErrorModal').modal('show');
       }
     }
   });

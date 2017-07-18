@@ -891,7 +891,7 @@ $('#resend-btn').click(function(e){
     },
     success: function(data){
       var jsonObj = JSON.parse(data.responseText);
-      successAlertMsg("<strong>登入成功！</strong> "+jsonObj.message);
+      successAlertMsg(jsonObj.message);
       $('input[type=submit]').prop( "disabled", false );
       $('#myMessageModal').modal('show');
     },

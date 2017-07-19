@@ -32,7 +32,7 @@ var querying = false;
 
 function hasCookie()
 {
-  if(Cookies.get('session') !== null) return true;
+  if(Cookies.get('session') != null) return true;
   else return false;
 }
 

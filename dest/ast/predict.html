@@ -521,8 +521,94 @@
       <a class="close-reveal-modal">&#215;</a>
     </div>
   </div>
-<!-- 未登入Dialog -->
-  <div id="not-login-modal" class="reveal-modal" data-reveal>
+  <!-- 未登入Dialog -->
+  <div id="login-modal" class="reveal-modal" data-reveal data-options="close_on_background_click:false;close_on_esc:false;">
+    <div>
+      <h2>登入</h2>
+      <div class="Message">
+      </div>
+      <form action="">
+        <div class="row">
+          <label>信箱
+            <input type="email" id="signin-email" class="form-control" placeholder="請輸入電子郵件" required>
+          </label>
+
+          <button id="signbtn" type="submit" class="button">登入</button>
+          <a href="#" id="registerbtn" data-reveal-id="register-modal" class="secondary button">註冊</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 註冊 -->
+  <div id="register-modal" class="reveal-modal" data-reveal data-options="close_on_background_click:false;close_on_esc:false;">
+    <div>
+      <h2>註冊</h2>
+      <div class="Message">
+      </div>
+      <form id="register-form">
+        <div class="row">
+          <div class="row">
+            <div class="large-12 columns">
+              <label>信箱
+                <input type="email" id="register-email" placeholder="請輸入電子郵件" required>
+              </label>
+            </div>
+            <div class="large-12 columns">
+              <label>縣市
+                <select id="select-location" required>
+                  <option value="">請選擇</option>
+                  <option value="基隆市">基隆市</option>
+                  <option value="臺北市">臺北市</option>
+                  <option value="新北市">新北市</option>
+                  <option value="桃園市">桃園市</option>
+                  <option value="新竹縣市">新竹縣市</option>
+                  <option value="苗栗縣">苗栗縣</option>
+                  <option value="臺中市">臺中市</option>
+                  <option value="彰化縣">彰化縣</option>
+                  <option value="南投縣">南投縣</option>
+                  <option value="雲林縣">雲林縣</option>
+                  <option value="嘉義縣市">嘉義縣市</option>
+                  <option value="臺南市">臺南市</option>
+                  <option value="高雄市">高雄市</option>
+                  <option value="屏東縣">屏東縣</option>
+                  <option value="宜蘭縣">宜蘭縣</option>
+                  <option value="花蓮縣">花蓮縣</option>
+                  <option value="臺東縣">臺東縣</option>
+                  <option value="澎湖縣">澎湖縣</option>
+                  <option value="連江縣">連江縣</option>
+                  <option value="金門縣">金門縣</option>
+                  <option value="其他">其他</option>
+                </select>
+              </label>
+            </div>
+            <div class="large-12 columns">
+              <label>學校
+                <select id="select-school" class="form-control" required>
+                  <option value="">請選擇</option>
+                </select>
+              </label>
+            </div>
+            <div class="large-12 columns">
+              <label>身分
+                <select id="select-identity" required>
+                  <option value="">請選擇</option>
+                  <option value="考生">考生</option>
+                  <option value="家長">家長</option>
+                  <option value="其他">其他</option>
+                </select>
+              </label>
+            </div>
+
+            <button id="send-register-btn" type="submit" class="button">送出</button>
+            <a href="#" data-reveal-id="login-modal" class="secondary button">返回</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="not-login-modal" class="reveal-modal" data-reveal data-options="close_on_background_click:false;close_on_esc:false;">
     <div>
       <h2>您尚未登入</h2>
       <div class="content">
@@ -538,6 +624,7 @@
 <script src="../assets/js/foundation.min.js"></script>
 <script src="../assets/js/jquery.floatThead.min.js"></script>
 <script src="../assets/js/js.cookie.js"></script>
+<script src="../js/login.js"></script>
 <script src="../js/calc-rem-tools.js"></script>
 <script src="../js/department-group-choose.js"></script>
 <script src="../js/send-ast-predict-data.js"></script>
@@ -550,6 +637,7 @@
       zIndex: 5,
       useAbsolutePositioning: true}
     );
+
   };
 
   // Google Analytics

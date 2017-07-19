@@ -32,8 +32,8 @@ var querying = false;
 
 function hasCookie()
 {
-  if(Cookies.get('session') !== null) return false;
-  else return true;
+  if(Cookies.get('session') !== null) return true;
+  else return false;
 }
 
 function getGsatTotalScore() {
@@ -563,7 +563,7 @@ function StoreHistory(inputdata) {
 }
 
 
-if(!hasCookie()){
+if(hasCookie()){
   var input_gsat_chinese  = document.getElementById('input-gsat-chinese');
   var input_gsat_english  = document.getElementById('input-gsat-english');
   var input_gsat_math     = document.getElementById('input-gsat-math');

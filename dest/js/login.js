@@ -44,7 +44,7 @@ function errorDialogAlertMsg(text) {
 function resendDialogAlertMsg(text) {
   var alertArea = $(".Message");
   alertArea.empty();
-  alertArea.append('<div data-alert class="alert-box warning radius">    '+text+'    <a href="#" id="resend-btn">重新發送驗證信</a><a href="#" class="close">&times;</a>  </div>');
+  alertArea.append('<div data-alert class="alert-box warning radius">    '+text+'    <a href="#" id="resend-btn" onclick="resendEmail()">重新發送驗證信</a><a href="#" class="close">&times;</a>  </div>');
 }
 
 //增加縣市option標籤
@@ -747,6 +747,48 @@ function resetRegisterForm() {
   addIdentityOption('其他','其他');
 }
 
+function resendEmail() {
+  var mail = getLoginData();
+
+  if(mail === ''){}
+  else {
+    $.ajax({
+      // type: "GET",
+      type: "POST",
+      url:baseResendEmailUrl,
+      headers: {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      dataType: "json",
+      data: "="+mail,
+      beforeSend: function() {
+        // 顯示處理中畫面
+        $('input[type=submit]').prop( "disabled", true );
+        // $('#myResendModal').modal('hide');
+      },
+      success: function(data){
+        successDialogAlertMsg(data.message);
+        $('input[type=submit]').prop( "disabled", false );
+        // $('#myMessageModal').modal('show');
+      },
+      error: function(data){
+        var jsonObj = JSON.parse(data.responseText);
+        if(data.status == 406)
+        {
+          errorDialogAlertMsg("<strong>錯誤！</strong> "+jsonObj.message);
+          $('input[type=submit]').prop( "disabled", false );
+          // $('#myMessageModal').modal('show');
+        }
+        else {
+          errorDialogAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
+          $('input[type=submit]').prop( "disabled", false );
+          // $('#myMessageModal').modal('show');
+        }
+      }
+    });
+  }
+}
+
 //按鈕事件
 // $('#enter-btn').click(function(e) {
 //     e.preventDefault();
@@ -797,15 +839,16 @@ $('#send-register-btn').click(function (e){
         if(data.status == 201)
         {
           $('input[type=submit]').prop( "disabled", false );
-          $('#myRegisterModal').modal('hide');
+          // $('#myRegisterModal').modal('hide');
           errorDialogAlertMsg("<strong>註冊失敗！</strong> "+data.message);
           // $('#myMessageModal').modal('show');
         }
         else{
           $('input[type=submit]').prop( "disabled", false );
-          $('#myRegisterModal').modal('hide');
+          // $('#myRegisterModal').modal('hide');
           successDialogAlertMsg("<strong>註冊成功！</strong> "+data.message);
           // $('#myMessageModal').modal('show');
+          $('#login-modal').foundation('reveal', 'open');
         }
       },
       error: function(data){
@@ -864,53 +907,9 @@ $('#signbtn').click(function(e) {
         }
         else if(data.status == 401)
         {
-          resendAlertMsg(jsonObj.message);
+          resendDialogAlertMsg(jsonObj.message);
           $('input[type=submit]').prop( "disabled", false );
           // $('#myResendModal').modal('show');
-        }
-        else {
-          errorDialogAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
-          $('input[type=submit]').prop( "disabled", false );
-          // $('#myMessageModal').modal('show');
-        }
-      }
-    });
-  }
-});
-
-$('#resend-btn').click(function(e){
-
-  var mail = getLoginData();
-
-  if(mail === ''){}
-  else {
-    e.preventDefault();
-    $.ajax({
-      // type: "GET",
-      type: "POST",
-      url:baseResendEmailUrl,
-      headers: {
-        "content-type": "application/x-www-form-urlencoded"
-      },
-      dataType: "json",
-      data: "="+mail,
-      beforeSend: function() {
-        // 顯示處理中畫面
-        $('input[type=submit]').prop( "disabled", true );
-        $('#myResendModal').modal('hide');
-      },
-      success: function(data){
-        successDialogAlertMsg(data.message);
-        $('input[type=submit]').prop( "disabled", false );
-        // $('#myMessageModal').modal('show');
-      },
-      error: function(data){
-        var jsonObj = JSON.parse(data.responseText);
-        if(data.status == 406)
-        {
-          errorDialogAlertMsg("<strong>錯誤！</strong> "+jsonObj.message);
-          $('input[type=submit]').prop( "disabled", false );
-          // $('#myMessageModal').modal('show');
         }
         else {
           errorDialogAlertMsg("<strong>錯誤！</strong> 沒有網路連線");

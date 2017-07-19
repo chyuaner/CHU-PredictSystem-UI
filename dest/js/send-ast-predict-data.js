@@ -32,7 +32,7 @@ var querying = false;
 
 function hasCookie()
 {
-  if(Cookies.get('sesstion') !== null) return false;
+  if(Cookies.get('session') !== null) return false;
   else return true;
 }
 
@@ -586,5 +586,5 @@ if(!hasCookie()){
   }
 }
 else{
-  $('#not-login-modal').foundation('reveal', 'open');
+  $('#login-modal').foundation('reveal', 'open');
 }

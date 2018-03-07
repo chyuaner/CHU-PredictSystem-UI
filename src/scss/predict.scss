@@ -9,7 +9,7 @@ header {
 #header {
 
   padding-top: 8rem;
-  background: #8AB9B2;
+  background: #69968f;
   overflow: hidden;
   box-shadow: 0 0.2rem 2rem gray;
   h2, h3, p, label {color: white;}
@@ -23,6 +23,14 @@ header {
     font-size: 1.2rem;
     small {
       font-size: 0.9rem;
+      color: white;
+    }
+  }
+
+  h3 {
+    font-size: 1.0rem;
+    small {
+      font-size: 0.7rem;
       color: white;
     }
   }
@@ -46,9 +54,51 @@ header {
       position: relative;
       top: 0.1em;
     }
+    p {
+      @media #{$medium-up} {
+        display: inline;
+      }
+      small {
+        color: white;
+      }
+    }
+
+    /* @include grid-column(6); */
+    /* float: left; */
   }
 
-  /* 所有數字輸入框*/
+  .score-grade {
+    color: #ffde00;
+  }
+
+  #total-gsat-score {
+    h2 {
+      display: inline;
+      margin-right: 1.2em;
+    }
+    span {
+      font-size: 1.5em;
+      color: white;
+      border: 2px white solid;
+      padding-left: 1em;
+      padding-right: 1em;
+    }
+    .score-grade {
+      margin-left: 0;
+      font-size: 0.8em;
+      border: 0;
+      color: #ffde00;
+    }
+    /* @include grid-column(6); */
+    @media #{$medium-up} {
+      text-align: right;
+      margin-top: -3em;
+      margin-bottom: 2.5em;
+    }
+  }
+
+
+  /* 所有數字輸入框 */
   input[type="number"], select {
     box-shadow: inset 0 0 0 0;
     background: none;
@@ -81,6 +131,10 @@ header {
     label {
       font-size: 1em;
       text-align: center;
+    }
+    .score-grade {
+      margin-left: 0.7em;
+      font-size: 0.8em;
     }
     ul li { margin-bottom: -1em; }
 
@@ -135,8 +189,8 @@ header {
   }
 
   /* 選取學群 */
-  #input-department-group-area {
-    h2 { float:left; width: 4em; margin-right: 1em; }
+  #input-department-group-area ,#input-state-group-area{
+    h2, h3 { float:left; width: 4em; margin-right: 1em; }
     p {
       margin-left: -9em;
       padding-left: 9.5em;
@@ -160,7 +214,7 @@ header {
     }
 
     /* 選取學群的checkbox區域 */
-    #input-department-group-choose-area {
+    #input-department-group-choose-area ,#input-state-group-choose-area {
       transition: all 0.7s ease;
       width: 100%;
       @media #{$small-only} {
@@ -199,7 +253,7 @@ header {
       }
     }
 
-    #input-department-group-choose-area.hidden {
+    #input-department-group-choose-area.hidden, #input-state-group-choose-area.hidden {
       position: absolute;
       top: -1000em;
       left: -1000em;
@@ -209,8 +263,70 @@ header {
     }
   }
 
+  #input-school-area {
+    /* @include grid-row; */
+
+    @media #{$small-only} {
+      #input-university-group-area{
+        @include grid-column(12);
+      }
+    }
+    @media #{$medium-up} {
+      #input-university-group-area{
+        @include grid-column(3);
+      }
+    }
+    @media #{$large-up} {
+      #input-university-group-area{
+        @include grid-column(2);
+      }
+    }
+  }
+
+  #input-university-group-area{
+
+    h2 {
+      float: left;
+      margin-right: 2em;
+      margin-top: 0.5em;
+    }
+    ul li {
+      list-style: none;
+      display: inline;
+      label {
+        display: inline;
+        margin-right: 1.8em;
+      }
+    }
+    label {
+      font-size: 1.2em;
+    }
+    ul li input[type="checkbox"]+span::before {
+      font-size: 1.5em;
+      margin-right: 0.5em;
+    }
+    ul li input[type="checkbox"]+span::before {
+      content: '\2610';
+      width: 1em;
+    }
+    ul li input[type="checkbox"]:checked+span::before {
+      content: '\2611';
+      width: 1em;
+    }
+    ul li input[type="checkbox"] {
+      display: none;
+    }
+    ul li input[type="checkbox"]:checked+span {
+      /* background: #567771;
+      box-shadow: 0 0 10px white; */
+    }
+  }
+
   #input-action-area {
     float: right;
+    @media #{$medium-up} {
+      margin-top: -3em;
+    }
     ul li {
       list-style-type: none;
       display: inline-block;
@@ -238,6 +354,14 @@ header {
     }
     input[type="submit"]:hover {
       background: rgba(124, 255, 129, 0.55);
+    }
+
+    input[type="submit"]:disabled {
+      background: rgba(60, 60, 60, 0.7);
+      cursor: not-allowed;
+      box-shadow: none;
+      color: black;
+      border: 2px solid gray;
     }
   }
 }
@@ -333,7 +457,14 @@ header {
     td.warning {
       color: red;
     }
-    tfoot tr td{
+    td.change {
+      color: purple;
+    }
+    tfoot tr td {
+      text-align: center;
+    }
+    td.big-row {
+      padding-left: 0em;
       text-align: center;
     }
 
@@ -347,7 +478,10 @@ header {
       }
       thead th:nth-child(5), tbody td:nth-child(5),
       thead th:nth-child(6), tbody td:nth-child(6) {
-        width: 10rem;
+        width: 12.5rem;
+      }
+      thead th:nth-child(7), tbody td:nth-child(7) {
+        width: 6rem;
       }
     }
 
@@ -368,7 +502,7 @@ header {
         border: none;
         border-bottom: 1px solid #eee;
         position: relative;
-        padding-left: 10em;
+        padding-left: 13em;
         white-space: normal;
         text-align:left;
       }
@@ -377,7 +511,7 @@ header {
         top: 6px;
         left: 6px;
         width: 8em;
-        padding-right: 10px;
+        padding-right: 13px;
         white-space: nowrap;
         text-align:left;
         font-weight: bold;
@@ -416,12 +550,7 @@ header {
     margin-top: 2em;
     padding-bottom: 4em;
 
-    #footer-left {
-      float: left;
-    }
-    #footer-right {
-      float: right;
-    }
+    @include footer;
   }
 }
 
@@ -444,5 +573,54 @@ header {
     section:nth-child(3) {
       clear: both;
     }
+  }
+}
+
+@media print {
+  header, #result-area h2+a {
+    display: none;
+  }
+
+  #header {
+    padding-top: 0;
+
+    #input-area {
+      border-bottom: 2px black solid;
+
+      #input-expect-salary-area {
+        p {display: none;}
+        * { margin-bottom: 0;}
+      }
+      #input-ast-score ul li, #input-gsat-score ul li {
+        display: inline-block;
+        label {
+          width: 6em;
+        }
+      }
+      #input-gsat-score ul {
+        margin-top: -0.5em;
+        li:last-child label {
+          position: relative;
+          top: 0.5em;
+        }
+      }
+      .more-button {
+        display: none;
+      }
+      #input-department-group-choose-area, #input-state-group-choose-area, #input-action-area {
+        display: none;
+      }
+    }
+  }
+  table, footer {
+    a[href]:after {
+      content: none !important;
+    }
+  }
+  table {
+    table-layout: auto;
+  }
+  div.floatThead-floatContainer {
+    display: none;
   }
 }

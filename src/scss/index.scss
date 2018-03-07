@@ -41,6 +41,12 @@ header {
         margin-top: 1em;
         width: 90%;
       }
+
+      div.go-to-ast {
+        margin: 0 auto;
+        width: 90%;
+      }
+
       div.go-to {
         margin: 0 auto;
         width: 90%;
@@ -49,15 +55,26 @@ header {
       @media #{$small-up} {
         margin: 0 auto;
         width: 90%;
+
+        div.go-to-ast {
+          margin-top: 2em;
+        }
       }
       @media #{$medium-up} {
         div.intro-content {
 
         }
+        div.go-to-ast {
+          text-align: right;
+
+          margin-top: -1em;
+          padding-top: 2em;
+          padding-bottom: 2em;
+        }
         div.go-to {
           text-align: right;
 
-          margin-top: -3em;
+          margin-top: -2em;
           padding-top: 2em;
           padding-bottom: 2em;
         }
@@ -88,7 +105,7 @@ header {
       }
       .primaryBtn:after {
         content: "►";
-        margin-left: 1em;
+        margin-left: 0.5em;
         text-shadow: none;
 //        box-shadow: 2px 2px 5px black;
 //        border: 2px solid white;
@@ -115,7 +132,9 @@ header {
 
 footer {
   @include footer;
+  margin: 0 auto;
+  width: 90%;
   overflow: hidden;
   background: white;
-//  margin-top: -3rem;
+  padding-bottom: 0;
 }

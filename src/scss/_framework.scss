@@ -1,3 +1,7 @@
+/* 套用Google的黑體 */
+@import url(//fonts.googleapis.com/earlyaccess/cwtexhei.css);
+body, h1, h2, h3 { font-family: 'cwTeXHei', serif;  }
+
 #too-old-ie {
   display: none;
   @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
@@ -129,14 +133,44 @@
 }
 
 @mixin footer {
-  border-top: 1px solid black;
 
   #footer-left {
+    clear: both;
     float: left;
-    margin-left: 5%;
   }
   #footer-right {
     float: right;
-    margin-right: 5%;
+    text-align: right;
+    ul li ul {
+      display: inline;
+    }
+
+    @media #{$small-only} {
+      float: left;
+      text-align: left;
+    }
+  }
+
+
+  ul {
+    li {
+      list-style: none;
+
+      ul {
+        margin-left: 0;
+        li {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+#contact-me-modal, #dev-people-modal {
+  @media #{$medium-up} {
+    width: 50%;
+  }
+  @media #{$large-up} {
+    width: 30%;
   }
 }

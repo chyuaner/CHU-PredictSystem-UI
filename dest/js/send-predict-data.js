@@ -140,15 +140,11 @@ function getData() {
   return data;
 }
 
-function setData(inputData, resultData, resultCHUData) {
+function setData(inputData, resultData) {
 
   // 網頁介面對應
   var table_result = $("#table-result-suggest-school-departments");
   var table_result_body = table_result.find("tbody");
-
-  // 網頁介面對應
-  var table_chu_result = $("#table-chu-result-suggest-school-departments");
-  var table_chu_result_body = table_chu_result.find("tbody");
 
   // 有沒有資料
   if(resultData.length > 0) {
@@ -165,20 +161,6 @@ function setData(inputData, resultData, resultCHUData) {
   else {
     table_result_body.empty();
     table_result_body.append('<tr><td colspan="7">沒有符合您的校系，請修改條件後再次分析。</td></tr>');
-  }
-
-  if(resultCHUData.length > 0) {
-    table_chu_result_body.empty();
-    for(var i=0; i<resultCHUData.length; i++) {
-      addChuData(resultCHUData[i].did, resultCHUData[i].uname, resultCHUData[i].uurl,
-              resultCHUData[i].dname, resultCHUData[i].durl, resultCHUData[i].salary, resultCHUData[i].salaryUrl,
-              resultCHUData[i].lastCriterion, resultCHUData[i].rateOfThisYear, resultCHUData[i].change,
-              resultCHUData[i].examURL, resultCHUData[i].riskIndex);
-    }
-  }
-  else {
-    table_chu_result_body.empty();
-    table_chu_result_body.append('<tr><td colspan="7">沒有符合您的校系。</td></tr>');
   }
 }
 
@@ -208,7 +190,7 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, lastCriterion
   }
 
   var rateOfThisYear_tooltip, rateOfThisYear_info_icon, rateOfThisYear_change_class;
-  if(change !== '') {
+  if(change !== null) {
     rateOfThisYear_tooltip = ' data-tooltip aria-haspopup="true" data-tooltip-title="'+change +'"';
     // rateOfThisYear_info_icon = '<i class="fi-info"></i>';
     rateOfThisYear_change_class = ' change';
@@ -232,51 +214,6 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, lastCriterion
   // $('#table-result-suggest-school-departments tr[data-item-id="'+did+'"]').foundation('tooltip', 'reflow');
 }
 
-function addChuData(did, uname, uurl, dname, durl, salary, salaryUrl, lastCriterion, rateOfThisYear, change, examURL, riskIndex) {
-
-  if(salary == 0) { salary = '樣本不足';}
-
-  var table_result = $("#table-chu-result-suggest-school-departments");
-  var table_result_body = table_result.find("tbody");
-
-  var trClass = '';
-  var tr = '<tr data-item-id="'+did+'" class="' + trClass + '">';
-
-  var content = '<th data-title="校系代碼">'+'<a href="'+examURL+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至簡章頁面">'+formatNumberLength(did, 4)+'</a>'+'</th>';
-  content += '<td data-title="校名"><a href="'+uurl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至學校首頁">'+uname+'</a></td>';
-  content += '<td data-title="科系名稱"><a href="'+durl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至科系首頁">'+dname+'</a></td>';
-  if(salaryUrl === null) {
-    content += '<td data-title="畢業校友平均薪資">'+salary+'</td>';
-  }
-  else {
-    content += '<td data-title="畢業校友平均薪資"><a href="'+salaryUrl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至104升學就業地圖">'+salary+'</a></td>';
-  }
-
-  var rateOfThisYear_tooltip, rateOfThisYear_info_icon, rateOfThisYear_change_class;
-  if(change !== '') {
-    rateOfThisYear_tooltip = ' data-tooltip aria-haspopup="true" data-tooltip-title="'+change +'"';
-    // rateOfThisYear_info_icon = '<i class="fi-info"></i>';
-    rateOfThisYear_change_class = ' change';
-  }
-  else {
-    rateOfThisYear_tooltip = '';
-    // rateOfThisYear_info_icon = '';
-    rateOfThisYear_change_class = '';
-  }
-  content += '<td data-title="今年篩選倍率" class="'+rateOfThisYear_change_class+'"><span'+rateOfThisYear_tooltip+'>'+rateOfThisYear+'</span></td>';
-
-  if(riskIndex == true) {
-    content += '<td data-title="去年通過倍率篩選最低級分" class="warning">'+'<span data-tooltip aria-haspopup="true" data-tooltip-title="換算去年級分低於\n去年通過倍率篩選最低級分">'+lastCriterion+'</span>'+'&nbsp;</td>';
-  }
-  else {
-    content += '<td data-title="去年通過倍率篩選最低級分">'+lastCriterion+'&nbsp;</td>';
-  }
-
-  table_result_body.append(tr+content+'</tr>');
-
-  // $('#table-chu-result-suggest-school-departments tr[data-item-id="'+did+'"]').foundation('tooltip', 'reflow');
-}
-
 function cleanData() {
   // 網頁介面對應
   var table_result = $("#table-result-suggest-school-departments");
@@ -286,13 +223,6 @@ function cleanData() {
   table_result_body.append('<tr><td class="big-row" colspan="˙">沒有符合您的校系，請修改條件後再次分析。</td></tr>');
 }
 
-function cleanChuData() {
-  var table_result = $("#table-chu-result-suggest-school-departments");
-  var table_result_body = table_result.find("tbody");
-
-  table_result_body.empty();
-  table_result_body.append('<tr><td class="big-row" colspan="˙">沒有符合您的校系，請修改條件後再次分析。</td></tr>');
-}
 
 function errorData() {
   // 網頁介面對應
@@ -362,8 +292,7 @@ function queryResult() {
         success: function(data){
           // 隱藏處理中畫面
           div_loading.classList.add('hidden');
-          updateChuWelfare();
-          setData(inputData, data.result, data.resultCHU);
+          setData(inputData, data.result);
           $('input[type=submit]').prop( "disabled", false );
           $('input[type=submit]').val('開始分析');
           querying = false;

@@ -9,6 +9,9 @@ header {
 #header {
 
   padding-top: 8rem;
+  @media #{$small-only} {
+    padding-top: 0;
+  }
   background: #69968f;
   overflow: hidden;
   box-shadow: 0 0.2rem 2rem gray;
@@ -60,6 +63,7 @@ header {
       }
       small {
         color: white;
+        font-size: 1em;
       }
     }
 
@@ -360,7 +364,7 @@ header {
       background: rgba(60, 60, 60, 0.7);
       cursor: not-allowed;
       box-shadow: none;
-      color: black;
+      color: white;
       border: 2px solid gray;
     }
   }
@@ -386,13 +390,65 @@ header {
       text-decoration: underline;
     }
 
+    h2, h3 {
+      margin-top: 1em;
+    }
+
+    @keyframes chu-welfare-ani {
+        0%   {color: rgba(0, 0, 0, 0); left:100px;}
+        25%   {color: rgba(0, 0, 0, 0); left:100px;}
+        100% {color: #D88511; left:0px;}
+    }
+    #chu-welfare {
+      a {
+        color: #D88511;
+        font-weight: bold;
+        position: relative;
+        animation-name: chu-welfare-ani;
+        animation-duration: 3s;
+        &:hover {
+          color: #ff9e14;
+          text-decoration: underline;
+        }
+      }
+      &.hidden {
+        display: none;
+      }
+    }
+    #chu-welfare-salary a {
+      font-size: 1.2rem;
+      color: #D88511;
+
+      &:hover {
+        color: #ff9e14;
+        text-decoration: underline;
+      }
+    }
+
     @media #{$medium-up} {
-      h2 {
+      h2, h3 {
         float: left;
-        margin-top: 1em;
       }
       a.research-methods-link {
         float: left;
+        margin-top: 2.1em;
+      }
+      a.research-methods-link, #chu-welfare {
+        margin-bottom: 0;
+      }
+      #chu-welfare+p {
+        margin-top: 1em;
+      }
+
+      #chu-welfare {
+        margin-top: 2.5em;
+        a {
+
+          margin-left: 1em;
+        }
+      }
+
+      a.research-methods-link {
         font-size: 1.3rem;
         margin-top: 2.1em;
       }
@@ -402,7 +458,7 @@ header {
       #function-info {
         float: right;
         position: relative;
-        top: 3em;
+        margin-bottom: -3em;
       }
       #salary-source-area {
         clear: both;
@@ -414,7 +470,6 @@ header {
         top: 2em;
         width: 35%;
       }
-
     }
 
     @keyframes bigger-ani {
@@ -467,6 +522,52 @@ header {
       padding-left: 0em;
       text-align: center;
     }
+    /* Tooltip */
+    /* http://muki.tw/tech/pure-css-tooltip-data-tag/ */
+    span[data-tooltip], a[data-tooltip] {
+      position: relative;
+      display: inline-block;
+      &:hover {
+        &:before, &:after {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+      &:before {
+        content: attr(data-tooltip-title);
+        background: #4d4d4d;
+        border-radius: 10px;
+        color: #fff;
+        width: 15em;
+        padding: .8em 1em;
+        position: absolute;
+        left: 0;
+        top: 2.5em;
+        z-index: 2;
+        margin-left: -3em;
+        text-align: center;
+        @media #{$small-only} {
+          margin-left: -5.5em;
+        }
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-width: 8px;
+        border-style: solid;
+        border-color: transparent transparent #4d4d4d transparent;
+        left: 0;
+        margin-left: 30%;
+        top: 1.5em;
+      }
+      &:before, &:after {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-out;
+      }
+    }
 
     /*表格欄位大小調整*/
     @media #{$large-up} {
@@ -488,7 +589,8 @@ header {
     /* 螢幕較小的版型 */
     @media #{$small-only} {
       table { border: 0; }
-      table, thead, tbody, th, td, tr { display: block; };
+      table, thead, tbody, th, td, tr { display: block; }
+      tfoot { display: inherit; }
       thead tr {
         position: absolute;
         top: -9999px;
@@ -536,13 +638,16 @@ header {
     padding-bottom: 3rem;
     transition: all 0.5s linear;
     background: white;
+    z-index: 10;
+    height: 100%;
+
+    &.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
 
     img { width: 5rem; height: 5rem; }
     p { margin-top: 1em; font-size: 2rem; }
-  }
-  #loading-area.hidden {
-    opacity: 0;
-    visibility: hidden;
   }
 
   footer {

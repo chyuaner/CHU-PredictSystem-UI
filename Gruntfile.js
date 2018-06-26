@@ -34,12 +34,32 @@ module.exports = function(grunt) {
     },
 
     connect: {
-        server: {
-            options: {
-                hostname: '*',
-                base: 'dist'
-            }
-        }
+      server: {
+        options: {
+          hostname: 'localhost',
+          port: 8000,
+          base: 'dist',
+          middleware: function (connect, options, defaultMiddleware) {
+              var proxy = require('grunt-connect-proxy2/lib/utils').proxyRequest;
+              return [
+                  // Include the proxy first
+                  proxy
+              ].concat(defaultMiddleware);
+          }
+        },
+        proxies: [
+          {
+              context: '/gsat/api',
+              host: 'predict.chu.edu.tw',
+              port: 80,
+              https: false,
+              changeOrigin: true,
+              rewrite: {
+                  '^/gsat/api': '2018/gsat/api'
+              }
+          }
+        ]
+      }
     },
 
     watch: {
@@ -60,6 +80,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-connect-proxy2');
 
-  grunt.registerTask('default', ['copy', 'sass', 'connect', 'watch']);
+  grunt.registerTask('default', ['copy', 'sass', 'configureProxies:server', 'connect:server', 'watch']);
 }

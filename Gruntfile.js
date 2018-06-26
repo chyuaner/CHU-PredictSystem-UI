@@ -11,10 +11,10 @@ module.exports = function(grunt) {
           outputStyle: 'compressed'
         },
         files: {
-          'dest/css/index.css': 'src/scss/index.scss',
-          'dest/css/predict.css': 'src/scss/predict.scss',
-          'dest/css/chart.css': 'src/scss/chart.scss',
-          'dest/css/chart-no-js.css': 'src/scss/chart-no-js.scss'
+          'dist/css/index.css': 'src/scss/index.scss',
+          'dist/css/predict.css': 'src/scss/predict.scss',
+          'dist/css/chart.css': 'src/scss/chart.scss',
+          'dist/css/chart-no-js.css': 'src/scss/chart-no-js.scss'
         }
       }
     },
@@ -27,7 +27,7 @@ module.exports = function(grunt) {
             flatten: true,
             cwd: 'bower_components/',
             src: ['jquery/dist/jquery.min.js', 'foundation/js/foundation.min.js', 'foundation/js/vendor/modernizr.js', 'floatThead/dist/jquery.floatThead.min.js'],
-            dest: 'dest/assets/js/'
+            dest: 'dist/assets/js/'
           }
         ]
       }
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
         server: {
             options: {
                 hostname: '*',
-                base: 'dest'
+                base: 'dist'
             }
         }
     },
@@ -47,7 +47,7 @@ module.exports = function(grunt) {
         livereload: true
       },
       frontend: {
-        files: [ 'dest/**/*.js', 'dest/**/*.html' ],
+        files: [ 'dist/**/*.js', 'dist/**/*.html' ],
       },
       stylesheet: {
         files: [ 'src/scss/**/*.scss' ],

@@ -1,12 +1,12 @@
 @import "foundation";
 @import "framework";
 
-header {
+/* header {
   @include header(#ffffff, black, none, orange);
-}
+} */
 
 #container {
-  padding-top: 6rem;
+  /* padding-top: 6rem; */
   @media #{$small-only} {
     padding-top: 0;
     height: auto;
@@ -15,131 +15,78 @@ header {
   height: 100%;
   width: 100%;
   display: table;
+  .alert-box {
+    margin-bottom: 0;
+  }
 
-  .page-section {
-    display: table-row;
+  #main-area {
+    background: #007BBE;
+    #main-img {
+      width: 100%;
+    }
 
-    .inner {
-      @include grid-row();
-      display: table-cell;
-      vertical-align: middle;
-      padding-top: 2rem;
-      padding-bottom: 2rem;
+    #main-link-area {
+      padding-top: 1.8em;
+      padding-bottom: 1.8em;
 
-      h2 {
-        text-shadow: 5px 5px 5px gray;
-        margin: 0 auto;
-        width: 90%;
-      }
-      .intro-content li{
-        font-size: 1.3em;
-      }
+      a.primaryBtn {
+        display: block;
+        border: 2px white double;
+        border-width: 6px;
+        border-radius: 2rem;
+        color: #008CBA;
+        background: white;
+        background-clip: padding-box;
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+        padding: 0.8em;
 
-      strong {
-//        color: #ffcfe0;
-//        text-shadow: 2px 2px 5px gray;
-      }
-
-      div.intro-content {
-        margin: 0 auto;
-        margin-top: 1em;
-        width: 90%;
-      }
-
-      div.go-to-ast {
-        margin: 0 auto;
-        width: 90%;
-      }
-
-      div.go-to {
-        margin: 0 auto;
-        width: 90%;
-      }
-
-      @media #{$small-up} {
-        margin: 0 auto;
-        width: 90%;
-
-        div.go-to-ast {
-          margin-top: 2em;
+        &:hover {
+          // background: #cff3ff;
+          // background-clip: padding-box;
+          box-shadow: 0 0 10px white;
         }
+      }
+      ul {
+        margin-left: 0;
+        li {
+          list-style-type: none;
+          margin: 1em;
+          position:relative;
+          .hot-icon {
+            position: absolute;
+            top: -1.5em;
+            left: -2.5em;
+            z-index: 1;
+          }
+        }
+      }
+      @media #{$small-only} {
       }
       @media #{$medium-up} {
-        div.intro-content {
-
+        ul {
+          text-align: center;
+          li {
+            display: inline-block;
+          }
         }
-        div.go-to-ast {
-          text-align: right;
-
-          margin-top: -1em;
-          padding-top: 2em;
-          padding-bottom: 2em;
-        }
-        div.go-to {
-          text-align: right;
-
-          margin-top: -2em;
-          padding-top: 2em;
-          padding-bottom: 2em;
-        }
-      }
-      .hot-icon {
-        position: relative;
-        top: -1em;
-        left: -1em;
-        z-index: 1;
-        margin-right: -5.5em;
-      }
-      .primaryBtn {
-        margin-left: 1.2em;
-        width: 18em;
-        @media #{$medium-up} {
-          position: relative;
-//          text-align: right;
-        }
-
-        transition: all 0.3s ease;
-        color: white;
-        font-size: 1.3em;
-        padding: 0.8em;
-        padding-left: 1.5em;
-        background: #635df5;
-        box-shadow: 0 0 10px #ffffff;
-        border-radius: 60px;
-//        text-shadow: 2px 2px 10px black;
-//        border: 2px solid white;
-//        border-radius: 10px;
-//        background: #e8e4b1;
-      }
-      .primaryBtn:hover {
-        background: #9e9aff;
-        box-shadow: 0 0 20px #ffffff;
-      }
-      .primaryBtn:after {
-        content: "►";
-        margin-left: 0.5em;
-        text-shadow: none;
-//        box-shadow: 2px 2px 5px black;
-//        border: 2px solid white;
-//        border-radius: 50px;
-//        padding: 0.3em;
-        padding-left: 0.5em;
       }
     }
   }
 
-  #predict-area {
-    background: #8AB9B2;
-    h1, h2, h3, p, li{color: white;}
-    min-height: 50%;
-  }
-
-  #chart-area {
-    background: #a18ab9;
-    h1, h2, h3, p, li {color: white;}
-    min-height: 50%;
-  }
-  margin-bottom: -2em;
+//   #predict-area {
+//     background: #69968f;
+//     h1, h2, h3, p, li{color: white;}
+//     min-height: 50%;
+//   }
+//
+//   #chart-area {
+//     background: #77618e;
+//     h1, h2, h3, p, li {color: white;}
+//     min-height: 50%;
+//   }
+//   margin-bottom: -2em;
 }
 
 footer {

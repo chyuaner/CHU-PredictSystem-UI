@@ -11,7 +11,7 @@ PredictionAPI <https://github.com/CHU-TDAP/PredictionAPI>
 
 
 ## 檔案規劃
-    
+
 ```text
 root ─┬─ bower_components (請不要變動此檔案)
       ├─ node_modules (請不要變動此檔案)
@@ -40,25 +40,28 @@ root ─┬─ bower_components (請不要變動此檔案)
 #### Mac OSX
     brew install node
 
+#### Windows
+請至<https://nodejs.org/en/download/>下載並安裝node環境
+
 ### 2. 安裝相關套件
 
-    [sudo] npm install -g grunt-cli
-    [sudo] npm install -g bower
+    [sudo] npm install -g grunt-cli bower
     npm install && bower install
 
 ### 3. 啟動自動化工具
 
     grunt
 
-啟動後會監視專案內的`.html`,`.scss`檔案，一有任何變動將會
+啟動後會做好建置輸出成`/dist`，並啟動簡易伺服器<http://localhost:8000>可直接瀏覽，同時會監視專案的`/src`內檔案，一有任何變動將會立即更新。
 
-* grunt-sass: 將scss檔轉換成給瀏覽器解讀用的css檔
-* livereload: 呼叫瀏覽器自動重新整理
+瀏覽器請安裝LiveReload
+* Firefox: https://addons.mozilla.org/zh-TW/firefox/addon/livereload-web-extension/?src=search
+* Firefox(舊版): [LiveReload - browser extensions](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-)
+* Chrome: https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=zh-TW
 
-#### 瀏覽器plugin安裝
-[LiveReload - browser extensions](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-)
-
-支援主流瀏覽器: Firefox, Chrome, Safari
+## grunt-connect-proxy2
+本專案已導入Proxy，在開發時請連上網際網路。
+在本地端以`grunt`啟動localhost簡易伺服器後，會在 http://localhost:8000/gsat/api 後直接對應到伺服端的 http://predict.chu.edu.tw/2018/gsat/api ，可直接在連網的情況下以本地端的前端測試與後端的互動情形。
 
 ## 關於
 介面設計: 元兒～

@@ -7,7 +7,7 @@
 
 PredictionAPI <https://github.com/CHU-TDAP/PredictionAPI>
 
-若您有自行架設後端的話，請更改`/dest/js/send-predict-data.js`的`var basePredictSystemUrl = "<您的後端網址>"`
+若您有自行架設後端的話，請更改`/dist/js/send-predict-data.js`的`var basePredictSystemUrl = "<您的後端網址>"`
 
 
 ## 檔案規劃
@@ -18,7 +18,7 @@ root ─┬─ bower_components (請不要變動此檔案)
       ├─ src (原始檔案)
       │  └─ scss (網頁外觀專用檔案)
       │  
-      └─ dest (最後發布網站用的資料夾)
+      └─ dist (最後發布網站用的資料夾)
          ├─ assets (外部函式庫資源)
          ├─ css (請不要變動此檔案)
          ├─ images

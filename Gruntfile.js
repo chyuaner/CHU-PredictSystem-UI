@@ -51,7 +51,8 @@ module.exports = function(grunt) {
         dest: 'dist/',
         options: {
           includes: {
-            analytics: './src/ga.inc' // in this case it's google analytics (see sample below)
+            analytics: './src/ga.inc',
+            footer: './src/footer.inc'
           }
         }
       }

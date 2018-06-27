@@ -30,6 +30,30 @@ module.exports = function(grunt) {
             dest: 'dist/assets/js/'
           }
         ]
+      },
+      main: {
+        files: [
+          {
+            expand: true,
+            cwd: 'src/',
+            src: ['images/**', 'docs/**', 'js/**'],
+            dest: 'dist/'
+          }
+        ]
+      }
+    },
+
+    htmlrefs: {
+      dist: {
+        expand: true,
+        cwd: 'src/',
+        src: '**/*.html',
+        dest: 'dist/',
+        options: {
+          includes: {
+            analytics: './ga.inc' // in this case it's google analytics (see sample below)
+          }
+        }
       }
     },
 
@@ -67,7 +91,8 @@ module.exports = function(grunt) {
         livereload: true
       },
       frontend: {
-        files: [ 'dist/**/*.js', 'dist/**/*.html' ],
+        files: [ 'src/**/*.js', 'src/**/*.html' ],
+        tasks: [ 'copy', 'htmlrefs' ]
       },
       stylesheet: {
         files: [ 'src/scss/**/*.scss' ],
@@ -78,9 +103,10 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-htmlrefs');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-connect-proxy2');
 
-  grunt.registerTask('default', ['copy', 'sass', 'configureProxies:server', 'connect:server', 'watch']);
+  grunt.registerTask('default', ['copy', 'sass', 'htmlrefs', 'configureProxies:server', 'connect:server', 'watch']);
 }

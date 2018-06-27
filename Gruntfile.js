@@ -52,7 +52,8 @@ module.exports = function(grunt) {
         options: {
           includes: {
             analytics: './src/ga.inc',
-            footer: './src/footer.inc'
+            footer: './src/footer.inc',
+            oldie: './src/old-ie.inc'
           }
         }
       }

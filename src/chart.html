@@ -8,6 +8,7 @@
   <title>校系CP值分析 - 106/2017 升大學職涯型落點分析/預測</title>
   <link rel="stylesheet" href="css/chart.css">
   <script src="assets/js/modernizr.js"></script>
+  <script src="assets/js/d3.min.js"></script>
   <noscript>
     <link rel="stylesheet" href="css/chart-no-js.css">
   </noscript>
@@ -81,7 +82,7 @@
 
     <div id="3-chart" class="chart-content">
       <h2>學校CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="學校平均值">
         <ul>
           <li>
             <figure>
@@ -95,7 +96,7 @@
 
     <div id="4-chart" class="chart-content hidden">
       <h2>科系CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="科系">
         <ul>
           <li>
             <figure>
@@ -109,7 +110,7 @@
 
     <div id="1-chart" class="chart-content hidden">
       <h2>學群CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="學群平均值">
         <ul>
           <li>
             <figure>
@@ -122,7 +123,7 @@
 
     <div id="2-chart" class="chart-content hidden">
       <h2>學類CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="學類平均值">
         <ul>
           <li>
             <figure>
@@ -138,7 +139,7 @@
 
     <div id="5-chart" class="chart-content hidden">
       <h2>工程學群CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="工程學群">
         <ul>
           <li>
             <figure>
@@ -152,7 +153,7 @@
 
     <div id="6-chart" class="chart-content hidden">
       <h2>資訊學群 CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="資訊學群">
         <ul>
           <li>
             <figure>
@@ -166,7 +167,7 @@
 
     <div id="7-chart" class="chart-content hidden">
       <h2>管理學群 CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="管理學群">
         <ul>
           <li>
             <figure>
@@ -180,7 +181,7 @@
 
     <div id="8-chart" class="chart-content hidden">
       <h2>財經學群 CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="財經學群">
         <ul>
           <li>
             <figure>
@@ -194,7 +195,7 @@
 
     <div id="9-chart" class="chart-content hidden">
       <h2>建築與設計學群 CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="建築與設計學群">
         <ul>
           <li>
             <figure>
@@ -208,7 +209,7 @@
 
     <div id="10-chart" class="chart-content hidden">
       <h2>外語學群 CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="外語學群">
         <ul>
           <li>
             <figure>
@@ -222,7 +223,7 @@
 
     <div id="11-chart" class="chart-content hidden">
       <h2>數理化學群 CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="數理化學群">
         <ul>
           <li>
             <figure>
@@ -236,7 +237,7 @@
 
     <div id="12-chart" class="chart-content hidden">
       <h2>醫藥衛生學群 CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="醫藥衛生學群">
         <ul>
           <li>
             <figure>
@@ -250,7 +251,7 @@
 
     <div id="13-chart" class="chart-content hidden">
       <h2>生命科學學群 CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="生命科學學群">
         <ul>
           <li>
             <figure>
@@ -264,7 +265,7 @@
 
     <div id="14-chart" class="chart-content hidden">
       <h2>生物資源學群 CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="生物資源學群">
         <ul>
           <li>
             <figure>
@@ -278,7 +279,7 @@
 
     <div id="15-chart" class="chart-content hidden">
       <h2>地球與環境學群 CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="地球與環境學群">
         <ul>
           <li>
             <figure>
@@ -292,7 +293,7 @@
 
     <div id="16-chart" class="chart-content hidden">
       <h2>藝術學群 CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="藝術學群">
         <ul>
           <li>
             <figure>
@@ -306,7 +307,7 @@
 
     <div id="17-chart" class="chart-content hidden">
       <h2>社會與心理學群 CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="社會與心理學群">
         <ul>
           <li>
             <figure>
@@ -320,7 +321,7 @@
 
     <div id="18-chart" class="chart-content hidden">
       <h2>大眾傳播學群 CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="大眾傳播學群">
         <ul>
           <li>
             <figure>
@@ -334,7 +335,7 @@
 
     <div id="19-chart" class="chart-content hidden">
       <h2>文史哲學群 CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="文史哲學群">
         <ul>
           <li>
             <figure>
@@ -348,7 +349,7 @@
 
     <div id="20-chart" class="chart-content hidden">
       <h2>教育學群CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="教育學群">
         <ul>
           <li>
             <figure>
@@ -362,7 +363,7 @@
 
     <div id="21-chart" class="chart-content hidden">
       <h2>法政學群CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="法政學群">
         <ul>
           <li>
             <figure>
@@ -376,7 +377,7 @@
 
     <div id="22-chart" class="chart-content hidden">
       <h2>遊憩與運動學群CP值分析</h2>
-      <div class="chart-image-area">
+      <div class="chart-image-area" data-name="遊憩與運動學群">
         <ul>
           <li>
             <figure>
@@ -435,7 +436,7 @@
               </li>
             </ul>
 
-            <img src="images/ex-avg-salary.png">
+            <img src="images/ex-avg-salary.jpg">
           </section>
 
           <section>
@@ -503,6 +504,7 @@
 <script src="assets/js/foundation.min.js"></script>
 <script src="js/calc-rem-tools.js"></script>
 <script src="js/chart-display.js"></script>
+<script src="js/draw-chart.js"></script>
 <script>
   window.onload = function() {
     $(document).foundation();

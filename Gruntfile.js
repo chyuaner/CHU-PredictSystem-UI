@@ -83,7 +83,7 @@ module.exports = function(grunt) {
               changeOrigin: true,
               rewrite: {
                   '^/gsat/api': '2018/gsat/api',
-                  '^/ast/api': '2017/ast/api',
+                  '^/ast/api': '2018/ast/api',
               }
           }
         ]

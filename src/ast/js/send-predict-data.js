@@ -198,7 +198,7 @@ function getData() {
   return data;
 }
 
-function setData(inputData, resultData, resultCHUData) {
+function setData(inputData, resultData) {
 
   // 網頁介面對應
   var table_result = $("#table-result-suggest-school-departments");
@@ -438,7 +438,7 @@ function queryResult(data) {
         success: function(data){
           // 隱藏處理中畫面
           div_loading.classList.add('hidden');
-          setData(data, data.result, data.resultCHU);
+          setData(data, data.result);
           $('input[type=submit]').prop( "disabled", false );
           $('input[type=submit]').val('開始分析');
           querying = false;

@@ -95,7 +95,10 @@ module.exports = function(grunt) {
         livereload: true
       },
       frontend: {
-        files: [ 'src/**/*.js', 'src/**/*.html' ],
+        files: [
+          'src/**/*.js', 'src/**/*.html', 'src/**/*.inc',
+          'src/**/*.png', 'src/**/*.gif', 'src/**/*.jpg'
+        ],
         tasks: [ 'copy', 'htmlrefs' ]
       },
       stylesheet: {

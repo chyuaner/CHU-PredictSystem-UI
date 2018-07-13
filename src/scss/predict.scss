@@ -394,6 +394,12 @@ header {
       margin-top: 1em;
     }
 
+    .banner {
+      //@include grid-row;
+      //@include grid-column(12);
+      text-align: center;
+    }
+
     @keyframes chu-welfare-ani {
         0%   {color: rgba(0, 0, 0, 0); left:100px;}
         25%   {color: rgba(0, 0, 0, 0); left:100px;}

@@ -89,7 +89,7 @@ module.exports = function(grunt) {
               changeOrigin: true,
               rewrite: {
                   '^/gsat/api': '2018/gsat/api',
-                  '^/ast/api': '2017/ast/api',
+                  '^/ast/api': 'dev/ast/api',
               }
           }
         ]
@@ -101,7 +101,10 @@ module.exports = function(grunt) {
         livereload: true
       },
       frontend: {
-        files: [ 'src/**/*.js', 'src/**/*.html' ],
+        files: [
+          'src/**/*.js', 'src/**/*.html', 'src/**/*.inc',
+          'src/**/*.png', 'src/**/*.gif', 'src/**/*.jpg'
+        ],
         tasks: [ 'copy', 'htmlrefs' ]
       },
       stylesheet: {

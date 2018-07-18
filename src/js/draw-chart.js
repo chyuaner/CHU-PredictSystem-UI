@@ -77,3 +77,33 @@ d3.json("docs/107-CP-public.json").then(function(data) {
   chart_data = data;
   // renderChart(data);
 });
+
+
+// 當按鈕按下去的時候
+var link_chartItems = document.getElementsByClassName("chart-link");
+for(var i=0; i<link_chartItems.length; i++) {
+  link_chartItems[i].onclick = function() {
+
+    // 更改按鈕狀態
+    for(var j=0; j<link_chartItems.length; j++) {
+      link_chartItems[j].classList.remove("active");
+    }
+    this.classList.add("active");
+
+    // 切換顯示動作
+    var goto_string = this.href.split("#")[1];
+    var goto_group = decodeURI(goto_string.split("-")[0]);
+    var goto_name = decodeURI(goto_string.split("-")[1]);
+    console.log(goto_group+goto_name);
+    selectChart(goto_group, goto_name);
+
+    // 偵測視窗高度有沒有超過底下區域
+    if(window.innerHeight > $("#container").get(0).offsetTop) {
+      return true;
+    }
+    else {
+      window.scroll(0, $("#container").get(0).offsetTop-convertRem(6));
+      return true;
+    }
+  }
+}

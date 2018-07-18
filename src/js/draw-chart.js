@@ -37,19 +37,14 @@ function array_get_count(array, min, max) {
 function renderTheChart(element_name, data) {
   console.log(data);
   debug_data = data;
-  var avg_score = ['平均分數'];
-  avg_score = avg_score.concat( data.map(function(d,i) {return d['平均分數']}) );
-  var avg_money = ['平均薪資'];
-  avg_money = avg_money.concat( data.map(function(d,i) {return d['平均薪資']}) );
-  var cp = ['CP值'];
-  cp = cp.concat(data.map(function(d,i) {return d['CP值']}));
 
   var chart = c3.generate({
     bindto: element_name,
     data: {
-      columns: [
-        cp, avg_score, avg_money
-      ],
+      json: data,
+      keys: {
+        value:['平均分數', '平均薪資', 'CP值']
+      },
       types: {
         '平均分數': 'bar',
         '平均薪資': 'bar'
@@ -58,7 +53,7 @@ function renderTheChart(element_name, data) {
     axis: {
         x: {
             type: 'category',
-            categories: data.map(function(d,i) {return d['學群']})
+            categories: data.map(function(d,i) {return d['name']})
         },
         y: {
           min: 0,
@@ -78,7 +73,7 @@ function renderTheChart(element_name, data) {
   });
 }
 
-d3.json("js/sample-chart.json").then(function(data) {
+d3.json("docs/107-CP-public.json").then(function(data) {
   chart_data = data;
   // renderChart(data);
 });

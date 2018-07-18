@@ -6,9 +6,11 @@
   <!-- ref:include meta -->
   <!-- endref -->
   <title>校系CP值分析 - 107/2018 升大學職涯型落點分析/預測</title>
+  <link rel="stylesheet" href="assets/c3.min.css">
   <link rel="stylesheet" href="css/chart.css">
-  <script src="assets/js/modernizr.js"></script>
-  <script src="assets/js/d3.min.js"></script>
+  <script src="assets/modernizr.js"></script>
+  <script src="assets/d3.min.js"></script>
+  <script src="assets/c3.min.js"></script>
   <noscript>
     <link rel="stylesheet" href="css/chart-no-js.css">
   </noscript>
@@ -99,7 +101,7 @@
       </style>
       <h2 id="render-title"></h2>
       <div class="chart-content">
-        <svg id="render-svg" width="960" height="500"></svg>
+        <div id="render-chart"></div>
       </div>
     </div>
 
@@ -211,8 +213,8 @@
 
 </section>
 
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/foundation.min.js"></script>
+<script src="assets/jquery.min.js"></script>
+<script src="assets/foundation.min.js"></script>
 <script src="js/calc-rem-tools.js"></script>
 <!-- <script src="js/chart-display.js"></script> -->
 <script src="js/draw-chart.js"></script>

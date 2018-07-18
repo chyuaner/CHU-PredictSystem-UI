@@ -31,9 +31,11 @@ module.exports = function(grunt) {
               'foundation/js/foundation.min.js',
               'foundation/js/vendor/modernizr.js',
               'floatThead/dist/jquery.floatThead.min.js',
-              'd3/d3.min.js'
+              'd3/d3.min.js',
+              'c3/c3.min.js',
+              'c3/c3.min.css'
             ],
-            dest: 'dist/assets/js/'
+            dest: 'dist/assets/'
           }
         ]
       },

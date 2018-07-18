@@ -12,6 +12,10 @@ function renderChart(data) {
   }
 }
 
+function selectChart(name) {
+
+}
+
 function renderTheChart(d3_element, data) {
   var svg = d3_element.append("svg");
   console.log(data);

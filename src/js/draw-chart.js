@@ -30,39 +30,44 @@ function renderTheChart(svg, data) {
   debug_data = data;
 
   // 設定畫布尺寸 & 邊距
-  var margin = 80,
-      width = 960 - margin * 0.7,
-      height = 500 - margin * 2;
+  var margin = 40,
+      width = parseInt(svg.style("width").split("px")[0]),
+      height = parseInt(svg.style("height").split("px")[0]),
+      chart_width = width - margin*2,
+      chart_height = height - margin*2;
 
-  svg.attr('width', width + margin)
-     .attr('height', height + margin * 2)
-     .attr("transform", "translate(" + margin + "," + margin + ")");
+  // svg.attr('width', width + margin)
+  //    .attr('height', height + margin * 2)
+  //    .attr("transform", "translate(" + margin + "," + margin + ")");
 
   // 設定圖表的最大最小值
   var chartType = '平均分數',
-      max = d3.max(data, function(d){return d[chartType]}),
+      // max = d3.max(data, function(d){return d[chartType]}),
+      max = d3.max(data, function (d) {
+        return Math.max(d['平均分數'], d['平均薪資'], d['CP值']);
+      })
       min = 0;
 
   // x 軸比例尺
   var xScale = d3.scaleLinear()
     .domain([0, data.length])
-    .range([0, width]);
+    .range([0, chart_width]);
 
   // y 軸比例尺 給繪製矩形用
   var yScale = d3.scaleLinear()
     .domain([min, max])
-    .range([0, height]);
+    .range([0, chart_height]);
 
   // y 軸比例尺 2 繪製座標軸用(高至低)
   var yScale2 = d3.scaleLinear()
     .domain([min, max])
-    .range([height, 0]);
+    .range([chart_height, 0]);
 
   // x 軸
   var xAxis = d3.axisBottom(xScale)
     .ticks( data.length )
     .tickFormat(function(i){
-      return (data[i]) ? data[i].region : '';   // 這裡控制坐標軸的單位
+      return (data[i]) ? data[i]['學群'] : '';   // 這裡控制坐標軸的單位
     });
 
   // y 軸
@@ -72,7 +77,7 @@ function renderTheChart(svg, data) {
   // 繪製 x 軸
   svg.append("g")
     .attr("class","x axis")
-    .attr("transform", "translate(" + margin + "," + (height + margin) + ")")
+    .attr("transform", "translate(" + margin + "," + (chart_height + margin) + ")")
     .attr("fill", "#ffffff")
     .call(xAxis);
 
@@ -84,10 +89,26 @@ function renderTheChart(svg, data) {
     .call(yAxis);
 
   // 處理軸線位移
-  // svg.select('.x.axis').selectAll('.tick text').attr("dx", width * 0.05);
-  // svg.select('.x.axis').selectAll('.tick line').attr('transform', 'translate(' + width * 0.05 + ', 0)');
+  svg.select('.x.axis').selectAll('.tick text').attr("dx", chart_width * 0.025);
+  // svg.select('.x.axis').selectAll('.tick line').attr('transform', 'translate(' + chart_width * 0.025 + ', 0)');
 
   // 產生長條圖
+
+  // g.append("g")
+  //   .selectAll("g")
+  //   .data(data)
+  //   .enter().append("g")
+  //     .attr("transform", function(d) { return "translate(" + x0(d.State) + ",0)"; })
+  //   .selectAll("rect")
+  //   .data(function(d) { return keys.map(function(key) { return {key: key, value: d[key]}; }); })
+  //   .enter().append("rect")
+  //     .attr("x", function(d) { return x1(d.key); })
+  //     .attr("y", function(d) { return y(d.value); })
+  //     .attr("width", x1.bandwidth())
+  //     .attr("height", function(d) { return height - y(d.value); })
+  //     .attr("fill", function(d) { return z(d.key); });
+
+  // Old
   svg.selectAll('.bar')
     .data(data)
     .enter()
@@ -101,14 +122,14 @@ function renderTheChart(svg, data) {
       return xScale(i) + margin
     })
     .attr('y', function(d, i) {
-      return height - yScale(d[chartType])+ margin;
+      return chart_height - yScale(d[chartType])+ margin;
     })
     .attr('width', '10px')
     .attr('height', function(d, i) {
       return yScale(d[chartType]);
     })
     .attr('fill', '#2109e8')
-    .attr('transform', "translate(" +  width * (0.02) + ", " + 0 + ")");
+    .attr('transform', "translate(" +  chart_width * (0.02) + ", " + 0 + ")");
 
 }
 

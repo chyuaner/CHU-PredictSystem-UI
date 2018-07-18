@@ -126,6 +126,11 @@ header {
       transition: all 0.7s linear;
       opacity: 100;
 
+      svg {
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+      }
       div.chart-image-area {
         padding-top: 1.5em;
 

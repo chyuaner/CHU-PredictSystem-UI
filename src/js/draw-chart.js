@@ -1,17 +1,3 @@
-// function renderChart(data) {
-//   var m_charts = d3.selectAll(".chart-image-area");
-//
-//   var nor_arr = Object.keys(data.一般分類);
-//   for(i=0; i<nor_arr.length; i++) {
-//     renderTheChart(m_charts.filter('[data-name='+nor_arr[i]+']'), data.一般分類[nor_arr[i]]);
-//   }
-//
-//   var sg_arr = Object.keys(data.學群分類);
-//   for(i=0; i<sg_arr.length; i++) {
-//     renderTheChart(m_charts.filter('[data-name='+sg_arr[i]+']'), data.學群分類[sg_arr[i]]);
-//   }
-// }
-
 var chart_data;
 var debug_data;
 var rotate = false;
@@ -79,8 +65,15 @@ var chart = c3.generate({
 function selectChart(group, name, pmin = null, pmax = null) {
   // console.log(chart_data[group][name]);
 
-  var m_title = d3.select('#render-area').select('h2');
+  var m_title = d3.select('#render-area').select('#render-title');
+  var m_subtitle = d3.select('#render-area').select('#render-subtitle');
   m_title.text(name);
+  if(pmin == 0 && pmax == 10) {
+    m_subtitle.text('CP值最高前十名');
+  }
+  else {
+    m_subtitle.text('');
+  }
 
   var data;
   if(pmin !== null && pmax !== null) {

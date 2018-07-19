@@ -33,7 +33,8 @@ module.exports = function(grunt) {
               'floatThead/dist/jquery.floatThead.min.js',
               'd3/d3.min.js',
               'c3/c3.min.js',
-              'c3/c3.min.css'
+              'c3/c3.min.css',
+              'arg.js/dist/arg-1.4.js'
             ],
             dest: 'dist/assets/'
           }

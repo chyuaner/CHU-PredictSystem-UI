@@ -66,15 +66,22 @@ var chart = c3.generate({
   },
 });
 
-function selectChart(group, name) {
-  var m_title = d3.select('#render-area').select('h2');
-
+function selectChart(group, name, pmin = null, pmax = null) {
   // console.log(chart_data[group][name]);
+
+  var m_title = d3.select('#render-area').select('h2');
   m_title.text(name);
-  var data = array_get_count(chart_data[group][name], 0,10)
+
+  var data;
+  if(pmin !== null && pmax !== null) {
+    data = array_get_count(chart_data[group][name], pmin, pmax);
+  }
+  else {
+    data = chart_data[group][name];
+  }
+  // console.log(data);
 
   renderTheChart('#render-chart', data);
-  // alert('test');
 }
 
 function array_get_count(array, min, max) {
@@ -104,22 +111,34 @@ function renderTheChart(element_name, data) {
 
 d3.json("docs/107-CP-public.json").then(function(data) {
   chart_data = data;
-
   // 切換顯示動作
-  var thisUrl = window.location.href;
-  var requestId = thisUrl.split("#")[1];
-  var goto_string = requestId;
-  if(goto_string) {
-    var goto_group = decodeURI(goto_string.split("-")[0]);
-    var goto_name = decodeURI(goto_string.split("-")[1]);
-    selectChart(goto_group, goto_name);
+  var parm = getUrlParmC();
+  if(parm) {
+    var pmin = parm.p_min;
+    var pmax = parm.p_max;
+    selectChart(parm.group, parm.name, pmin, pmax);
   }
   else {
-    selectChart('一般分類', '學校');
+    selectChart('一般分類', '學校',0, 10);
     var link_chartItems = document.getElementsByClassName("chart-link");
     link_chartItems[0].classList.add("active");
   }
 });
+
+window.onhashchange = function() {
+  // 切換顯示動作
+  var parm = getUrlParmC();
+  if(parm) {
+    var pmin = parm.p_min;
+    var pmax = parm.p_max;
+    selectChart(parm.group, parm.name, pmin, pmax);
+  }
+  else {
+    selectChart('一般分類', '學校',0, 10);
+    var link_chartItems = document.getElementsByClassName("chart-link");
+    link_chartItems[0].classList.add("active");
+  }
+};
 
 
 // 當按鈕按下去的時候
@@ -134,10 +153,10 @@ for(var i=0; i<link_chartItems.length; i++) {
     this.classList.add("active");
 
     // 切換顯示動作
-    var goto_string = this.href.split("#")[1];
-    var goto_group = decodeURI(goto_string.split("-")[0]);
-    var goto_name = decodeURI(goto_string.split("-")[1]);
-    selectChart(goto_group, goto_name);
+    var parm = getUrlParmC(this.href);
+    var pmin = parm.p_min;
+    var pmax = parm.p_max;
+    selectChart(parm.group, parm.name, pmin, pmax);
 
     // 偵測視窗高度有沒有超過底下區域
     if(window.innerHeight > $("#container").get(0).offsetTop) {
@@ -147,5 +166,26 @@ for(var i=0; i<link_chartItems.length; i++) {
       window.scroll(0, $("#container").get(0).offsetTop-convertRem(6));
       return true;
     }
+  }
+}
+
+function getUrlParmC(thisUrl = window.location.href) {
+  var request_string = thisUrl.split("#")[1];
+  var requestId = request_string.split("?")[0];
+  var goto_string = requestId;
+  if(goto_string) {
+    var goto_group = decodeURI(goto_string.split("-")[0]);
+    var goto_name = decodeURI(goto_string.split("-")[1]);
+    var page_max = Arg.parse(request_string).pmax;
+    var page_min = Arg.parse(request_string).pmin;
+    return {
+      group: goto_group,
+      name: goto_name,
+      p_max: page_max,
+      p_min: page_min
+    };
+  }
+  else {
+    return null;
   }
 }

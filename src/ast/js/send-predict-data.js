@@ -3,11 +3,6 @@ var basePredictHistorySystemUrl = "api/Store/History";
 var max_input_score = 15;
 var querying = false;
 
-
-$(document).ready(function() {
-  alert("2018的指考落點分析預定在7/19上線");
-});
-
 // http://stackoverflow.com/questions/1127905/how-can-i-format-an-integer-to-a-specific-length-in-javascript
 
 // function formatNumberLength(num, length) {

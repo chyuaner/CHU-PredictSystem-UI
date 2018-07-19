@@ -115,7 +115,7 @@ d3.json("docs/107-CP-public.json").then(function(data) {
     selectChart(goto_group, goto_name);
   }
   else {
-    selectChart('一般分類', '學校平均值');
+    selectChart('一般分類', '學校');
     var link_chartItems = document.getElementsByClassName("chart-link");
     link_chartItems[0].classList.add("active");
   }

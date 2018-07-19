@@ -14,6 +14,57 @@
 
 var chart_data;
 var debug_data;
+var rotate = false;
+// if(document.documentElement.clientWidth <= 640) {
+if(screen.width <= 640) {
+  rotate = true;
+}
+
+var chart = c3.generate({
+  bindto: '#render-chart',
+  padding: {
+    // top: 40,
+    // right: 100,
+    bottom: 15,
+    // left: 100,
+  },
+  data: {
+    x: 'name',
+    json: [{
+      "name": "工程學群 資訊工程學系",
+      "平均分數": 48.13508108108107,
+      "平均薪資": 49.726702702702674,
+      "CP值": 77.77777777777777
+    }],
+    keys: {
+      value:['name', '平均分數', '平均薪資', 'CP值']
+    },
+    labels: true
+  },
+  axis: {
+    x: {
+        type: 'category'
+    },
+    y: {
+      min: 0,
+      padding: {bottom: 0}
+    },
+    rotated: rotate
+  },
+  legend: {
+    // position: 'right'
+  },
+  bar: {
+    width: {
+        ratio: 0.5 // this makes bar width 50% of length between ticks
+    }
+    // or
+    //width: 100 // this makes bar width 100px
+  },
+  size: {
+      height: 500
+  },
+});
 
 function selectChart(group, name) {
   var m_title = d3.select('#render-area').select('h2');
@@ -38,44 +89,36 @@ function renderTheChart(element_name, data) {
   console.log(data);
   debug_data = data;
 
-  var chart = c3.generate({
-    bindto: element_name,
-    data: {
-      json: data,
-      keys: {
-        value:['平均分數', '平均薪資', 'CP值']
-      },
-      types: {
-        '平均分數': 'bar',
-        '平均薪資': 'bar'
-      }
+  chart.load({
+    x: 'name',
+    json: data,
+    keys: {
+      value:['name', '平均分數', '平均薪資', 'CP值']
     },
-    axis: {
-        x: {
-            type: 'category',
-            categories: data.map(function(d,i) {return d['name']})
-        },
-        y: {
-          min: 0,
-          padding: {bottom: 0}
-        }
-    },
-    bar: {
-      width: {
-          ratio: 0.5 // this makes bar width 50% of length between ticks
-      }
-      // or
-      //width: 100 // this makes bar width 100px
-    },
-    size: {
-        height: 500
-    },
+    types: {
+      '平均分數': 'bar',
+      '平均薪資': 'bar'
+    }
   });
 }
 
 d3.json("docs/107-CP-public.json").then(function(data) {
   chart_data = data;
-  // renderChart(data);
+
+  // 切換顯示動作
+  var thisUrl = window.location.href;
+  var requestId = thisUrl.split("#")[1];
+  var goto_string = requestId;
+  if(goto_string) {
+    var goto_group = decodeURI(goto_string.split("-")[0]);
+    var goto_name = decodeURI(goto_string.split("-")[1]);
+    selectChart(goto_group, goto_name);
+  }
+  else {
+    selectChart('一般分類', '學校平均值');
+    var link_chartItems = document.getElementsByClassName("chart-link");
+    link_chartItems[0].classList.add("active");
+  }
 });
 
 
@@ -94,7 +137,6 @@ for(var i=0; i<link_chartItems.length; i++) {
     var goto_string = this.href.split("#")[1];
     var goto_group = decodeURI(goto_string.split("-")[0]);
     var goto_name = decodeURI(goto_string.split("-")[1]);
-    console.log(goto_group+goto_name);
     selectChart(goto_group, goto_name);
 
     // 偵測視窗高度有沒有超過底下區域

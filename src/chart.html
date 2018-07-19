@@ -232,18 +232,7 @@
       window.scroll(0, window.scrollY-convertRem(3.5));
     }
 
-    // 切換顯示動作
-    var goto_string = requestId;
-    if(goto_string) {
-      var goto_group = decodeURI(goto_string.split("-")[0]);
-      var goto_name = decodeURI(goto_string.split("-")[1]);
-      selectChart(goto_group, goto_name);
-    }
-    else {
-      selectChart('一般分類', '學校平均值');
-      var link_chartItems = document.getElementsByClassName("chart-link");
-      link_chartItems[0].classList.add("active");
-    }
+
   };
 </script>
 <!-- ref:include analytics -->

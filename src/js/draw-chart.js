@@ -25,8 +25,8 @@ var chart = c3.generate({
   padding: {
     // top: 40,
     // right: 100,
-    bottom: 15,
-    // left: 100,
+    bottom: 25,
+    left: 100,
   },
   data: {
     x: 'name',
@@ -43,7 +43,17 @@ var chart = c3.generate({
   },
   axis: {
     x: {
-        type: 'category'
+        type: 'category',
+        tick: {
+          // format: function(x) {
+          //   // console.log(x);
+          //   return [x];
+          // },
+          multiline: true,
+          multilineMax: 3,
+          width: 80
+        },
+        outer: true
     },
     y: {
       min: 0,
@@ -56,7 +66,7 @@ var chart = c3.generate({
   },
   bar: {
     width: {
-        ratio: 0.5 // this makes bar width 50% of length between ticks
+        // ratio: 0.5 // this makes bar width 50% of length between ticks
     }
     // or
     //width: 100 // this makes bar width 100px
@@ -93,8 +103,8 @@ function array_get_count(array, min, max) {
 }
 
 function renderTheChart(element_name, data) {
-  console.log(data);
-  debug_data = data;
+  // console.log(data);
+  // debug_data = data;
 
   chart.load({
     x: 'name',

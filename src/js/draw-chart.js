@@ -171,21 +171,24 @@ for(var i=0; i<link_chartItems.length; i++) {
 
 function getUrlParmC(thisUrl = window.location.href) {
   var request_string = thisUrl.split("#")[1];
-  var requestId = request_string.split("?")[0];
-  var goto_string = requestId;
-  if(goto_string) {
-    var goto_group = decodeURI(goto_string.split("-")[0]);
-    var goto_name = decodeURI(goto_string.split("-")[1]);
-    var page_max = Arg.parse(request_string).pmax;
-    var page_min = Arg.parse(request_string).pmin;
-    return {
-      group: goto_group,
-      name: goto_name,
-      p_max: page_max,
-      p_min: page_min
-    };
+  if(request_string) {
+    var requestId = request_string.split("?")[0];
+    var goto_string = requestId;
+    if(goto_string) {
+      var goto_group = decodeURI(goto_string.split("-")[0]);
+      var goto_name = decodeURI(goto_string.split("-")[1]);
+      var page_max = Arg.parse(request_string).pmax;
+      var page_min = Arg.parse(request_string).pmin;
+      return {
+        group: goto_group,
+        name: goto_name,
+        p_max: page_max,
+        p_min: page_min
+      };
+    }
+    else {
+      return null;
+    }
   }
-  else {
-    return null;
-  }
+  else { return null; }
 }

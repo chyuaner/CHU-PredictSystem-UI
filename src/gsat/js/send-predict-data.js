@@ -16,7 +16,8 @@ function getData() {
 
     var input_gsat_chinese = document.getElementById('input-gsat-chinese');
     var input_gsat_english = document.getElementById('input-gsat-english');
-    var input_gsat_math = document.getElementById('input-gsat-math');
+    var input_gsat_math_A = document.getElementById('input-gsat-math-A');
+    var input_gsat_math_B = document.getElementById('input-gsat-math-B');
     var input_gsat_social = document.getElementById('input-gsat-social');
     var input_gsat_nature = document.getElementById('input-gsat-nature');
     var input_gsat_engLis = document.getElementById('input-gsat-english-listen');
@@ -42,11 +43,18 @@ function getData() {
     } else {
         var gsat_english = parseInt(input_gsat_english.value);
     }
-    if (input_gsat_math.value == "") {
-        var gsat_math = parseInt(0);
+    if (input_gsat_math_A.value == "") {
+        var gsat_math_A = parseInt(0);
     } else {
-        var gsat_math = parseInt(input_gsat_math.value);
+        var gsat_math_A = parseInt(input_gsat_math_A.value);
     }
+
+    if (input_gsat_math_B.value == "") {
+        var gsat_math_B = parseInt(0);
+    } else {
+        var gsat_math_B = parseInt(input_gsat_math_B.value);
+    }
+
     if (input_gsat_social.value == "") {
         var gsat_social = parseInt(0);
     } else {
@@ -99,23 +107,22 @@ function getData() {
     }
 
     var data = {
-
-        "grades": {
-            "gsat": {
-                "Chinese": gsat_chinese,
-                "English": gsat_english,
-                "Math": gsat_math,
-                "Society": gsat_social,
-                "Science": gsat_nature,
-                "EngListeningLevel": gsat_engLis
+        grades: {
+            gsat: {
+                Chinese: gsat_chinese,
+                English: gsat_english,
+                MathA: gsat_math_A,
+                MathB: gsat_math_B,
+                Society: gsat_social,
+                Science: gsat_nature,
+                EngListeningLevel: gsat_engLis
             }
         },
-        "groups": departmentGroup,
-        "location": stateGroup,
-        "property": universityGroup,
-        "expect_salary": salary
+        groups: departmentGroup,
+        location: stateGroup,
+        property: universityGroup,
+        expect_salary: salary
     };
-
     return data;
 }
 
@@ -230,27 +237,18 @@ function cleanAlert() {
 function queryResult() {
     var inputData = getData();
     var resultData = [];
-
     var div_loading = document.getElementById('loading-area');
-
     var gsatData = inputData.grades.gsat;
-
     cleanAlert();
 
-    if (isNaN(gsatData.Chinese) &&
-        isNaN(gsatData.English) &&
-        isNaN(gsatData.Math) &&
-        isNaN(astData.Science) &&
-        isNaN(astData.Society)
-    ) {
+    if (isNaN(gsatData.Chinese) && isNaN(gsatData.English) &&
+        isNaN(gsatData.MathA) && isNaN(gsatData.MathB) &&
+        isNaN(astData.Science) &&isNaN(astData.Society)) {
         warningAlertMsg("你還沒填寫學測成績喔～");
-    }
-    // 沒有問題，開始向後端要資料
-    else {
+    }    
+    else { // 沒有問題，開始向後端要資料
         if (!querying) {
-
             $.ajax({
-                //    type: "GET",
                 type: "POST",
                 url: basePredictSystemUrl,
                 headers: {
@@ -285,10 +283,7 @@ function queryResult() {
             });
         }
     }
-
 }
-
-//window.onload = function() {
 
 var form_input = document.getElementById('input-form');
 form_input.onsubmit = function (e) {
@@ -296,6 +291,3 @@ form_input.onsubmit = function (e) {
     queryResult();
     return 0;
 }
-
-
-//}

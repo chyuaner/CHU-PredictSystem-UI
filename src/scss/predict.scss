@@ -12,6 +12,17 @@ header {
 
     @media #{$small-only} {
         padding-top: 0;
+        .inner {
+            margin-top: 1em;
+            text-align: center;
+            margin-bottom: 1em;
+        }
+        .breakline {
+            display: block;
+        }
+        .menu {
+            margin-left: 0;
+        }
     }
 
     background: #69968f;
@@ -32,7 +43,6 @@ header {
 
     h2 {
         font-size: 1.2rem;
-
         small {
             font-size: 0.9rem;
             color: white;
@@ -41,7 +51,6 @@ header {
 
     h3 {
         font-size: 1.0rem;
-
         small {
             font-size: 0.7rem;
             color: white;
@@ -50,6 +59,23 @@ header {
 
     /* 選取薪資 */
     #input-expect-salary-area {
+        @media #{$small-only} {
+            label {
+                & h2{
+                    padding-top: 1.2rem;
+                }
+                & input {
+                    width: 70%;
+                    display: inline;
+                    margin-left: 0;
+                }
+                & span {
+                    display: inline;
+                    font-size: 1.3rem;
+                }
+            }
+            
+        }
         label>h2 {
             float: left;
             font-size: 1.3rem;
@@ -114,7 +140,7 @@ header {
         @media #{$medium-up} {
             text-align: right;
             margin-top: -3em;
-            margin-bottom: 2.5em;
+            margin-bottom: 2em;
         }
     }
 
@@ -154,7 +180,7 @@ header {
     #input-ast-score,
     #input-gsat-score {
         label {
-            font-size: 1em;
+            font-size: 1.2em;
             text-align: center;
         }
 
@@ -172,26 +198,6 @@ header {
                 @include block-grid(2);
             }
         }
-
-        //    @media #{$small-only} {
-        //      ul {
-        //        @include block-grid(1);
-        //        width: 100%;
-        //        label {
-        //          display: table;
-        //          width: 100%;
-        //          span {
-        //            display: table-cell;
-        //            width: 4em;
-        //          }
-        //          input {
-        //            display: table-cell;
-        //            width: 100%;
-        //            margin: 0;
-        //          }
-        //        }
-        //      }
-        //    }
     }
 
     #input-ast-score {
@@ -215,7 +221,7 @@ header {
 
         @media #{$medium-up} {
             ul {
-                @include block-grid(6);
+                @include block-grid(7);
             }
         }
     }
@@ -281,6 +287,10 @@ header {
                 ul {
                     @include block-grid(7);
                 }
+            }
+
+            label span {
+                font-size: 1.1em;
             }
 
             ul li span {
@@ -354,6 +364,9 @@ header {
             label {
                 display: inline;
                 margin-right: 1.8em;
+                @media #{$small-only} {
+                    margin-right: 1em;
+                }
             }
         }
 
@@ -378,11 +391,6 @@ header {
 
         ul li input[type="checkbox"] {
             display: none;
-        }
-
-        ul li input[type="checkbox"]:checked+span {
-            /* background: #567771;
-      box-shadow: 0 0 10px white; */
         }
     }
 
@@ -454,6 +462,18 @@ header {
 
             small {
                 font-size: 0.6em;
+            }
+        }
+
+        @media #{$small-only} {
+            h2 {
+                margin-right: 0;
+                small {
+                    font-size: 0.6em;
+                }
+            }
+            .relink {
+                display: block;
             }
         }
 
@@ -941,7 +961,3 @@ header {
         display: none;
     }
 }
-
-// .hide-img{
-//   display: none;
-// }

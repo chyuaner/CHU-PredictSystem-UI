@@ -168,7 +168,13 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, lastCriterion
 
     var content = '<th data-title="校系代碼">' + '<a href="' + examURL + '" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至簡章頁面">' + formatNumberLength(did, 4) + '</a>' + '</th>';
     content += '<td data-title="校名"><a href="' + uurl + '" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至學校首頁">' + uname + '</a></td>';
-    content += '<td data-title="科系名稱"><a href="' + durl + '" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至科系首頁">' + dname + '</a></td>';
+
+    if(durl == "0") {
+        content += '<td data-title="科系名稱">' + dname + '</a></td>';
+    } else {
+        content += '<td data-title="科系名稱"><a href="' + durl + '" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至科系首頁">' + dname + '</a></td>';
+    }
+
     if (salaryUrl === null) {
         content += '<td data-title="畢業校友平均薪資">' + salary + '</td>';
     } else {
@@ -245,7 +251,7 @@ function queryResult() {
         isNaN(gsatData.MathA) && isNaN(gsatData.MathB) &&
         isNaN(astData.Science) &&isNaN(astData.Society)) {
         warningAlertMsg("你還沒填寫學測成績喔～");
-    }    
+    }
     else { // 沒有問題，開始向後端要資料
         if (!querying) {
             $.ajax({

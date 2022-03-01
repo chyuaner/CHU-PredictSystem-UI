@@ -68,14 +68,15 @@ header {
                     width: 70%;
                     display: inline;
                     margin-left: 0;
+                    // font-size: 1.3rem;
                 }
                 & span {
                     display: inline;
                     font-size: 1.3rem;
                 }
             }
-            
         }
+
         label>h2 {
             float: left;
             font-size: 1.3rem;
@@ -86,6 +87,7 @@ header {
             width: 8em;
             display: inline;
             margin-left: 1em;
+            font-size: 1.3rem;
         }
 
         span {
@@ -157,11 +159,6 @@ header {
         text-align: center;
         height: 2.1em;
         -moz-appearance: textfield;
-    }
-
-    select {
-        // 修正在Chrome不會置中的問題
-        -webkit-padding-start: 50%;
     }
 
     option {

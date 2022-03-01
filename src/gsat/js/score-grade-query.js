@@ -103,7 +103,8 @@ function cleanScoreGradeData() {
 function getGsatTotalScore() {
     var input_gsat_chinese  = document.getElementById('input-gsat-chinese');
     var input_gsat_english  = document.getElementById('input-gsat-english');
-    var input_gsat_math     = document.getElementById('input-gsat-math');
+    var input_gsat_mathA    = document.getElementById('input-gsat-math-A');
+    var input_gsat_mathB    = document.getElementById('input-gsat-math-B');
     var input_gsat_social   = document.getElementById('input-gsat-social');
     var input_gsat_nature   = document.getElementById('input-gsat-nature');
 
@@ -111,8 +112,10 @@ function getGsatTotalScore() {
     else { var gsat_chinese = parseInt(input_gsat_chinese.value); }
     if(input_gsat_english.value == "") { var gsat_english = parseInt(0); }
     else { var gsat_english = parseInt(input_gsat_english.value); }
-    if(input_gsat_math.value == "") { var gsat_math = parseInt(0); }
-    else { var gsat_math = parseInt(input_gsat_math.value); }
+    if(input_gsat_mathA.value == "") { var gsat_mathA = parseInt(0); }
+    else { var gsat_mathA = parseInt(input_gsat_mathA.value); }
+    if(input_gsat_mathB.value == "") { var gsat_mathB = parseInt(0); }
+    else { var gsat_mathB = parseInt(input_gsat_mathB.value); }
     if(input_gsat_social.value == "") { var gsat_social = parseInt(0); }
     else { var gsat_social = parseInt(input_gsat_social.value); }
     if(input_gsat_nature.value == "") { var gsat_nature = parseInt(0); }
@@ -121,14 +124,15 @@ function getGsatTotalScore() {
     var totalScore;
     if(gsat_chinese>max_input_score ||
         gsat_english>max_input_score ||
-        gsat_math>max_input_score ||
+        gsat_mathA>max_input_score ||
+        gsat_mathB>max_input_score ||
         gsat_social>max_input_score ||
         gsat_nature>max_input_score
     ) {
         totalScore = null;
     }
     else {
-        totalScore = gsat_chinese + gsat_english + gsat_math + gsat_social + gsat_nature;
+        totalScore = gsat_chinese + gsat_english + gsat_mathA + gsat_mathB + gsat_social + gsat_nature;
     }
 
     return totalScore;
@@ -146,92 +150,23 @@ function updateGsatTotalScore() {
     }
 }
 
-// var chu_welfare_data = {
-//   "74-75": "您在74至75級分，第一志願就讀可領獎學金最高新臺幣150萬元！",
-//   "72-73": "您在72至73級分，第一志願就讀可領獎學金最高新臺幣115萬元！",
-//   "70-71": "您在70至71級分，第一志願就讀可領獎學金最高新臺幣80萬元！",
-//   "67-69": "您在67至69級分，第一志願就讀可領獎學金最高新臺幣60萬元！",
-//   "64-66": "您在64至66級分，第一志願就讀可領獎學金最高新臺幣32萬元！",
-//   "61-63": "您在61至63級分，第一志願就讀可領獎學金最高新臺幣24萬元！",
-//   "58-60": "您在58至60級分，第一志願就讀可領獎學金最高新臺幣16萬元！",
-//   "55-57": "您在55至57級分，第一志願就讀可領獎學金最高新臺幣12萬元！",
-//   "50-54": "您在50至54級分，第一志願就讀可領獎學金最高新臺幣10萬元！",
-//   "other": "以第一志願就讀可領獎學金最高新臺幣8萬8千元！"
-// };
-
-// function updateChuWelfare() {
-
-//   var totalScore = getGsatTotalScore();
-
-//   var chu_welfare_p  = document.getElementById('chu-welfare');
-//   var chu_welfare_a  = document.getElementById('chu-welfare').getElementsByTagName('a')[0];
-
-//   var show_string;
-//   chu_welfare_p.classList.add('hidden');
-//   void chu_welfare_p.offsetWidth;
-
-//   if( true ) {
-//     if      ( totalScore>=74 && totalScore <=75 ) { show_string = chu_welfare_data["74-75"]; }
-//     else if ( totalScore>=72 && totalScore <=73 ) { show_string = chu_welfare_data["72-73"]; }
-//     else if ( totalScore>=70 && totalScore <=71 ) { show_string = chu_welfare_data["70-71"]; }
-//     else if ( totalScore>=67 && totalScore <=69 ) { show_string = chu_welfare_data["67-69"]; }
-//     else if ( totalScore>=64 && totalScore <=66 ) { show_string = chu_welfare_data["64-66"]; }
-//     else if ( totalScore>=61 && totalScore <=63 ) { show_string = chu_welfare_data["61-63"]; }
-//     else if ( totalScore>=58 && totalScore <=60 ) { show_string = chu_welfare_data["58-60"]; }
-//     else if ( totalScore>=55 && totalScore <=57 ) { show_string = chu_welfare_data["55-57"]; }
-//     else if ( totalScore>=50 && totalScore <=54 ) { show_string = chu_welfare_data["50-54"]; }
-//     else { show_string = chu_welfare_data["other"]; }
-
-//     chu_welfare_p.classList.remove('hidden');
-//     chu_welfare_a.innerHTML = show_string;
-//   }
-// }
-// var totalScore = getGsatTotalScore();
-// var item = document.getElementById('apply');
-// if(totalScore>30 && totalScore<50)
-// {
-//    item.classList.remove('hide-img');
-// }
-// else 
-// {
-//   addClass(item,"hide-img");
-// }
 
 function queryScoreGrade() {
   updateGsatTotalScore();
-  // updateChuWelfare();
-//   var inputData = getScoreGradeData();
-//   $.ajax({
-//     type: "POST",
-//     url: basePredictSystemScoreGradeUrl,
-//     headers: {
-//       "content-type": "application/json"
-//     },
-//     dataType: "json",
-//     data: JSON.stringify(inputData),
-//     beforeSend: function() {
-//        setScoreGradeWaitData();
-//     },
-//     success: function(data){
-//       setScoreGradeData(inputData, data.step);
-//     },
-//     error: function(data){
-//       cleanScoreGradeData();
-//     }
-//   });
-  // alert("test");
 }
 
 var input_gsat_chinese  = document.getElementById('input-gsat-chinese');
 var input_gsat_english  = document.getElementById('input-gsat-english');
-var input_gsat_math     = document.getElementById('input-gsat-math');
+var input_gsat_mathA     = document.getElementById('input-gsat-math-A');
+var input_gsat_mathB     = document.getElementById('input-gsat-math-B');
 var input_gsat_social   = document.getElementById('input-gsat-social');
 var input_gsat_nature   = document.getElementById('input-gsat-nature');
 var input_gsat_engLis   = document.getElementById('input-gsat-english-listen');
 
 input_gsat_chinese.onchange = function(){ queryScoreGrade(); };
 input_gsat_english.onchange = function(){ queryScoreGrade(); };
-input_gsat_math.onchange = function(){ queryScoreGrade(); };
+input_gsat_mathA.onchange = function(){ queryScoreGrade(); };
+input_gsat_mathB.onchange = function(){ queryScoreGrade(); };
 input_gsat_social.onchange = function(){ queryScoreGrade(); };
 input_gsat_nature.onchange = function(){ queryScoreGrade(); };
 input_gsat_engLis.onchange = function(){ queryScoreGrade(); };

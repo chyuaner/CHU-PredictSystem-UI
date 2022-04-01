@@ -240,6 +240,42 @@ function cleanAlert() {
     alertArea.empty();
 }
 
+function fetchData(inputData, div_loading) {
+    $.ajax({
+        type: 'POST',
+        url: basePredictSystemUrl,
+        headers: {
+            "content-type": "application/json"
+        },
+        dataType: "json",
+        data: JSON.stringify(inputData),
+        beforeSend: function () {
+            // 顯示處理中畫面
+            div_loading.classList.remove('hidden');
+            $('#input-form>input[type=submit]').prop("disabled", true);
+            $('#input-form>input[type=submit]').val('落點分析中...');
+            querying = true;
+        },
+        success: function (data) {
+            // 隱藏處理中畫面
+            div_loading.classList.add('hidden');
+            setData(inputData, data.result);
+            $('#input-form>input[type=submit]').prop("disabled", false);
+            $('#input-form>input[type=submit]').val('開始分析');
+            querying = false;
+        },
+        error: function (data) {
+            // 隱藏處理中畫面
+            div_loading.classList.add('hidden');
+            errorData();
+            errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
+            $('input[type=submit]').prop("disabled", false);
+            $('#input-form>input[type=submit]').val('開始分析');
+            querying = false;
+        }
+    });
+}
+
 function queryResult() {
     var inputData = getData();
     var resultData = [];
@@ -247,46 +283,18 @@ function queryResult() {
     var gsatData = inputData.grades.gsat;
     cleanAlert();
 
-    if (isNaN(gsatData.Chinese) && isNaN(gsatData.English) &&
-        isNaN(gsatData.MathA) && isNaN(gsatData.MathB) &&
-        isNaN(astData.Science) &&isNaN(astData.Society)) {
-        warningAlertMsg("你還沒填寫學測成績喔～");
-    }
-    else { // 沒有問題，開始向後端要資料
+    // if (isNaN(gsatData.Chinese) && isNaN(gsatData.English) &&
+    //     isNaN(gsatData.MathA) && isNaN(gsatData.MathB) &&
+    //     isNaN(gsatData.Science) &&isNaN(gsatData.Society)) {
+    //     warningAlertMsg("你還沒填寫學測成績喔～");
+    // }
+
+    if(gsatData.Chinese === 0 && gsatData.English === 0 && gsatData.MathA === 0 &&
+        gsatData.MathB === 0 && gsatData.Science === 0 && gsatData.Society === 0) {
+            warningAlertMsg("你還沒填寫學測成績喔～");
+    } else { // 沒有問題，開始向後端要資料
         if (!querying) {
-            $.ajax({
-                type: "POST",
-                url: basePredictSystemUrl,
-                headers: {
-                    "content-type": "application/json"
-                },
-                dataType: "json",
-                data: JSON.stringify(inputData),
-                beforeSend: function () {
-                    // 顯示處理中畫面
-                    div_loading.classList.remove('hidden');
-                    $('#input-form>input[type=submit]').prop("disabled", true);
-                    $('#input-form>input[type=submit]').val('落點分析中...');
-                    querying = true;
-                },
-                success: function (data) {
-                    // 隱藏處理中畫面
-                    div_loading.classList.add('hidden');
-                    setData(inputData, data.result);
-                    $('#input-form>input[type=submit]').prop("disabled", false);
-                    $('#input-form>input[type=submit]').val('開始分析');
-                    querying = false;
-                },
-                error: function (data) {
-                    // 隱藏處理中畫面
-                    div_loading.classList.add('hidden');
-                    errorData();
-                    errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
-                    $('input[type=submit]').prop("disabled", false);
-                    $('#input-form>input[type=submit]').val('開始分析');
-                    querying = false;
-                }
-            });
+            fetchData(inputData, div_loading);
         }
     }
 }

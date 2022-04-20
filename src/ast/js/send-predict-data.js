@@ -369,7 +369,6 @@ function warningAlertMsg(text) {
 }
 
 function cleanAlert() {
-
   var alertArea = $("#input-area .alerts-area");
   alertArea.empty();
 }
@@ -543,8 +542,8 @@ input_gsat_nature.onchange  = function(){ updateGsatTotalScore(); };
 input_gsat_engLis.onchange  = function(){ updateGsatTotalScore(); };
 var form_input = document.getElementById('input-form');
 form_input.onsubmit = function(e) {
-  var studentGrade = getData();
-  e.preventDefault();
-queryResult(studentGrade);
-  return 0;
+    var studentGrade = getData();
+    e.preventDefault();
+    queryResult(studentGrade);
+    return 0;
 }

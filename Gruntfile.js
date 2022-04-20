@@ -66,7 +66,9 @@ module.exports = function(grunt) {
             analytics: './src/ga.inc',
             meta: './src/meta.inc',
             footer: './src/footer.inc',
-            oldie: './src/old-ie.inc'
+            oldie: './src/old-ie.inc',
+            body_tagmanager: './src/body_tagmanager.inc',
+            head_tagmanager: './src/head_tagmanager.inc'
           }
         }
       }

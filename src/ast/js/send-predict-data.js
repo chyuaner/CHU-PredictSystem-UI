@@ -1,5 +1,4 @@
 var basePredictSystemUrl = "api/ast/analysis";
-var basePredictHistorySystemUrl = "api/Store/History";
 var max_input_score = 15;
 var querying = false;
 
@@ -18,52 +17,6 @@ function transferToMobileSalaryURL(url) {
     // https://guide.104.com.tw/career/view?degree=3&mid=520114&sid=5007000000
     let murl = "https://guide.104.com.tw/career/view?"+params[1];
     return murl;
-}
-
-function getGsatTotalScore() {
-  var input_gsat_chinese  = document.getElementById('input-gsat-chinese');
-  var input_gsat_english  = document.getElementById('input-gsat-english');
-  var input_gsat_math     = document.getElementById('input-gsat-math');
-  var input_gsat_social   = document.getElementById('input-gsat-social');
-  var input_gsat_nature   = document.getElementById('input-gsat-nature');
-
-  if(input_gsat_chinese.value == "") { var gsat_chinese = parseInt(0); }
-  else { var gsat_chinese = parseInt(input_gsat_chinese.value); }
-  if(input_gsat_english.value == "") { var gsat_english = parseInt(0); }
-  else { var gsat_english = parseInt(input_gsat_english.value); }
-  if(input_gsat_math.value == "") { var gsat_math = parseInt(0); }
-  else { var gsat_math = parseInt(input_gsat_math.value); }
-  if(input_gsat_social.value == "") { var gsat_social = parseInt(0); }
-  else { var gsat_social = parseInt(input_gsat_social.value); }
-  if(input_gsat_nature.value == "") { var gsat_nature = parseInt(0); }
-  else { var gsat_nature = parseInt(input_gsat_nature.value); }
-
-  var totalScore;
-  if(gsat_chinese>max_input_score ||
-     gsat_english>max_input_score ||
-     gsat_math>max_input_score ||
-     gsat_social>max_input_score ||
-     gsat_nature>max_input_score
-   ) {
-    totalScore = null;
-  }
-  else {
-    totalScore = gsat_chinese + gsat_english + gsat_math + gsat_social + gsat_nature;
-  }
-
-  return totalScore;
-}
-
-function updateGsatTotalScore() {
-  var gsat_total  = document.getElementById('gsat-total');
-
-  var totalScore = getGsatTotalScore();
-  if(totalScore == null) {
-    gsat_total.innerHTML = "??";
-  }
-  else {
-    gsat_total.innerHTML = totalScore;
-  }
 }
 
 function getData() {
@@ -199,14 +152,10 @@ function getData() {
   return data;
 }
 
-function setData(inputData, resultData, resultCHUData) {
-
+function setData(resultData) {
   // 網頁介面對應
   var table_result = $("#table-result-suggest-school-departments");
   var table_result_body = table_result.find("tbody");
-  // 網頁介面對應
-  var table_chu_result = $("#table-chu-result-suggest-school-departments");
-  var table_chu_result_body = table_chu_result.find("tbody");
 
   // 有沒有資料
   if(resultData.length > 0) {
@@ -221,22 +170,10 @@ function setData(inputData, resultData, resultCHUData) {
     table_result_body.empty();
     table_result_body.append('<tr><td colspan="6">沒有符合您的校系，請修改條件後再次分析。</td></tr>');
   }
-
-  if(resultCHUData.length > 0) {
-    table_chu_result_body.empty();
-    for(var i=0; i<resultCHUData.length; i++) {
-      addChuData(resultCHUData[i].did, resultCHUData[i].uname, resultCHUData[i].uurl,
-              resultCHUData[i].dname, resultCHUData[i].durl, resultCHUData[i].salary, resultCHUData[i].salaryUrl,
-              resultCHUData[i].minScore, resultCHUData[i].yourScore, resultCHUData[i].examURL);
-    }
-  }
-  else {
-    table_chu_result_body.empty();
-    table_chu_result_body.append('<tr><td colspan="7">沒有符合您的校系。</td></tr>');
-  }
 }
 
 function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, yourScore, examURL) {
+  let post_url = 'https://uac2.ncku.edu.tw/cross_search/index.php?c=search&m=detail';
   if(salary == 0) { salary = '樣本不足';}
 
   var table_result = $("#table-result-suggest-school-departments");
@@ -249,98 +186,64 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
   if(uname == '中華大學') {
     trClass += ' chu';
   }
-  var tr = '<tr data-item-id="'+did+'" class="' + trClass + '">';
+  var tr = `<tr data-item-id="${did}" class="${trClass}">`;
 
   var content = '';
-  if(examURL === null) {
-    content += '<th data-title="校系代碼">'+did+'</th>';
-  }
-  else {
-    content += '<th data-title="校系代碼"><a href="'+examURL+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至指考校系分則網頁">'+did+'</a></th>';
-  }
-  content += '<td data-title="校名"><a href="'+uurl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至學校首頁">'+uname+'</a></td>';
+  /*
+  <button class="button small" type="submit" name="dep_id" value="${did}">
+                                      
+                  </button>
+  */
+  content += `<td data-title="校系代碼">
+                <form method="post" action=${post_url} target="_blank">
+                  <span data-tooltip aria-haspopup="true" data-tooltip-title="連結至分科測驗校系分則網頁">
+                    <input class="link" type="submit" name="dep_id" value="${did}">
+                  </span>
+                </form>
+              </td>`;
+
+  content += `<td data-title="校名">
+                <a href="${uurl}" target="_blank" data-tooltip aria-haspopup="true" 
+                    data-tooltip-title="連結至學校首頁">${uname}</a>
+              </td>`;
   if(durl === null){
-    content += '<td data-title="科系名稱">'+dname+'</td>';
+    content += `<td data-title="科系名稱">${dname}</td>`;
   }
   else {
-    content += '<td data-title="科系名稱"><a href="'+durl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至科系首頁">'+dname+'</a></td>';
+    content += `<td data-title="科系名稱">
+                  <a href="${durl}" target="_blank" data-tooltip aria-haspopup="true"
+                      data-tooltip-title="連結至科系首頁">${dname}</a>
+                </td>`;
   }
   if(salaryUrl === null) {
-    content += '<td data-title="畢業生平均薪資">'+salary+'</td>';
+    content += `<td data-title="畢業生平均薪資">${salary}</td>`;
   }
   else {
       if(window.screen.height < 768) {
           salaryUrl = transferToMobileSalaryURL(salaryUrl);
       }
-      content += '<td data-title="畢業生平均薪資"><a href="'+salaryUrl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至104升學就業地圖">'+salary+'</a></td>';
+      content += `<td data-title="畢業生平均薪資">
+                    <a href="${salaryUrl}" target="_blank" data-tooltip aria-haspopup="true" 
+                        data-tooltip-title="連結至104升學就業地圖">${salary}</a>
+                  </td>`;
   }
-  content += '<td data-title="去年最低錄取分數">'+minScore+'</td>';
+  content += `<td data-title="去年最低錄取分數">${minScore}</td>`;
   if(yourScore < minScore) {
-    content += '<td data-title="換算去年加權分數" class="warning"><span data-tooltip aria-haspopup="true" data-tooltip-title="換算去年加權分數\n低於去年最低錄取分數">'+yourScore+'</span></td>';
+    content += `<td data-title="換算去年加權分數" class="warning">
+                  <span data-tooltip aria-haspopup="true" 
+                      data-tooltip-title="換算去年加權分數\n低於去年最低錄取分數">${yourScore}</span>
+                </td>`;
   }
   else {
-    content += '<td data-title="換算去年加權分數">'+yourScore+'</td>';
+    content += `<td data-title="換算去年加權分數">${yourScore}</td>`;
   }
 
   table_result_body.append(tr+content+'</tr>');
-
-  // $('#table-result-suggest-school-departments tr[data-item-id="'+did+'"]').foundation('tooltip', 'reflow');
-}
-
-function addChuData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, yourScore, examURL) {
-  if(salary == 0) { salary = '樣本不足';}
-
-  var table_result = $("#table-chu-result-suggest-school-departments");
-  var table_result_body = table_result.find("tbody");
-
-  var trClass = '';
-  if(yourScore < minScore) {
-    trClass += ' warning';
-  }
-
-  var tr = '<tr data-item-id="'+did+'" class="' + trClass + '">';
-
-  var content = '';
-  if(examURL === null) {
-    content += '<th data-title="校系代碼">'+did+'</th>';
-  }
-  else {
-    content += '<th data-title="校系代碼"><a href="'+examURL+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至指考校系分則網頁">'+did+'</a></th>';
-  }
-  // var content = '<th data-title="校系代碼">'+did+'</th>';
-  content += '<td data-title="校名"><a href="'+uurl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至學校首頁">'+uname+'</a></td>';
-  content += '<td data-title="科系名稱"><a href="'+durl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至科系首頁">'+dname+'</a></td>';
-  if(salaryUrl === null) {
-    content += '<td data-title="畢業生平均薪資">'+salary+'</td>';
-  }
-  else {
-    content += '<td data-title="畢業生平均薪資"><a href="'+salaryUrl+'" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至104升學就業地圖">'+salary+'</a></td>';
-  }
-
-  content += '<td data-title="去年最低錄取分數">'+minScore+'</td>';
-  if(yourScore < minScore) {
-    content += '<td data-title="換算去年加權分數" class="warning"><span data-tooltip aria-haspopup="true" data-tooltip-title="換算去年加權分數\n低於去年最低錄取分數">'+yourScore+'</span></td>';
-  }
-  else {
-    content += '<td data-title="換算去年加權分數">'+yourScore+'</td>';
-  }
-
-  table_result_body.append(tr+content+'</tr>');
-
-  // $('#table-chu-result-suggest-school-departments tr[data-item-id="'+did+'"]').foundation('tooltip', 'reflow');
 }
 
 function cleanData() {
   // 網頁介面對應
   var table_result = $("#table-result-suggest-school-departments");
-  var table_result_body = table_result.find("tbody");
-
-  table_result_body.empty();
-  table_result_body.append('<tr><td class="big-row" colspan="˙">沒有符合您的校系，請修改條件後再次分析。</td></tr>');
-}
-
-function cleanChuData() {
-  var table_result = $("#table-chu-result-suggest-school-departments");
   var table_result_body = table_result.find("tbody");
 
   table_result_body.empty();
@@ -394,156 +297,98 @@ function atLeast3(data)
   return bool;
 }
 
+function fetchPredictData(data, div_loading) {
+  $.ajax({
+    type: "POST",
+    url: basePredictSystemUrl,
+    headers: {
+      "content-type": "application/json"
+    },
+    dataType: "json",
+    data: JSON.stringify(data),
+    beforeSend: function () {
+      // 顯示處理中畫面
+      div_loading.classList.remove('hidden');
+      $('input[type=submit]').prop("disabled", true);
+      $('input[type=submit]').val('落點分析中...');
+      querying = true;
+    },
+    success: function (data) {
+      // 隱藏處理中畫面
+      div_loading.classList.add('hidden');
+      setData(data.result);
+      $('input[type=submit]').prop("disabled", false);
+      $('input[type=submit]').val('開始分析');
+      querying = false;
+    },
+    error: function (data) {
+      // 隱藏處理中畫面
+      div_loading.classList.add('hidden');
+      errorData();
+      errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
+      $('input[type=submit]').prop("disabled", false);
+      $('input[type=submit]').val('開始分析');
+      querying = false;
+    }
+  });
+}
+
 function queryResult(data) {
-  var resultData = [];
-
-  var div_loading = document.getElementById('loading-area');
-
-  var astData = data.grades.ast;
-
+  let resultData = [];
+  let div_loading = document.getElementById('loading-area');
+  let astData = data.grades.ast;
   cleanAlert();
-
-  if(  isNaN(astData.Chinese)
-    && isNaN(astData.English)
-    && isNaN(astData.Math_A)
-    && isNaN(astData.Math_B)
-    && isNaN(astData.History)
-    && isNaN(astData.Geographic)
-    && isNaN(astData.Citizen_and_Society)
-    && isNaN(astData.Physics)
-    && isNaN(astData.Chemistry)
-    && isNaN(astData.Biology)
-    ) {
+  if(isNaN(astData.Chinese) && isNaN(astData.English) && isNaN(astData.Math_A)
+    && isNaN(astData.Math_B)  && isNaN(astData.History) && isNaN(astData.Geographic)
+    && isNaN(astData.Citizen_and_Society) && isNaN(astData.Physics)
+    && isNaN(astData.Chemistry) && isNaN(astData.Biology)) {
     warningAlertMsg("你還沒填寫指考成績喔～");
-  }
-  else if(!atLeast3(astData))
-  {
+  } else if(!atLeast3(astData)) {
     warningAlertMsg("請填入至少三科以上的指考成績喔～");
-  }
-  // 沒有問題，開始向後端要資料
-  else
-  {
-
+  } else {
+    // 沒有問題，開始向後端要資料
     if(!querying) {
-
-      $.ajax({
-    //    type: "GET",
-        type: "POST",
-        url: basePredictSystemUrl,
-        headers: {
-          "content-type": "application/json"
-        },
-        dataType: "json",
-        data: JSON.stringify(data),
-        beforeSend: function() {
-          // 顯示處理中畫面
-          div_loading.classList.remove('hidden');
-          $('input[type=submit]').prop( "disabled", true );
-          $('input[type=submit]').val('落點分析中...');
-	        // StoreHistory(data);
-          querying = true;
-        },
-        success: function(data){
-          // 隱藏處理中畫面
-          div_loading.classList.add('hidden');
-          setData(data, data.result, data.resultCHU);
-          $('input[type=submit]').prop( "disabled", false );
-          $('input[type=submit]').val('開始分析');
-          querying = false;
-        },
-        error: function(data){
-          // 隱藏處理中畫面
-          div_loading.classList.add('hidden');
-          errorData();
-          errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
-          $('input[type=submit]').prop( "disabled", false );
-          $('input[type=submit]').val('開始分析');
-          querying = false;
-        }
-      });
-    }
-  }
-
-}
-
-function StoreHistory(inputdata) {
-  var resultData = [];
-
-  var div_loading = document.getElementById('loading-area');
-  var astData = inputdata.grades.ast;
-
-  cleanAlert();
-
-  if(  isNaN(astData.Chinese)
-    && isNaN(astData.English)
-    && isNaN(astData.Math_A)
-    && isNaN(astData.Math_B)
-    && isNaN(astData.History)
-    && isNaN(astData.Geographic)
-    && isNaN(astData.Citizen_and_Society)
-    && isNaN(astData.Physics)
-    && isNaN(astData.Chemistry)
-    && isNaN(astData.Biology)
-    ) {
-    warningAlertMsg("你還沒填寫指考成績喔～");
-  }
-  // 沒有問題，開始向後端要資料
-  else {
-    if(!querying) {
-
-      $.ajax({
-        type: "POST",
-        url: basePredictHistorySystemUrl,
-        headers: {
-          "content-type": "application/json"
-        },
-        dataType: "json",
-        data: JSON.stringify(inputdata),
-        beforeSend: function() {
-          // 顯示處理中畫面
-          div_loading.classList.remove('hidden');
-          $('input[type=submit]').prop( "disabled", true );
-          $('input[type=submit]').val('資料查詢中...');
-          querying = true;
-        },
-        success: function(data){
-          // 隱藏處理中畫面
-		    div_loading.classList.add('hidden');
-          $('input[type=submit]').prop( "disabled", false );
-          $('input[type=submit]').val('開始分析');
-          querying = false;
-        },
-        error: function(data){
-          // 隱藏處理中畫面
-          div_loading.classList.add('hidden');
-          errorData();
-          errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
-          $('input[type=submit]').prop( "disabled", false );
-          $('input[type=submit]').val('開始分析');
-          querying = false;
-        }
-      });
+      fetchPredictData(data, div_loading);
     }
   }
 }
 
-var input_gsat_chinese  = document.getElementById('input-gsat-chinese');
-var input_gsat_english  = document.getElementById('input-gsat-english');
-var input_gsat_math     = document.getElementById('input-gsat-math');
-var input_gsat_social   = document.getElementById('input-gsat-social');
-var input_gsat_nature   = document.getElementById('input-gsat-nature');
-var input_gsat_engLis   = document.getElementById('input-gsat-english-listen');
+function mockPredictResult()
+{
+  let mock_result = [
+    {
+      did: '04302',
+      uname: '中華大學',
+      uurl: 'https://www1.chu.edu.tw',
+      dname: '應用日語學系',
+      durl: 'https://aj.chu.edu.tw/index.php?Lang=zh-tw',
+      minScore: 300.25,
+      yourScore: 400.25,
+      salary: 50040,
+      salaryUrl: 'https://www.104.com.tw/jb/career/department/view?degree=3&sid=5067000000&mid=520101'
+    },
+    {
+      did: "04323",
+      uname: "中華大學",
+      uurl: "http://www1.chu.edu.tw",
+      dname: "電機工程學系",
+      durl: "http://ee.chu.edu.tw",
+      minScore: 265.25,
+      salary: 58180,
+      salaryUrl: "https://www.104.com.tw/jb/career/department/view?degree=3&sid=5067000000&mid=520101",
+      yourScore: 800,
+      examURL: "https://campus4.ncku.edu.tw/uac/cross_search/dept_info/04323.html"
+    },
+  ];
 
-input_gsat_chinese.onchange = function(){ updateGsatTotalScore(); };
-input_gsat_english.onchange = function(){ updateGsatTotalScore(); };
-input_gsat_math.onchange    = function(){ updateGsatTotalScore(); };
-input_gsat_social.onchange  = function(){ updateGsatTotalScore(); };
-input_gsat_nature.onchange  = function(){ updateGsatTotalScore(); };
-input_gsat_engLis.onchange  = function(){ updateGsatTotalScore(); };
+  return mock_result;
+}
+
 var form_input = document.getElementById('input-form');
 form_input.onsubmit = function(e) {
-    var studentGrade = getData();
     e.preventDefault();
-    queryResult(studentGrade);
-    return 0;
+    // let studentGrade = getData();
+    // queryResult(studentGrade);
+    let mockData = mockPredictResult();
+    setData(mockData);
 }

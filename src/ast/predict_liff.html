@@ -3,17 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>落點分析 - 2021 升大學職涯型指考落點分析/預測</title>
+  <title>落點分析 - 2022 升大學職涯型分科測驗落點分析/預測</title>
   <link rel="stylesheet" href="../css/predict.css">
   <script src="../assets/modernizr.js"></script>
 </head>
 
 <body>
 
+<!-- ref:include oldie -->
+<!-- endref -->
+
 <section id="header" class="page-stion">
   <header>
     <div class="inner">
-      <h1>2022升大學職涯型 <strong class="breakline">分科測驗落點分析</strong></h1>
+      <h1><a href="../index.html" title="回首頁">2022升大學職涯型 <strong class="breakline">分科測驗落點分析</strong></a></h1>
+
+      <nav>
+        <ul class="menu">
+          <li><a href="#" class="active">落點分析</a></li>
+          <li><a href="../chart.html">校系CP值分析</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
@@ -38,67 +48,89 @@
         </label>
       </div>
 
-      <!-- 輸入指考成績 -->
+      <!-- 輸入分科測驗成績 -->
       <div id="input-ast-score">
-        <h2>輸入分科測驗成績<small>（未考部分請留空白）</small></h2>
+        <h2>輸入分科測驗成績<small>（60級分制，未考部分請留空白）</small></h2>
         <ul>
           <li>
             <label>
-                <span>國文</span>
-                <input type="number" id="input-ast-chinese" class="input-score" min="0" max="60">
+              <span>數學甲</span>
+              <input type="number" id="input-ast-math-a" class="input-score" min="0" max="60">
             </label>
           </li>
           <li>
             <label>
-                <span>英文</span>
-                <input type="number" id="input-ast-english" class="input-score" min="0" max="60">
+              <span>歷史</span>
+              <input type="number" id="input-ast-history" class="input-score" min="0" max="60">
             </label>
           </li>
           <li>
             <label>
-                <span>數學甲</span>
-                <input type="number" id="input-ast-math-a" class="input-score" min="0" max="60">
-            </label>
-          </li>
-          <li>
-            <label><span>數學乙</span>
-              <input type="number" id="input-ast-math-b" class="input-score" min="0" max="60">
+              <span>地理</span>
+              <input type="number" id="input-ast-geography" class="input-score" min="0" max="60">
             </label>
           </li>
           <li>
             <label>
-                <span>歷史</span>
-                <input type="number" id="input-ast-history" class="input-score" min="0" max="60">
+              <span>公民</span>
+              <input type="number" id="input-ast-citizen" class="input-score" min="0" max="60">
             </label>
           </li>
           <li>
             <label>
-                <span>地理</span>
-                <input type="number" id="input-ast-geography" class="input-score" min="0" max="60">
+              <span>物理</span>
+              <input type="number" id="input-ast-physics" class="input-score" min="0" max="60">
             </label>
           </li>
           <li>
             <label>
-                <span>公民</span>
-                <input type="number" id="input-ast-citizen-and-social" class="input-score" min="0" max="60">
+              <span>化學</span>
+              <input type="number" id="input-ast-chemistry" class="input-score" min="0" max="60">
             </label>
           </li>
           <li>
             <label>
-                <span>物理</span>
-                <input type="number" id="input-ast-physics" class="input-score" min="0" max="60">
+              <span>生物</span>
+              <input type="number" id="input-ast-biology" class="input-score" min="0" max="60">
+            </label>
+          </li>
+        </ul>
+        <h2>輸入學測成績<small>（60級分制，未考部分請留空白）</small></h2>
+        <ul>
+          <li>
+            <label>
+              <span>國文</span>
+              <input type="number" id="input-ast-chinese" class="input-score" min="0" max="60">
             </label>
           </li>
           <li>
             <label>
-                <span>化學</span>
-                <input type="number" id="input-ast-chemistry" class="input-score" min="0" max="60">
+              <span>英文</span>
+              <input type="number" id="input-ast-english" class="input-score" min="0" max="60">
+            </label>            
+          </li>
+          <li>
+            <label>
+              <span>數學Ａ</span>
+              <input type="number" id="subject-test-math-a" class="input-score" min="0" max="60">
             </label>
           </li>
           <li>
             <label>
-                <span>生物</span>
-                <input type="number" id="input-ast-biology" class="input-score" min="0" max="60">
+              <span>數學Ｂ</span>
+              <input type="number" id="subject-test-math-b" class="input-score" min="0" max="60">
+            </label>
+          </li>
+          <li>
+            <label>
+              <span>社會</span>
+              <input type="number" id="subject-test-society" class="input-score" min="0" max="60">
+            </label>
+          </li>
+          <li>
+            <label>
+              <span>自然</span>
+              <input type="number" id="subject-test-science" class="input-score" min="0" max="60">
             </label>
           </li>
         </ul>
@@ -106,61 +138,54 @@
 
       <!-- 輸入學測成績 -->
       <div id="input-gsat-score">
-        <h2>輸入學測成績<small>（未填則無法顯示需採計檢定標準之校系）</small></h2>
+        <h2>輸入學測成績<small>（15級分制，未填則無法顯示需通過檢定標準之校系）</small></h2>
         <ul>
           <li>
             <label>
-                <span>國文</span>
-                <span id="gsat-chinese-grade" class="score-grade"></span>
-                <input type="number" id="input-gsat-chinese" class="input-score" min="0" max="15">
+              <span>國文</span>
+              <input type="number" id="input-gsat-chinese" class="input-score" min="0" max="15">
             </label>
           </li>
           <li>
             <label>
-                <span>英文</span>
-                <span id="gsat-english-grade" class="score-grade"></span>
-                <input type="number" id="input-gsat-english" class="input-score" min="0" max="15">
+              <span>英文</span>
+              <input type="number" id="input-gsat-english" class="input-score" min="0" max="15">
             </label>
           </li>
           <li>
             <label>
-                <span>數學A</span>
-                <span id="gsat-math-grade" class="score-grade"></span>
-                <input type="number" id="input-gsat-math-a" class="input-score" min="0" max="15">
+              <span>數學Ａ</span>
+              <input type="number" id="input-gsat-matha" class="input-score" min="0" max="15">
             </label>
           </li>
           <li>
             <label>
-                <span>數學B</span>
-                <span id="gsat-math-grade" class="score-grade"></span>
-                <input type="number" id="input-gsat-math-b" class="input-score" min="0" max="15">
+              <span>數學Ｂ</span>
+              <input type="number" id="input-gsat-mathb" class="input-score" min="0" max="15">
             </label>
           </li>
           <li>
             <label>
-                <span>社會</span>
-                <span id="gsat-social-grade" class="score-grade"></span>
-                <input type="number" id="input-gsat-social" class="input-score" min="0" max="15">
+              <span>社會</span>
+              <input type="number" id="input-gsat-society" class="input-score" min="0" max="15">
             </label>
           </li>
           <li>
             <label>
-                <span>自然</span>
-                <span id="gsat-nature-grade" class="score-grade"></span>
-                <input type="number" id="input-gsat-nature" class="input-score" min="0" max="15">
+              <span>自然</span>
+              <input type="number" id="input-gsat-science" class="input-score" min="0" max="15">
             </label>
           </li>
           <li>
             <label>
-                <span>英聽</span>
-                <span id="gsat-english-listen-grade" class="score-grade"></span>
-                <select id="input-gsat-english-listen" class="input-score">
-                    <option value=""></option>
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                    <option value="F">F</option>
-                </select>
+              <span>英聽</span>
+              <select id="input-gsat-english-listen" class="input-score">
+                <option value=""></option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="F">F</option>
+              </select>
             </label>
           </li>
         </ul>
@@ -311,6 +336,35 @@
 
   <!-- 查詢結果區域 -->
   <div id="result-area">
+    <div class="banner">
+      <ul class="banner-orbit" data-orbit>
+        <li class="active">
+          <a href="http://admission.chu.edu.tw/p/412-1047-724.php?Lang=zh-tw" target="_blank">
+            <img src="../images/banner/110-banner-1.jpg" alt="">
+          </a>
+        </li>
+        <li class="">
+          <a href="http://news.chu.edu.tw/p/404-1001-21015.php?Lang=zh-tw" target="_blank">
+            <img src="../images/banner/110-banner-2.jpg" alt="">
+          </a>
+        </li>
+        <li class="">
+          <a href="http://news.chu.edu.tw/p/406-1001-22089,r12.php?Lang=zh-tw" target="_blank">
+            <img src="../images/banner/110-banner-3.jpg" alt="">
+          </a>
+        </li>
+        <li class="">
+          <a href="http://news.chu.edu.tw/p/406-1001-21219,r14.php?Lang=zh-tw" target="_blank">
+            <img src="../images/banner/110-banner-4.jpg" alt="">
+          </a>
+        </li>
+        <li class="">
+          <a href="https://www1.chu.edu.tw/p/412-1000-509.php?Lang=zh-tw" target="_blank">
+            <img src="../images/banner/110-banner-5.jpg" alt="">
+          </a>
+        </li>
+      </ul>
+    </div>
     <section id="result-suggest-school-departments-area">
       <h2>落點分析結果 <small>(依薪資排序)</small></h2>
       <a href="#" data-reveal-id="research-methods-modal" class="research-methods-link">分析方法</a>
@@ -354,6 +408,7 @@
         </tfoot>
       </table>
     </section>
+
   </div>
 
   <!-- 研究方法 -->
@@ -367,7 +422,7 @@
             <ul>
               <li>薪資資料: <a href="https://www.104.com.tw/jb/career/" target="_blank">104升學就業地圖-系友薪資行情</a></li>
               <ul>
-                <li>薪資資料更新時間: 2021/07/07</li>
+                <li>薪資資料更新時間: 2022/07/07</li>
               </ul>
               <li>指考分數: <a href="https://www.uac.edu.tw/109data/109_04.pdf" target="_blank">大學考試入學分發委員會官網</a></li>
               <li>今年簡章: <a href="http://www2.uac.edu.tw/110data/110recruit.pdf" target="_blank">大學考試入學分發委員會官網</a></li>
@@ -420,25 +475,29 @@
     </div>
     <a class="close-reveal-modal">&#215;</a>
   </div>
-</section>
 
-<!-- 提示視窗(光箱效果) START-->
-<div id="hint-msg-modal" class="reveal-modal" data-reveal
-aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-<h3 id="modalTitle">系統訊息</h2>
-<p class="text-center">2021年指考落點分析預計於8/16中午12:00正式上線，目前僅供測試</p>
-<a class="close-reveal-modal">&#215;</a>
-</div>
-<!-- 提示視窗(光箱效果) END-->
+  <!-- 提示視窗(光箱效果) START-->
+  <div id="hint-msg-modal" class="reveal-modal" data-reveal
+    aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <h3 id="modalTitle">系統訊息</h2>
+    <p class="text-center">2022年指考落點分析預計於8/16中午12:00正式上線，目前僅供測試</p>
+    <a class="close-reveal-modal">&#215;</a>
+  </div>
+  <!-- 提示視窗(光箱效果) END-->
+
+  <!-- ref:include footer -->
+  <!-- endref -->
+
+</section>
 
 <script src="../assets/jquery.min.js"></script>
 <script src="../assets/foundation.min.js"></script>
 <script src="../assets/jquery.floatThead.min.js"></script>
 <script src="../js/calc-rem-tools.js"></script>
 <script src="../js/department-group-choose.js"></script>
-<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-<script src="js/send-predict-data-to-liff.js"></script>
+<script src="js/send-predict-data.js"></script>
 <script>
+
   window.onload = function() {
     $(document).foundation();
     $('#result-area table').floatThead({
@@ -446,20 +505,22 @@ aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
       zIndex: 5,
       useAbsolutePositioning: true}
     );
-    $('#hint-msg-modal').foundation('reveal', 'open');
+    // $('#hint-msg-modal').foundation('reveal', 'open');
+    // alert("2022年指考落點分析已正式上線，歡迎使用。");
+    // alert("2022年指考落點分析預計於8/16中午12:00正式上線，目前僅供測試");
   };
 
-  $(document).foundation({
-        orbit: {
-            animation: 'slide',
-            timer_speed: 3000,
-            animation_speed: 500,
-            pause_on_hover: false,
-            navigation_arrows: false,
-            bullets: false,
-            slide_number: false,
-        }
-    });
+  // $(document).foundation({
+  //     orbit: {
+  //         animation: 'slide',
+  //         timer_speed: 3000,
+  //         animation_speed: 500,
+  //         pause_on_hover: false,
+  //         navigation_arrows: false,
+  //         bullets: false,
+  //         slide_number: false,
+  //     }
+  // });
 </script>
 </body>
 </html>

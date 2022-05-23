@@ -73,6 +73,7 @@ header {
                 & span {
                     display: inline;
                     font-size: 1.3rem;
+                    padding-left: 1rem;
                 }
             }
         }
@@ -159,11 +160,12 @@ header {
         text-align: center;
         height: 2.1em;
         -moz-appearance: textfield;
-    }
-
-    option {
-        color: white;
-        background: #8AB9B2;
+        & > option {
+            color: white;
+            background: #8AB9B2;
+            width: 100%;
+            height: 100%;
+        }
     }
 
     /* 隱藏+1-1按鈕 */
@@ -206,7 +208,7 @@ header {
 
         @media #{$large-up} {
             ul {
-                @include block-grid(10);
+                @include block-grid(7);
             }
         }
     }

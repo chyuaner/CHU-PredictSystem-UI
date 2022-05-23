@@ -52,43 +52,89 @@
         </label>
       </div>
 
-      <!-- 輸入指考成績 -->
+      <!-- 輸入分科測驗成績 -->
       <div id="input-ast-score">
-        <h2>輸入分科測驗成績<small>（未考部分請留空白）</small></h2>
+        <h2>輸入分科測驗成績<small>（60級分制，未考部分請留空白）</small></h2>
         <ul>
           <li>
-            <label><span>數學甲</span>
-              <input type="number" id="input-ast-math-a" class="input-score" min="0" max="100" step="0.01">
+            <label>
+              <span>數學甲</span>
+              <input type="number" id="input-ast-math-a" class="input-score" min="0" max="60">
             </label>
           </li>
           <li>
-            <label><span>歷史</span>
-              <input type="number" id="input-ast-history" class="input-score" min="0" max="100" step="0.01">
+            <label>
+              <span>歷史</span>
+              <input type="number" id="input-ast-history" class="input-score" min="0" max="60">
             </label>
           </li>
           <li>
-            <label><span>地理</span>
-              <input type="number" id="input-ast-geography" class="input-score" min="0" max="100" step="0.01">
+            <label>
+              <span>地理</span>
+              <input type="number" id="input-ast-geography" class="input-score" min="0" max="60">
             </label>
           </li>
           <li>
-            <label><span>公民</span>
-              <input type="number" id="input-ast-citizen-and-social" class="input-score" min="0" max="100" step="0.01">
+            <label>
+              <span>公民</span>
+              <input type="number" id="input-ast-citizen" class="input-score" min="0" max="60">
             </label>
           </li>
           <li>
-            <label><span>物理</span>
-              <input type="number" id="input-ast-physics" class="input-score" min="0" max="100" step="0.01">
+            <label>
+              <span>物理</span>
+              <input type="number" id="input-ast-physics" class="input-score" min="0" max="60">
             </label>
           </li>
           <li>
-            <label><span>化學</span>
-              <input type="number" id="input-ast-chemistry" class="input-score" min="0" max="100" step="0.01">
+            <label>
+              <span>化學</span>
+              <input type="number" id="input-ast-chemistry" class="input-score" min="0" max="60">
             </label>
           </li>
           <li>
-            <label><span>生物</span>
-              <input type="number" id="input-ast-organism" class="input-score" min="0" max="100" step="0.01">
+            <label>
+              <span>生物</span>
+              <input type="number" id="input-ast-biology" class="input-score" min="0" max="60">
+            </label>
+          </li>
+        </ul>
+        <h2>輸入學測成績<small>（60級分制，未考部分請留空白）</small></h2>
+        <ul>
+          <li>
+            <label>
+              <span>國文</span>
+              <input type="number" id="input-ast-chinese" class="input-score" min="0" max="60">
+            </label>
+          </li>
+          <li>
+            <label>
+              <span>英文</span>
+              <input type="number" id="input-ast-english" class="input-score" min="0" max="60">
+            </label>            
+          </li>
+          <li>
+            <label>
+              <span>數學Ａ</span>
+              <input type="number" id="subject-test-math-a" class="input-score" min="0" max="60">
+            </label>
+          </li>
+          <li>
+            <label>
+              <span>數學Ｂ</span>
+              <input type="number" id="subject-test-math-b" class="input-score" min="0" max="60">
+            </label>
+          </li>
+          <li>
+            <label>
+              <span>社會</span>
+              <input type="number" id="subject-test-society" class="input-score" min="0" max="60">
+            </label>
+          </li>
+          <li>
+            <label>
+              <span>自然</span>
+              <input type="number" id="subject-test-science" class="input-score" min="0" max="60">
             </label>
           </li>
         </ul>
@@ -96,35 +142,47 @@
 
       <!-- 輸入學測成績 -->
       <div id="input-gsat-score">
-        <h2>輸入學測成績<small>（未填則無法顯示需採計檢定標準之校系）</small></h2>
+        <h2>輸入學測成績<small>（15級分制，未填則無法顯示需通過檢定標準之校系）</small></h2>
         <ul>
           <li>
-            <label><span>國文</span><span id="gsat-chinese-grade" class="score-grade"></span>
+            <label>
+              <span>國文</span>
               <input type="number" id="input-gsat-chinese" class="input-score" min="0" max="15">
             </label>
           </li>
           <li>
-            <label><span>英文</span><span id="gsat-english-grade" class="score-grade"></span>
+            <label>
+              <span>英文</span>
               <input type="number" id="input-gsat-english" class="input-score" min="0" max="15">
             </label>
           </li>
           <li>
-            <label><span>數學</span><span id="gsat-math-grade" class="score-grade"></span>
-              <input type="number" id="input-gsat-math" class="input-score" min="0" max="15">
+            <label>
+              <span>數學Ａ</span>
+              <input type="number" id="input-gsat-matha" class="input-score" min="0" max="15">
             </label>
           </li>
           <li>
-            <label><span>社會</span><span id="gsat-social-grade" class="score-grade"></span>
-              <input type="number" id="input-gsat-social" class="input-score" min="0" max="15">
+            <label>
+              <span>數學Ｂ</span>
+              <input type="number" id="input-gsat-mathb" class="input-score" min="0" max="15">
             </label>
           </li>
           <li>
-            <label><span>自然</span><span id="gsat-nature-grade" class="score-grade"></span>
-              <input type="number" id="input-gsat-nature" class="input-score" min="0" max="15">
+            <label>
+              <span>社會</span>
+              <input type="number" id="input-gsat-society" class="input-score" min="0" max="15">
             </label>
           </li>
           <li>
-            <label><span>英聽</span><span id="gsat-english-listen-grade" class="score-grade"></span>
+            <label>
+              <span>自然</span>
+              <input type="number" id="input-gsat-science" class="input-score" min="0" max="15">
+            </label>
+          </li>
+          <li>
+            <label>
+              <span>英聽</span>
               <select id="input-gsat-english-listen" class="input-score">
                 <option value=""></option>
                 <option value="A">A</option>

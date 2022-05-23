@@ -21,134 +21,133 @@ function transferToMobileSalaryURL(url) {
 
 function getData() {
   // 網頁介面對應
-  var input_salary        = document.getElementById('input-expect-salary');
+  let input_salary        = document.getElementById('input-expect-salary');
+  let input_ast_chinese   = document.getElementById('input-ast-chinese');
+  let input_ast_english   = document.getElementById('input-ast-english');
+  let input_ast_mathA     = document.getElementById('input-ast-math-a');
+  let input_ast_history   = document.getElementById('input-ast-history');
+  let input_ast_geography = document.getElementById('input-ast-geography');
+  let input_ast_citizen   = document.getElementById('input-ast-citizen');
+  let input_ast_physics   = document.getElementById('input-ast-physics');
+  let input_ast_chemistry = document.getElementById('input-ast-chemistry');
+  let input_ast_biology  = document.getElementById('input-ast-biology');
+  let subject_test_math_a = document.getElementById('subject-test-math-a');
+  let subject_test_math_b = document.getElementById('subject-test-math-b');
+  let subject_test_society = document.getElementById('subject-test-society');
+  let subject_test_science = document.getElementById('subject-test-science');
 
-  var input_ast_chinese   = document.getElementById('input-ast-chinese');
-  var input_ast_english   = document.getElementById('input-ast-english');
-  var input_ast_mathA     = document.getElementById('input-ast-math-a');
-  var input_ast_mathB     = document.getElementById('input-ast-math-b');
-  var input_ast_history   = document.getElementById('input-ast-history');
-  var input_ast_geography = document.getElementById('input-ast-geography');
-  var input_ast_citizen   = document.getElementById('input-ast-citizen-and-social');
-  var input_ast_physics   = document.getElementById('input-ast-physics');
-  var input_ast_chemistry = document.getElementById('input-ast-chemistry');
-  var input_ast_organism  = document.getElementById('input-ast-organism');
+  let input_gsat_chinese  = document.getElementById('input-gsat-chinese');
+  let input_gsat_english  = document.getElementById('input-gsat-english');
+  let input_gsat_matha     = document.getElementById('input-gsat-matha');
+  let input_gsat_mathb     = document.getElementById('input-gsat-mathb');
+  let input_gsat_society   = document.getElementById('input-gsat-society');
+  let input_gsat_science   = document.getElementById('input-gsat-science');
+  let input_gsat_engLis   = document.getElementById('input-gsat-english-listen');
 
-  var input_gsat_chinese  = document.getElementById('input-gsat-chinese');
-  var input_gsat_english  = document.getElementById('input-gsat-english');
-  var input_gsat_math     = document.getElementById('input-gsat-math');
-  var input_gsat_social   = document.getElementById('input-gsat-social');
-  var input_gsat_nature   = document.getElementById('input-gsat-nature');
-  var input_gsat_engLis   = document.getElementById('input-gsat-english-listen');
-  var input_gsat_socre    = getGsatTotalScore();
-
-  var input_departmentGroup = document.getElementsByName('input-department-group');
-  var input_stateGroup = document.getElementsByName('input-state-group');
-  var input_universityGroup = document.getElementsByName('input-university-group');
+  let input_departmentGroup = document.getElementsByName('input-department-group');
+  let input_stateGroup = document.getElementsByName('input-state-group');
+  let input_universityGroup = document.getElementsByName('input-university-group');
+  let salary = input_salary.value == "" ? 0 : parseInt(input_salary.value);
 
   // 取得使用者填寫的表單資料
-   if(input_salary.value == "") {
-     var salary = parseFloat(0);
-   }
-   else {
-     var salary = parseFloat(input_salary.value);
-   }
-  var ast_chinese = parseInt(input_ast_chinese.value);
-  var ast_english = parseInt(input_ast_english.value);
-  var ast_mathA = parseInt(input_ast_mathA.value)
-  var ast_mathB = parseInt(input_ast_mathB.value);
-  var ast_history = parseInt(input_ast_history.value);
-  var ast_geography = parseInt(input_ast_geography.value);
-  var ast_citizen = parseInt(input_ast_citizen.value);
-  var ast_physics = parseInt(input_ast_physics.value);
-  var ast_chemistry = parseInt(input_ast_chemistry.value);
-  var ast_organism = parseInt(input_ast_organism.value);
+  let ast_chinese = parseInt(input_ast_chinese.value);
+  let ast_english = parseInt(input_ast_english.value);
+  let ast_mathA = parseInt(input_ast_mathA.value)
+  let ast_history = parseInt(input_ast_history.value);
+  let ast_geography = parseInt(input_ast_geography.value);
+  let ast_citizen = parseInt(input_ast_citizen.value);
+  let ast_physics = parseInt(input_ast_physics.value);
+  let ast_chemistry = parseInt(input_ast_chemistry.value);
+  let ast_biology = parseInt(input_ast_biology.value);
+  let sub_test_mathA = parseInt(subject_test_math_a.value);
+  let sub_test_mathB = parseInt(subject_test_math_b.value);
+  let sub_test_society = parseInt(subject_test_society.value);
+  let sub_test_science = parseInt(subject_test_science.value);
+  let gsat_engLis = input_gsat_engLis.value;
 
-  if(input_gsat_chinese.value == "") { var gsat_chinese = parseInt(0); }
-  else { var gsat_chinese = parseInt(input_gsat_chinese.value); }
-  if(input_gsat_english.value == "") { var gsat_english = parseInt(0); }
-  else { var gsat_english = parseInt(input_gsat_english.value); }
-  if(input_gsat_math.value == "") { var gsat_math = parseInt(0); }
-  else { var gsat_math = parseInt(input_gsat_math.value); }
-  if(input_gsat_social.value == "") { var gsat_social = parseInt(0); }
-  else { var gsat_social = parseInt(input_gsat_social.value); }
-  if(input_gsat_nature.value == "") { var gsat_nature = parseInt(0); }
-  else { var gsat_nature = parseInt(input_gsat_nature.value); }
-  var gsat_engLis = input_gsat_engLis.value;
-  if(input_gsat_socre == "") { var gsat_score = parseInt(0); }
-  else { var gsat_score = parseInt(input_gsat_socre); }
+  let gsat_chinese = input_gsat_chinese.value == "" ? 0 : parseInt(input_gsat_chinese.value);
+  let gsat_english = input_gsat_english.value == "" ? 0 : parseInt(input_gsat_english.value);
+  let gsat_mathA = input_gsat_matha.value == "" ? 0 : parseInt(input_gsat_matha.value);
+  let gsat_mathB = input_gsat_mathb.value == "" ? 0 : parseInt(input_gsat_mathb.value);
+  let gsat_society = input_gsat_society.value == "" ? 0 : parseInt(input_gsat_society.value);
+  let gsat_science = input_gsat_science.value == "" ? 0 : parseInt(input_gsat_science.value);  
 
-  var departmentGroup = [];
-  for(var i=0; i<input_departmentGroup.length; i++) {
+  let departmentGroup = [];
+  for(let i=0; i<input_departmentGroup.length; i++) {
      if(input_departmentGroup[i].checked) {
        departmentGroup.push(input_departmentGroup[i].value);
      }
    }
   // 若沒選擇的話，就全選
    if(departmentGroup.length == 0) {
-     for(var i=0; i<input_departmentGroup.length; i++) {
+     for(let i=0; i<input_departmentGroup.length; i++) {
        departmentGroup.push(input_departmentGroup[i].value);
      }
    }
 
-  var stateGroup = [];
-  for(var i=0; i<input_stateGroup.length; i++) {
+  let stateGroup = [];
+  for(let i=0; i<input_stateGroup.length; i++) {
     if(input_stateGroup[i].checked) {
       stateGroup.push(input_stateGroup[i].value);
     }
   }
   // 若沒選擇的話，就全選
   if(stateGroup.length == 0) {
-    for(var i=0; i<input_stateGroup.length; i++) {
+    for(let i=0; i<input_stateGroup.length; i++) {
       stateGroup.push(input_stateGroup[i].value);
     }
   }
 
-  var universityGroup = [];
-  for(var i=0; i<input_universityGroup.length; i++) {
+  let universityGroup = [];
+  for(let i=0; i<input_universityGroup.length; i++) {
     if(input_universityGroup[i].checked) {
       universityGroup.push(input_universityGroup[i].value);
     }
   }
   // 若沒選擇的話，就全選
   if(universityGroup.length == 0) {
-    for(var i=0; i<input_universityGroup.length; i++) {
+    for(let i=0; i<input_universityGroup.length; i++) {
       universityGroup.push(input_universityGroup[i].value);
     }
   }
 
   // 製作JSON
-  var data = {
-
-    "grades": {
-      "ast": {
-        "Chinese": ast_chinese,
-        "English": ast_english,
-        "Math_A": ast_mathA,
-        "Math_B": ast_mathB,
-        "History": ast_history,
-        "Geographic":ast_geography,
-        "Citizen_and_Society": ast_citizen,
-        "Physics": ast_physics,
-        "Chemistry": ast_chemistry,
-        "Biology": ast_organism
+  let data = {
+    grades: {
+      ast: {
+        Math_A: ast_mathA,
+        History: ast_history,
+        Geographic:ast_geography,
+        Citizen: ast_citizen,
+        Physics: ast_physics,
+        Chemistry: ast_chemistry,
+        Biology: ast_biology
       },
-      "gsat": {
-        "Chinese": gsat_chinese,
-        "English": gsat_english,
-        "Math": gsat_math,
-        "Society": gsat_social,
-        "Science": gsat_nature,
-        "EngListeningLevel": gsat_engLis,
-        "TotalScore": gsat_score
-      }
+      gsat: [
+        {
+          Chinese: gsat_chinese,
+          English: gsat_english,
+          MathA: gsat_mathA,
+          MathB: gsat_mathB,
+          Society: gsat_society,
+          Science: gsat_science,
+          EngListeningLevel: gsat_engLis,
+        },
+        {
+          Chinese: ast_chinese,
+          English: ast_english,
+          MathA: sub_test_mathA,
+          MathB: sub_test_mathB,
+          Society: sub_test_society,
+          Science: sub_test_science,
+        }
+      ]
     },
-    "groups": departmentGroup,
-    "location": stateGroup,
-    "property": universityGroup,
-    "expect_salary": salary
+    groups: departmentGroup,
+    location: stateGroup,
+    property: universityGroup,
+    expect_salary: salary
   };
-
   return data;
 }
 
@@ -189,11 +188,6 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
   var tr = `<tr data-item-id="${did}" class="${trClass}">`;
 
   var content = '';
-  /*
-  <button class="button small" type="submit" name="dep_id" value="${did}">
-                                      
-                  </button>
-  */
   content += `<td data-title="校系代碼">
                 <form method="post" action=${post_url} target="_blank">
                   <span data-tooltip aria-haspopup="true" data-tooltip-title="連結至分科測驗校系分則網頁">
@@ -261,13 +255,13 @@ function errorData() {
 
 function errorAlertMsg(text) {
   var alertArea = $("#input-area .alerts-area");
-  alertArea.append('<div data-alert class="alert-box alert round">'+text+' <a href="#" class="close">&times;</a></div>');
+  alertArea.append(`<div data-alert class="alert-box alert round">${text} <a href="#" class="close">&times;</a></div>`);
   $("#input-area .alerts-area").foundation();
 }
 
 function warningAlertMsg(text) {
   var alertArea = $("#input-area .alerts-area");
-  alertArea.append('<div data-alert class="alert-box warning round">'+text+' <a href="#" class="close">&times;</a></div>');
+  alertArea.append(`<div data-alert class="alert-box warning round">${text}<a href="#" class="close">&times;</a></div>`);
  $("#input-area .alerts-area").foundation();
 }
 
@@ -387,8 +381,9 @@ function mockPredictResult()
 var form_input = document.getElementById('input-form');
 form_input.onsubmit = function(e) {
     e.preventDefault();
-    // let studentGrade = getData();
+    let studentGrade = getData();
     // queryResult(studentGrade);
-    let mockData = mockPredictResult();
-    setData(mockData);
+    // let mockData = mockPredictResult();
+    // setData(mockData);
+    console.log(JSON.stringify(studentGrade));
 }

@@ -137,10 +137,11 @@ function sentToLIFF(data) {
         liff.sendMessages([
             {
                 type: 'text',
-                text: `/predict/${JSON.stringify(data)}`,
+                text: JSON.stringify(data),
             },
         ]).then(() => {
-            liff.closeWindow();
+          alert('SUCCESS~!!');
+          liff.closeWindow();
         }).catch((error) => {
             window.alert('Error sending message: ' + error);
         });
@@ -152,7 +153,7 @@ liff.init({
 });
 
 let form_input = document.getElementById('input-form');
-form_input.onsubmit = (e) => {
+form_input.onsubmit = function (e)  {
     e.preventDefault();
     let studentGrade = getData();
     sentToLIFF(studentGrade);

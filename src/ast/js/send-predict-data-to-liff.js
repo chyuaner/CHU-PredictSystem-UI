@@ -94,7 +94,7 @@ function getData() {
     let data = {
       grades: {
         ast: {
-          Math_A: ast_mathA,
+          MathA: ast_mathA,
           History: ast_history,
           Geographic:ast_geography,
           Citizen: ast_citizen,

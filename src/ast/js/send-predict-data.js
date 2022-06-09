@@ -382,8 +382,8 @@ var form_input = document.getElementById('input-form');
 form_input.onsubmit = function(e) {
     e.preventDefault();
     let studentGrade = getData();
-    // queryResult(studentGrade);
+    queryResult(studentGrade);
     // let mockData = mockPredictResult();
     // setData(mockData);
-    console.log(JSON.stringify(studentGrade));
+    // console.log(JSON.stringify(studentGrade));
 }

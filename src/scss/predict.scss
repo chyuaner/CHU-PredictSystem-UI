@@ -228,17 +228,16 @@ header {
     /* 選取學群 */
     #input-department-group-area,
     #input-state-group-area {
-
-        h2,
-        h3 {
+        margin-top: 1em;
+        h2,h3 {
             float: left;
-            width: 4em;
-            margin-right: 1em;
+            width: 5em;
         }
 
         p {
+            display: inline-block;
             margin-left: -9em;
-            padding-left: 9.5em;
+            padding-left: 9em;
             width: 100%;
         }
 
@@ -246,7 +245,7 @@ header {
             padding: 0.3rem;
             color: white;
             border-bottom: 2px solid white;
-            height: 2.2em;
+            height: 2em;
             margin-bottom: 1em;
         }
 
@@ -254,14 +253,9 @@ header {
             background: rgba(255, 255, 255, 0.2);
         }
 
-        p,
-        .more-button {
-            display: inline-block;
-            margin-top: 0.3em;
-        }
-
         .more-button {
             float: right;
+            padding-top: 0.3rem;
         }
 
         /* 選取學群的checkbox區域 */
@@ -284,7 +278,7 @@ header {
 
             @media #{$large-up} {
                 ul {
-                    @include block-grid(7);
+                    @include block-grid(6);
                 }
             }
 

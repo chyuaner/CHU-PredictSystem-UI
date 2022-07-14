@@ -270,28 +270,35 @@ function cleanAlert() {
   alertArea.empty();
 }
 
-function atLeast3(data)
-{
+function atLeast3(data) {
   var bool = false;
   var count = 0;
 
-  for(var key in data)
+  for (const key in data)
   {
-    if(count < 3)
-    {
-      if(data[key] > 0)
-      {
-        count++;
-      }
-    }
-    else {
+    if(count < 3) {
+      if(data[key] > 0) count++;
+    } else {
       bool = true;
     }
   }
   return bool;
 }
 
-function fetchPredictData(data, div_loading) {
+function checkGradeIsAllBlank(grades) {
+  let ast_data = grades.ast;
+  let gsat_data = grades.gsat[1];
+  if(isNaN(ast_data.Biology) && isNaN(ast_data.Chemistry) && isNaN(ast_data.Physics) && isNaN(ast_data.Math_A) 
+      && isNaN(ast_data.History) && isNaN(ast_data.Citizen) && isNaN(ast_data.Citizen) && isNaN(gsat_data.Chinese) 
+      && isNaN(gsat_data.English) && isNaN(gsat_data.MathA) && isNaN(gsat_data.MathB) && isNaN(gsat_data.Science) 
+      && isNaN(gsat_data.Society)) {
+        return true
+      }
+      else return false;
+}
+
+function fetchPredictData(data) {
+  let div_loading = document.getElementById('loading-area');
   $.ajax({
     type: "POST",
     url: basePredictSystemUrl,
@@ -328,21 +335,19 @@ function fetchPredictData(data, div_loading) {
 }
 
 function queryResult(data) {
-  let resultData = [];
-  let div_loading = document.getElementById('loading-area');
   let astData = data.grades.ast;
+  let gsatData = data.grades.gsat[1];
+  let subject = Object.assign(astData,gsatData);
+  console.log(atLeast3(subject));
   cleanAlert();
-  if(isNaN(astData.Chinese) && isNaN(astData.English) && isNaN(astData.Math_A)
-    && isNaN(astData.Math_B)  && isNaN(astData.History) && isNaN(astData.Geographic)
-    && isNaN(astData.Citizen_and_Society) && isNaN(astData.Physics)
-    && isNaN(astData.Chemistry) && isNaN(astData.Biology)) {
-    warningAlertMsg("你還沒填寫指考成績喔～");
+  if(checkGradeIsAllBlank(data.grades)) {
+    warningAlertMsg("你還沒填寫成績喔～");
   } else if(!atLeast3(astData)) {
-    warningAlertMsg("請填入至少三科以上的指考成績喔～");
+    warningAlertMsg("請填入至少三科以上成績喔～");
   } else {
     // 沒有問題，開始向後端要資料
     if(!querying) {
-      fetchPredictData(data, div_loading);
+      fetchPredictData(data);
     }
   }
 }
@@ -383,7 +388,4 @@ form_input.onsubmit = function(e) {
     e.preventDefault();
     let studentGrade = getData();
     queryResult(studentGrade);
-    // let mockData = mockPredictResult();
-    // setData(mockData);
-    // console.log(JSON.stringify(studentGrade));
 }

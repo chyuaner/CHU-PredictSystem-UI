@@ -132,7 +132,7 @@ function getData() {
 
 function sentToLIFF(data) {
     if (!liff.isInClient()) {
-        window.alert('This button is unavailable as LIFF is currently being opened in an external browser.');
+        alert('This button is unavailable as LIFF is currently being opened in an external browser.');
     } else {
         liff.sendMessages([
             {
@@ -140,7 +140,6 @@ function sentToLIFF(data) {
                 text: JSON.stringify(data),
             },
         ]).then(() => {
-          alert('SUCCESS~!!');
           liff.closeWindow();
         }).catch((error) => {
             window.alert('Error sending message: ' + error);
@@ -149,7 +148,9 @@ function sentToLIFF(data) {
 }
 
 liff.init({
-    liffId: '1657008881-l0M8Bwa5'
+    liffId: '1657225938-8jw2rBNq'
+}).catch((err)=>{
+  alert(err);
 });
 
 let form_input = document.getElementById('input-form');

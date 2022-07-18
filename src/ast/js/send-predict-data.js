@@ -1,3 +1,4 @@
+// var basePredictSystemUrl = "https://0095-140-126-120-156.ngrok.io/api/ast/analysis";
 var basePredictSystemUrl = "api/ast/analysis";
 var max_input_score = 15;
 var querying = false;
@@ -162,7 +163,7 @@ function setData(resultData) {
     for(var i=0; i<resultData.length; i++) {
       addData(resultData[i].did, resultData[i].uname, resultData[i].uurl,
               resultData[i].dname, resultData[i].durl, resultData[i].salary, resultData[i].salaryUrl,
-              resultData[i].minScore, resultData[i].yourScore, resultData[i].examURL);
+              resultData[i].minScore, resultData[i].yourScore);
     }
   }
   else {
@@ -171,7 +172,7 @@ function setData(resultData) {
   }
 }
 
-function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, yourScore, examURL) {
+function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, yourScore) {
   let post_url = 'https://uac2.ncku.edu.tw/cross_search/index.php?c=search&m=detail';
   if(salary == 0) { salary = '樣本不足';}
 
@@ -191,7 +192,7 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
   content += `<td data-title="校系代碼">
                 <form method="post" action=${post_url} target="_blank">
                   <span data-tooltip aria-haspopup="true" data-tooltip-title="連結至分科測驗校系分則網頁">
-                    <input class="link" type="submit" name="dep_id" value="${did}">
+                    <input class="link" type="submit" name="dep_id" value="${did}"/>
                   </span>
                 </form>
               </td>`;
@@ -311,7 +312,7 @@ function fetchPredictData(data) {
       // 顯示處理中畫面
       div_loading.classList.remove('hidden');
       $('input[type=submit]').prop("disabled", true);
-      $('input[type=submit]').val('落點分析中...');
+      $('.analyze_start').val('落點分析中...');
       querying = true;
     },
     success: function (data) {
@@ -319,7 +320,7 @@ function fetchPredictData(data) {
       div_loading.classList.add('hidden');
       setData(data.result);
       $('input[type=submit]').prop("disabled", false);
-      $('input[type=submit]').val('開始分析');
+      $('.analyze_start').val('開始分析');
       querying = false;
     },
     error: function (data) {
@@ -328,7 +329,7 @@ function fetchPredictData(data) {
       errorData();
       errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
       $('input[type=submit]').prop("disabled", false);
-      $('input[type=submit]').val('開始分析');
+      $('.analyze_start').val('開始分析');
       querying = false;
     }
   });

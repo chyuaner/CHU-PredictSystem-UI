@@ -1,5 +1,5 @@
-// var basePredictSystemUrl = "https://0095-140-126-120-156.ngrok.io/api/ast/analysis";
-var basePredictSystemUrl = "api/ast/analysis";
+var basePredictSystemUrl = "https://53b2-140-126-120-156.ngrok.io/api/ast/analysis";
+// var basePredictSystemUrl = "api/ast/analysis";
 var max_input_score = 15;
 var querying = false;
 

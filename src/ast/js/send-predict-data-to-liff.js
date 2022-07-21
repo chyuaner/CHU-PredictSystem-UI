@@ -148,7 +148,7 @@ function sentToLIFF(data) {
 }
 
 liff.init({
-    liffId: '1657320113-J3v4YqkO'
+    liffId: '1657321772-40ezKwvL'
 }).catch((err)=>{
   alert(err);
 });

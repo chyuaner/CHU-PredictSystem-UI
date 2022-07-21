@@ -1,5 +1,5 @@
-var basePredictSystemUrl = "https://53b2-140-126-120-156.ngrok.io/api/ast/analysis";
-// var basePredictSystemUrl = "api/ast/analysis";
+// var basePredictSystemUrl = "https://53b2-140-126-120-156.ngrok.io/api/ast/analysis";
+var basePredictSystemUrl = "api/ast/analysis";
 var max_input_score = 15;
 var querying = false;
 
@@ -71,7 +71,7 @@ function getData() {
   let gsat_mathA = input_gsat_matha.value == "" ? 0 : parseInt(input_gsat_matha.value);
   let gsat_mathB = input_gsat_mathb.value == "" ? 0 : parseInt(input_gsat_mathb.value);
   let gsat_society = input_gsat_society.value == "" ? 0 : parseInt(input_gsat_society.value);
-  let gsat_science = input_gsat_science.value == "" ? 0 : parseInt(input_gsat_science.value);  
+  let gsat_science = input_gsat_science.value == "" ? 0 : parseInt(input_gsat_science.value);
 
   let departmentGroup = [];
   for(let i=0; i<input_departmentGroup.length; i++) {
@@ -198,7 +198,7 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
               </td>`;
 
   content += `<td data-title="校名">
-                <a href="${uurl}" target="_blank" data-tooltip aria-haspopup="true" 
+                <a href="${uurl}" target="_blank" data-tooltip aria-haspopup="true"
                     data-tooltip-title="連結至學校首頁">${uname}</a>
               </td>`;
   if(durl === null){
@@ -218,14 +218,14 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, you
           salaryUrl = transferToMobileSalaryURL(salaryUrl);
       }
       content += `<td data-title="畢業生平均薪資">
-                    <a href="${salaryUrl}" target="_blank" data-tooltip aria-haspopup="true" 
+                    <a href="${salaryUrl}" target="_blank" data-tooltip aria-haspopup="true"
                         data-tooltip-title="連結至104升學就業地圖">${salary}</a>
                   </td>`;
   }
   content += `<td data-title="去年最低錄取分數">${minScore}</td>`;
   if(yourScore < minScore) {
     content += `<td data-title="換算去年加權分數" class="warning">
-                  <span data-tooltip aria-haspopup="true" 
+                  <span data-tooltip aria-haspopup="true"
                       data-tooltip-title="換算去年加權分數\n低於去年最低錄取分數">${yourScore}</span>
                 </td>`;
   }
@@ -289,9 +289,9 @@ function atLeast3(data) {
 function checkGradeIsAllBlank(grades) {
   let ast_data = grades.ast;
   let gsat_data = grades.gsat[1];
-  if(isNaN(ast_data.Biology) && isNaN(ast_data.Chemistry) && isNaN(ast_data.Physics) && isNaN(ast_data.Math_A) 
-      && isNaN(ast_data.History) && isNaN(ast_data.Citizen) && isNaN(ast_data.Citizen) && isNaN(gsat_data.Chinese) 
-      && isNaN(gsat_data.English) && isNaN(gsat_data.MathA) && isNaN(gsat_data.MathB) && isNaN(gsat_data.Science) 
+  if(isNaN(ast_data.Biology) && isNaN(ast_data.Chemistry) && isNaN(ast_data.Physics) && isNaN(ast_data.Math_A)
+      && isNaN(ast_data.History) && isNaN(ast_data.Citizen) && isNaN(ast_data.Citizen) && isNaN(gsat_data.Chinese)
+      && isNaN(gsat_data.English) && isNaN(gsat_data.MathA) && isNaN(gsat_data.MathB) && isNaN(gsat_data.Science)
       && isNaN(gsat_data.Society)) {
         return true
       }

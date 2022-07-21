@@ -14,7 +14,7 @@ function getData() {
     let subject_test_math_b = document.getElementById('subject-test-math-b');
     let subject_test_society = document.getElementById('subject-test-society');
     let subject_test_science = document.getElementById('subject-test-science');
-  
+
     let input_gsat_chinese  = document.getElementById('input-gsat-chinese');
     let input_gsat_english  = document.getElementById('input-gsat-english');
     let input_gsat_matha     = document.getElementById('input-gsat-matha');
@@ -22,12 +22,12 @@ function getData() {
     let input_gsat_society   = document.getElementById('input-gsat-society');
     let input_gsat_science   = document.getElementById('input-gsat-science');
     let input_gsat_engLis   = document.getElementById('input-gsat-english-listen');
-  
+
     let input_departmentGroup = document.getElementsByName('input-department-group');
     let input_stateGroup = document.getElementsByName('input-state-group');
     let input_universityGroup = document.getElementsByName('input-university-group');
     let salary = input_salary.value == "" ? 0 : parseInt(input_salary.value);
-  
+
     // 取得使用者填寫的表單資料
     let ast_chinese = parseInt(input_ast_chinese.value);
     let ast_english = parseInt(input_ast_english.value);
@@ -43,14 +43,14 @@ function getData() {
     let sub_test_society = parseInt(subject_test_society.value);
     let sub_test_science = parseInt(subject_test_science.value);
     let gsat_engLis = input_gsat_engLis.value;
-  
+
     let gsat_chinese = input_gsat_chinese.value == "" ? 0 : parseInt(input_gsat_chinese.value);
     let gsat_english = input_gsat_english.value == "" ? 0 : parseInt(input_gsat_english.value);
     let gsat_mathA = input_gsat_matha.value == "" ? 0 : parseInt(input_gsat_matha.value);
     let gsat_mathB = input_gsat_mathb.value == "" ? 0 : parseInt(input_gsat_mathb.value);
     let gsat_society = input_gsat_society.value == "" ? 0 : parseInt(input_gsat_society.value);
-    let gsat_science = input_gsat_science.value == "" ? 0 : parseInt(input_gsat_science.value);  
-  
+    let gsat_science = input_gsat_science.value == "" ? 0 : parseInt(input_gsat_science.value);
+
     let departmentGroup = [];
     for(let i=0; i<input_departmentGroup.length; i++) {
        if(input_departmentGroup[i].checked) {
@@ -63,7 +63,7 @@ function getData() {
          departmentGroup.push(input_departmentGroup[i].value);
        }
      }
-  
+
     let stateGroup = [];
     for(let i=0; i<input_stateGroup.length; i++) {
       if(input_stateGroup[i].checked) {
@@ -76,7 +76,7 @@ function getData() {
         stateGroup.push(input_stateGroup[i].value);
       }
     }
-  
+
     let universityGroup = [];
     for(let i=0; i<input_universityGroup.length; i++) {
       if(input_universityGroup[i].checked) {
@@ -89,7 +89,7 @@ function getData() {
         universityGroup.push(input_universityGroup[i].value);
       }
     }
-  
+
     // 製作JSON
     let data = {
       grades: {
@@ -148,7 +148,7 @@ function sentToLIFF(data) {
 }
 
 liff.init({
-    liffId: '1657225938-8jw2rBNq'
+    liffId: '1657320113-J3v4YqkO'
 }).catch((err)=>{
   alert(err);
 });

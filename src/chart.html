@@ -1,243 +1,230 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- ref:include meta -->
-  <!-- endref -->
-  <title>校系CP值分析 - 111/2022 升大學職涯型落點分析/預測</title>
-  <link rel="stylesheet" href="assets/c3.min.css">
-  <link rel="stylesheet" href="css/chart.css">
-  <script src="assets/modernizr.js"></script>
-  <script src="assets/d3.min.js"></script>
-  <script src="assets/c3.min.js"></script>
-  <noscript>
-    <link rel="stylesheet" href="css/chart-no-js.css">
-  </noscript>
-  <!-- ref:include head_tagmanager -->
-  <!-- endref -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ref:include meta -->
+    <!-- endref -->
+    <title>校系CP值分析 - 111/2022 升大學職涯型落點分析/預測</title>
+    <link rel="stylesheet" href="assets/c3.min.css">
+    <link rel="stylesheet" href="css/chart.css">
+    <script src="assets/modernizr.js"></script>
+    <script src="assets/d3.min.js"></script>
+    <script src="assets/c3.min.js"></script>
+    <noscript>
+        <link rel="stylesheet" href="css/chart-no-js.css">
+    </noscript>
+    <!-- ref:include head_tagmanager -->
+    <!-- endref -->
 </head>
-
 <body>
 
-<!-- ref:include oldie -->
-<!-- endref -->
+    <!-- ref:include oldie -->
+    <!-- endref -->
 
-<section id="header" class="page-section">
-  <header>
-    <div class="inner">
-      <h1><a href="index.html" title="回首頁">升大學職涯型 <strong>落點分析</strong></a></h1>
+    <section id="header" class="page-section">
+        <header>
+            <div class="inner">
+                <h1><a href="index.html" title="回首頁">升大學職涯型 <strong>落點分析</strong></a></h1>
 
-      <nav>
-        <ul>
-          <!-- <li><a href="predict.html">落點分析</a></li> -->
-          <li><a href="#" class="active">校系CP值分析</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active">校系CP值分析</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
-  <div id="select-area">
-    <h2>請選擇你要查看的資料</h2>
-    <a href="#" data-reveal-id="research-methods-modal" class="research-methods-link">分析方法</a>
+        <div id="select-area">
+            <h2>請選擇你要查看的資料</h2>
+            <a href="#" data-reveal-id="research-methods-modal" class="research-methods-link">分析方法</a>
 
-    <div class="select-group-item">
-      <h3>一般分類</h3>
-      <ul>
-        <li><a href="#一般分類-學校?pmax=10&pmin=0" class="chart-link">學校</a></li>
-        <li><a href="#一般分類-科系?pmax=10&pmin=0" class="chart-link">科系</a></li>
-        <li><a href="#一般分類-學群" class="chart-link">學群</a></li>
-        <!-- <li><a href="#2-chart" class="chart-link">學類</a></li> -->
-      </ul>
-    </div>
-    <div class="select-group-item">
-      <h3>依學群分</h3>
-      <ul>
-        <li><a href="#學群分類-工程學群?pmax=10&pmin=0" class="chart-link">工程學群</a></li>
-        <li><a href="#學群分類-資訊學群?pmax=10&pmin=0" class="chart-link">資訊學群</a></li>
-        <li><a href="#學群分類-管理學群?pmax=10&pmin=0" class="chart-link">管理學群</a></li>
-        <li><a href="#學群分類-財經學群?pmax=10&pmin=0" class="chart-link">財經學群</a></li>
-        <li><a href="#學群分類-建築設計學群?pmax=10&pmin=0" class="chart-link">建築設計學群</a></li>
-        <li><a href="#學群分類-外語學群?pmax=10&pmin=0" class="chart-link">外語學群</a></li>
-        <li><a href="#學群分類-數理化學群?pmax=10&pmin=0" class="chart-link">數理化學群</a></li>
-        <li><a href="#學群分類-醫藥衛生學群?pmax=10&pmin=0" class="chart-link">醫藥衛生學群</a></li>
-        <li><a href="#學群分類-生命科學學群?pmax=10&pmin=0" class="chart-link">生命科學學群</a></li>
-        <li><a href="#學群分類-生物資源學群?pmax=10&pmin=0" class="chart-link">生物資源學群</a></li>
-        <li><a href="#學群分類-地球環境學群?pmax=10&pmin=0" class="chart-link">地球環境學群</a></li>
-        <li><a href="#學群分類-藝術學群?pmax=10&pmin=0" class="chart-link">藝術學群</a></li>
-        <li><a href="#學群分類-社會心理學群?pmax=10&pmin=0" class="chart-link">社會心理學群</a></li>
-        <li><a href="#學群分類-大眾傳播學群?pmax=10&pmin=0" class="chart-link">大眾傳播學群</a></li>
-        <li><a href="#學群分類-文史哲學群?pmax=10&pmin=0" class="chart-link">文史哲學群</a></li>
-        <li><a href="#學群分類-教育學群?pmax=10&pmin=0" class="chart-link">教育學群</a></li>
-        <li><a href="#學群分類-法政學群?pmax=10&pmin=0" class="chart-link">法政學群</a></li>
-        <li><a href="#學群分類-遊憩運動學群?pmax=10&pmin=0" class="chart-link">遊憩運動學群</a></li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-<!-- 下方白色內容顯示區 -->
-<section id="container" class="page-section">
-
-  <!-- 查詢結果區域 -->
-  <div id="result-area">
-    <div id="render-area">
-      <style>
-      .axis path,
-      .axis line {
-        fill: none;
-        stroke: #555;
-      }
-
-      .axis text {
-        fill: #555;
-      }
-
-      .line {
-        fill: none;
-        stroke: #ef0d0c;
-        stroke-width: 1.5px;
-  }
-      </style>
-      <h2><span id="render-title"></span></h2>
-      <p id="render-subtitle" style="text-align: center"></p>
-      <div class="chart-content">
-        <div id="render-chart"></div>
-      </div>
-      <div id="salary-source-area">
-        分析結果僅供參考，
-        薪資資料來源: <a href="http://www.104.com.tw/jb/career/department/" target="_blank">104升學就業地圖 - 系友薪資行情</a>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- 研究方法 -->
-  <div id="research-methods-modal" class="reveal-modal" data-reveal>
-    <div>
-      <h2>校系CP值分析方法</h2>
-        <div class="content">
-
-          <section>
-            <h3>一、資料來源</h3>
-
-            <ul>
-              <li>薪資資料: <a href="http://www.104.com.tw/jb/career/department/" target="_blank">104升學就業地圖-系友薪資行情</a> </li>
-              <ul>
-                <li>薪資資料更新時間: 2022/07/12</li>
-              </ul>
-              <li>分科測驗(指考)簡章: <a href="http://www2.uac.edu.tw/110data/110recruit.pdf" target="_blank">大學考試入學分發委員會官網</a></li>
-              <li>去年指考分數: <a href="https://www.uac.edu.tw/110data/110_04.pdf" target="_blank">大學考試入學分發委員會官網</a></li>
-              <li>科系資料</li>
-              <ul>
-                <li>以110年度指考校系分則中的校系為基礎</li>
-                <li>刪除109學年度停招的校系</li>
-                <li>刪除104系友薪資行情調查樣本不足的校系</li>
-              </ul>
-            </ul>
-          </section>
-
-          <section>
-            <h3>二、平均薪資計算</h3>
-
-            <ul>
-              <li>將(薪資級距x該級距人數百分比)加總</li>
-              <li>舉例: 臺灣大學資訊工程系平均薪資 =<br>
-                  $90000 x 18.8% +<br>
-                  $80000 x (26.4% - 18.8%) +<br>
-                  $70000 x (38.7% - 26.4%) +<br>
-                  $60000 x (54.2% - 38.7%) +<br>
-                  $50000 x (70% - 54.2%) +<br>
-                  $40000 x (87.2% - 70%) +<br>
-                  $30000 x (100% - 87.2%) <br>
-                  =<strong> $59530</strong>
-              </li>
-            </ul>
-
-            <img src="images/ex-avg-salary.jpg">
-          </section>
-
-          <section>
-            <h3>三、平均分數計算</h3>
-
-            <ul>
-              <li>最低錄取分數/採計科目加權總計</li>
-              <ul>
-                <li>舉例:107學年度 臺灣大學資訊工程系</li>
+            <div class="select-group-item">
+                <h3>一般分類</h3>
                 <ul>
-                  <li>採計及加權: 國x1, 英x1, 數甲x1, 物x1, 化x1</li>
-                  <li>107學年度最低錄取分數 = 415.7</li>
-                  <li>107學年度平均分數(還原單科分數) = 415.7/(1+1+1+1+1) = <strong>83.14</strong></li>
+                    <li><a href="#一般分類-學校?pmax=10&pmin=0" class="chart-link">學校</a></li>
+                    <li><a href="#一般分類-科系?pmax=10&pmin=0" class="chart-link">科系</a></li>
+                    <li><a href="#一般分類-學群" class="chart-link">學群</a></li>
                 </ul>
-              </ul>
-            </ul>
-          </section>
-
-          <section>
-            <h3>四、CP值計算</h3>
-
-            <ul>
-              <li>將平均薪資及平均分數正規化</li>
-              <ul>
-                <li>消除薪資和分數數值範圍以及分佈不一致的問題</li>
-                <li>C=平均薪資之百分比排名(百分位數)</li>
-                <li>P=平均分數之百分比排名(百分位數)</li>
-              </ul>
-              <li>CP = 薪資百分比排名(C) - 分數百分比排名(P)</li>
-              <li>舉例:107學年度 臺灣大學資訊工程系</li>
-              <ul>
-                <li>在1138個校系當中</li>
-                <li>平均薪資勝過1112個校系: C=1112/1138=97.72%</li>
-                <li>平均分數勝過1115個校系: P=1115/1138=97.98%</li>
-                <li>CP = 97.72 - 97.98 = -0.26</li>
-              </ul>
-            </ul>
-          </section>
-
-          <section>
-            <h3>五、校系CP值排名</h3>
-
-            <ul>
-              <li>第一優先: CP值由大到小排序</li>
-              <li>第二優先: 平均薪資由大到小排序</li>
-              <li>第三優先: 平均分數由小到大排序</li>
-            </ul>
-          </section>
-
-          <section>
-            <a href="docs/110-CP-public.xlsx">研究資料</a>
-          </section>
-
+            </div>
+            <div class="select-group-item">
+                <h3>依學群分</h3>
+                <ul>
+                <li><a href="#學群分類-工程學群?pmax=10&pmin=0" class="chart-link">工程學群</a></li>
+                <li><a href="#學群分類-資訊學群?pmax=10&pmin=0" class="chart-link">資訊學群</a></li>
+                <li><a href="#學群分類-管理學群?pmax=10&pmin=0" class="chart-link">管理學群</a></li>
+                <li><a href="#學群分類-財經學群?pmax=10&pmin=0" class="chart-link">財經學群</a></li>
+                <li><a href="#學群分類-建築設計學群?pmax=10&pmin=0" class="chart-link">建築設計學群</a></li>
+                <li><a href="#學群分類-外語學群?pmax=10&pmin=0" class="chart-link">外語學群</a></li>
+                <li><a href="#學群分類-數理化學群?pmax=10&pmin=0" class="chart-link">數理化學群</a></li>
+                <li><a href="#學群分類-醫藥衛生學群?pmax=10&pmin=0" class="chart-link">醫藥衛生學群</a></li>
+                <li><a href="#學群分類-生命科學學群?pmax=10&pmin=0" class="chart-link">生命科學學群</a></li>
+                <li><a href="#學群分類-生物資源學群?pmax=10&pmin=0" class="chart-link">生物資源學群</a></li>
+                <li><a href="#學群分類-地球環境學群?pmax=10&pmin=0" class="chart-link">地球環境學群</a></li>
+                <li><a href="#學群分類-藝術學群?pmax=10&pmin=0" class="chart-link">藝術學群</a></li>
+                <li><a href="#學群分類-社會心理學群?pmax=10&pmin=0" class="chart-link">社會心理學群</a></li>
+                <li><a href="#學群分類-大眾傳播學群?pmax=10&pmin=0" class="chart-link">大眾傳播學群</a></li>
+                <li><a href="#學群分類-文史哲學群?pmax=10&pmin=0" class="chart-link">文史哲學群</a></li>
+                <li><a href="#學群分類-教育學群?pmax=10&pmin=0" class="chart-link">教育學群</a></li>
+                <li><a href="#學群分類-法政學群?pmax=10&pmin=0" class="chart-link">法政學群</a></li>
+                <li><a href="#學群分類-遊憩運動學群?pmax=10&pmin=0" class="chart-link">遊憩運動學群</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <a class="close-reveal-modal">&#215;</a>
-  </div>
+    </section>
 
-  <!-- ref:include footer -->
-  <!-- endref -->
+    <!-- 下方白色內容顯示區 -->
+    <section id="container" class="page-section">
 
-</section>
+        <!-- 查詢結果區域 -->
+        <div id="result-area">
+            <div id="render-area">
+                <style>
+                .axis path,
+                .axis line {
+                    fill: none;
+                    stroke: #555;
+                }
 
-<script src="assets/jquery.min.js"></script>
-<script src="assets/foundation.min.js"></script>
-<script src="assets/arg-1.4.js"></script>
-<script src="js/calc-rem-tools.js"></script>
-<!-- <script src="js/chart-display.js"></script>  -->
-<script src="js/draw-chart.js"></script>
-<script>
-  window.onload = function() {
-    $(document).foundation();
+                .axis text {
+                    fill: #555;
+                }
 
-    var thisUrl = window.location.href;
-    var requestId = thisUrl.split("#")[1];
-    if(requestId !== undefined && requestId != ""){
-      // window.scroll(0, window.scrollY-convertRem(3.5));
-      window.scroll(0, window.scrollY);
-    }
-  };
-</script>
-<!-- ref:include body_tagmanager -->
-<!-- endref -->
+                .line {
+                    fill: none;
+                    stroke: #ef0d0c;
+                    stroke-width: 1.5px;
+                }
+                </style>
+                <h2><span id="render-title"></span></h2>
+                <p id="render-subtitle" style="text-align: center"></p>
+                <div class="chart-content">
+                    <div id="render-chart"></div>
+                </div>
+                <div id="salary-source-area">
+                    分析結果僅供參考，
+                    薪資資料來源: <a href="http://www.104.com.tw/jb/career/department/" target="_blank">104升學就業地圖 - 系友薪資行情</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 研究方法 -->
+        <div id="research-methods-modal" class="reveal-modal" data-reveal>
+            <div>
+                <h2>校系CP值分析方法</h2>
+                <div class="content">
+                    <section>
+                        <h3>一、資料來源</h3>
+                        <ul>
+                            <li>薪資資料: <a href="http://www.104.com.tw/jb/career/department/" target="_blank">104升學就業地圖-系友薪資行情</a> </li>
+                            <ul>
+                            <li>薪資資料更新時間: 2022/07/12</li>
+                            </ul>
+                            <li>分科測驗(指考)簡章: <a href="http://www2.uac.edu.tw/110data/110recruit.pdf" target="_blank">大學考試入學分發委員會官網</a></li>
+                            <li>去年指考分數: <a href="https://www.uac.edu.tw/110data/110_04.pdf" target="_blank">大學考試入學分發委員會官網</a></li>
+                            <li>科系資料</li>
+                            <ul>
+                            <li>以110年度指考校系分則中的校系為基礎</li>
+                            <li>刪除109學年度停招的校系</li>
+                            <li>刪除104系友薪資行情調查樣本不足的校系</li>
+                            </ul>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>二、平均薪資計算</h3>
+                        <ul>
+                            <li>將(薪資級距x該級距人數百分比)加總</li>
+                            <li>舉例: 臺灣大學資訊工程系平均薪資 =<br>
+                                $90000 x 18.8% +<br>
+                                $80000 x (26.4% - 18.8%) +<br>
+                                $70000 x (38.7% - 26.4%) +<br>
+                                $60000 x (54.2% - 38.7%) +<br>
+                                $50000 x (70% - 54.2%) +<br>
+                                $40000 x (87.2% - 70%) +<br>
+                                $30000 x (100% - 87.2%) <br>
+                                =<strong> $59530</strong>
+                            </li>
+                        </ul>
+                        <img src="images/ex-avg-salary.jpg">
+                    </section>
+
+                    <section>
+                        <h3>三、平均分數計算</h3>
+                        <ul>
+                            <li>最低錄取分數/採計科目加權總計</li>
+                            <ul>
+                            <li>舉例:107學年度 臺灣大學資訊工程系</li>
+                            <ul>
+                                <li>採計及加權: 國x1, 英x1, 數甲x1, 物x1, 化x1</li>
+                                <li>107學年度最低錄取分數 = 415.7</li>
+                                <li>107學年度平均分數(還原單科分數) = 415.7/(1+1+1+1+1) = <strong>83.14</strong></li>
+                            </ul>
+                            </ul>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>四、CP值計算</h3>
+                        <ul>
+                            <li>將平均薪資及平均分數正規化</li>
+                            <ul>
+                            <li>消除薪資和分數數值範圍以及分佈不一致的問題</li>
+                            <li>C=平均薪資之百分比排名(百分位數)</li>
+                            <li>P=平均分數之百分比排名(百分位數)</li>
+                            </ul>
+                            <li>CP = 薪資百分比排名(C) - 分數百分比排名(P)</li>
+                            <li>舉例:107學年度 臺灣大學資訊工程系</li>
+                            <ul>
+                            <li>在1138個校系當中</li>
+                            <li>平均薪資勝過1112個校系: C=1112/1138=97.72%</li>
+                            <li>平均分數勝過1115個校系: P=1115/1138=97.98%</li>
+                            <li>CP = 97.72 - 97.98 = -0.26</li>
+                            </ul>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h3>五、校系CP值排名</h3>
+                        <ul>
+                            <li>第一優先: CP值由大到小排序</li>
+                            <li>第二優先: 平均薪資由大到小排序</li>
+                            <li>第三優先: 平均分數由小到大排序</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <a href="docs/110-CP-public.xlsx">研究資料</a>
+                    </section>
+                </div>
+            </div>
+            <a class="close-reveal-modal">&#215;</a>
+        </div>
+
+        <!-- ref:include footer -->
+        <!-- endref -->
+
+    </section>
+
+    <script src="assets/jquery.min.js"></script>
+    <script src="assets/foundation.min.js"></script>
+    <script src="assets/arg-1.4.js"></script>
+    <script src="js/calc-rem-tools.js"></script>
+    <!-- <script src="js/chart-display.js"></script>  -->
+    <script src="js/draw-chart.js"></script>
+    <script>
+        window.onload = function() {
+            $(document).foundation();
+
+            var thisUrl = window.location.href;
+            var requestId = thisUrl.split("#")[1];
+            if(requestId !== undefined && requestId != ""){
+            // window.scroll(0, window.scrollY-convertRem(3.5));
+                window.scroll(0, window.scrollY);
+            }
+        };
+    </script>
+    <!-- ref:include body_tagmanager -->
+    <!-- endref -->
 </body>
 </html>

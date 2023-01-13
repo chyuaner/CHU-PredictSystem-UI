@@ -4,13 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- ref:include meta -->
-    <!-- endref -->
     <title>落點分析 - 2023 升大學職涯型學測落點分析/預測</title>
     <link rel="stylesheet" href="../css/predict.css">
     <script src="../assets/modernizr.js"></script>
-    <!-- ref:include head_tagmanager -->
-    <!-- endref -->
 </head>
 
 <body>
@@ -54,11 +50,6 @@
                         <p><small>（未輸入則會列出所有校系）</small></p>
                     </label>
                 </div>
-
-                <!-- <div id="total-gsat-score">
-                    <h2>總級分</h2>
-                    <span id="gsat-total">0</span><span id="gsat-total-grade" class="score-grade"></span>
-                </div> -->
 
                 <!-- 輸入學測成績 -->
                 <div id="input-gsat-score">
@@ -284,167 +275,8 @@
 
     <!-- 下方白色內容顯示區 -->
     <section id="container" class="page-section">
-
-        <!-- 載入中區域 -->
-        <div id="loading-area" class="hidden">
-            <div class="inner">
-                <img src="../images/loading-spokes-black.svg" alt="Loading icon" />
-                <p>正在取得資料中，請稍候...</p>
-            </div>
-        </div>
-
-        <!-- 查詢結果區域 -->
-        <div id="result-area">
-            <div class="banner">
-                <ul class="banner-orbit" data-orbit>
-                    <li class="active">
-                      <a href="https://news.chu.edu.tw/p/406-1001-24736,r14.php?Lang=zh-tw" target="_blank">
-                        <img src="../images/banner/111-gsat/111-banner-01.png" alt="">
-                      </a>
-                    </li>
-                    <li class="">
-                      <a href="https://international.chu.edu.tw/p/412-1054-1180.php?Lang=zh-tw" target="_blank">
-                        <img src="../images/banner/111-gsat/111-banner-02.png" alt="">
-                      </a>
-                    </li>
-                    <li class="">
-                      <a href="https://chuicc.weebly.com/" target="_blank">
-                        <img src="../images/banner/111-gsat/111-banner-03.png" alt="">
-                      </a>
-                    </li>
-                    <li class="">
-                      <a href="https://www1.chu.edu.tw/p/412-1000-489.php?Lang=zh-tw" target="_blank">
-                        <img src="../images/banner/111-gsat/111-banner-04.png" alt="">
-                      </a>
-                    </li>
-                  </ul>
-            </div>
-            <section id="result-suggest-school-departments-area">
-                <h2>落點分析結果 <small>(依薪資排序)</small></h2>
-                <a href="#" data-reveal-id="research-methods-modal" class="research-methods-link">分析方法</a>
-                <div id="blessings-area">
-                </div>
-                <div id="function-info">
-                    <ul>
-                        <li>按校系代碼會連結簡章頁面</li>
-                        <li>按學校名稱會連結學校首頁</li>
-                        <li>按科系名稱會連結科系首頁</li>
-                        <li>按薪資會連結104升學就業地圖</li>
-                        <li>今年篩選倍率紫色代表有異動</li>
-                        <li>去年最低級分紅色代表未達標</li>
-                    </ul>
-                </div>
-                <div id="salary-source-area">
-                    薪資資料來源：
-                    <a href="http://www.104.com.tw/jb/career/department/" target="_blank">
-                        <span class="relink">104升學就業地圖 - 系友薪資行情</span></a>
-                </div>
-
-                <h3>全國落點排序</h3>
-                <table id="table-result-suggest-school-departments">
-                    <thead>
-                        <tr>
-                            <th>校系代碼</th>
-                            <th>校名</th>
-                            <th>科系名稱</th>
-                            <th>畢業校友平均薪資</th>
-                            <th>今年篩選倍率</th>
-                            <th>去年通過倍率篩選最低級分</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="big-row" colspan="6">請輸入條件來進行落點分析</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td class="big-row" colspan="6">分析結果僅供參考，請自行判斷是否採納本站建議，本站不負考生錄取與否之連帶責任。</td>
-                        </tr>
-                    </tfoot>
-                </table>
-
-            </section>
-        </div>
-
-        <!-- 研究方法 -->
-        <div id="research-methods-modal" class="reveal-modal" data-reveal>
-            <div>
-                <h2>職涯型落點分析方法</h2>
-                <div class="content">
-                    <section>
-                        <h3>一、資料來源</h3>
-
-                        <ul>
-                            <li>薪資資料: <a href="https://www.104.com.tw/jb/career/" target="_blank">104升學就業地圖-系友薪資行情</a>
-                            </li>
-                            <ul>
-                                <li>如某校系沒有薪資資料，則將該校系的平均薪資視為0</li>
-                                <li>薪資資料更新時間: 2022/02/08</li>
-                            </ul>
-                            <li>學測分數: <a href="https://www.cac.edu.tw/cacportal/index.php"
-                                    target="_blank">大學甄選委員會網頁</a></li>
-                            <li>科系資料</li>
-                            <ul>
-                                <li>以今年度大學甄選委員會網頁個人申請校系分則中的校系為基礎</li>
-                                <li>刪除去年度篩選倍率只採計總級分的校系</li>
-                                <li>刪除去年度沒有招生的校系</li>
-                                <li>刪除採計術科的校系</li>
-                                <li>刪除採計APCS檢測的校系</li>
-                                <li>刪除有性別限制的校系</li>
-                            </ul>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h3>二、平均薪資計算</h3>
-
-                        <ul>
-                            <li>將(薪資級距x該級距人數百分比)加總</li>
-                            <li>舉例: 台灣大學資訊工程系平均薪資 =<br>
-                                $80000 x 26.2% +<br>
-                                $70000 x (42.5% - 26.2%) +<br>
-                                $60000 x (66% - 42.5%) +<br>
-                                $50000 x (75% - 66%) +<br>
-                                $40000 x (92.3% - 75%) +<br>
-                                $30000 x (100% - 92.3%)<br>
-                                =<strong> $60200</strong>
-                            </li>
-                        </ul>
-
-                        <img src="../images/ex-avg-salary.jpg">
-                    </section>
-
-                    <section>
-                        <h3>三、落點分析流程</h3>
-
-                        <ol>
-                            <li>將考生輸入的各科成績依照本學年度「學測各科級分人數百分比累計表」換算成百分數</li>
-                            <li>根據前一學年度「學測各科級分人數百分比累計表」將各科的百分數換算為前一學年度的各科成績</li>
-                            <li>找出各科加1級分後高於前一學年度通過倍率篩選最低級分的校系</li>
-                            <li>刪除未達最低薪資之校系</li>
-                            <li>刪除所在縣市條件不符之校系</li>
-                            <li>刪除公/私立條件不符之校系</li>
-                            <li>將符合校系依薪資由大到小排序</li>
-                        </ol>
-                    </section>
-
-                </div>
-            </div>
-            <a class="close-reveal-modal">&#215;</a>
-        </div>
-
-        <!-- 提示視窗(光箱效果) START-->
-        <div id="hint-msg-modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-            <h3 id="modalTitle">系統訊息</h2>
-            <p class="text-center">2023年學測落點分析還未正式上線，目前僅供測試</p>
-            <a class="close-reveal-modal">&#215;</a>
-        </div>
-        <!-- 提示視窗(光箱效果) END-->
-
         <!-- ref:include footer -->
         <!-- endref -->
-
     </section>
 
     <script src="../assets/jquery.min.js"></script>
@@ -452,8 +284,8 @@
     <script src="../assets/jquery.floatThead.min.js"></script>
     <script src="../js/calc-rem-tools.js"></script>
     <script src="../js/department-group-choose.js"></script>
-    <!-- <script src="js/score-grade-query.js"></script> -->
-    <script src="js/send-predict-data.js"></script>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script src="js/send-predict-data-to-liff.js"></script>
 
     <script>
         window.onload = function () {
@@ -463,31 +295,7 @@
                 zIndex: 5,
                 useAbsolutePositioning: true
             });
-            if(window.screen.width <= 768) {
-                alert("2023年學測落點分析還未正式上線，目前僅供測試");
-            }
-            else {
-                $('#hint-msg-modal').foundation('reveal', 'open');
-            }
         };
-
-        $(document).foundation({
-            orbit: {
-                animation: 'slide',
-                timer_speed: 3000,
-                animation_speed: 500,
-                pause_on_hover: false,
-                navigation_arrows: false,
-                bullets: false,
-                slide_number: false,
-            }
-        });
-
     </script>
-    <!-- ref:include analytics -->
-    <!-- endref -->
-    <!-- ref:include body_tagmanager -->
-    <!-- endref -->
 </body>
-
 </html>

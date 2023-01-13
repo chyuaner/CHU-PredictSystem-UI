@@ -140,7 +140,7 @@ function sentToLIFF(data) {
                 text: JSON.stringify(data),
             },
         ]).then(() => {
-          liff.closeWindow();
+            liff.closeWindow();
         }).catch((error) => {
             window.alert('Error sending message: ' + error);
         });
@@ -150,7 +150,7 @@ function sentToLIFF(data) {
 liff.init({
     liffId: '1657321772-40ezKwvL'
 }).catch((err)=>{
-  alert(err);
+    alert(err);
 });
 
 let form_input = document.getElementById('input-form');

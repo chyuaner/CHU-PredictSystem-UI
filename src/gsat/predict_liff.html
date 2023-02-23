@@ -290,10 +290,10 @@
     <script>
         window.onload = function () {
             $(document).foundation();
-            $('#result-area table').floatThead({
-                scrollingTop: convertRem(6),
-                zIndex: 5,
-                useAbsolutePositioning: true
+            liff.init({
+                liffId: "1657321772-40ezKwvL",
+            }).catch((err)=>{
+                alert(err);
             });
         };
     </script>

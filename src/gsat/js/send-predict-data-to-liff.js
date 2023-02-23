@@ -131,13 +131,6 @@ function sentToLIFF(data) {
     }
 }
 
-liff.init({
-    // liffId: '1657321772-40ezKwvL'
-    liffId: '1657337645-Eop8Wj1r'
-}).catch((err)=>{
-    alert(err);
-});
-
 let form_input = document.getElementById('input-form');
 form_input.onsubmit = function (e)  {
     e.preventDefault();

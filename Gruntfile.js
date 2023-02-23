@@ -65,10 +65,10 @@ module.exports = function(grunt) {
           includes: {
             footer: './src/footer.inc',
             oldie: './src/old-ie.inc',
-            // analytics: './src/ga.inc',
-            // meta: './src/meta.inc',
-            // body_tagmanager: './src/body_tagmanager.inc',
-            // head_tagmanager: './src/head_tagmanager.inc'
+            analytics: './src/ga.inc',
+            meta: './src/meta.inc',
+            body_tagmanager: './src/body_tagmanager.inc',
+            head_tagmanager: './src/head_tagmanager.inc'
           }
         }
       }

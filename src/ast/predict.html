@@ -484,7 +484,7 @@
   <div id="hint-msg-modal" class="reveal-modal" data-reveal
     aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
     <h3 id="modalTitle">系統訊息</h2>
-    <p class="text-center">2022年指考落點分析預計於7/27下午1:00正式上線，目前僅供測試</p>
+    <p class="text-center">2023年分科測驗落點分析預計於7/27下午1:00正式上線，目前僅供測試</p>
     <a class="close-reveal-modal">&#215;</a>
   </div>
   <!-- 提示視窗(光箱效果) END-->
@@ -509,11 +509,11 @@
       zIndex: 5,
       useAbsolutePositioning: true}
     );
-    // $('#hint-msg-modal').foundation('reveal', 'open');
+    $('#hint-msg-modal').foundation('reveal', 'open');
     // alert("2022年指考落點分析已正式上線，歡迎使用。");
     // alert("2022年指考落點分析預計於7/27下午1:00正式上線，目前僅供測試");
     if(window.screen.width <= 768){
-      alert("2022年指考落點分析預計於7/27下午1:00正式上線，目前僅供測試");
+      alert("2023年分科測驗落點分析預計於7/27下午1:00正式上線，目前僅供測試");
     }else {
       $('#hint-msg-modal').foundation('reveal', 'open');
     }

@@ -1,4 +1,5 @@
-var basePredictSystemUrl = "api/gsat/analysis";
+// var basePredictSystemUrl = "api/gsat/analysis";
+var basePredictSystemUrl = "https://localhost:44314/api/gsat/analysis";
 var querying = false;
 
 // http://stackoverflow.com/questions/1127905/how-can-i-format-an-integer-to-a-specific-length-in-javascript
@@ -126,7 +127,7 @@ function getData() {
     return data;
 }
 
-function setData(inputData, resultData) {
+function setData(resultData) {
 
     // 網頁介面對應
     var table_result = $("#table-result-suggest-school-departments");
@@ -135,23 +136,18 @@ function setData(inputData, resultData) {
     // 有沒有資料
     if (resultData.length > 0) {
         table_result_body.empty();
-        for (var i = 0; i < resultData.length; i++) {
-            // did, uname, uurl, dname, durl, salary, salaryUrl, lastCriterion, rateOfThisYear, change, examURL, riskIndex
-            addData(resultData[i].did, resultData[i].uname, resultData[i].uurl,
-                resultData[i].dname, resultData[i].durl, resultData[i].salary, resultData[i].salaryUrl,
-                resultData[i].lastCriterion, resultData[i].rateOfThisYear, resultData[i].change,
-                resultData[i].examURL, resultData[i].riskIndex);
-
-        }
+        resultData.forEach((item) => {
+            addData(item);
+        });
     } else {
         table_result_body.empty();
         table_result_body.append('<tr><td colspan="7">沒有符合您的校系，請修改條件後再次分析。</td></tr>');
     }
 }
 
-function addData(did, uname, uurl, dname, durl, salary, salaryUrl, lastCriterion, rateOfThisYear, change, examURL, riskIndex) {
-    if (salary == 0) {
-        salary = '樣本不足';
+function addData(resultItem) {
+    if (resultItem.salary == 0) {
+        resultItem.salary = '樣本不足';
     }
 
     var table_result = $("#table-result-suggest-school-departments");
@@ -161,29 +157,29 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, lastCriterion
     // if(yourScore < minScore) {
     //   trClass += ' warning';
     // }
-    if (uname == '中華大學') {
+    if (resultItem.uname == '中華大學') {
         trClass += ' chu';
     }
-    var tr = '<tr data-item-id="' + did + '" class="' + trClass + '">';
+    var tr = `<tr data-item-id="${resultItem.did}" class="${trClass}">`;
 
-    var content = '<th data-title="校系代碼">' + '<a href="' + examURL + '" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至簡章頁面">' + formatNumberLength(did, 4) + '</a>' + '</th>';
-    content += '<td data-title="校名"><a href="' + uurl + '" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至學校首頁">' + uname + '</a></td>';
+    var content = `<th data-title="校系代碼"><a href="${resultItem.examURL}" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至簡章頁面">${formatNumberLength(resultItem.did, 4)}</a></th>`;
+    content += `<td data-title="校名"><a href="${resultItem.uurl}" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至學校首頁">${resultItem.uname}</a></td>`;
 
-    if(durl == "0") {
-        content += '<td data-title="科系名稱">' + dname + '</a></td>';
+    if(resultItem.durl == "0") {
+        content += `<td data-title="科系名稱">${resultItem.dname}</a></td>`;
     } else {
-        content += '<td data-title="科系名稱"><a href="' + durl + '" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至科系首頁">' + dname + '</a></td>';
+        content += `<td data-title="科系名稱"><a href="${resultItem.durl}" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至科系首頁">${resultItem.dname}</a></td>`;
     }
 
-    if (salaryUrl === null) {
-        content += '<td data-title="畢業校友平均薪資">' + salary + '</td>';
+    if (resultItem.salaryUrl === null) {
+        content += `<td data-title="畢業校友平均薪資">${resultItem.salary}</td>`;
     } else {
-        content += '<td data-title="畢業校友平均薪資"><a href="' + salaryUrl + '" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至104升學就業地圖">' + salary + '</a></td>';
+        content += `<td data-title="畢業校友平均薪資"><a href="${resultItem.salaryUrl}" target="_blank" data-tooltip aria-haspopup="true" data-tooltip-title="連結至104升學就業地圖">${resultItem.salary}</a></td>`;
     }
 
-    var rateOfThisYear_tooltip, rateOfThisYear_info_icon, rateOfThisYear_change_class;
-    if (change !== null && change !== "") {
-        rateOfThisYear_tooltip = ' data-tooltip aria-haspopup="true" data-tooltip-title="' + change + '"';
+    var rateOfThisYear_tooltip, rateOfThisYear_change_class;
+    if (resultItem.change !== null && resultItem.change !== "") {
+        rateOfThisYear_tooltip = ` data-tooltip aria-haspopup="true" data-tooltip-title="${resultItem.change}"`;
 
         rateOfThisYear_change_class = ' change';
     } else {
@@ -191,12 +187,12 @@ function addData(did, uname, uurl, dname, durl, salary, salaryUrl, lastCriterion
 
         rateOfThisYear_change_class = '';
     }
-    content += '<td data-title="今年篩選倍率" class="' + rateOfThisYear_change_class + '"><span' + rateOfThisYear_tooltip + '>' + rateOfThisYear + '</span></td>';
+    content += `<td data-title="今年篩選倍率" class="${rateOfThisYear_change_class}"><span${rateOfThisYear_tooltip}>${resultItem.rateOfThisYear}</span></td>`;
 
-    if (riskIndex == true) {
-        content += '<td data-title="去年通過倍率篩選最低級分" class="warning">' + '<span data-tooltip aria-haspopup="true" data-tooltip-title="換算去年級分低於\n去年通過倍率篩選最低級分">' + lastCriterion + '</span>' + '&nbsp;</td>';
+    if (resultItem.riskIndex == true) {
+        content += `<td data-title="去年通過倍率篩選最低級分" class="warning"><span data-tooltip aria-haspopup="true" data-tooltip-title="換算去年級分低於去年通過倍率篩選最低級分">${resultItem.lastCriterion}</span>&nbsp;</td>`;
     } else {
-        content += '<td data-title="去年通過倍率篩選最低級分">' + lastCriterion + '&nbsp;</td>';
+        content += `<td data-title="去年通過倍率篩選最低級分">${resultItem.lastCriterion}&nbsp;</td>`;
     }
 
     table_result_body.append(tr + content + '</tr>');
@@ -224,13 +220,13 @@ function errorData() {
 
 function errorAlertMsg(text) {
     var alertArea = $("#input-area .alerts-area");
-    alertArea.append('<div data-alert class="alert-box alert round">' + text + ' <a href="#" class="close">&times;</a></div>');
+    alertArea.append('<div data-alert class="alert-box alert">' + text + ' <a href="#" class="close">&times;</a></div>');
     $("#input-area .alerts-area").foundation();
 }
 
 function warningAlertMsg(text) {
     var alertArea = $("#input-area .alerts-area");
-    alertArea.append('<div data-alert class="alert-box warning round">' + text + ' <a href="#" class="close">&times;</a></div>');
+    alertArea.append('<div data-alert class="alert-box warning">' + text + ' <a href="#" class="close">&times;</a></div>');
     $("#input-area .alerts-area").foundation();
 }
 
@@ -252,16 +248,16 @@ function fetchData(inputData, div_loading) {
         beforeSend: function () {
             // 顯示處理中畫面
             div_loading.classList.remove('hidden');
-            $('#input-form>input[type=submit]').prop("disabled", true);
-            $('#input-form>input[type=submit]').val('落點分析中...');
+            $('#input-form > input[type=submit]').prop("disabled", true);
+            $('#input-form > input[type=submit]').val('落點分析中...');
             querying = true;
         },
         success: function (data) {
             // 隱藏處理中畫面
             div_loading.classList.add('hidden');
-            setData(inputData, data.result);
-            $('#input-form>input[type=submit]').prop("disabled", false);
-            $('#input-form>input[type=submit]').val('開始分析');
+            setData(data.result);
+            $('#input-form > input[type=submit]').prop("disabled", false);
+            $('#input-form > input[type=submit]').val('開始分析');
             querying = false;
         },
         error: function (data) {
@@ -270,7 +266,7 @@ function fetchData(inputData, div_loading) {
             errorData();
             errorAlertMsg("<strong>錯誤！</strong> 沒有網路連線");
             $('input[type=submit]').prop("disabled", false);
-            $('#input-form>input[type=submit]').val('開始分析');
+            $('#input-form > input[type=submit]').val('開始分析');
             querying = false;
         }
     });
@@ -278,7 +274,6 @@ function fetchData(inputData, div_loading) {
 
 function queryResult() {
     var inputData = getData();
-    var resultData = [];
     var div_loading = document.getElementById('loading-area');
     var gsatData = inputData.grades.gsat;
     cleanAlert();

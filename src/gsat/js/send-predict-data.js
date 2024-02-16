@@ -278,12 +278,6 @@ function queryResult() {
     var gsatData = inputData.grades.gsat;
     cleanAlert();
 
-    // if (isNaN(gsatData.Chinese) && isNaN(gsatData.English) &&
-    //     isNaN(gsatData.MathA) && isNaN(gsatData.MathB) &&
-    //     isNaN(gsatData.Science) &&isNaN(gsatData.Society)) {
-    //     warningAlertMsg("你還沒填寫學測成績喔～");
-    // }
-
     if(gsatData.Chinese === 0 && gsatData.English === 0 && gsatData.MathA === 0 &&
         gsatData.MathB === 0 && gsatData.Science === 0 && gsatData.Society === 0) {
             warningAlertMsg("你還沒填寫學測成績喔～");

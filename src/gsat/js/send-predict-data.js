@@ -1,5 +1,5 @@
-// var basePredictSystemUrl = "api/gsat/analysis";
-var basePredictSystemUrl = "https://localhost:44314/api/gsat/analysis";
+var basePredictSystemUrl = "api/gsat/analysis";
+// var basePredictSystemUrl = "https://localhost:44314/api/gsat/analysis";
 var querying = false;
 
 // http://stackoverflow.com/questions/1127905/how-can-i-format-an-integer-to-a-specific-length-in-javascript

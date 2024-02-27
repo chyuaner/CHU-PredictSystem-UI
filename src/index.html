@@ -45,9 +45,6 @@
             <!-- Modal 光箱效果 START -->
             <div id="doc-modal" class="reveal-modal tiny" data-reveal role="dialog">
                 <div style="display: flex; justify-content:center;">
-                    <a id="manual" class="button" href="">操作說明請點我</a>
-                </div>
-                <div style="display: flex; justify-content:center;">
                     <a href="https://lin.ee/dFEh8F6">
                         <img src="images/chu_linebot_online.jpg" width="450px" height="800px">
                     </a>
@@ -65,7 +62,7 @@
         <script src="assets/foundation.min.js"></script>
         <script>
             $(document).foundation();
-            // $('#doc-modal').foundation('reveal', 'open');
+            $('#doc-modal').foundation('reveal', 'open');
             document.getElementById("manual")
                     .addEventListener('click', function (e) {
                 e.preventDefault();

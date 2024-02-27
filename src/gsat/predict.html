@@ -432,9 +432,9 @@
             <!-- 提示視窗(光箱效果) START-->
             <div id="hint-msg-modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
                 role="dialog">
-                <h3 id="modalTitle">系統訊息</h2>
-                    <p class="text-center">2024學測落點分析將於2024/02/27 下午正式上線，目前僅供測試</p>
-                    <a class="close-reveal-modal">&#215;</a>
+                <h3 id="modalTitle">系統訊息</h3>
+                <p class="text-center">2024學測落點分析將於2024/02/27 下午正式上線，目前僅供測試</p>
+                <a class="close-reveal-modal">&#215;</a>
             </div>
             <!-- 提示視窗(光箱效果) END-->
 
@@ -458,12 +458,12 @@
                     zIndex: 5,
                     useAbsolutePositioning: true
                 });
-                if (window.screen.width <= 768) {
-                    alert("2024年學測落點分析還未正式上線，目前僅供測試");
-                }
-                else {
-                    $('#hint-msg-modal').foundation('reveal', 'open');
-                }
+                // if (window.screen.width <= 768) {
+                //     alert("2024年學測落點分析還未正式上線，目前僅供測試");
+                // }
+                // else {
+                //     $('#hint-msg-modal').foundation('reveal', 'open');
+                // }
             };
 
             $(document).foundation({

@@ -27,16 +27,19 @@
                 <div id="main-link-area">
                     <ul>
                         <li>
-                            <span class="hot-icon">
-                                <img src="images/hot.png" style="max-height: 4em;">
-                            </span>
                             <a href="gsat/predict.html" class="primaryBtn">學測落點分析 Go!</a>
                         </li>
                         <li>
-                            <a href="ast/predict.html" class="primaryBtn astbtn">分科測驗落點分析 Go!</a>
+                            <span class="hot-icon">
+                                <img src="images/hot.png" style="max-height: 4em;">
+                            </span>
+                            <a href="/ast/predict.html" class="primaryBtn astbtn">分科測驗落點分析 Go!</a>
                         </li>
                         <li>
                             <a href="chart.html" class="primaryBtn">校系CP值分析 Go!</a>
+                        </li>
+                        <li>
+                            <a href="https://chugpt.chu.edu.tw" class="primaryBtn">ChuGPT輕鬆問 Go!</a>
                         </li>
                     </ul>
                 </div>
@@ -62,7 +65,7 @@
         <script src="assets/foundation.min.js"></script>
         <script>
             $(document).foundation();
-            $('#doc-modal').foundation('reveal', 'open');
+            // $('#doc-modal').foundation('reveal', 'open');
             document.getElementById("manual")
                     .addEventListener('click', function (e) {
                 e.preventDefault();

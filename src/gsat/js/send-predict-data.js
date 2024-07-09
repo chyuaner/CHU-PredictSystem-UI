@@ -1,5 +1,5 @@
-var basePredictSystemUrl = "api/gsat/analysis";
-// var basePredictSystemUrl = "https://localhost:44314/api/gsat/analysis";
+// var basePredictSystemUrl = "api/gsat/analysis";
+var basePredictSystemUrl = "https://localhost:44314/api/gsat/analysis";
 var querying = false;
 
 // http://stackoverflow.com/questions/1127905/how-can-i-format-an-integer-to-a-specific-length-in-javascript
@@ -236,6 +236,34 @@ function cleanAlert() {
     alertArea.empty();
 }
 
+function atLeast3(data) {
+    var bool = false;
+    var count = 0;
+
+    for (const key in data) {
+        if (count < 3) {
+            if (data[key] > 0) count++;
+        } else {
+            bool = true;
+        }
+    }
+    return bool;
+}
+
+function checkGradeIsAllBlank(grades) {
+    let gsat_data = grades.gsat;
+    if (
+        isNaN(gsat_data.Chinese) &&
+        isNaN(gsat_data.English) &&
+        isNaN(gsat_data.MathA) &&
+        isNaN(gsat_data.MathB) &&
+        isNaN(gsat_data.Science) &&
+        isNaN(gsat_data.Society)
+    ) {
+        return true;
+    } else return false;
+}
+
 function fetchData(inputData, div_loading) {
     $.ajax({
         type: 'POST',
@@ -275,12 +303,11 @@ function fetchData(inputData, div_loading) {
 function queryResult() {
     var inputData = getData();
     var div_loading = document.getElementById('loading-area');
-    var gsatData = inputData.grades.gsat;
     cleanAlert();
-
-    if(gsatData.Chinese === 0 && gsatData.English === 0 && gsatData.MathA === 0 &&
-        gsatData.MathB === 0 && gsatData.Science === 0 && gsatData.Society === 0) {
-            warningAlertMsg("你還沒填寫學測成績喔～");
+    if (checkGradeIsAllBlank(data.grades)) {
+        warningAlertMsg("你還沒填寫成績喔～");
+    } else if (!atLeast3(astData)) {
+        warningAlertMsg("請填入至少三科以上成績喔～");
     } else { // 沒有問題，開始向後端要資料
         if (!querying) {
             fetchData(inputData, div_loading);

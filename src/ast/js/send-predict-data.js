@@ -1,5 +1,5 @@
-var basePredictSystemUrl = "https://mpc06szm-7176.asse.devtunnels.ms/api/ast/analysis";
-// var basePredictSystemUrl = "api/ast/analysis";
+// var basePredictSystemUrl = "https://mpc06szm-7176.asse.devtunnels.ms/api/ast/analysis";
+var basePredictSystemUrl = "api/ast/analysis";
 var max_input_score = 15;
 var querying = false;
 

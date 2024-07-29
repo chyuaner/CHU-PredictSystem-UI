@@ -21,17 +21,11 @@ function getData() {
     let input_gsat_mathb = document.getElementById("input-gsat-mathb");
     let input_gsat_society = document.getElementById("input-gsat-society");
     let input_gsat_science = document.getElementById("input-gsat-science");
-    let input_gsat_engLis = document.getElementById(
-        "input-gsat-english-listen"
-    );
+    let input_gsat_engLis = document.getElementById("input-gsat-english-listen");
 
-    let input_departmentGroup = document.getElementsByName(
-        "input-department-group"
-    );
+    let input_departmentGroup = document.getElementsByName("input-department-group");
     let input_stateGroup = document.getElementsByName("input-state-group");
-    let input_universityGroup = document.getElementsByName(
-        "input-university-group"
-    );
+    let input_universityGroup = document.getElementsByName("input-university-group");
     let salary = input_salary.value == "" ? 0 : (input_salary.value);
 
     // 取得使用者填寫的表單資料
@@ -153,12 +147,11 @@ function sentToLIFF(data) {
     }
 }
 
-liff.init({
-    // liffId: '1657321772-40ezKwvL'
-    liffId: '1657337645-Eop8Wj1r'
-}).catch((err)=>{
-    alert(err);
-});
+const liffId = '1657321772-40ezKwvL';
+liff.init({ liffId })
+    .catch((err)=>{
+        alert(err);
+    });
 
 let form_input = document.getElementById('input-form');
 form_input.onsubmit = function (e)  {

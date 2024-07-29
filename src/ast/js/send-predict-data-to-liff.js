@@ -26,30 +26,30 @@ function getData() {
     let input_departmentGroup = document.getElementsByName("input-department-group");
     let input_stateGroup = document.getElementsByName("input-state-group");
     let input_universityGroup = document.getElementsByName("input-university-group");
-    let salary = input_salary.value == "" ? 0 : (input_salary.value);
+    let salary = input_salary.value == "" ? 0 : parseInt(input_salary.value);
 
     // 取得使用者填寫的表單資料
-    let ast_chinese = input_ast_chinese.value == "" ? "0" : (input_ast_chinese.value);
-    let ast_english = input_ast_english.value == "" ? "0" : (input_ast_english.value);
-    let ast_mathA = input_ast_mathA.value == "" ? "0" : (input_ast_mathA.value);
-    let ast_history = input_ast_history.value == "" ? "0" : (input_ast_history.value);
-    let ast_geography = input_ast_geography.value == "" ? "0" : (input_ast_geography.value);
-    let ast_citizen = input_ast_citizen.value == "" ? "0" : (input_ast_citizen.value);
-    let ast_physics = input_ast_physics.value == "" ? "0" : (input_ast_physics.value);
-    let ast_chemistry = input_ast_chemistry.value == "" ? "0" : (input_ast_chemistry.value);
-    let ast_biology = input_ast_biology.value == "" ? "0" : (input_ast_biology.value);
-    let sub_test_mathA = subject_test_math_a.value == "" ? "0" : (subject_test_math_a.value);
-    let sub_test_mathB = subject_test_math_b.value == "" ? "0" : (subject_test_math_b.value);
-    let sub_test_society = subject_test_society.value == "" ? "0" : (subject_test_society.value);
-    let sub_test_science = subject_test_science.value == "" ? "0" : (subject_test_science.value);
+    let ast_chinese = input_ast_chinese.value == "" ? "0" : input_ast_chinese.value;
+    let ast_english = input_ast_english.value == "" ? "0" : input_ast_english.value;
+    let ast_mathA = input_ast_mathA.value == "" ? "0" : input_ast_mathA.value;
+    let ast_history = input_ast_history.value == "" ? "0" : input_ast_history.value;
+    let ast_geography = input_ast_geography.value == "" ? "0" : input_ast_geography.value;
+    let ast_citizen = input_ast_citizen.value == "" ? "0" : input_ast_citizen.value;
+    let ast_physics = input_ast_physics.value == "" ? "0" : input_ast_physics.value;
+    let ast_chemistry = input_ast_chemistry.value == "" ? "0" : input_ast_chemistry.value;
+    let ast_biology = input_ast_biology.value == "" ? "0" : input_ast_biology.value;
+    let sub_test_mathA = subject_test_math_a.value == "" ? "0" : subject_test_math_a.value;
+    let sub_test_mathB = subject_test_math_b.value == "" ? "0" : subject_test_math_b.value;
+    let sub_test_society = subject_test_society.value == "" ? "0" : subject_test_society.value;
+    let sub_test_science = subject_test_science.value == "" ? "0" : subject_test_science.value;
     let gsat_engLis = input_gsat_engLis.value;
 
-    let gsat_chinese = input_gsat_chinese.value == "" ? "0" : (input_gsat_chinese.value);
-    let gsat_english = input_gsat_english.value == "" ? "0" : (input_gsat_english.value);
-    let gsat_mathA = input_gsat_matha.value == "" ? "0" : (input_gsat_matha.value);
-    let gsat_mathB = input_gsat_mathb.value == "" ? "0" : (input_gsat_mathb.value);
-    let gsat_society = input_gsat_society.value == "" ? "0" : (input_gsat_society.value);
-    let gsat_science = input_gsat_science.value == "" ? "0" : (input_gsat_science.value);
+    let gsat_chinese = input_gsat_chinese.value == "" ? "0" : input_gsat_chinese.value;
+    let gsat_english = input_gsat_english.value == "" ? "0" : input_gsat_english.value;
+    let gsat_mathA = input_gsat_matha.value == "" ? "0" : input_gsat_matha.value;
+    let gsat_mathB = input_gsat_mathb.value == "" ? "0" : input_gsat_mathb.value;
+    let gsat_society = input_gsat_society.value == "" ? "0" : input_gsat_society.value;
+    let gsat_science = input_gsat_science.value == "" ? "0" : input_gsat_science.value;
 
     let departmentGroup = [];
     for (let i = 0; i < input_departmentGroup.length; i++) {
@@ -130,20 +130,58 @@ function getData() {
     return data;
 }
 
+function warningAlertMsg(text) {
+    var alertArea = $("#input-area .alerts-area");
+    alertArea.append(
+        `<div data-alert class="alert-box warning round">${text}<a href="#" class="close">&times;</a></div>`
+    );
+    $("#input-area .alerts-area").foundation();
+}
+
+function cleanAlert() {
+    var alertArea = $("#input-area .alerts-area");
+    alertArea.empty();
+}
+
+function atLeast3(data) {
+    var bool = false;
+    var count = 0;
+
+    for (const key in data) {
+        if (count < 3) {
+            if (data[key] > 0) count++;
+        } else {
+            bool = true;
+        }
+    }
+    return bool;
+}
+
 function sentToLIFF(data) {
-    if (!liff.isInClient()) {
-        alert('This button is unavailable as LIFF is currently being opened in an external browser.');
-    } else {
-        liff.sendMessages([
+    // 檢查是否有填寫資料
+    let astData = data.grades.ast;
+    let gsatData = data.grades.gsat[1];
+    let subject = Object.assign(astData, gsatData);
+    cleanAlert();
+    if (!atLeast3(subject)) {
+        warningAlertMsg("請填入至少三科以上成績喔～");
+    }
+    else {
+        if (!liff.isInClient()) {
+            alert('This button is unavailable as LIFF is currently being opened in an external browser.');
+        }
+        else {
+            liff.sendMessages([
             {
                 type: 'text',
                 text: JSON.stringify(data),
             },
-        ]).then(() => {
-            liff.closeWindow();
-        }).catch((error) => {
-            window.alert('Error sending message: ' + error);
-        });
+            ]).then(() => {
+                liff.closeWindow();
+            }).catch((error) => {
+                window.alert('Error sending message: ' + error);
+            });
+        }
     }
 }
 

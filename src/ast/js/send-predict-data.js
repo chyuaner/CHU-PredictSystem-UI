@@ -1,5 +1,6 @@
-// var basePredictSystemUrl = "https://mpc06szm-7176.asse.devtunnels.ms/api/ast/analysis";
-var basePredictSystemUrl = "api/ast/analysis";
+var basePredictSystemUrl =
+    "https://kqxl54nx-7176.asse.devtunnels.ms/api/ast/analysis";
+// var basePredictSystemUrl = "api/ast/analysis";
 var max_input_score = 15;
 var querying = false;
 
@@ -43,41 +44,47 @@ function getData() {
     let input_gsat_mathb = document.getElementById("input-gsat-mathb");
     let input_gsat_society = document.getElementById("input-gsat-society");
     let input_gsat_science = document.getElementById("input-gsat-science");
-    let input_gsat_engLis = document.getElementById(
-        "input-gsat-english-listen"
-    );
+    let input_gsat_engLis = document.getElementById("input-gsat-english-listen");
 
-    let input_departmentGroup = document.getElementsByName(
-        "input-department-group"
-    );
+    let input_departmentGroup = document.getElementsByName("input-department-group");
     let input_stateGroup = document.getElementsByName("input-state-group");
-    let input_universityGroup = document.getElementsByName(
-        "input-university-group"
-    );
-    let salary = input_salary.value == "" ? 0 : (input_salary.value);
+    let input_universityGroup = document.getElementsByName("input-university-group");
+    let salary = input_salary.value == "" ? 0 : parseInt(input_salary.value);
 
     // 取得使用者填寫的表單資料
-    let ast_chinese = input_ast_chinese.value == "" ? "0" : (input_ast_chinese.value);
-    let ast_english = input_ast_english.value == "" ? "0" : (input_ast_english.value);
-    let ast_mathA = input_ast_mathA.value == "" ? "0" : (input_ast_mathA.value);
-    let ast_history = input_ast_history.value == "" ? "0" : (input_ast_history.value);
-    let ast_geography = input_ast_geography.value == "" ? "0" : (input_ast_geography.value);
-    let ast_citizen = input_ast_citizen.value == "" ? "0" : (input_ast_citizen.value);
-    let ast_physics = input_ast_physics.value == "" ? "0" : (input_ast_physics.value);
-    let ast_chemistry = input_ast_chemistry.value == "" ? "0" : (input_ast_chemistry.value);
-    let ast_biology = input_ast_biology.value == "" ? "0" : (input_ast_biology.value);
-    let sub_test_mathA = subject_test_math_a.value == "" ? "0" : (subject_test_math_a.value);
-    let sub_test_mathB = subject_test_math_b.value == "" ? "0" : (subject_test_math_b.value);
-    let sub_test_society = subject_test_society.value == "" ? "0" : (subject_test_society.value);
-    let sub_test_science = subject_test_science.value == "" ? "0" : (subject_test_science.value);
+    let ast_chinese =
+        input_ast_chinese.value == "" ? "0" : input_ast_chinese.value;
+    let ast_english =
+        input_ast_english.value == "" ? "0" : input_ast_english.value;
+    let ast_mathA = input_ast_mathA.value == "" ? "0" : input_ast_mathA.value;
+    let ast_history =
+        input_ast_history.value == "" ? "0" : input_ast_history.value;
+    let ast_geography =
+        input_ast_geography.value == "" ? "0" : input_ast_geography.value;
+    let ast_citizen =
+        input_ast_citizen.value == "" ? "0" : input_ast_citizen.value;
+    let ast_physics =
+        input_ast_physics.value == "" ? "0" : input_ast_physics.value;
+    let ast_chemistry =
+        input_ast_chemistry.value == "" ? "0" : input_ast_chemistry.value;
+    let ast_biology =
+        input_ast_biology.value == "" ? "0" : input_ast_biology.value;
+    let sub_test_mathA =
+        subject_test_math_a.value == "" ? "0" : subject_test_math_a.value;
+    let sub_test_mathB =
+        subject_test_math_b.value == "" ? "0" : subject_test_math_b.value;
+    let sub_test_society =
+        subject_test_society.value == "" ? "0" : subject_test_society.value;
+    let sub_test_science =
+        subject_test_science.value == "" ? "0" : subject_test_science.value;
     let gsat_engLis = input_gsat_engLis.value;
 
-    let gsat_chinese = input_gsat_chinese.value == "" ? "0" : (input_gsat_chinese.value);
-    let gsat_english = input_gsat_english.value == "" ? "0" : (input_gsat_english.value);
-    let gsat_mathA = input_gsat_matha.value == "" ? "0" : (input_gsat_matha.value);
-    let gsat_mathB = input_gsat_mathb.value == "" ? "0" : (input_gsat_mathb.value);
-    let gsat_society = input_gsat_society.value == "" ? "0" : (input_gsat_society.value);
-    let gsat_science = input_gsat_science.value == "" ? "0" : (input_gsat_science.value);
+    let gsat_chinese = input_gsat_chinese.value == "" ? "0" : input_gsat_chinese.value;
+    let gsat_english = input_gsat_english.value == "" ? "0" : input_gsat_english.value;
+    let gsat_mathA = input_gsat_matha.value == "" ? "0" : input_gsat_matha.value;
+    let gsat_mathB = input_gsat_mathb.value == "" ? "0" : input_gsat_mathb.value;
+    let gsat_society = input_gsat_society.value == "" ? "0" : input_gsat_society.value;
+    let gsat_science = input_gsat_science.value == "" ? "0" : input_gsat_science.value;
 
     let departmentGroup = [];
     for (let i = 0; i < input_departmentGroup.length; i++) {
@@ -153,7 +160,7 @@ function getData() {
         groups: departmentGroup,
         location: stateGroup,
         property: universityGroup,
-        expect_salary: salary,
+        expect_salary: salary
     };
     return data;
 }
@@ -187,19 +194,8 @@ function setData(resultData) {
     }
 }
 
-function addData(
-    did,
-    uname,
-    uurl,
-    dname,
-    durl,
-    salary,
-    salaryUrl,
-    minScore,
-    yourScore
-) {
-    let post_url =
-        "https://uac2.ncku.edu.tw/cross_search/index.php?c=search&m=detail";
+function addData(did, uname, uurl, dname, durl, salary, salaryUrl, minScore, yourScore) {
+    let post_url = "https://uac2.ncku.edu.tw/cross_search/index.php?c=search&m=detail";
     if (salary == 0) {
         salary = "樣本不足";
     }
@@ -381,11 +377,10 @@ function queryResult(data) {
     let astData = data.grades.ast;
     let gsatData = data.grades.gsat[1];
     let subject = Object.assign(astData, gsatData);
-    //console.log(atLeast3(subject));
     cleanAlert();
     if (checkGradeIsAllBlank(data.grades)) {
         warningAlertMsg("你還沒填寫成績喔～");
-    } else if (!atLeast3(astData)) {
+    } else if (!atLeast3(subject)) {
         warningAlertMsg("請填入至少三科以上成績喔～");
     } else {
         // 沒有問題，開始向後端要資料

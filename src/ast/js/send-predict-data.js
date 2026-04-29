@@ -1,6 +1,6 @@
-var basePredictSystemUrl =
+//var basePredictSystemUrl =
     "https://kqxl54nx-7176.asse.devtunnels.ms/api/ast/analysis";
-// var basePredictSystemUrl = "api/ast/analysis";
+ var basePredictSystemUrl = "api/ast/analysis";
 var max_input_score = 15;
 var querying = false;
 

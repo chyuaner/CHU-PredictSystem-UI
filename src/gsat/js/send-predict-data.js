@@ -1,4 +1,4 @@
- var basePredictSystemUrl = "api/gsat/analysis";
+var basePredictSystemUrl = "api/gsat/analysis";
 //var basePredictSystemUrl = "https://localhost:44314/api/gsat/analysis";
 var querying = false;
 
@@ -304,9 +304,9 @@ function queryResult() {
     var inputData = getData();
     var div_loading = document.getElementById('loading-area');
     cleanAlert();
-    if (checkGradeIsAllBlank(data.grades)) {
+    if (checkGradeIsAllBlank(inputData.grades)) {
         warningAlertMsg("你還沒填寫成績喔～");
-    } else if (!atLeast3(astData)) {
+    } else if (!atLeast3(inputData.grades.gsat)) {
         warningAlertMsg("請填入至少三科以上成績喔～");
     } else { // 沒有問題，開始向後端要資料
         if (!querying) {

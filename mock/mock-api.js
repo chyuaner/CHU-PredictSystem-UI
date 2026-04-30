@@ -38,7 +38,7 @@ const server = http.createServer((req, res) => {
 
     // 學測落點分析 Mock
     if (req.url.includes('/gsat/analysis')) {
-        const mockResponse = { result: [] };
+        const mockResponse = { mock: true, result: [] };
         const randomRecords = getRandomData(80);
         
         randomRecords.forEach((record, index) => {
@@ -68,7 +68,7 @@ const server = http.createServer((req, res) => {
 
     // 指考落點分析 Mock
     if (req.url.includes('/ast/analysis')) {
-        const mockResponse = { result: [], resultCHU: [] };
+        const mockResponse = { mock: true, result: [], resultCHU: [] };
         const randomRecords = getRandomData(80);
         
         // 產生一般學校

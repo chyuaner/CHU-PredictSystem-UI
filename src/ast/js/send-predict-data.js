@@ -357,6 +357,9 @@ function fetchPredictData(data) {
             // 隱藏處理中畫面
             div_loading.classList.add("hidden");
             setData(data.result);
+            if (data.mock) {
+                errorAlertMsg("<strong>注意：</strong> 本次結果為模擬資料，僅供Demo參考用");
+            }
             $("input[type=submit]").prop("disabled", false);
             $(".analyze_start").val("開始分析");
             querying = false;

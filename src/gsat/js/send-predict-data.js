@@ -284,6 +284,9 @@ function fetchData(inputData, div_loading) {
             // 隱藏處理中畫面
             div_loading.classList.add('hidden');
             setData(data.result);
+            if (data.mock) {
+                errorAlertMsg("<strong>注意：</strong> 本次結果為模擬資料，僅供Demo參考用");
+            }
             $('#input-form > input[type=submit]').prop("disabled", false);
             $('#input-form > input[type=submit]').val('開始分析');
             querying = false;

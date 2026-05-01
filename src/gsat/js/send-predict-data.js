@@ -34,38 +34,13 @@ function getData() {
         var salary = parseFloat(input_salary.value);
     }
 
-    if (input_gsat_chinese.value == "") {
-        var gsat_chinese = parseInt(0);
-    } else {
-        var gsat_chinese = parseInt(input_gsat_chinese.value);
-    }
-    if (input_gsat_english.value == "") {
-        var gsat_english = parseInt(0);
-    } else {
-        var gsat_english = parseInt(input_gsat_english.value);
-    }
-    if (input_gsat_math_A.value == "") {
-        var gsat_math_A = parseInt(0);
-    } else {
-        var gsat_math_A = parseInt(input_gsat_math_A.value);
-    }
+    let gsat_chinese = input_gsat_chinese.value == "" ? "0" : input_gsat_chinese.value;
+    let gsat_english = input_gsat_english.value == "" ? "0" : input_gsat_english.value;
+    let gsat_mathA = input_gsat_math_A.value == "" ? "0" : input_gsat_math_A.value;
+    let gsat_mathB = input_gsat_math_B.value == "" ? "0" : input_gsat_math_B.value;
+    let gsat_society = input_gsat_social.value == "" ? "0" : input_gsat_social.value;
+    let gsat_science = input_gsat_nature.value == "" ? "0" : input_gsat_nature.value;
 
-    if (input_gsat_math_B.value == "") {
-        var gsat_math_B = parseInt(0);
-    } else {
-        var gsat_math_B = parseInt(input_gsat_math_B.value);
-    }
-
-    if (input_gsat_social.value == "") {
-        var gsat_social = parseInt(0);
-    } else {
-        var gsat_social = parseInt(input_gsat_social.value);
-    }
-    if (input_gsat_nature.value == "") {
-        var gsat_nature = parseInt(0);
-    } else {
-        var gsat_nature = parseInt(input_gsat_nature.value);
-    }
     var gsat_engLis = input_gsat_engLis.value;
 
     var departmentGroup = [];
@@ -109,15 +84,15 @@ function getData() {
 
     var data = {
         grades: {
-            gsat: {
+            gsat: [{
                 Chinese: gsat_chinese,
                 English: gsat_english,
-                MathA: gsat_math_A,
-                MathB: gsat_math_B,
-                Society: gsat_social,
-                Science: gsat_nature,
+                MathA: gsat_mathA,
+                MathB: gsat_mathB,
+                Society: gsat_society,
+                Science: gsat_science,
                 EngListeningLevel: gsat_engLis
-            }
+            }]
         },
         groups: departmentGroup,
         location: stateGroup,
@@ -251,7 +226,7 @@ function atLeast3(data) {
 }
 
 function checkGradeIsAllBlank(grades) {
-    let gsat_data = grades.gsat;
+    let gsat_data = grades.gsat[0];
     if (
         isNaN(gsat_data.Chinese) &&
         isNaN(gsat_data.English) &&
@@ -309,7 +284,7 @@ function queryResult() {
     cleanAlert();
     if (checkGradeIsAllBlank(inputData.grades)) {
         warningAlertMsg("你還沒填寫成績喔～");
-    } else if (!atLeast3(inputData.grades.gsat)) {
+    } else if (!atLeast3(inputData.grades.gsat[0])) {
         warningAlertMsg("請填入至少三科以上成績喔～");
     } else { // 沒有問題，開始向後端要資料
         if (!querying) {

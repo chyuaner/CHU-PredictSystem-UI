@@ -5,7 +5,7 @@ const path = require('path');
 // 讀取剛剛抓下來的真實資料當作資料庫
 let realData = [];
 try {
-    const rawData = fs.readFileSync(path.join(__dirname, 'ast-mock.json'), 'utf8');
+    const rawData = fs.readFileSync(path.join(__dirname, 'ast-2025mock.json'), 'utf8');
     const parsedData = JSON.parse(rawData);
     if (parsedData.result && parsedData.result.length > 0) {
         realData = parsedData.result;
@@ -40,7 +40,7 @@ const server = http.createServer((req, res) => {
     if (req.url.includes('/gsat/analysis')) {
         const mockResponse = { mock: true, result: [] };
         const randomRecords = getRandomData(80);
-        
+
         randomRecords.forEach((record, index) => {
             const isChu = (index % 10 === 0);
             mockResponse.result.push({
@@ -70,7 +70,7 @@ const server = http.createServer((req, res) => {
     if (req.url.includes('/ast/analysis')) {
         const mockResponse = { mock: true, result: [], resultCHU: [] };
         const randomRecords = getRandomData(80);
-        
+
         // 產生一般學校
         randomRecords.forEach(record => {
             mockResponse.result.push({
@@ -86,7 +86,7 @@ const server = http.createServer((req, res) => {
                 examURL: "https://www.uac.edu.tw/"
             });
         });
-        
+
         // 產生中華大學專屬結果
         const chuRecords = getRandomData(15);
         chuRecords.forEach(record => {
